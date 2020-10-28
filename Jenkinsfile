@@ -137,7 +137,7 @@ pipeline {
                 sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
+                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
                 // Prepare coverage
@@ -151,7 +151,8 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
+        // Unit tests are done by Travis, and only done here on Daily tests
+        /* stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'auto')
@@ -165,7 +166,7 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
-        }
+        } */
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 run_pytest('sPyNNaker8/p8_integration_tests/quick_test/', 1200, 'sPyNNaker8_Integration', 'auto')
@@ -227,6 +228,13 @@ pipeline {
 }
 
 def run_pytest(String tests, int timeout, String results, String threads) {
-    sh 'echo "<testsuite tests="0"></testsuite>" > junit/' + results + '.xml'
-    sh 'py.test ' + tests + ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch --cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman --cov data_specification --cov spinnman --cov spinn_machine --cov spalloc --cov spinn_utilities --junitxml junit/' + results + '.xml --cov-report xml:coverage.xml --cov-append --timeout ' + timeout + ' --log-level=INFO '
+    def resfile = 'junit/' + results + '.xml'
+    sh 'echo "<testsuite tests="0"></testsuite>" > ' + covfile
+    sh 'py.test ' + tests + ' -rs -n ' + threads +
+        ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+        '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
+        '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
+        '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
+        '--junitxml ' + resfile + ' --cov-report xml:coverage.xml --cov-append ' +
+        '--timeout ' + timeout + ' --log-level=INFO '
 }
