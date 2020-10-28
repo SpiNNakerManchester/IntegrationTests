@@ -229,7 +229,7 @@ pipeline {
 
 def run_pytest(String tests, int timeout, String results, String threads) {
     def resfile = 'junit/' + results + '.xml'
-    sh 'echo "<testsuite tests="0"></testsuite>" > ' + covfile
+    sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     sh 'py.test ' + tests + ' -rs -n ' + threads +
         ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
