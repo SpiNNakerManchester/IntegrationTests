@@ -128,7 +128,7 @@ pipeline {
                 sh 'echo "[Java]" >> ~/.spynnaker.cfg'
                 sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
                 sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
+                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10 -Dlogging.level=DEBUG" >> ~/.spynnaker.cfg'
                 sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
                 sh 'pwd >> ~/.spynnaker.cfg'
                 // Write a GFE config file for spalloc and java use
@@ -139,7 +139,7 @@ pipeline {
                 sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
+                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10 -Dlogging.level=DEBUG" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
                 // Prepare coverage
