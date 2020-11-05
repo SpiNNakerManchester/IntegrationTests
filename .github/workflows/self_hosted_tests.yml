@@ -26,6 +26,7 @@ jobs:
       container:
           image: python3.6:latest
       steps:
-      -uses: actions/checkout@v2
-      -name: What java version do we have
-      -run: java -version
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: What java version do we have
+        run: java -version
