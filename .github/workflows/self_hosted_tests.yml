@@ -29,8 +29,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Ping the machine
-        run: ping -c 1 10.11.193.0
+      - name: Setup Environment
+        run: |
+            echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
+            echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
         
       - name: Install Python Dependencies
         run: |
@@ -62,11 +64,6 @@ jobs:
           support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
           support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
           support/gitclone2.sh https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
-      
-      - name: Setup Environment
-        run: |
-            echo "SPINN_DIRS=${{ env.GITHUB_WORKSPACE }}/spinnaker_tools" >> $GITHUB_ENV
-            echo "NEURAL_MODELLING_DIRS=${{ env.GITHUB_WORKSPACE }}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
 
       - name: Install
         run: |
