@@ -28,9 +28,12 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Ping the machine
+        run: ping -c 1 10.11.193.0
 
       - name: Before Install
-      - run: | 
+        run: | 
           git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
           pip3 install --upgrade "setuptools < 50.0.0" wheel
           pip install --user --upgrade pip
