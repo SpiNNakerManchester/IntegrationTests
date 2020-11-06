@@ -62,11 +62,13 @@ jobs:
           support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
           support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
           support/gitclone2.sh https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
+      
+      - name: Setup Environment
+        run: |
+            echo "SPINN_DIRS=${{ env.GITHUB_WORKSPACE }}/spinnaker_tools" >> $GITHUB_ENV
+            echo "NEURAL_MODELLING_DIRS=${{ env.GITHUB_WORKSPACE }}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
 
       - name: Install
-        env:
-          SPINN_DIRS: ${{ env.GITHUB_WORKSPACE }}/spinnaker_tools
-          NEURAL_MODELLING_DIRS: ${{ env.GITHUB_WORKSPACE }}/sPyNNaker/neural_modelling
         run: |
           # Install SpiNNUtils first as needed for C build
           cd SpiNNUtils && python setup.py develop
