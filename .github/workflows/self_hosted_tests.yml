@@ -61,4 +61,4 @@ jobs:
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-          support/gitclone2.sh https://$AUTH_SECRET@github.com/SpiNNakerManchester/microcircuit_model.git
+          support/gitclone2.sh https://${{ secrets.AUTH_TOKEN }}@github.com/SpiNNakerManchester/microcircuit_model.git
