@@ -38,7 +38,9 @@ jobs:
           pip install --user --upgrade pip
           pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
 
-      - name: Before Install
+      - name: Clone Repositories to be tested
+        env:
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
         run: | 
           git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
           # SpiNNakerManchester internal dependencies; development mode
@@ -61,4 +63,4 @@ jobs:
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
           #support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-          support/gitclone2.sh https://${{ secrets.AUTH_TOKEN }}@github.com/SpiNNakerManchester/microcircuit_model.git
+          support/gitclone2.sh https://${AUTH_TOKEN}@github.com/SpiNNakerManchester/microcircuit_model.git
