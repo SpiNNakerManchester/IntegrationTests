@@ -28,5 +28,31 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: What java version do we have
-        run: java -version
+
+      - name: Before Install
+      - run: | 
+          git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
+          pip3 install --upgrade "setuptools < 50.0.0" wheel
+          pip install --user --upgrade pip
+          pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
+          # SpiNNakerManchester internal dependencies; development mode
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNUtils.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMan.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/PACMAN.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/DataSpecification.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/spalloc.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
+          # C dependencies
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/spinn_common.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker.git
+          # Java dependencies
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker
+          # scripts
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
+          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
+          support/gitclone2.sh git@github.com:SpiNNakerManchester/microcircuit_model.git
