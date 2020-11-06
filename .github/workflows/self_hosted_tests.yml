@@ -40,7 +40,7 @@ jobs:
 
       - name: Clone Repositories to be tested
         env:
-          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+          AUTH_TOKEN: ${{ secrets.AUTH_SECRET }}
         run: | 
           git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
           # SpiNNakerManchester internal dependencies; development mode
