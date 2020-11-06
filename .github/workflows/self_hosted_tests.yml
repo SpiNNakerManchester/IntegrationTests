@@ -22,87 +22,118 @@ on: [push]
 
 jobs:
   integration_tests:
-      runs-on: self-hosted
-      container:
-          image: python3.6:latest
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-      - name: Setup Environment
-        run: |
-            echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
-            echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
-        
-      - name: Install Python Dependencies
-        run: |
-          pip3 install --upgrade "setuptools < 50.0.0" wheel
-          pip install --user --upgrade pip
-          pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
+    runs-on: self-hosted
+    container:
+        image: python3.6:latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Setup Environment
+      run: |
+          echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
+          echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
+      
+    - name: Install Python Dependencies
+      run: |
+        pip3 install --upgrade "setuptools < 50.0.0" wheel
+        pip install --user --upgrade pip
+        pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
 
-      - name: Clone Repositories to be tested
-        run: | 
-          git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
-          # SpiNNakerManchester internal dependencies; development mode
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNUtils.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMan.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/PACMAN.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/DataSpecification.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/spalloc.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
-          # C dependencies
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/spinn_common.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker.git
-          # Java dependencies
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker
-          # scripts
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
-          support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-          support/gitclone2.sh https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
+    - name: Clone Repositories to be tested
+      run: | 
+        git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
+        # SpiNNakerManchester internal dependencies; development mode
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNUtils.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMan.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/PACMAN.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/DataSpecification.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/spalloc.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
+        # C dependencies
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/spinn_common.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker.git
+        # Java dependencies
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker
+        # scripts
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
+        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
+        support/gitclone2.sh https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
+        
+    - name: Setup SpiNNUtils
+      run: python setup.py develop
+      working-directory: SpiNNUtils
 
-      - name: Install
-        run: |
-          # Install SpiNNUtils first as needed for C build
-          cd SpiNNUtils && python setup.py develop
-          # C Build next as builds files to be installed in Python
-          make -C $SPINN_DIRS
-          make -C spinn_common install
-          make -C SpiNNFrontEndCommon/c_common
-          make -C SpiNNFrontEndCommon/c_common install
-          make -C sPyNNaker/neural_modelling
-          make -C sPyNNaker8NewModelTemplate/c_models
-          make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
-          make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
-          # Python install
-          cd SpiNNMachine && python setup.py develop
-          cd SpiNNMan && python setup.py develop
-          cd PACMAN && python setup.py develop
-          cd DataSpecification && python setup.py develop
-          cd spalloc && python setup.py develop
-          cd SpiNNFrontEndCommon && python setup.py develop
-          cd sPyNNaker && python setup.py develop
-          cd sPyNNaker8 && python ./setup.py develop
-          cd sPyNNaker8NewModelTemplate && python ./setup.py develop
-          cd SpiNNakerGraphFrontEnd && python ./setup.py develop
-          python -m spynnaker8.setup_pynn
-          # Test requirements
-          pip install -r SpiNNMachine/requirements-test.txt
-          pip install -r SpiNNMan/requirements-test.txt
-          pip install -r PACMAN/requirements-test.txt
-          pip install -r DataSpecification/requirements-test.txt
-          pip install -r spalloc/requirements-test.txt
-          pip install -r SpiNNFrontEndCommon/requirements-test.txt
-          pip install -r sPyNNaker/requirements-test.txt
-          pip install -r sPyNNaker8/requirements-test.txt
-          pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
-          # Additional requirements for testing here
-          # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-          pip install python-coveralls "coverage>=5.0.0"
-          pip install pytest-instafail "pytest-xdist==1.34.0"
-          # Java install
-          mvn -f JavaSpiNNaker package
+    - name: Make C Code
+      run: |
+        make -C $SPINN_DIRS
+        make -C spinn_common install
+        make -C SpiNNFrontEndCommon/c_common
+        make -C SpiNNFrontEndCommon/c_common install
+        make -C sPyNNaker/neural_modelling
+        make -C sPyNNaker8NewModelTemplate/c_models
+        make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
+        make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
+          
+    - name: Install SpiNNMachine
+      run: python setup.py install
+      working-directory: SpiNNMachine
+
+    - name: Install SpiNNMan
+      run: python setup.py install
+      working-directory: SpiNNMan
+      
+    - name: Install PACMAN
+      run: python setup.py install
+      working-directory: PACMAN
+
+    - name: Install DataSpecification
+      run: python setup.py install
+      working-directory: DataSpecification
+
+    - name: Install spalloc
+      run: python setup.py install
+      working-directory: spalloc
+    
+    - name: Install SpiNNFrontEndCommon
+      run: python setup.py install
+      working-directory: SpiNNFrontEndCommon
+    
+    - name: Install sPyNNaker
+      run: python setup.py install
+      working-directory: sPyNNaker
+    
+    - name: Install sPyNNaker8
+      run: python setup.py install
+      working-directory: sPyNNaker8
+    
+    - name: Install SpiNNakerGraphFrontEnd
+      run: python setup.py install
+      working-directory: SpiNNakerGraphFrontEnd
+         
+    - name: Install Requirements
+      run: |
+        # Test requirements
+        pip install -r SpiNNMachine/requirements-test.txt
+        pip install -r SpiNNMan/requirements-test.txt
+        pip install -r PACMAN/requirements-test.txt
+        pip install -r DataSpecification/requirements-test.txt
+        pip install -r spalloc/requirements-test.txt
+        pip install -r SpiNNFrontEndCommon/requirements-test.txt
+        pip install -r sPyNNaker/requirements-test.txt
+        pip install -r sPyNNaker8/requirements-test.txt
+        pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
+   
+    - name: Install Test Dependencies
+      run: |
+        # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
+        pip install python-coveralls "coverage>=5.0.0"
+        pip install pytest-instafail "pytest-xdist==1.34.0"
+       
+    - name: Install Java
+      run: mvn -f JavaSpiNNaker package
