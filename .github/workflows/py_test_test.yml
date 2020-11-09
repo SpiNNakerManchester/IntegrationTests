@@ -1,0 +1,24 @@
+name: "Test the tests"
+on: [push]
+
+jobs:
+  integration_tests:
+    runs-on: self-hosted
+    container:
+        image: python3.6:latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Install Python Dependencies
+      run: |
+        pip3 install --upgrade "setuptools < 50.0.0" wheel
+        pip install --user --upgrade pip
+        pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
+    
+    - name: Run sPyNNaker Integration Tests
+      uses: ./.github/actions/pytest_local
+      with:
+          tests: temp_tests/
+          timeout: 1200
+          cov_name: junit/temp_tests.xml
