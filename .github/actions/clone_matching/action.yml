@@ -7,26 +7,29 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - id: get_branch_name
+    - id: git_clone_matching
       run: |
-        BRANCH=$(git ls-remote ${{ inputs.repository }} | awk '
-          BEGIN {
-              branch = "master"
-              target = ENVIRON["GITHUB_REF"]
-          }
-          $2==target {
-              branch = ENVIRON["GITHUB_REF"]
-          }
-          END {
-              print branch
-          }')
-        BRANCH=${BRANCH#refs/heads/}
-        echo "BRANCH=$BRANCH" >> $GITHUB_ENV
-      shell: bash
-    
-    - id: git_clone
-      run: |
-          git clone --branch $BRANCH --depth=1 ${{ inputs.repository }}
-          echo "Checked out branch $BRANCH of ${{ inputs.repository }}"
+        SAVEIFS=$IFS   # Save current IFS
+        IFS=$'\n'      # Change IFS to new line
+        REPOS=(${{ inputs.repository }}) # split to array $names
+        IFS=$SAVEIFS   # Restore IFS
+        for (( i=0; i<${#REPOS[@]}; i++))
+        do
+          REPO=${REPOS[$i]}
+          BRANCH=$(git ls-remote $REPO | awk '
+            BEGIN {
+                branch = "master"
+                target = ENVIRON["GITHUB_REF"]
+            }
+            $2==target {
+                branch = ENVIRON["GITHUB_REF"]
+            }
+            END {
+                print branch
+            }')
+          BRANCH=${BRANCH#refs/heads/}
+          git clone --branch $BRANCH --depth=1 $REPO
+          echo "Checked out branch $BRANCH of $REPO"
+        done
       shell: bash
         
