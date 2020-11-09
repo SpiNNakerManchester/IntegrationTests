@@ -17,9 +17,9 @@ runs:
   steps:
     - id: set_git_auth
       run: |
-         if [ ! -z "${{ inputs.username }}  && ! -z "${{ inputs.password }}]
+         if [ ! -z "${{ inputs.username }}"  && ! -z "${{ inputs.password }}" ]
          then
-           git config credential.helper "!f() {echo \"username=${{ inputs.username }}\\npassword=${{ inputs.password }}\"; }; f
+           git config credential.helper "!f() {echo \"username=${{ inputs.username }}\\npassword=${{ inputs.password }}\"; }; f"
          fi
       shell: bash
          
