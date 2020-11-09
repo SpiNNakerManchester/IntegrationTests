@@ -27,6 +27,6 @@ runs:
     - id: git_clone
       run: |
           git clone --branch $BRANCH --depth=1 ${{ inputs.repository }}
-          echo "Checked out branch $BRANCH of ${{ inputs.repository }}
+          echo "Checked out branch $BRANCH of ${{ inputs.repository }}"
       shell: bash
         
