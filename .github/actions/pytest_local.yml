@@ -1,0 +1,38 @@
+name: 'Run PyTest'
+description: 'Run PyTest for the Integration tests'
+inputs:
+  tests:
+    description: 'The tests to run'
+    required: true
+  timeout:
+    description: 'Test timeout'
+    required: true
+  cov_name:
+    description: 'Name of coverage file'
+    required: false
+    default: ''
+  n_threads:
+    description: 'The number of threads to run with'
+    required: false
+    default: 'auto'
+runs:
+  using: "composite"
+  steps:
+    - id: set_env
+      env:
+        COV_OPTS: --cov-config=.coveragerc --cov-branch \
+          --cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman \
+          --cov data_specification --cov spinnman --cov spinn_machine --cov spalloc \
+          --cov spinn_utilities --cov spinnaker_graph_front_end \
+          --cov-report xml:coverage.xml --cov-append
+      run: |
+        if [[ ! -z "${INPUTS_COV_NAME}" ]] 
+        then 
+          echo "<testsuite tests='0'></testsuite>" > junit/${INPUT_COV_NAME}.xml
+          echo "COV_ARGS='${COV_OPTS} --junitxml junit/${INPUT_COV_NAME}.xml'" >> $GITHUB_ENV
+        fi
+      shell: bash
+      
+    - id: pytest_run
+      run: py.test ${TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
+        ${COV_OPTS} --timeout ${INPUT_TIMEOUT} --log-level=INFO
