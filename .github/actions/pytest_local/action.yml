@@ -26,6 +26,8 @@ runs:
           --cov spinn_utilities --cov spinnaker_graph_front_end \
           --cov-report xml:coverage.xml --cov-append
       run: |
+        echo "cov name = ${INPUT_COV_NAME}"
+        echo "cov opts = ${COV_OPTS}"
         if [[ ! -z "${INPUTS_COV_NAME}" ]] 
         then 
           echo "<testsuite tests='0'></testsuite>" > junit/${INPUT_COV_NAME}.xml
@@ -41,6 +43,11 @@ runs:
       shell: bash
       
     - id: pytest_run
-      run: py.test ${TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
-        ${COV_OPTS} --timeout ${INPUT_TIMEOUT} --log-level=INFO
+      run: |
+        echo "Tests = ${INPUT_TESTS}"
+        echo "Timeout = ${INPUT_TIMEOUT}"
+        echo "Threads = ${INPUT_N_THREADS}"
+        echo "Cov Opts = ${COV_OPTS}"
+        py.test ${INPUT_TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
+          ${COV_OPTS} --timeout ${INPUT_TIMEOUT} --log-level=INFO
       shell: bash
