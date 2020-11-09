@@ -16,6 +16,7 @@ runs:
         for (( i=0; i<${#REPOS[@]}; i++))
         do
           REPO=${REPOS[$i]}
+          echo "Testing branch of $REPO"
           BRANCH=$(git ls-remote $REPO | awk '
             BEGIN {
                 branch = "master"
@@ -28,7 +29,6 @@ runs:
                 print branch
             }')
           BRANCH=${BRANCH#refs/heads/}
-          echo "Trying branch $BRANCH of repo $REPO"
           git clone --branch $BRANCH --single-branch --depth 1 $REPO
           echo "Checked out branch $BRANCH of $REPO"
         done
