@@ -20,18 +20,18 @@ runs:
   steps:
     - id: set_env
       env:
-        COV_OPTS: --cov-config=.coveragerc --cov-branch \
-          --cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman \
-          --cov data_specification --cov spinnman --cov spinn_machine --cov spalloc \
-          --cov spinn_utilities --cov spinnaker_graph_front_end \
+        COV_OPTS: --cov-config=.coveragerc --cov-branch
+          --cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman
+          --cov data_specification --cov spinnman --cov spinn_machine --cov spalloc
+          --cov spinn_utilities --cov spinnaker_graph_front_end
           --cov-report xml:coverage.xml --cov-append
       run: |
-        echo "cov name = ${INPUT_COV_NAME}"
+        echo "cov name = ${{ inputs.cov_name }}"
         echo "cov opts = ${COV_OPTS}"
-        if [[ ! -z "${INPUTS_COV_NAME}" ]] 
+        if [[ ! -z "${{ inputs.cov_name }}" ]] 
         then 
-          echo "<testsuite tests='0'></testsuite>" > junit/${INPUT_COV_NAME}.xml
-          echo "COV_ARGS='${COV_OPTS} --junitxml junit/${INPUT_COV_NAME}.xml'" >> $GITHUB_ENV
+          echo "<testsuite tests='0'></testsuite>" > junit/${{ inputs.cov_name }}}.xml
+          echo "COV_ARGS='${COV_OPTS} --junitxml junit/${{ inputs.cov_name }}.xml'" >> $GITHUB_ENV
         fi
       shell: bash
       
@@ -44,10 +44,10 @@ runs:
       
     - id: pytest_run
       run: |
-        echo "Tests = ${INPUT_TESTS}"
-        echo "Timeout = ${INPUT_TIMEOUT}"
-        echo "Threads = ${INPUT_N_THREADS}"
-        echo "Cov Opts = ${COV_OPTS}"
-        py.test ${INPUT_TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
-          ${COV_OPTS} --timeout ${INPUT_TIMEOUT} --log-level=INFO
+        echo "Tests = ${{ inputs.tests }}"
+        echo "Timeout = ${{ inputs.timeout }}"
+        echo "Threads = ${{ inputs.n_threads }}"
+        echo "Cov args = ${COV_ARGS}"
+        py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show_progress \
+          ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO
       shell: bash
