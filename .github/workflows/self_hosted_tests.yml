@@ -18,7 +18,7 @@
 
 name: Self Hosted Tests
 
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   integration_tests:
@@ -41,29 +41,26 @@ jobs:
         pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib
 
     - name: Clone Repositories to be tested
-      run: | 
-        git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
-        # SpiNNakerManchester internal dependencies; development mode
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNUtils.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNMan.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/PACMAN.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/DataSpecification.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/spalloc.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
-        # C dependencies
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/spinn_common.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker.git
-        # Java dependencies
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker
-        # scripts
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/IntroLab.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git
-        support/gitclone2.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-        support/gitclone2.sh https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
+      uses: ./.github/actions/clone_matching
+      with: 
+        repository: |
+          https://github.com/SpiNNakerManchester/SpiNNUtils.git
+          https://github.com/SpiNNakerManchester/SpiNNMachine.git
+          https://github.com/SpiNNakerManchester/SpiNNMan.git
+          https://github.com/SpiNNakerManchester/PACMAN.git
+          https://github.com/SpiNNakerManchester/DataSpecification.git
+          https://github.com/SpiNNakerManchester/spalloc.git
+          https://github.com/SpiNNakerManchester/sPyNNaker8.git
+          https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
+          https://github.com/SpiNNakerManchester/spinnaker_tools.git
+          https://github.com/SpiNNakerManchester/spinn_common.git
+          https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
+          https://github.com/SpiNNakerManchester/sPyNNaker.git
+          https://github.com/SpiNNakerManchester/JavaSpiNNaker.git
+          https://github.com/SpiNNakerManchester/IntroLab.git
+          https://github.com/SpiNNakerManchester/PyNN8Examples.git
+          https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
+          https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
         
     - name: Setup SpiNNUtils
       run: python setup.py develop
@@ -79,42 +76,19 @@ jobs:
         make -C sPyNNaker8NewModelTemplate/c_models
         make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
-          
-    - name: Install SpiNNMachine
-      run: python setup.py install
-      working-directory: SpiNNMachine
-
-    - name: Install SpiNNMan
-      run: python setup.py install
-      working-directory: SpiNNMan
-      
-    - name: Install PACMAN
-      run: python setup.py install
-      working-directory: PACMAN
-
-    - name: Install DataSpecification
-      run: python setup.py install
-      working-directory: DataSpecification
-
-    - name: Install spalloc
-      run: python setup.py install
-      working-directory: spalloc
     
-    - name: Install SpiNNFrontEndCommon
-      run: python setup.py install
-      working-directory: SpiNNFrontEndCommon
-    
-    - name: Install sPyNNaker
-      run: python setup.py install
-      working-directory: sPyNNaker
-    
-    - name: Install sPyNNaker8
-      run: python setup.py install
-      working-directory: sPyNNaker8
-    
-    - name: Install SpiNNakerGraphFrontEnd
-      run: python setup.py install
-      working-directory: SpiNNakerGraphFrontEnd
+    - name: Install Python Modules
+      uses: ./.github/actions/python_setup
+      folder: |
+        SpiNNMachine
+        SpiNNMan
+        PACMAN
+        DataSpecification
+        spalloc
+        SpiNNFrontEndCommon
+        sPyNNaker
+        sPyNNaker8
+        SpiNNakerGraphFrontEnd
          
     - name: Install Requirements
       run: |
@@ -159,16 +133,12 @@ jobs:
         # Prepare coverage
         rm -f coverage.xml
         rm -f .coverage
-        echo "[run]" > .coveragerc
-        echo "parallel = True" >> .coveragerc
         # Prepare for unit tests
         echo "# Empty config" >  ~/.spinnaker.cfg
-        # Create a directory for test outputs
-        mkdir junit/
 
     - name: Run sPyNNaker Integration Tests
       uses: ./.github/actions/pytest_local
       with:
         tests: sPyNNaker8/p8_integration_tests/quick_test/
         timeout: 1200
-        cov_name: junit/sPyNNaker8_Integration.xml
+        cov_name: sPyNNaker8_Integration.xml

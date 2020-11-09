@@ -2,7 +2,7 @@ name: "Clone matching"
 description: "Clone the branch with a name matching that of the tests being done, or master if that doesn't exist"
 inputs:
   repository:
-    description: The repository to clone
+    description: The repository (or repositories on multiple lines) to clone
     required: true
 runs:
   using: "composite"
@@ -11,7 +11,7 @@ runs:
       run: |
         SAVEIFS=$IFS   # Save current IFS
         IFS=$'\n'      # Change IFS to new line
-        REPOS=(${{ inputs.repository }}) # split to array $names
+        REPOS=(${{ inputs.repository }}) # split to array
         IFS=$SAVEIFS   # Restore IFS
         for (( i=0; i<${#REPOS[@]}; i++))
         do

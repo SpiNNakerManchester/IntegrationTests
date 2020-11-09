@@ -41,6 +41,8 @@ runs:
           mkdir -p junit/
           echo "<testsuite tests='0'></testsuite>" > junit/${{ inputs.cov_name }}.xml
           echo "COV_ARGS=${COV_OPTS} --junitxml junit/${{ inputs.cov_name }}.xml" >> $GITHUB_ENV
+          echo "[run]" > .coveragerc
+          echo "parallel = True" >> .coveragerc
         fi
       shell: bash
       
