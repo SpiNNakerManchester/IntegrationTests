@@ -24,7 +24,7 @@ jobs:
   integration_tests:
     runs-on: self-hosted
     container:
-        image: python3.6:latest
+        image: python3.6_test:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
