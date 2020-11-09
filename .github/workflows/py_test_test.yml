@@ -13,7 +13,9 @@ jobs:
     - name: Test Clone
       uses: ./.github/actions/clone_matching
       with:
-        repository: https://github.com/SpiNNakerManchester/PyNN8Examples.git
+        repository: |
+            https://github.com/SpiNNakerManchester/PyNN8Examples.git
+            https://github.com/SpiNNakerManchester/sPyNNaker8.git
     
     - name: Install Python Dependencies
       run: |
