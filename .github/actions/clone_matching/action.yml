@@ -19,6 +19,7 @@ runs:
       run: |
          if [ ! -z "${{ inputs.username }}" ] && [ ! -z "${{ inputs.password }}" ]
          then
+           echo "Using username and password given via git credential helper"
            git config credential.helper "!f() {echo \"username=${{ inputs.username }}\\npassword=${{ inputs.password }}\"; }; f"
          fi
       shell: bash
