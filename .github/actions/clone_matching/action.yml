@@ -7,23 +7,23 @@ inputs:
 runs:
   using: "composite"
   steps:
-    id: get_branch_name
-    run: |
-      BRANCH=$(git ls-remote $REPO | awk '
-        BEGIN {
-            branch = "master"
-            target = ENVIRON["GITHUB_REF"]
-        }
-        $2==target {
-            branch = ENVIRON["GITHUB_REF"]
-        }
-        END {
-            print branch
-        }')
-      echo "BRANCH=$BRANCH" >> $GITHUB_ENV
-    shell: bash
+    - id: get_branch_name
+      run: |
+        BRANCH=$(git ls-remote $REPO | awk '
+          BEGIN {
+              branch = "master"
+              target = ENVIRON["GITHUB_REF"]
+          }
+          $2==target {
+              branch = ENVIRON["GITHUB_REF"]
+          }
+          END {
+              print branch
+          }')
+        echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+      shell: bash
     
-    id: git_clone
-    run: git clone --branch $BRANCH --depth=1 ${{ inputs.repository }}
-    shell: bash
+    - id: git_clone
+      run: git clone --branch $BRANCH --depth=1 ${{ inputs.repository }}
+      shell: bash
         
