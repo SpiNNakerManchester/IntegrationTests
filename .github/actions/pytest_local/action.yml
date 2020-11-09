@@ -38,6 +38,7 @@ runs:
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
         pip install python-coveralls "coverage>=5.0.0" pytest-cov
         pip install pytest-instafail "pytest-xdist==1.34.0"
+      shell: bash
       
     - id: pytest_run
       run: py.test ${TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
