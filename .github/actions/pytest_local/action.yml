@@ -48,6 +48,6 @@ runs:
         echo "Timeout = ${{ inputs.timeout }}"
         echo "Threads = ${{ inputs.n_threads }}"
         echo "Cov args = ${COV_ARGS}"
-        py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show_progress \
+        py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show-progress \
           ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO
       shell: bash
