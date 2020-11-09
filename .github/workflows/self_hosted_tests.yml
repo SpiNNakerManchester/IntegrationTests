@@ -44,7 +44,7 @@ jobs:
       uses: ./.github/actions/clone_matching
       with: 
         repository: |
-          git@github.com/SpiNNakerManchester/microcircuit_model.git
+          git@github.com:SpiNNakerManchester/microcircuit_model.git
           https://github.com/SpiNNakerManchester/SpiNNUtils.git
           https://github.com/SpiNNakerManchester/SpiNNMachine.git
           https://github.com/SpiNNakerManchester/SpiNNMan.git
