@@ -14,18 +14,14 @@ inputs:
     default: ''
 runs:
   using: "composite"
-  steps:
-    - id: set_git_auth
-      run: |
-         if [ ! -z "${{ inputs.username }}" ] && [ ! -z "${{ inputs.password }}" ]
-         then
-           echo "Using username and password given via git credential helper"
-           git config --global credential.helper '!f() { echo "username=${{ inputs.username }}\\npassword=${{ inputs.password }}"; }; f'
-         fi
-      shell: bash
-         
+  steps: 
     - id: git_clone_matching
       run: |
+        if [ ! -z "${{ inputs.username }}" ] && [ ! -z "${{ inputs.password }}" ]
+        then
+          echo "Using username and password given via git credential helper"
+          git config --global credential.helper '!f() { echo "username=${{ inputs.username }}\\npassword=${{ inputs.password }}"; }; f'
+        fi
         SAVEIFS=$IFS   # Save current IFS
         IFS=$'\n'      # Change IFS to new line
         REPOS=(${{ inputs.repository }}) # split to array
