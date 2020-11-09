@@ -17,6 +17,7 @@ runs:
         do
           REPO=${REPOS[$i]}
           echo "Testing branch of $REPO"
+          git ls-remote $REPO
           BRANCH=$(git ls-remote $REPO | awk '
             BEGIN {
                 branch = "master"
