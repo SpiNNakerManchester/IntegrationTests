@@ -36,8 +36,6 @@ runs:
           --cov spinn_utilities --cov spinnaker_graph_front_end
           --cov-report xml:coverage.xml --cov-append
       run: |
-        echo "cov name = ${{ inputs.cov_name }}"
-        echo "cov opts = ${COV_OPTS}"
         if [[ ! -z "${{ inputs.cov_name }}" ]] 
         then
           mkdir -p junit/
@@ -48,10 +46,6 @@ runs:
       
     - id: pytest_run
       run: |
-        echo "Tests = ${{ inputs.tests }}"
-        echo "Timeout = ${{ inputs.timeout }}"
-        echo "Threads = ${{ inputs.n_threads }}"
-        echo "Cov args = ${COV_ARGS}"
         py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show-progress \
           ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO
       shell: bash
