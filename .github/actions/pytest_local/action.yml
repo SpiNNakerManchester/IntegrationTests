@@ -32,15 +32,14 @@ runs:
         then
           mkdir -p junit/
           echo "<testsuite tests='0'></testsuite>" > junit/${{ inputs.cov_name }}.xml
-          echo "COV_ARGS='${COV_OPTS} --junitxml junit/${{ inputs.cov_name }}.xml'" >> $GITHUB_ENV
+          echo "COV_ARGS=${COV_OPTS}\ --junitxml\ junit/${{ inputs.cov_name }}.xml" >> $GITHUB_ENV
         fi
       shell: bash
       
     - id: test_dependencies
       run: |
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-        pip install python-coveralls "coverage>=5.0.0" pytest-cov
-        pip install pytest-instafail "pytest-xdist==1.34.0"
+        pip install python-coveralls "coverage>=5.0.0" pytest-cov pytest-timeout pytest-forked pytest-progress pytest-instafail "pytest-xdist==1.34.0"
       shell: bash
       
     - id: pytest_run
