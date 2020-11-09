@@ -9,7 +9,7 @@ runs:
   steps:
     - id: get_branch_name
       run: |
-        BRANCH=$(git ls-remote $REPO | awk '
+        BRANCH=$(git ls-remote ${{ inputs.repository }} | awk '
           BEGIN {
               branch = "master"
               target = ENVIRON["GITHUB_REF"]
@@ -20,6 +20,7 @@ runs:
           END {
               print branch
           }')
+        BRANCH=${BRANCH#refs/heads/}
         echo "BRANCH=$BRANCH" >> $GITHUB_ENV
       shell: bash
     
