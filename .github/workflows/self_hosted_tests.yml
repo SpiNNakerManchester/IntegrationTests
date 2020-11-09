@@ -79,16 +79,17 @@ jobs:
     
     - name: Install Python Modules
       uses: ./.github/actions/python_setup
-      folder: |
-        SpiNNMachine
-        SpiNNMan
-        PACMAN
-        DataSpecification
-        spalloc
-        SpiNNFrontEndCommon
-        sPyNNaker
-        sPyNNaker8
-        SpiNNakerGraphFrontEnd
+      with:
+        folder: |
+          SpiNNMachine
+          SpiNNMan
+          PACMAN
+          DataSpecification
+          spalloc
+          SpiNNFrontEndCommon
+          sPyNNaker
+          sPyNNaker8
+          SpiNNakerGraphFrontEnd
          
     - name: Install Requirements
       run: |
