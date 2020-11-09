@@ -9,6 +9,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: Test Clone
+      uses: ./.github/actions/clone_matching
+      with:
+        repository: https://github.com/SpiNNakerManchester/PyNN8Examples.git
     
     - name: Install Python Dependencies
       run: |
