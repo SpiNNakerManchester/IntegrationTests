@@ -128,12 +128,6 @@ jobs:
         pip install -r sPyNNaker/requirements-test.txt
         pip install -r sPyNNaker8/requirements-test.txt
         pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
-   
-    - name: Install Test Dependencies
-      run: |
-        # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-        pip install python-coveralls "coverage>=5.0.0"
-        pip install pytest-instafail "pytest-xdist==1.34.0"
        
     - name: Install Java
       run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
@@ -175,6 +169,6 @@ jobs:
     - name: Run sPyNNaker Integration Tests
       uses: ./.github/actions/pytest_local
       with:
-          tests: sPyNNaker8/p8_integration_tests/quick_test/
-          timeout: 1200
-          cov_name: junit/sPyNNaker8_Integration.xml
+        tests: sPyNNaker8/p8_integration_tests/quick_test/
+        timeout: 1200
+        cov_name: junit/sPyNNaker8_Integration.xml
