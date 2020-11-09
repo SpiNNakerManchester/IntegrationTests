@@ -173,7 +173,7 @@ jobs:
         mkdir junit/
 
     - name: Run sPyNNaker Integration Tests
-      uses: ./github/actions/pytest_local
+      uses: ./.github/actions/pytest_local
       with:
           tests: sPyNNaker8/p8_integration_tests/quick_test/
           timeout: 1200
