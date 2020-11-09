@@ -60,8 +60,9 @@ jobs:
           https://github.com/SpiNNakerManchester/IntroLab.git
           https://github.com/SpiNNakerManchester/PyNN8Examples.git
           https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-          https://${{ secrets.AUTH_SECRET }}@github.com/SpiNNakerManchester/microcircuit_model.git
-        
+          https://github.com/SpiNNakerManchester/microcircuit_model.git
+        username: ${{ secrets.AUTH_USER }}
+        password: ${{ secrets.AUTH_PW }}
     - name: Setup SpiNNUtils
       run: python setup.py develop
       working-directory: SpiNNUtils
