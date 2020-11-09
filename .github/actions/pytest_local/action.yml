@@ -36,3 +36,4 @@ runs:
     - id: pytest_run
       run: py.test ${TESTS} -rs -n ${INPUT_N_THREADS} --forked --show_progress \
         ${COV_OPTS} --timeout ${INPUT_TIMEOUT} --log-level=INFO
+      shell: bash
