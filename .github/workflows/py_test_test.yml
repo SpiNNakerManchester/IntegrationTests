@@ -21,4 +21,4 @@ jobs:
       with:
           tests: temp_tests/
           timeout: 1200
-          cov_name: junit/temp_tests.xml
+          cov_name: temp_tests
