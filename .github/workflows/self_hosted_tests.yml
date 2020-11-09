@@ -136,7 +136,7 @@ jobs:
         pip install pytest-instafail "pytest-xdist==1.34.0"
        
     - name: Install Java
-      run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests package
+      run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
       
     - name: Prepare Configuration
       run: |
