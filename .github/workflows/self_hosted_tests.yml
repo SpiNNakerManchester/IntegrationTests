@@ -44,7 +44,7 @@ jobs:
       uses: ./.github/actions/clone_matching
       with: 
         repository: |
-          https://github.com/SpiNNakerManchester/microcircuit_model.git
+          git@github.com/SpiNNakerManchester/microcircuit_model.git
           https://github.com/SpiNNakerManchester/SpiNNUtils.git
           https://github.com/SpiNNakerManchester/SpiNNMachine.git
           https://github.com/SpiNNakerManchester/SpiNNMan.git
@@ -61,8 +61,6 @@ jobs:
           https://github.com/SpiNNakerManchester/IntroLab.git
           https://github.com/SpiNNakerManchester/PyNN8Examples.git
           https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
-        username: ${{ secrets.AUTH_USER }}
-        password: ${{ secrets.AUTH_PW }}
     - name: Setup SpiNNUtils
       run: python setup.py develop
       working-directory: SpiNNUtils

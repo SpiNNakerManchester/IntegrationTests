@@ -4,24 +4,11 @@ inputs:
   repository:
     description: The repository (or repositories on multiple lines) to clone
     required: true
-  username:
-    description: The username for the repository
-    required: false
-    default: ''
-  password:
-    description: The password for the repository
-    required: false
-    default: ''
 runs:
   using: "composite"
   steps: 
     - id: git_clone_matching
       run: |
-        if [ ! -z "${{ inputs.username }}" ] && [ ! -z "${{ inputs.password }}" ]
-        then
-          echo "Using username and password given via git credential helper"
-          git config --global credential.helper '!f() { echo "username=${{ inputs.username }}\\npassword=${{ inputs.password }}"; }; f'
-        fi
         SAVEIFS=$IFS   # Save current IFS
         IFS=$'\n'      # Change IFS to new line
         REPOS=(${{ inputs.repository }}) # split to array
