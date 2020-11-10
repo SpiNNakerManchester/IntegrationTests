@@ -90,17 +90,17 @@ jobs:
 #           sPyNNaker8
 #           SpiNNakerGraphFrontEnd
 #          
-#     - name: Install Requirements
-#       run: |
-#         pip install -r SpiNNMachine/requirements-test.txt
-#         pip install -r SpiNNMan/requirements-test.txt
-#         pip install -r PACMAN/requirements-test.txt
-#         pip install -r DataSpecification/requirements-test.txt
-#         pip install -r spalloc/requirements-test.txt
-#         pip install -r SpiNNFrontEndCommon/requirements-test.txt
-#         pip install -r sPyNNaker/requirements-test.txt
-#         pip install -r sPyNNaker8/requirements-test.txt
-#         pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
+    - name: Install Requirements
+      run: |
+        pip install -r SpiNNMachine/requirements-test.txt
+        pip install -r SpiNNMan/requirements-test.txt
+        pip install -r PACMAN/requirements-test.txt
+        pip install -r DataSpecification/requirements-test.txt
+        pip install -r spalloc/requirements-test.txt
+        pip install -r SpiNNFrontEndCommon/requirements-test.txt
+        pip install -r sPyNNaker/requirements-test.txt
+        pip install -r sPyNNaker8/requirements-test.txt
+        pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
 #        
 #     - name: Install Java
 #       run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
