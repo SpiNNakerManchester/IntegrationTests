@@ -65,17 +65,17 @@ jobs:
       run: python setup.py develop
       working-directory: SpiNNUtils
 
-#     - name: Make C Code
-#       run: |
-#         make -C $SPINN_DIRS
-#         make -C spinn_common install
-#         make -C SpiNNFrontEndCommon/c_common
-#         make -C SpiNNFrontEndCommon/c_common install
-#         make -C sPyNNaker/neural_modelling
-#         make -C sPyNNaker8NewModelTemplate/c_models
-#         make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
-#         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
-#     
+    - name: Make C Code
+      run: |
+        make -C $SPINN_DIRS
+        make -C spinn_common install
+        make -C SpiNNFrontEndCommon/c_common
+        make -C SpiNNFrontEndCommon/c_common install
+        make -C sPyNNaker/neural_modelling
+        make -C sPyNNaker8NewModelTemplate/c_models
+        make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
+        make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
+    
     - name: Install Python Modules
       uses: ./.github/actions/python_setup
       with:
@@ -101,91 +101,91 @@ jobs:
         pip install -r sPyNNaker/requirements-test.txt
         pip install -r sPyNNaker8/requirements-test.txt
         pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
-#        
-#     - name: Install Java
-#       run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
-#       
-#     - name: Prepare Configuration
-#       run: |
-#         # Write a sPyNNaker config file for spalloc and java use
-#         echo "[Machine]" > ~/.spynnaker.cfg
-#         echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
-#         echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
-#         echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
-#         echo "[Java]" >> ~/.spynnaker.cfg
-#         echo "use_java = True" >> ~/.spynnaker.cfg
-#         echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
-#         echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
-#         printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
-#         pwd >> ~/.spynnaker.cfg
-#         # Write a GFE config file for spalloc and java use
-#         echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
-#         pwd >> ~/.spiNNakerGraphFrontEnd.cfg
-#         # Prepare coverage
-#         rm -f coverage.xml
-#         rm -f .coverage
-#         # Prepare for unit tests
-#         echo "# Empty config" >  ~/.spinnaker.cfg
-#
-#     - name: Run sPyNNaker Integration Tests
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: sPyNNaker8/p8_integration_tests/quick_test/
-#         timeout: 1200
-#         cov_name: sPyNNaker8_Integration
-#         
-#     - name: Run GFE Integration Tests
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
-#         timeout: 1200
-#         cov_name: GFE_Integration
-#    
-#     - name: Run New Model Template Examples
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: sPyNNaker8/p8_integration_tests/test_new_model_templates
-#         timeout: 1200
-#         cov_name: new_model_example
-#      
-#     - name: Run New Model Template Integeration Tests
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: sPyNNaker8NewModelTemplate/nmt_integration_tests
-#         timeout: 1200
-#         cov_name: nmt_integration_tests
-#         
-#     - name: Build Scripts to Run
-#       run: python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py shorter
-#     
-#     - name: Run PyNN8Examples Scripts
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: sPyNNaker8/p8_integration_tests/scripts_test/examples_auto_test.py
-#         timeout: 1200
-#         cov_name: p8_examples
-#     
-#     - name: Run IntroLabs Scripts
-#       uses: ./.github/actions/pytest_local
-#       with:
-#         tests: sPyNNaker8/p8_integration_tests/scripts_test/intro_labs_auto_test.py
-#         timeout: 1200
-#         cov_name: p8_examples
-#         n_threads: 1
-#         
-#     - name: Check Reports
-#       run: find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;
-#     
-#     - name: Check Destroyed
-#       run: py.test sPyNNaker8/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120
+       
+    - name: Install Java
+      run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
+      
+    - name: Prepare Configuration
+      run: |
+        # Write a sPyNNaker config file for spalloc and java use
+        echo "[Machine]" > ~/.spynnaker.cfg
+        echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
+        echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+        echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+        echo "[Java]" >> ~/.spynnaker.cfg
+        echo "use_java = True" >> ~/.spynnaker.cfg
+        echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
+        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
+        printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
+        pwd >> ~/.spynnaker.cfg
+        # Write a GFE config file for spalloc and java use
+        echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
+        echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
+        printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
+        pwd >> ~/.spiNNakerGraphFrontEnd.cfg
+        # Prepare coverage
+        rm -f coverage.xml
+        rm -f .coverage
+        # Prepare for unit tests
+        echo "# Empty config" >  ~/.spinnaker.cfg
+
+    - name: Run sPyNNaker Integration Tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/p8_integration_tests/quick_test/
+        timeout: 1200
+        cov_name: sPyNNaker8_Integration
+        
+    - name: Run GFE Integration Tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
+        timeout: 1200
+        cov_name: GFE_Integration
+   
+    - name: Run New Model Template Examples
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/p8_integration_tests/test_new_model_templates
+        timeout: 1200
+        cov_name: new_model_example
+     
+    - name: Run New Model Template Integeration Tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8NewModelTemplate/nmt_integration_tests
+        timeout: 1200
+        cov_name: nmt_integration_tests
+        
+    - name: Build Scripts to Run
+      run: python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py shorter
+    
+    - name: Run PyNN8Examples Scripts
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/p8_integration_tests/scripts_test/examples_auto_test.py
+        timeout: 1200
+        cov_name: p8_examples
+    
+    - name: Run IntroLabs Scripts
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/p8_integration_tests/scripts_test/intro_labs_auto_test.py
+        timeout: 1200
+        cov_name: p8_examples
+        n_threads: 1
+        
+    - name: Check Reports
+      run: find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;
+    
+    - name: Check Destroyed
+      run: py.test sPyNNaker8/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120
     
     - name: Run SpiNNUtils Unit Tests
       uses: ./.github/actions/pytest_local
