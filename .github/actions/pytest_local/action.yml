@@ -9,8 +9,7 @@ inputs:
     required: true
   cov_name:
     description: 'Name of coverage file'
-    required: false
-    default: ''
+    required: true
   n_threads:
     description: 'The number of threads to run with'
     required: false
