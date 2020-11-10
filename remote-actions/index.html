@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Coverage report</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(coverage.index_ready);
+    </script>
+</head>
+<body class="indexfile">
+<div id="header">
+    <div class="content">
+        <h1>Coverage report:
+            <span class="pc_cov">56%</span>
+        </h1>
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
+    </div>
+</div>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
+    <div>
+    <p class="keyhelp">
+        <span class="key">n</span>
+        <span class="key">s</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
+        <span class="key">b</span>
+        <span class="key">p</span>
+        <span class="key">c</span> &nbsp; change column sorting
+    </p>
+    </div>
+</div>
+<div id="index">
+    <table class="index">
+        <thead>
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left headerSortDown shortkey_n">Module</th>
+                <th class="shortkey_s">statements</th>
+                <th class="shortkey_m">missing</th>
+                <th class="shortkey_x">excluded</th>
+                <th class="shortkey_b">branches</th>
+                <th class="shortkey_p">partial</th>
+                <th class="right shortkey_c">coverage</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>4668</td>
+                <td>2133</td>
+                <td>140</td>
+                <td>1603</td>
+                <td>117</td>
+                <td class="right" data-ratio="3507 6271">56%</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities___init___py.html">SpiNNUtils/spinn_utilities/__init__.py</a></td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="4 4">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities__version_py.html">SpiNNUtils/spinn_utilities/_version.py</a></td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="5 5">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_abstract_base_py.html">SpiNNUtils/spinn_utilities/abstract_base.py</a></td>
+                <td>16</td>
+                <td>0</td>
+                <td>0</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="right" data-ratio="24 24">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_abstract_context_manager_py.html">SpiNNUtils/spinn_utilities/abstract_context_manager.py</a></td>
+                <td>16</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="right" data-ratio="20 20">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_bytestring_utils_py.html">SpiNNUtils/spinn_utilities/bytestring_utils.py</a></td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="7 7">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_citation___init___py.html">SpiNNUtils/spinn_utilities/citation/__init__.py</a></td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="3 3">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_citation_citation_aggregator_py.html">SpiNNUtils/spinn_utilities/citation/citation_aggregator.py</a></td>
+                <td>155</td>
+                <td>0</td>
+                <td>21</td>
+                <td>48</td>
+                <td>7</td>
+                <td class="right" data-ratio="196 203">97%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_citation_citation_updater_and_doi_generator_py.html">SpiNNUtils/spinn_utilities/citation/citation_updater_and_doi_generator.py</a></td>
+                <td>117</td>
+                <td>0</td>
+                <td>12</td>
+                <td>28</td>
+                <td>6</td>
+                <td class="right" data-ratio="139 145">96%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_classproperty_py.html">SpiNNUtils/spinn_utilities/classproperty.py</a></td>
+                <td>11</td>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>2</td>
+                <td class="right" data-ratio="12 15">80%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_conf_loader_py.html">SpiNNUtils/spinn_utilities/conf_loader.py</a></td>
+                <td>152</td>
+                <td>26</td>
+                <td>0</td>
+                <td>75</td>
+                <td>6</td>
+                <td class="right" data-ratio="187 227">82%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_configs___init___py.html">SpiNNUtils/spinn_utilities/configs/__init__.py</a></td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="5 5">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_configs_camel_case_config_parser_py.html">SpiNNUtils/spinn_utilities/configs/camel_case_config_parser.py</a></td>
+                <td>42</td>
+                <td>20</td>
+                <td>0</td>
+                <td>10</td>
+                <td>1</td>
+                <td class="right" data-ratio="23 52">44%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_configs_case_sensitive_parser_py.html">SpiNNUtils/spinn_utilities/configs/case_sensitive_parser.py</a></td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="4 4">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_configs_no_config_found_exception_py.html">SpiNNUtils/spinn_utilities/configs/no_config_found_exception.py</a></td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="1 1">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_configs_unexpected_config_exception_py.html">SpiNNUtils/spinn_utilities/configs/unexpected_config_exception.py</a></td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="1 1">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_default_ordered_dict_py.html">SpiNNUtils/spinn_utilities/default_ordered_dict.py</a></td>
+                <td>35</td>
+                <td>12</td>
+                <td>0</td>
+                <td>6</td>
+                <td>1</td>
+                <td class="right" data-ratio="26 41">63%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_exceptions_py.html">SpiNNUtils/spinn_utilities/exceptions.py</a></td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="2 2">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_executable_finder_py.html">SpiNNUtils/spinn_utilities/executable_finder.py</a></td>
+                <td>89</td>
+                <td>20</td>
+                <td>0</td>
+                <td>42</td>
+                <td>7</td>
+                <td class="right" data-ratio="100 131">76%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_find_max_success_py.html">SpiNNUtils/spinn_utilities/find_max_success.py</a></td>
+                <td>11</td>
+                <td>0</td>
+                <td>0</td>
+                <td>6</td>
+                <td>0</td>
+                <td class="right" data-ratio="17 17">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_helpful_functions_py.html">SpiNNUtils/spinn_utilities/helpful_functions.py</a></td>
+                <td>32</td>
+                <td>1</td>
+                <td>0</td>
+                <td>8</td>
+                <td>1</td>
+                <td class="right" data-ratio="38 40">95%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_index_is_value_py.html">SpiNNUtils/spinn_utilities/index_is_value.py</a></td>
+                <td>6</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="4 6">67%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_log_py.html">SpiNNUtils/spinn_utilities/log.py</a></td>
+                <td>114</td>
+                <td>51</td>
+                <td>0</td>
+                <td>44</td>
+                <td>2</td>
+                <td class="right" data-ratio="77 158">49%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_logger_utils_py.html">SpiNNUtils/spinn_utilities/logger_utils.py</a></td>
+                <td>13</td>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>1</td>
+                <td class="right" data-ratio="15 17">88%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_make_tools___init___py.html">SpiNNUtils/spinn_utilities/make_tools/__init__.py</a></td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="2 2">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_make_tools_converter_py.html">SpiNNUtils/spinn_utilities/make_tools/converter.py</a></td>
+                <td>90</td>
+                <td>18</td>
+                <td>0</td>
+                <td>32</td>
+                <td>11</td>
+                <td class="right" data-ratio="91 122">75%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_make_tools_file_converter_py.html">SpiNNUtils/spinn_utilities/make_tools/file_converter.py</a></td>
+                <td>339</td>
+                <td>29</td>
+                <td>0</td>
+                <td>144</td>
+                <td>18</td>
+                <td class="right" data-ratio="434 483">90%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_make_tools_replacer_py.html">SpiNNUtils/spinn_utilities/make_tools/replacer.py</a></td>
+                <td>52</td>
+                <td>7</td>
+                <td>0</td>
+                <td>22</td>
+                <td>4</td>
+                <td class="right" data-ratio="63 74">85%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix___init___py.html">SpiNNUtils/spinn_utilities/matrix/__init__.py</a></td>
+                <td>6</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="6 6">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix_abstract_matrix_py.html">SpiNNUtils/spinn_utilities/matrix/abstract_matrix.py</a></td>
+                <td>7</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix_demo_matrix_py.html">SpiNNUtils/spinn_utilities/matrix/demo_matrix.py</a></td>
+                <td>14</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="14 14">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix_double_dict_py.html">SpiNNUtils/spinn_utilities/matrix/double_dict.py</a></td>
+                <td>32</td>
+                <td>6</td>
+                <td>0</td>
+                <td>20</td>
+                <td>4</td>
+                <td class="right" data-ratio="42 52">81%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix_x_view_py.html">SpiNNUtils/spinn_utilities/matrix/x_view.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_matrix_y_view_py.html">SpiNNUtils/spinn_utilities/matrix/y_view.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ordered_set_py.html">SpiNNUtils/spinn_utilities/ordered_set.py</a></td>
+                <td>48</td>
+                <td>3</td>
+                <td>0</td>
+                <td>16</td>
+                <td>1</td>
+                <td class="right" data-ratio="60 64">94%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_overrides_py.html">SpiNNUtils/spinn_utilities/overrides.py</a></td>
+                <td>52</td>
+                <td>2</td>
+                <td>0</td>
+                <td>34</td>
+                <td>1</td>
+                <td class="right" data-ratio="83 86">97%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_package_loader_py.html">SpiNNUtils/spinn_utilities/package_loader.py</a></td>
+                <td>51</td>
+                <td>15</td>
+                <td>10</td>
+                <td>34</td>
+                <td>7</td>
+                <td class="right" data-ratio="55 85">65%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ping_py.html">SpiNNUtils/spinn_utilities/ping.py</a></td>
+                <td>25</td>
+                <td>2</td>
+                <td>0</td>
+                <td>8</td>
+                <td>2</td>
+                <td class="right" data-ratio="29 33">88%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_progress_bar_py.html">SpiNNUtils/spinn_utilities/progress_bar.py</a></td>
+                <td>174</td>
+                <td>20</td>
+                <td>16</td>
+                <td>42</td>
+                <td>10</td>
+                <td class="right" data-ratio="184 216">85%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged___init___py.html">SpiNNUtils/spinn_utilities/ranged/__init__.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_abstract_dict_py.html">SpiNNUtils/spinn_utilities/ranged/abstract_dict.py</a></td>
+                <td>45</td>
+                <td>0</td>
+                <td>0</td>
+                <td>14</td>
+                <td>0</td>
+                <td class="right" data-ratio="59 59">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_abstract_list_py.html">SpiNNUtils/spinn_utilities/ranged/abstract_list.py</a></td>
+                <td>267</td>
+                <td>7</td>
+                <td>0</td>
+                <td>158</td>
+                <td>4</td>
+                <td class="right" data-ratio="412 425">97%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_abstract_sized_py.html">SpiNNUtils/spinn_utilities/ranged/abstract_sized.py</a></td>
+                <td>103</td>
+                <td>10</td>
+                <td>1</td>
+                <td>75</td>
+                <td>9</td>
+                <td class="right" data-ratio="159 178">89%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_abstract_view_py.html">SpiNNUtils/spinn_utilities/ranged/abstract_view.py</a></td>
+                <td>26</td>
+                <td>0</td>
+                <td>0</td>
+                <td>10</td>
+                <td>0</td>
+                <td class="right" data-ratio="36 36">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_ids_view_py.html">SpiNNUtils/spinn_utilities/ranged/ids_view.py</a></td>
+                <td>28</td>
+                <td>2</td>
+                <td>0</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="right" data-ratio="28 32">88%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_multiple_values_exception_py.html">SpiNNUtils/spinn_utilities/ranged/multiple_values_exception.py</a></td>
+                <td>8</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>1</td>
+                <td class="right" data-ratio="11 12">92%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_range_dictionary_py.html">SpiNNUtils/spinn_utilities/ranged/range_dictionary.py</a></td>
+                <td>184</td>
+                <td>0</td>
+                <td>0</td>
+                <td>95</td>
+                <td>4</td>
+                <td class="right" data-ratio="275 279">99%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_ranged_list_py.html">SpiNNUtils/spinn_utilities/ranged/ranged_list.py</a></td>
+                <td>221</td>
+                <td>0</td>
+                <td>3</td>
+                <td>128</td>
+                <td>3</td>
+                <td class="right" data-ratio="346 349">99%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_single_view_py.html">SpiNNUtils/spinn_utilities/ranged/single_view.py</a></td>
+                <td>25</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="27 27">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_ranged_slice_view_py.html">SpiNNUtils/spinn_utilities/ranged/slice_view.py</a></td>
+                <td>32</td>
+                <td>0</td>
+                <td>0</td>
+                <td>6</td>
+                <td>0</td>
+                <td class="right" data-ratio="38 38">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_safe_eval_py.html">SpiNNUtils/spinn_utilities/safe_eval.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="12 12">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_see_py.html">SpiNNUtils/spinn_utilities/see.py</a></td>
+                <td>11</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 11">82%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_socket_address_py.html">SpiNNUtils/spinn_utilities/socket_address.py</a></td>
+                <td>25</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="right" data-ratio="29 29">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_testing___init___py.html">SpiNNUtils/spinn_utilities/testing/__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_testing_log_checker_py.html">SpiNNUtils/spinn_utilities/testing/log_checker.py</a></td>
+                <td>28</td>
+                <td>5</td>
+                <td>11</td>
+                <td>8</td>
+                <td>2</td>
+                <td class="right" data-ratio="29 36">81%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="SpiNNUtils_spinn_utilities_timer_py.html">SpiNNUtils/spinn_utilities/timer.py</a></td>
+                <td>35</td>
+                <td>9</td>
+                <td>0</td>
+                <td>4</td>
+                <td>2</td>
+                <td class="right" data-ratio="28 39">72%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_setup_py.html">spalloc/setup.py</a></td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 5">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc___init___py.html">spalloc/spalloc/__init__.py</a></td>
+                <td>6</td>
+                <td>6</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 6">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc__keepalive_process_py.html">spalloc/spalloc/_keepalive_process.py</a></td>
+                <td>46</td>
+                <td>46</td>
+                <td>0</td>
+                <td>16</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 62">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc__utils_py.html">spalloc/spalloc/_utils.py</a></td>
+                <td>16</td>
+                <td>16</td>
+                <td>0</td>
+                <td>6</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 22">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc__version_py.html">spalloc/spalloc/_version.py</a></td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 5">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_config_py.html">spalloc/spalloc/config.py</a></td>
+                <td>46</td>
+                <td>46</td>
+                <td>5</td>
+                <td>12</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 58">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_job_py.html">spalloc/spalloc/job.py</a></td>
+                <td>197</td>
+                <td>197</td>
+                <td>0</td>
+                <td>66</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 263">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_protocol_client_py.html">spalloc/spalloc/protocol_client.py</a></td>
+                <td>143</td>
+                <td>143</td>
+                <td>43</td>
+                <td>40</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 183">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts___init___py.html">spalloc/spalloc/scripts/__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_alloc_py.html">spalloc/spalloc/scripts/alloc.py</a></td>
+                <td>160</td>
+                <td>160</td>
+                <td>7</td>
+                <td>42</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 202">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_job_py.html">spalloc/spalloc/scripts/job.py</a></td>
+                <td>129</td>
+                <td>129</td>
+                <td>2</td>
+                <td>60</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 189">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_machine_py.html">spalloc/spalloc/scripts/machine.py</a></td>
+                <td>108</td>
+                <td>108</td>
+                <td>2</td>
+                <td>44</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 152">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_ps_py.html">spalloc/spalloc/scripts/ps.py</a></td>
+                <td>67</td>
+                <td>67</td>
+                <td>2</td>
+                <td>24</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 91">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_support_py.html">spalloc/spalloc/scripts/support.py</a></td>
+                <td>58</td>
+                <td>58</td>
+                <td>0</td>
+                <td>16</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 74">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_scripts_where_is_py.html">spalloc/spalloc/scripts/where_is.py</a></td>
+                <td>54</td>
+                <td>54</td>
+                <td>2</td>
+                <td>14</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 68">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_states_py.html">spalloc/spalloc/states.py</a></td>
+                <td>9</td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 9">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_spalloc_term_py.html">spalloc/spalloc/term.py</a></td>
+                <td>175</td>
+                <td>175</td>
+                <td>0</td>
+                <td>78</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 253">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests___init___py.html">spalloc/tests/__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_common_py.html">spalloc/tests/common.py</a></td>
+                <td>30</td>
+                <td>30</td>
+                <td>2</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 34">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_conftest_py.html">spalloc/tests/conftest.py</a></td>
+                <td>51</td>
+                <td>51</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 51">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_test_config_py.html">spalloc/tests/test_config.py</a></td>
+                <td>32</td>
+                <td>32</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 34">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_test_job_py.html">spalloc/tests/test_job.py</a></td>
+                <td>256</td>
+                <td>256</td>
+                <td>1</td>
+                <td>12</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 268">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_test_protocol_client_py.html">spalloc/tests/test_protocol_client.py</a></td>
+                <td>150</td>
+                <td>150</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 152">0%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="spalloc_tests_test_term_py.html">spalloc/tests/test_term.py</a></td>
+                <td>119</td>
+                <td>119</td>
+                <td>0</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 127">0%</td>
+            </tr>
+        </tbody>
+    </table>
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
+</div>
+<div id="footer">
+    <div class="content">
+        <p>
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
+            created at 2020-11-10 11:25 +0000
+        </p>
+    </div>
+</div>
+</body>
+</html>
