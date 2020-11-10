@@ -65,77 +65,76 @@ jobs:
       run: python setup.py develop
       working-directory: SpiNNUtils
 
-    - name: Make C Code
-      run: |
-        make -C $SPINN_DIRS
-        make -C spinn_common install
-        make -C SpiNNFrontEndCommon/c_common
-        make -C SpiNNFrontEndCommon/c_common install
-        make -C sPyNNaker/neural_modelling
-        make -C sPyNNaker8NewModelTemplate/c_models
-        make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
-        make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
-    
-    - name: Install Python Modules
-      uses: ./.github/actions/python_setup
-      with:
-        folder: |
-          SpiNNMachine
-          SpiNNMan
-          PACMAN
-          DataSpecification
-          spalloc
-          SpiNNFrontEndCommon
-          sPyNNaker
-          sPyNNaker8
-          SpiNNakerGraphFrontEnd
-         
-    - name: Install Requirements
-      run: |
-        # Test requirements
-        pip install -r SpiNNMachine/requirements-test.txt
-        pip install -r SpiNNMan/requirements-test.txt
-        pip install -r PACMAN/requirements-test.txt
-        pip install -r DataSpecification/requirements-test.txt
-        pip install -r spalloc/requirements-test.txt
-        pip install -r SpiNNFrontEndCommon/requirements-test.txt
-        pip install -r sPyNNaker/requirements-test.txt
-        pip install -r sPyNNaker8/requirements-test.txt
-        pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
-       
-    - name: Install Java
-      run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
-      
-    - name: Prepare Configuration
-      run: |
-        # Write a sPyNNaker config file for spalloc and java use
-        echo "[Machine]" > ~/.spynnaker.cfg
-        echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
-        echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
-        echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
-        echo "[Java]" >> ~/.spynnaker.cfg
-        echo "use_java = True" >> ~/.spynnaker.cfg
-        echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
-        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
-        printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
-        pwd >> ~/.spynnaker.cfg
-        # Write a GFE config file for spalloc and java use
-        echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-        echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
-        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
-        printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
-        pwd >> ~/.spiNNakerGraphFrontEnd.cfg
-        # Prepare coverage
-        rm -f coverage.xml
-        rm -f .coverage
-        # Prepare for unit tests
-        echo "# Empty config" >  ~/.spinnaker.cfg
-
+#     - name: Make C Code
+#       run: |
+#         make -C $SPINN_DIRS
+#         make -C spinn_common install
+#         make -C SpiNNFrontEndCommon/c_common
+#         make -C SpiNNFrontEndCommon/c_common install
+#         make -C sPyNNaker/neural_modelling
+#         make -C sPyNNaker8NewModelTemplate/c_models
+#         make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
+#         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
+#     
+#     - name: Install Python Modules
+#       uses: ./.github/actions/python_setup
+#       with:
+#         folder: |
+#           SpiNNMachine
+#           SpiNNMan
+#           PACMAN
+#           DataSpecification
+#           spalloc
+#           SpiNNFrontEndCommon
+#           sPyNNaker
+#           sPyNNaker8
+#           SpiNNakerGraphFrontEnd
+#          
+#     - name: Install Requirements
+#       run: |
+#         pip install -r SpiNNMachine/requirements-test.txt
+#         pip install -r SpiNNMan/requirements-test.txt
+#         pip install -r PACMAN/requirements-test.txt
+#         pip install -r DataSpecification/requirements-test.txt
+#         pip install -r spalloc/requirements-test.txt
+#         pip install -r SpiNNFrontEndCommon/requirements-test.txt
+#         pip install -r sPyNNaker/requirements-test.txt
+#         pip install -r sPyNNaker8/requirements-test.txt
+#         pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
+#        
+#     - name: Install Java
+#       run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
+#       
+#     - name: Prepare Configuration
+#       run: |
+#         # Write a sPyNNaker config file for spalloc and java use
+#         echo "[Machine]" > ~/.spynnaker.cfg
+#         echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
+#         echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+#         echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+#         echo "[Java]" >> ~/.spynnaker.cfg
+#         echo "use_java = True" >> ~/.spynnaker.cfg
+#         echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
+#         echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
+#         printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
+#         pwd >> ~/.spynnaker.cfg
+#         # Write a GFE config file for spalloc and java use
+#         echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
+#         pwd >> ~/.spiNNakerGraphFrontEnd.cfg
+#         # Prepare coverage
+#         rm -f coverage.xml
+#         rm -f .coverage
+#         # Prepare for unit tests
+#         echo "# Empty config" >  ~/.spinnaker.cfg
+#
 #     - name: Run sPyNNaker Integration Tests
 #       uses: ./.github/actions/pytest_local
 #       with:
