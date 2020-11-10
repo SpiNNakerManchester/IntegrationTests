@@ -39,15 +39,15 @@ jobs:
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
           if [[ "${{ github.event_name }}" == "schedule" ]]
           then
-              echo "::set_output name=n_threads::1"
+              echo "##[set-output name=n_threads;]1"
           else
-              echo "::set_output name=n_threads::auto"
+              echo "##[set-output name=n_threads;]auto"
           fi
       id: set_env_step
       
     - name: Install Python Dependencies
       run: |
-        echo "${{ steps.set_env_step.outputs.n_threads }}
+        echo "${{ steps.set_env_step.outputs.n_threads }}"
         pip3 install --upgrade "setuptools < 50.0.0" wheel
         pip install --user --upgrade pip
         pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib coverage
