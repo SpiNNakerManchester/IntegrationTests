@@ -18,13 +18,16 @@
 
 name: Self Hosted Tests
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: '0 1 * * *'
 
 jobs:
   integration_tests:
     runs-on: self-hosted
     container:
-        image: python3.6_test:latest
+        image: python3.6:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -33,6 +36,13 @@ jobs:
       run: |
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
+          if [[ "${{ github.event_name }}" == "schedule" ]]
+          then
+              echo "::set_output name=n_threads::1"
+          else
+              echo "::set_output name=n_threads::auto"
+          fi
+      id: set_env_step
       
     - name: Install Python Dependencies
       run: |
@@ -88,6 +98,7 @@ jobs:
           SpiNNFrontEndCommon
           sPyNNaker
           sPyNNaker8
+          sPyNNaker8NewModelTemplate
           SpiNNakerGraphFrontEnd
          
     - name: Install Requirements
@@ -134,6 +145,96 @@ jobs:
         rm -f .coverage
         # Prepare for unit tests
         echo "# Empty config" >  ~/.spinnaker.cfg
+        
+    - name: Run SpiNNUtils Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNUtils/unittests
+        timeout: 1200
+        cov_name: spinnutils
+        n_threads: 1
+    
+    - name: Run SpiNNMachine Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNMachine/unittests
+        timeout: 1200
+        cov_name: spinnmachine
+        n_threads: 1
+   
+    - name: Run SpiNNMan Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNMan/unittests
+        timeout: 1200
+        cov_name: spinnman
+        n_threads: 1
+    
+    - name: Run PACMAN Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: PACMAN/unittests
+        timeout: 1200
+        cov_name: pacman
+        n_threads: 1
+    
+    - name: Run spalloc Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: spalloc/tests
+        timeout: 1200
+        cov_name: spalloc
+        n_threads: 1
+    
+    - name: Run DataSpecification Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: DataSpecification/unittests
+        timeout: 1200
+        cov_name: dataspec
+        n_threads: 1
+    
+    - name: Run SpiNNFrontEndCommon Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNFrontEndCommon/unittests
+        timeout: 1200
+        cov_name: fec
+        n_threads: 1
+        
+    - name: Run sPyNNaker Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker/unittests
+        timeout: 1200
+        cov_name: spynnaker
+        n_threads: 1
+    
+    - name: Run sPyNNaker8 Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/unittests
+        timeout: 1200
+        cov_name: spynnaker8
+        n_threads: 1
+        
+    - name: Run SpiNNakerGraphFrontEnd Unit Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNakerGraphFrontEnd/unittests
+        timeout: 1200
+        cov_name: gfe
+        n_threads: 1
 
     - name: Run sPyNNaker Integration Tests
       uses: ./.github/actions/pytest_local
@@ -141,6 +242,16 @@ jobs:
         tests: sPyNNaker8/p8_integration_tests/quick_test/
         timeout: 1200
         cov_name: sPyNNaker8_Integration
+        n_threads: ${{ steps.set_env_step.outputs.n_threads }}
+        
+    - name: Run sPyNNaker Long Integration Tests
+      if: (github.event_name == 'schedule')
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker8/p8_integration_tests/long_test/
+        timeout: 12000
+        cov_name: sPyNNaker8_Integration_Long
+        n_threads: 1
         
     - name: Run GFE Integration Tests
       uses: ./.github/actions/pytest_local
@@ -148,6 +259,7 @@ jobs:
         tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
         timeout: 1200
         cov_name: GFE_Integration
+        n_threads: ${{ steps.set_env_step.outputs.n_threads }}
    
     - name: Run New Model Template Examples
       uses: ./.github/actions/pytest_local
@@ -155,6 +267,7 @@ jobs:
         tests: sPyNNaker8/p8_integration_tests/test_new_model_templates
         timeout: 1200
         cov_name: new_model_example
+        n_threads: ${{ steps.set_env_step.outputs.n_threads }}
      
     - name: Run New Model Template Integeration Tests
       uses: ./.github/actions/pytest_local
@@ -162,6 +275,7 @@ jobs:
         tests: sPyNNaker8NewModelTemplate/nmt_integration_tests
         timeout: 1200
         cov_name: nmt_integration_tests
+        n_threads: ${{ steps.set_env_step.outputs.n_threads }}
         
     - name: Build Scripts to Run
       run: python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py shorter
@@ -172,6 +286,7 @@ jobs:
         tests: sPyNNaker8/p8_integration_tests/scripts_test/examples_auto_test.py
         timeout: 1200
         cov_name: p8_examples
+        n_threads: ${{ steps.set_env_step.outputs.n_threads }}
     
     - name: Run IntroLabs Scripts
       uses: ./.github/actions/pytest_local
@@ -186,13 +301,9 @@ jobs:
     
     - name: Check Destroyed
       run: py.test sPyNNaker8/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120
-    
-    - name: Run SpiNNUtils Unit Tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNUtils/unittests
-        timeout: 1200
-        cov_name: spinn_utils_unit
+      
+    - name: Check Executables Used
+      run: python -m spinn_utilities.executable_finder
 
     - name: Create Coverage HTML
       run: |
