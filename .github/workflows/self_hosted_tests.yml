@@ -76,20 +76,20 @@ jobs:
 #         make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
 #         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
 #     
-#     - name: Install Python Modules
-#       uses: ./.github/actions/python_setup
-#       with:
-#         folder: |
-#           SpiNNMachine
-#           SpiNNMan
-#           PACMAN
-#           DataSpecification
-#           spalloc
-#           SpiNNFrontEndCommon
-#           sPyNNaker
-#           sPyNNaker8
-#           SpiNNakerGraphFrontEnd
-#          
+    - name: Install Python Modules
+      uses: ./.github/actions/python_setup
+      with:
+        folder: |
+          SpiNNMachine
+          SpiNNMan
+          PACMAN
+          DataSpecification
+          spalloc
+          SpiNNFrontEndCommon
+          sPyNNaker
+          sPyNNaker8
+          SpiNNakerGraphFrontEnd
+         
     - name: Install Requirements
       run: |
         pip install -r SpiNNMachine/requirements-test.txt
