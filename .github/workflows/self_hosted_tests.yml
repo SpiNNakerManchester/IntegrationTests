@@ -299,7 +299,7 @@ jobs:
         n_threads: 1
         
     - name: Check Reports
-      run: find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;
+      run: find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \{\}  \;
     
     - name: Check Destroyed
       run: py.test sPyNNaker8/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120
