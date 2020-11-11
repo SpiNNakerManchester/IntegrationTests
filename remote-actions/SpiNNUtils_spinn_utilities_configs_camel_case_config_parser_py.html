@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for SpiNNUtils/spinn_utilities/configs/camel_case_config_parser.py: 44%</title>
+    <title>Coverage for SpiNNUtils/spinn_utilities/configs/camel_case_config_parser.py: 62%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.hotkeys.js"></script>
@@ -17,15 +17,15 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>SpiNNUtils/spinn_utilities/configs/camel_case_config_parser.py</b> :
-            <span class="pc_cov">44%</span>
+            <span class="pc_cov">62%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             42 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">22 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">20 missing</button>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">29 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">13 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
-            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">1 partial</button>
+            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">3 partial</button>
         </h2>
     </div>
 </div>
@@ -118,10 +118,10 @@
     <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t"><span class="str">        :return: The option value</span>&nbsp;</span><span class="r"></span></p>
     <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t"><span class="str">        :rtype: str or None</span>&nbsp;</span><span class="r"></span></p>
     <p id="t66" class="pln"><span class="n"><a href="#t66">66</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t67" class="mis show_mis"><span class="n"><a href="#t67">67</a></span><span class="t">        <span class="nam">value</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">section</span><span class="op">,</span> <span class="nam">option</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t68" class="mis show_mis"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="key">if</span> <span class="nam">value</span> <span class="op">==</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_none_marker</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t67" class="run"><span class="n"><a href="#t67">67</a></span><span class="t">        <span class="nam">value</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">section</span><span class="op">,</span> <span class="nam">option</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t68" class="par run show_par"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="key">if</span> <span class="nam">value</span> <span class="op">==</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_none_marker</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">68&#x202F;&#x219B;&#x202F;69</span><span class="annotate long">line 68 didn't jump to line 69, because the condition on line 68 was never true</span></span></p>
     <p id="t69" class="mis show_mis"><span class="n"><a href="#t69">69</a></span><span class="t">            <span class="key">return</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t70" class="mis show_mis"><span class="n"><a href="#t70">70</a></span><span class="t">        <span class="key">return</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t70" class="run"><span class="n"><a href="#t70">70</a></span><span class="t">        <span class="key">return</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
     <p id="t71" class="pln"><span class="n"><a href="#t71">71</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t72" class="run"><span class="n"><a href="#t72">72</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_int</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">section</span><span class="op">,</span> <span class="nam">option</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t73" class="pln"><span class="n"><a href="#t73">73</a></span><span class="t">        <span class="str">""" Get the integer value of an option.</span>&nbsp;</span><span class="r"></span></p>
@@ -163,11 +163,11 @@
     <p id="t109" class="pln"><span class="n"><a href="#t109">109</a></span><span class="t"><span class="str">        :return: The option value.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t"><span class="str">        :rtype: bool</span>&nbsp;</span><span class="r"></span></p>
     <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t112" class="mis show_mis"><span class="n"><a href="#t112">112</a></span><span class="t">        <span class="nam">value</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">section</span><span class="op">,</span> <span class="nam">option</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t113" class="mis show_mis"><span class="n"><a href="#t113">113</a></span><span class="t">        <span class="key">if</span> <span class="nam">value</span> <span class="op">==</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_none_marker</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t">        <span class="nam">value</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">section</span><span class="op">,</span> <span class="nam">option</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t113" class="par run show_par"><span class="n"><a href="#t113">113</a></span><span class="t">        <span class="key">if</span> <span class="nam">value</span> <span class="op">==</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_none_marker</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">113&#x202F;&#x219B;&#x202F;114</span><span class="annotate long">line 113 didn't jump to line 114, because the condition on line 113 was never true</span></span></p>
     <p id="t114" class="mis show_mis"><span class="n"><a href="#t114">114</a></span><span class="t">            <span class="key">return</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t115" class="mis show_mis"><span class="n"><a href="#t115">115</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t116" class="mis show_mis"><span class="n"><a href="#t116">116</a></span><span class="t">            <span class="key">return</span> <span class="nam">bool</span><span class="op">(</span><span class="nam">_du</span><span class="op">.</span><span class="nam">strtobool</span><span class="op">(</span><span class="nam">str</span><span class="op">(</span><span class="nam">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t115" class="run"><span class="n"><a href="#t115">115</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t116" class="run"><span class="n"><a href="#t116">116</a></span><span class="t">            <span class="key">return</span> <span class="nam">bool</span><span class="op">(</span><span class="nam">_du</span><span class="op">.</span><span class="nam">strtobool</span><span class="op">(</span><span class="nam">str</span><span class="op">(</span><span class="nam">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t117" class="mis show_mis"><span class="n"><a href="#t117">117</a></span><span class="t">        <span class="key">except</span> <span class="nam">ValueError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t118" class="mis show_mis"><span class="n"><a href="#t118">118</a></span><span class="t">            <span class="key">return</span> <span class="nam">bool</span><span class="op">(</span><span class="nam">value</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
@@ -175,7 +175,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
-            created at 2020-11-10 11:25 +0000
+            created at 2020-11-11 08:33 +0000
         </p>
     </div>
 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for SpiNNUtils/spinn_utilities/find_max_success.py: 100%</title>
+    <title>Coverage for SpiNNUtils/spinn_utilities/find_max_success.py: 12%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.hotkeys.js"></script>
@@ -17,13 +17,13 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>SpiNNUtils/spinn_utilities/find_max_success.py</b> :
-            <span class="pc_cov">100%</span>
+            <span class="pc_cov">12%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             11 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">11 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">2 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">9 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
             <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">0 partial</button>
         </h2>
@@ -81,9 +81,9 @@
     <p id="t27" class="pln"><span class="n"><a href="#t27">27</a></span><span class="t"><span class="str">        but is not more than the max_possible</span>&nbsp;</span><span class="r"></span></p>
     <p id="t28" class="pln"><span class="n"><a href="#t28">28</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t29" class="pln"><span class="n"><a href="#t29">29</a></span><span class="t">    <span class="com"># Check the max to avoid multiple steps if that works</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t30" class="run"><span class="n"><a href="#t30">30</a></span><span class="t">    <span class="key">if</span> <span class="nam">check</span><span class="op">(</span><span class="nam">max_possible</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t31" class="run"><span class="n"><a href="#t31">31</a></span><span class="t">        <span class="key">return</span> <span class="nam">max_possible</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t32" class="run"><span class="n"><a href="#t32">32</a></span><span class="t">    <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">max_possible</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t30" class="mis show_mis"><span class="n"><a href="#t30">30</a></span><span class="t">    <span class="key">if</span> <span class="nam">check</span><span class="op">(</span><span class="nam">max_possible</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t31" class="mis show_mis"><span class="n"><a href="#t31">31</a></span><span class="t">        <span class="key">return</span> <span class="nam">max_possible</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t32" class="mis show_mis"><span class="n"><a href="#t32">32</a></span><span class="t">    <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">max_possible</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t33" class="pln"><span class="n"><a href="#t33">33</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t34" class="pln"><span class="n"><a href="#t34">34</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t35" class="run"><span class="n"><a href="#t35">35</a></span><span class="t"><span class="key">def</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="nam">best_success</span><span class="op">,</span> <span class="nam">min_fail</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -106,23 +106,23 @@
     <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t"><span class="str">        whole range fails or is empty.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t53" class="pln"><span class="n"><a href="#t53">53</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t54" class="pln"><span class="n"><a href="#t54">54</a></span><span class="t">    <span class="com"># Check if there are still values in the middle to check</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t55" class="run"><span class="n"><a href="#t55">55</a></span><span class="t">    <span class="key">if</span> <span class="nam">best_success</span> <span class="op">>=</span> <span class="nam">min_fail</span> <span class="op">-</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t56" class="run"><span class="n"><a href="#t56">56</a></span><span class="t">        <span class="key">return</span> <span class="nam">best_success</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t55" class="mis show_mis"><span class="n"><a href="#t55">55</a></span><span class="t">    <span class="key">if</span> <span class="nam">best_success</span> <span class="op">>=</span> <span class="nam">min_fail</span> <span class="op">-</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t56" class="mis show_mis"><span class="n"><a href="#t56">56</a></span><span class="t">        <span class="key">return</span> <span class="nam">best_success</span>&nbsp;</span><span class="r"></span></p>
     <p id="t57" class="pln"><span class="n"><a href="#t57">57</a></span><span class="t">    <span class="com"># Find the middle</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t58" class="run"><span class="n"><a href="#t58">58</a></span><span class="t">    <span class="nam">mid_point</span> <span class="op">=</span> <span class="op">(</span><span class="nam">best_success</span> <span class="op">+</span> <span class="nam">min_fail</span><span class="op">)</span> <span class="op">//</span> <span class="num">2</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t58" class="mis show_mis"><span class="n"><a href="#t58">58</a></span><span class="t">    <span class="nam">mid_point</span> <span class="op">=</span> <span class="op">(</span><span class="nam">best_success</span> <span class="op">+</span> <span class="nam">min_fail</span><span class="op">)</span> <span class="op">//</span> <span class="num">2</span>&nbsp;</span><span class="r"></span></p>
     <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">    <span class="com"># Check the middle</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t60" class="run"><span class="n"><a href="#t60">60</a></span><span class="t">    <span class="key">if</span> <span class="nam">check</span><span class="op">(</span><span class="nam">mid_point</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t60" class="mis show_mis"><span class="n"><a href="#t60">60</a></span><span class="t">    <span class="key">if</span> <span class="nam">check</span><span class="op">(</span><span class="nam">mid_point</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">        <span class="com"># Best it the middle or more</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t62" class="run"><span class="n"><a href="#t62">62</a></span><span class="t">        <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="nam">mid_point</span><span class="op">,</span> <span class="nam">min_fail</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t62" class="mis show_mis"><span class="n"><a href="#t62">62</a></span><span class="t">        <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="nam">mid_point</span><span class="op">,</span> <span class="nam">min_fail</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t63" class="pln"><span class="n"><a href="#t63">63</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t">        <span class="com"># Best it the less than the middle</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t65" class="run"><span class="n"><a href="#t65">65</a></span><span class="t">        <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="nam">best_success</span><span class="op">,</span> <span class="nam">mid_point</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t65" class="mis show_mis"><span class="n"><a href="#t65">65</a></span><span class="t">        <span class="key">return</span> <span class="nam">search_for_max_success</span><span class="op">(</span><span class="nam">best_success</span><span class="op">,</span> <span class="nam">mid_point</span><span class="op">,</span> <span class="nam">check</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
-            created at 2020-11-10 11:25 +0000
+            created at 2020-11-11 08:33 +0000
         </p>
     </div>
 </div>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <title>Coverage for DataSpecification/data_specification/enums/commands.py: 100%</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="jquery.isonscreen.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(coverage.pyfile_ready);
+    </script>
+</head>
+<body class="pyfile">
+<div id="header">
+    <div class="content">
+        <h1>Coverage for <b>DataSpecification/data_specification/enums/commands.py</b> :
+            <span class="pc_cov">100%</span>
+        </h1>
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <h2 class="stats">
+            54 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">54 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
+            <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
+            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">0 partial</button>
+        </h2>
+    </div>
+</div>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
+    <div>
+    <p class="keyhelp">
+        <span class="key">r</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
+        <span class="key">p</span> &nbsp; toggle line displays
+    </p>
+    <p class="keyhelp">
+        <span class="key">j</span>
+        <span class="key">k</span> &nbsp; next/prev highlighted chunk
+    </p>
+    <p class="keyhelp">
+        <span class="key">0</span> &nbsp; (zero) top of page
+    </p>
+    <p class="keyhelp">
+        <span class="key">1</span> &nbsp; (one) first highlighted chunk
+    </p>
+    </div>
+</div>
+<div id="source">
+    <p id="t1" class="pln"><span class="n"><a href="#t1">1</a></span><span class="t"><span class="com"># Copyright (c) 2017-2019 The University of Manchester</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t2" class="pln"><span class="n"><a href="#t2">2</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t3" class="pln"><span class="n"><a href="#t3">3</a></span><span class="t"><span class="com"># This program is free software: you can redistribute it and/or modify</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t4" class="pln"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="com"># it under the terms of the GNU General Public License as published by</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t5" class="pln"><span class="n"><a href="#t5">5</a></span><span class="t"><span class="com"># the Free Software Foundation, either version 3 of the License, or</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t6" class="pln"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="com"># (at your option) any later version.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t7" class="pln"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t"><span class="com"># This program is distributed in the hope that it will be useful,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t9" class="pln"><span class="n"><a href="#t9">9</a></span><span class="t"><span class="com"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t10" class="pln"><span class="n"><a href="#t10">10</a></span><span class="t"><span class="com"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t11" class="pln"><span class="n"><a href="#t11">11</a></span><span class="t"><span class="com"># GNU General Public License for more details.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t12" class="pln"><span class="n"><a href="#t12">12</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t13" class="pln"><span class="n"><a href="#t13">13</a></span><span class="t"><span class="com"># You should have received a copy of the GNU General Public License</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t14" class="pln"><span class="n"><a href="#t14">14</a></span><span class="t"><span class="com"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/>.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t15" class="pln"><span class="n"><a href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t16" class="run"><span class="n"><a href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">enum</span> <span class="key">import</span> <span class="nam">Enum</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t17" class="run"><span class="n"><a href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">data_specification</span><span class="op">.</span><span class="nam">data_specification_executor_functions</span> <span class="key">import</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t18" class="pln"><span class="n"><a href="#t18">18</a></span><span class="t">    <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t19" class="pln"><span class="n"><a href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t20" class="pln"><span class="n"><a href="#t20">20</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t"><span class="key">class</span> <span class="nam">Commands</span><span class="op">(</span><span class="nam">Enum</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t22" class="pln"><span class="n"><a href="#t22">22</a></span><span class="t">    <span class="str">""" Set of opcodes for the spec executor"""</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t23" class="pln"><span class="n"><a href="#t23">23</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t24" class="pln"><span class="n"><a href="#t24">24</a></span><span class="t">    <span class="com">#: Halts spec execution with an error.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t25" class="run"><span class="n"><a href="#t25">25</a></span><span class="t">    <span class="nam">BREAK</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t26" class="pln"><span class="n"><a href="#t26">26</a></span><span class="t">        <span class="num">0x00</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_break</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t27" class="pln"><span class="n"><a href="#t27">27</a></span><span class="t">        <span class="str">"Halts spec execution with an error"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t28" class="pln"><span class="n"><a href="#t28">28</a></span><span class="t">    <span class="com">#: No operation. Can be used as a filler.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t29" class="run"><span class="n"><a href="#t29">29</a></span><span class="t">    <span class="nam">NOP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t30" class="pln"><span class="n"><a href="#t30">30</a></span><span class="t">        <span class="num">0x01</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_nop</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t31" class="pln"><span class="n"><a href="#t31">31</a></span><span class="t">        <span class="str">"No operation. Can be used as a filler"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t32" class="pln"><span class="n"><a href="#t32">32</a></span><span class="t">    <span class="com">#: Reserves a block of memory ready for filling.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t33" class="run"><span class="n"><a href="#t33">33</a></span><span class="t">    <span class="nam">RESERVE</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t34" class="pln"><span class="n"><a href="#t34">34</a></span><span class="t">        <span class="num">0x02</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_reserve</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t35" class="pln"><span class="n"><a href="#t35">35</a></span><span class="t">        <span class="str">"Reserves a block of memory ready for filling"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t36" class="run"><span class="n"><a href="#t36">36</a></span><span class="t">    <span class="nam">FREE</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t37" class="pln"><span class="n"><a href="#t37">37</a></span><span class="t">        <span class="num">0x03</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_free</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t38" class="pln"><span class="n"><a href="#t38">38</a></span><span class="t">        <span class="str">"Releases previously reserved memory"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t39" class="run"><span class="n"><a href="#t39">39</a></span><span class="t">    <span class="nam">DECLARE_RNG</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t40" class="pln"><span class="n"><a href="#t40">40</a></span><span class="t">        <span class="num">0x05</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_declare_rng</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t41" class="pln"><span class="n"><a href="#t41">41</a></span><span class="t">        <span class="str">"Declares a new random number generator"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t42" class="run"><span class="n"><a href="#t42">42</a></span><span class="t">    <span class="nam">DECLARE_RANDOM_DIST</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t43" class="pln"><span class="n"><a href="#t43">43</a></span><span class="t">        <span class="num">0x06</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_random_dist</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t44" class="pln"><span class="n"><a href="#t44">44</a></span><span class="t">        <span class="str">"Declares a new random distribution"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t45" class="run"><span class="n"><a href="#t45">45</a></span><span class="t">    <span class="nam">GET_RANDOM_NUMBER</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t46" class="pln"><span class="n"><a href="#t46">46</a></span><span class="t">        <span class="num">0x07</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_get_random_rumber</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t47" class="pln"><span class="n"><a href="#t47">47</a></span><span class="t">        <span class="str">"Returns a random number drawn from the given distribution"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t48" class="run"><span class="n"><a href="#t48">48</a></span><span class="t">    <span class="nam">START_STRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t49" class="pln"><span class="n"><a href="#t49">49</a></span><span class="t">        <span class="num">0x10</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_start_struct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t50" class="pln"><span class="n"><a href="#t50">50</a></span><span class="t">        <span class="str">"Begins declaration of new structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t51" class="run"><span class="n"><a href="#t51">51</a></span><span class="t">    <span class="nam">STRUCT_ELEM</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t">        <span class="num">0x11</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_struct_elem</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t53" class="pln"><span class="n"><a href="#t53">53</a></span><span class="t">        <span class="str">"Declare single element in a structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t54" class="run"><span class="n"><a href="#t54">54</a></span><span class="t">    <span class="nam">END_STRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t55" class="pln"><span class="n"><a href="#t55">55</a></span><span class="t">        <span class="num">0x12</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_end_struct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">        <span class="str">"Ends declaration of new structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t57" class="run"><span class="n"><a href="#t57">57</a></span><span class="t">    <span class="nam">START_CONSTRUCTOR</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t58" class="pln"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="num">0x20</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_start_constructor</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">        <span class="str">"Begins definition of a function to write data structures to memory"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t60" class="run"><span class="n"><a href="#t60">60</a></span><span class="t">    <span class="nam">END_CONSTRUCTOR</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">        <span class="num">0x25</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_end_constructor</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t62" class="pln"><span class="n"><a href="#t62">62</a></span><span class="t">        <span class="str">"Ends definition of the write function"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t63" class="run"><span class="n"><a href="#t63">63</a></span><span class="t">    <span class="nam">CONSTRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t">        <span class="num">0x40</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_construct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t">        <span class="str">"Invokes a constructor to build a data structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t66" class="run"><span class="n"><a href="#t66">66</a></span><span class="t">    <span class="nam">READ</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t67" class="pln"><span class="n"><a href="#t67">67</a></span><span class="t">        <span class="num">0x41</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_read</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t68" class="pln"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="str">"Performs a simple read  operation"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t69" class="pln"><span class="n"><a href="#t69">69</a></span><span class="t">    <span class="com">#: Performs a simple write or block write operation.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t70" class="run"><span class="n"><a href="#t70">70</a></span><span class="t">    <span class="nam">WRITE</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t71" class="pln"><span class="n"><a href="#t71">71</a></span><span class="t">        <span class="num">0x42</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_write</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t72" class="pln"><span class="n"><a href="#t72">72</a></span><span class="t">        <span class="str">"Performs a simple write or block write operation"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t73" class="pln"><span class="n"><a href="#t73">73</a></span><span class="t">    <span class="com">#: Performs a write from an array.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t74" class="run"><span class="n"><a href="#t74">74</a></span><span class="t">    <span class="nam">WRITE_ARRAY</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t75" class="pln"><span class="n"><a href="#t75">75</a></span><span class="t">        <span class="num">0x43</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_write_array</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t76" class="pln"><span class="n"><a href="#t76">76</a></span><span class="t">        <span class="str">"Performs a write from an array"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t77" class="run"><span class="n"><a href="#t77">77</a></span><span class="t">    <span class="nam">WRITE_STRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t78" class="pln"><span class="n"><a href="#t78">78</a></span><span class="t">        <span class="num">0x44</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_write_struct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t79" class="pln"><span class="n"><a href="#t79">79</a></span><span class="t">        <span class="str">"Performs a write from a predefined structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t80" class="run"><span class="n"><a href="#t80">80</a></span><span class="t">    <span class="nam">BLOCK_COPY</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t81" class="pln"><span class="n"><a href="#t81">81</a></span><span class="t">        <span class="num">0x45</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_block_copy</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t82" class="pln"><span class="n"><a href="#t82">82</a></span><span class="t">        <span class="str">"Copies a block of data from one area to another"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t">    <span class="com">#: Swap between different reserved memory regions to work on several at</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t84" class="pln"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="com">#: the same time.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t85" class="run"><span class="n"><a href="#t85">85</a></span><span class="t">    <span class="nam">SWITCH_FOCUS</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">        <span class="num">0x50</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_switch_focus</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t87" class="pln"><span class="n"><a href="#t87">87</a></span><span class="t">        <span class="str">"Swap between different reserved memory regions to work on several at"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t88" class="pln"><span class="n"><a href="#t88">88</a></span><span class="t">        <span class="str">" the same time"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t89" class="run"><span class="n"><a href="#t89">89</a></span><span class="t">    <span class="nam">LOOP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t90" class="pln"><span class="n"><a href="#t90">90</a></span><span class="t">        <span class="num">0x51</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_loop</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t91" class="pln"><span class="n"><a href="#t91">91</a></span><span class="t">        <span class="str">"Set-up a loop"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t92" class="run"><span class="n"><a href="#t92">92</a></span><span class="t">    <span class="nam">BREAK_LOOP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t93" class="pln"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="num">0x52</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_break_loop</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">        <span class="str">"Early exit from a loop"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t95" class="run"><span class="n"><a href="#t95">95</a></span><span class="t">    <span class="nam">END_LOOP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t96" class="pln"><span class="n"><a href="#t96">96</a></span><span class="t">        <span class="num">0x53</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_end_loop</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t97" class="pln"><span class="n"><a href="#t97">97</a></span><span class="t">        <span class="str">"End of a loop"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t98" class="run"><span class="n"><a href="#t98">98</a></span><span class="t">    <span class="nam">IF</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t99" class="pln"><span class="n"><a href="#t99">99</a></span><span class="t">        <span class="num">0x55</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_if</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t100" class="pln"><span class="n"><a href="#t100">100</a></span><span class="t">        <span class="str">"Perform a condition and execute the following instructions only if"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t101" class="pln"><span class="n"><a href="#t101">101</a></span><span class="t">        <span class="str">" the condition is true"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t102" class="run"><span class="n"><a href="#t102">102</a></span><span class="t">    <span class="nam">ELSE</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">        <span class="num">0x56</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_else</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t104" class="pln"><span class="n"><a href="#t104">104</a></span><span class="t">        <span class="str">"Else clause for associated IF statement"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t105" class="run"><span class="n"><a href="#t105">105</a></span><span class="t">    <span class="nam">END_IF</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t106" class="pln"><span class="n"><a href="#t106">106</a></span><span class="t">        <span class="num">0x57</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_end_if</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t107" class="pln"><span class="n"><a href="#t107">107</a></span><span class="t">        <span class="str">"Close block of instructions begun with the IF instruction"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t108" class="pln"><span class="n"><a href="#t108">108</a></span><span class="t">    <span class="com">#: Place a value in a register, from an immediate or another register.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t109" class="run"><span class="n"><a href="#t109">109</a></span><span class="t">    <span class="nam">MV</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t">        <span class="num">0x60</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_mv</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t">        <span class="str">"Place a value in a register, from an immediate or another register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t">    <span class="nam">GET_WR_PTR</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t113" class="pln"><span class="n"><a href="#t113">113</a></span><span class="t">        <span class="num">0x63</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_get_wr_ptr</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t114" class="pln"><span class="n"><a href="#t114">114</a></span><span class="t">        <span class="str">"Copy current write address to a register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t115" class="pln"><span class="n"><a href="#t115">115</a></span><span class="t">    <span class="com">#: Move the write pointer to a new location, either relative to the</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t116" class="pln"><span class="n"><a href="#t116">116</a></span><span class="t">    <span class="com">#: start of this reserved memory area or relative to the current</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t117" class="pln"><span class="n"><a href="#t117">117</a></span><span class="t">    <span class="com">#: write pointer.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t118" class="run"><span class="n"><a href="#t118">118</a></span><span class="t">    <span class="nam">SET_WR_PTR</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t119" class="pln"><span class="n"><a href="#t119">119</a></span><span class="t">        <span class="num">0x64</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_set_wr_ptr</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t120" class="pln"><span class="n"><a href="#t120">120</a></span><span class="t">        <span class="str">"Move the write pointer to a new location, either relative to the"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t121" class="pln"><span class="n"><a href="#t121">121</a></span><span class="t">        <span class="str">" start of this reserved memory area or relative to the current"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t122" class="pln"><span class="n"><a href="#t122">122</a></span><span class="t">        <span class="str">" write pointer"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t123" class="run"><span class="n"><a href="#t123">123</a></span><span class="t">    <span class="nam">ALIGN_WR_PTR</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t124" class="pln"><span class="n"><a href="#t124">124</a></span><span class="t">        <span class="num">0x65</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_align_wr_ptr</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t125" class="pln"><span class="n"><a href="#t125">125</a></span><span class="t">        <span class="str">"Moves the write pointer so that it points to the next block with a"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t126" class="pln"><span class="n"><a href="#t126">126</a></span><span class="t">        <span class="str">" given address granularity"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t127" class="run"><span class="n"><a href="#t127">127</a></span><span class="t">    <span class="nam">ARITH_OP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t128" class="pln"><span class="n"><a href="#t128">128</a></span><span class="t">        <span class="num">0x67</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_arith_op</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t129" class="pln"><span class="n"><a href="#t129">129</a></span><span class="t">        <span class="str">"Perform arithmetic operation with operand 2 coming from a register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t130" class="run"><span class="n"><a href="#t130">130</a></span><span class="t">    <span class="nam">LOGIC_OP</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t131" class="pln"><span class="n"><a href="#t131">131</a></span><span class="t">        <span class="num">0x68</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_logic_op</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t132" class="pln"><span class="n"><a href="#t132">132</a></span><span class="t">        <span class="str">"Perform logical operation with operand 2 coming from a register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t133" class="run"><span class="n"><a href="#t133">133</a></span><span class="t">    <span class="nam">REFORMAT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t134" class="pln"><span class="n"><a href="#t134">134</a></span><span class="t">        <span class="num">0x6A</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_reformat</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t135" class="pln"><span class="n"><a href="#t135">135</a></span><span class="t">        <span class="str">"Reformats a value in an internal register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t136" class="run"><span class="n"><a href="#t136">136</a></span><span class="t">    <span class="nam">COPY_STRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t137" class="pln"><span class="n"><a href="#t137">137</a></span><span class="t">        <span class="num">0x70</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_copy_struct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t138" class="pln"><span class="n"><a href="#t138">138</a></span><span class="t">        <span class="str">"Create an identical copy of a structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t139" class="run"><span class="n"><a href="#t139">139</a></span><span class="t">    <span class="nam">COPY_PARAM</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t140" class="pln"><span class="n"><a href="#t140">140</a></span><span class="t">        <span class="num">0x71</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_copy_param</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t141" class="pln"><span class="n"><a href="#t141">141</a></span><span class="t">        <span class="str">"Copy a parameter from one structure to another"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t142" class="run"><span class="n"><a href="#t142">142</a></span><span class="t">    <span class="nam">WRITE_PARAM</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t143" class="pln"><span class="n"><a href="#t143">143</a></span><span class="t">        <span class="num">0x72</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_write_param</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t144" class="pln"><span class="n"><a href="#t144">144</a></span><span class="t">        <span class="str">"Modify a single parameter in a structure using an immediate value or"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t145" class="pln"><span class="n"><a href="#t145">145</a></span><span class="t">        <span class="str">" register held-value"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t146" class="run"><span class="n"><a href="#t146">146</a></span><span class="t">    <span class="nam">READ_PARAM</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t147" class="pln"><span class="n"><a href="#t147">147</a></span><span class="t">        <span class="num">0x73</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_read_param</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t148" class="pln"><span class="n"><a href="#t148">148</a></span><span class="t">        <span class="str">"Load the value of a structure parameter in a register"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t149" class="run"><span class="n"><a href="#t149">149</a></span><span class="t">    <span class="nam">WRITE_PARAM_COMPONENT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t150" class="pln"><span class="n"><a href="#t150">150</a></span><span class="t">        <span class="num">0x74</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_write_param_component</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t151" class="pln"><span class="n"><a href="#t151">151</a></span><span class="t">        <span class="str">"Modify a single parameter in a structure"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t152" class="run"><span class="n"><a href="#t152">152</a></span><span class="t">    <span class="nam">PRINT_VAL</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t153" class="pln"><span class="n"><a href="#t153">153</a></span><span class="t">        <span class="num">0x80</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_print_val</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t154" class="pln"><span class="n"><a href="#t154">154</a></span><span class="t">        <span class="str">"Output the value of a register to the screen"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t155" class="run"><span class="n"><a href="#t155">155</a></span><span class="t">    <span class="nam">PRINT_TXT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t156" class="pln"><span class="n"><a href="#t156">156</a></span><span class="t">        <span class="num">0X81</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_print_txt</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t157" class="pln"><span class="n"><a href="#t157">157</a></span><span class="t">        <span class="str">"Print a text string to the screen"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t158" class="run"><span class="n"><a href="#t158">158</a></span><span class="t">    <span class="nam">PRINT_STRUCT</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t159" class="pln"><span class="n"><a href="#t159">159</a></span><span class="t">        <span class="num">0X82</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_print_struct</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t160" class="pln"><span class="n"><a href="#t160">160</a></span><span class="t">        <span class="str">"Print the current state of one structure to the screen"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t161" class="run"><span class="n"><a href="#t161">161</a></span><span class="t">    <span class="nam">END_SPEC</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t162" class="pln"><span class="n"><a href="#t162">162</a></span><span class="t">        <span class="num">0XFF</span><span class="op">,</span> <span class="nam">DataSpecificationExecutorFunctions</span><span class="op">.</span><span class="nam">execute_end_spec</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t163" class="pln"><span class="n"><a href="#t163">163</a></span><span class="t">        <span class="str">"Cleanly ends the parsing of the data specs"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t164" class="pln"><span class="n"><a href="#t164">164</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t165" class="run"><span class="n"><a href="#t165">165</a></span><span class="t">    <span class="key">def</span> <span class="nam">__new__</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">value</span><span class="op">,</span> <span class="nam">exec_function</span><span class="op">,</span> <span class="nam">doc</span><span class="op">=</span><span class="str">""</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t166" class="pln"><span class="n"><a href="#t166">166</a></span><span class="t">        <span class="com"># pylint: disable=protected-access</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t167" class="run"><span class="n"><a href="#t167">167</a></span><span class="t">        <span class="nam">obj</span> <span class="op">=</span> <span class="nam">object</span><span class="op">.</span><span class="nam">__new__</span><span class="op">(</span><span class="nam">cls</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t168" class="run"><span class="n"><a href="#t168">168</a></span><span class="t">        <span class="nam">obj</span><span class="op">.</span><span class="nam">_value_</span> <span class="op">=</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t169" class="run"><span class="n"><a href="#t169">169</a></span><span class="t">        <span class="nam">obj</span><span class="op">.</span><span class="nam">exec_function</span> <span class="op">=</span> <span class="nam">exec_function</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t170" class="run"><span class="n"><a href="#t170">170</a></span><span class="t">        <span class="nam">obj</span><span class="op">.</span><span class="nam">__doc__</span> <span class="op">=</span> <span class="nam">doc</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t171" class="run"><span class="n"><a href="#t171">171</a></span><span class="t">        <span class="key">return</span> <span class="nam">obj</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t172" class="pln"><span class="n"><a href="#t172">172</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t173" class="run"><span class="n"><a href="#t173">173</a></span><span class="t">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">value</span><span class="op">,</span> <span class="nam">exec_function</span><span class="op">,</span> <span class="nam">doc</span><span class="op">=</span><span class="str">""</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t174" class="run"><span class="n"><a href="#t174">174</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_value_</span> <span class="op">=</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t175" class="run"><span class="n"><a href="#t175">175</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">exec_function</span> <span class="op">=</span> <span class="nam">exec_function</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t176" class="run"><span class="n"><a href="#t176">176</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">__doc__</span> <span class="op">=</span> <span class="nam">doc</span>&nbsp;</span><span class="r"></span></p>
+</div>
+<div id="footer">
+    <div class="content">
+        <p>
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
+            created at 2020-11-11 08:33 +0000
+        </p>
+    </div>
+</div>
+</body>
+</html>
