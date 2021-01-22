@@ -187,7 +187,7 @@ pipeline {
         stage('Run sPyNNaker example scripts') {
             steps {
                 sh 'python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py'
-                run_pytest_single('sPyNNaker8/p8_integration_tests/scripts_test', 3600, 'sPyNNaker8Scripts', 'integration')
+                run_pytest_single('sPyNNaker8/p8_integration_tests/scripts_test', 12000, 'sPyNNaker8Scripts', 'integration')
             }
         }
         stage('Reports') {
