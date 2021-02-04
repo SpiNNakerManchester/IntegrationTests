@@ -54,7 +54,6 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PACMAN.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/DataSpecification.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spalloc.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git'
                 // C dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git'
@@ -95,7 +94,6 @@ pipeline {
                 sh 'cd spalloc && python setup.py develop'
                 sh 'cd SpiNNFrontEndCommon && python setup.py develop'
                 sh 'cd sPyNNaker && python setup.py develop'
-                sh 'cd sPyNNaker8 && python ./setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
@@ -107,7 +105,6 @@ pipeline {
                 sh 'pip install -r spalloc/requirements-test.txt'
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
-                sh 'pip install -r sPyNNaker8/requirements-test.txt'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
@@ -162,15 +159,14 @@ pipeline {
                 run_pytest_single('DataSpecification/unittests', 1200, 'DataSpecification', 'unit')
                 run_pytest_single('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit')
                 run_pytest_single('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit')
-                run_pytest_single('sPyNNaker8/unittests', 1200, 'sPyNNaker8', 'unit')
                 run_pytest_single('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit')
                 sh "python -m spinn_utilities.executable_finder"
             }
         }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest_single('sPyNNaker8/p8_integration_tests/quick_test/', 1200, 'sPyNNaker8_Integration', 'integration')
-                run_pytest_single('sPyNNaker8/p8_integration_tests/long_test/', 12000, 'sPyNNaker8_Integration_Long', 'integration')
+                run_pytest_single('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'integration')
+                run_pytest_single('sPyNNaker/p8_integration_tests/long_test/', 12000, 'sPyNNaker_Integration_Long', 'integration')
             }
         }
         stage('Run GFE Integeration Tests') {
@@ -180,14 +176,14 @@ pipeline {
         }
         stage('Run sPyNNaker new Model Example') {
             steps {
-                run_pytest_single('sPyNNaker8/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'integration')
+                run_pytest_single('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'integration')
                 run_pytest_single('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'integration')
             }
         }
         stage('Run sPyNNaker example scripts') {
             steps {
-                sh 'python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py'
-                run_pytest_single('sPyNNaker8/p8_integration_tests/scripts_test', 12000, 'sPyNNaker8Scripts', 'integration')
+                sh 'python sPyNNaker/p8_integration_tests/scripts_test/build_script.py'
+                run_pytest_single('sPyNNaker/p8_integration_tests/scripts_test', 12000, 'sPyNNakerScripts', 'integration')
             }
         }
         stage('Reports') {
@@ -198,7 +194,7 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                sh 'py.test sPyNNaker8/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120'
+                sh 'py.test sPyNNaker/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120'
             }
         }
     }
