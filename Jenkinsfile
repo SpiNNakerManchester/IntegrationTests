@@ -130,6 +130,8 @@ pipeline {
                 sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
+                // The chip 10:10 will fail to receive signals because its parent 9:9
+                sh 'echo "sick_boards = 10.11.223.65" >> ~/.spynnaker.cfg'
                 sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
