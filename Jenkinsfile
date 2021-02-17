@@ -152,7 +152,7 @@ pipeline {
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py'
-                run_pytest('IntroLab/integration_tests/test_scripts', 1200, 'IntroLab_Integration', 'auto')
+                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
             }
         }
         // Unit tests are done by Travis, and only done here on Daily tests
