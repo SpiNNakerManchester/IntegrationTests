@@ -65,6 +65,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
             }
         }
         stage('Install') {
@@ -94,6 +95,7 @@ pipeline {
                 sh 'cd sPyNNaker && python setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
+                sh 'cd TestBase && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -145,6 +147,12 @@ pipeline {
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 // Create a directory for test outputs
                 sh 'mkdir junit/'
+            }
+        }
+        stage('Run IntroLab Integration Tests') {
+            steps {
+                sh 'python IntroLab/integration_tests/script_builder.py'
+                run_pytest('IntroLab/integration_tests/test_scripts', 1200, 'IntroLab_Integration', 'auto')
             }
         }
         // Unit tests are done by Travis, and only done here on Daily tests
