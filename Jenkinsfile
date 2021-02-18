@@ -65,6 +65,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNGym.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
             }
         }
@@ -85,6 +86,7 @@ pipeline {
                 sh 'make -C sPyNNaker8NewModelTemplate/c_models'
                 sh 'make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples'
                 sh 'make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/'
+                sh 'make -C SpiNNGym/c_code'
                 // Python install
                 sh 'cd SpiNNMachine && python setup.py develop'
                 sh 'cd SpiNNMan && python setup.py develop'
@@ -95,6 +97,7 @@ pipeline {
                 sh 'cd sPyNNaker && python setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
+                sh 'cd SpiNNGym && python ./setup.py develop'
                 sh 'cd TestBase && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
@@ -106,6 +109,7 @@ pipeline {
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
+                sh 'pip install -r SpiNNGym/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 sh 'pip install python-coveralls "coverage>=5.0.0"'
@@ -147,6 +151,12 @@ pipeline {
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 // Create a directory for test outputs
                 sh 'mkdir junit/'
+            }
+        }
+        stage('Run SpiNNGym Integration Tests') {
+            steps {
+                sh 'python SpiNNGym/integration_tests/script_builder.py short'
+                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
             }
         }
         // Unit tests are done by Travis, and only done here on Daily tests
