@@ -151,7 +151,7 @@ pipeline {
         }
         stage('Run microcircuit_model Integration Tests') {
             steps {
-                run_pytest('microcircuit_model/integration_tests', 1200, 'microcircuit_model_Integration', 'auto')
+                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
             }
         }
         stage('Run IntroLab Integration Tests') {
