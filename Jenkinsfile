@@ -149,16 +149,15 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                run_pytest('microcircuit_model/integration_tests', 1200, 'microcircuit_model_Integration', 'auto')
+            }
+        }
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py short'
                 run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
-            }
-        }
-        stage('Run PyNN8Examples Integration Tests') {
-            steps {
-                sh 'python PyNN8Examples/integration_tests/script_builder.py short'
-                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
             }
         }
         stage('Run PyNN8Examples Integration Tests LONG') {
@@ -196,14 +195,6 @@ pipeline {
             steps {
                 run_pytest('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'auto')
                 run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'auto')
-            }
-        }
-        stage('Run sPyNNaker example scripts') {
-            steps {
-                sh 'python sPyNNaker/p8_integration_tests/scripts_test/build_script.py shorter'
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/examples_auto_test.py', 1200, 'sPyNNakerScripts', 'auto')
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/intro_labs_auto_test.py', 1200, 'sPyNNakerScripts', '1')
-                // Not sPyNNaker/p8_integration_tests/scripts_test/test_microcircuit.py as it takes 1558  seconds
             }
         }
         stage('Reports') {
