@@ -64,8 +64,8 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
-                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/microcircuit_model.git'
-                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/TestBase.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
             }
         }
         stage('Install') {
