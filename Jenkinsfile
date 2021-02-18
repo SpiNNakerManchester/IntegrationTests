@@ -64,8 +64,8 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
+                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/TestBase.git'
             }
         }
         stage('Install') {
@@ -149,23 +149,6 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Run microcircuit_model Integration Tests') {
-            steps {
-                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
-            }
-        }
-        stage('Run IntroLab Integration Tests') {
-            steps {
-                sh 'python IntroLab/integration_tests/script_builder.py short'
-                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
-            }
-        }
-        stage('Run PyNN8Examples Integration Tests LONG') {
-            steps {
-                sh 'python PyNN8Examples/integration_tests/script_builder.py'
-                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
-            }
-        }
         // Unit tests are done by Travis, and only done here on Daily tests
         /* stage('Unit Tests') {
             steps {
@@ -191,10 +174,21 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'auto')
             }
         }
-        stage('Run sPyNNaker new Model Example') {
+        stage('Run IntroLab Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'auto')
-                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'auto')
+                sh 'python IntroLab/integration_tests/script_builder.py short'
+                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
+            }
+        }
+        stage('Run PyNN8Examples Integration Tests LONG') {
+            steps {
+                sh 'python PyNN8Examples/integration_tests/script_builder.py'
+                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
+            }
+        }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
             }
         }
         stage('Reports') {

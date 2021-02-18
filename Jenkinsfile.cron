@@ -66,7 +66,8 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh https://github.com:SpiNNakerManchester/TestBase.git'
             }
         }
         stage('Install') {
@@ -96,6 +97,7 @@ pipeline {
                 sh 'cd sPyNNaker && python setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
+                sh 'cd TestBase && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -174,16 +176,21 @@ pipeline {
                 run_pytest_single('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'integration')
             }
         }
-        stage('Run sPyNNaker new Model Example') {
+        stage('Run microcircuit_model Integration Tests') {
             steps {
-                run_pytest_single('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'integration')
-                run_pytest_single('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'integration')
+                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
             }
         }
-        stage('Run sPyNNaker example scripts') {
+        stage('Run IntroLab Integration Tests') {
             steps {
-                sh 'python sPyNNaker/p8_integration_tests/scripts_test/build_script.py'
-                run_pytest_single('sPyNNaker/p8_integration_tests/scripts_test', 12000, 'sPyNNakerScripts', 'integration')
+                sh 'python IntroLab/integration_tests/script_builder.py short'
+                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
+            }
+        }
+        stage('Run PyNN8Examples Integration Tests LONG') {
+            steps {
+                sh 'python PyNN8Examples/integration_tests/script_builder.py'
+                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
             }
         }
         stage('Reports') {
