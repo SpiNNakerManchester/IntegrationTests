@@ -65,6 +65,8 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNGym.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
             }
         }
         stage('Install') {
@@ -84,6 +86,7 @@ pipeline {
                 sh 'make -C sPyNNaker8NewModelTemplate/c_models'
                 sh 'make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples'
                 sh 'make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/'
+                sh 'make -C SpiNNGym/c_code'
                 // Python install
                 sh 'cd SpiNNMachine && python setup.py develop'
                 sh 'cd SpiNNMan && python setup.py develop'
@@ -94,6 +97,8 @@ pipeline {
                 sh 'cd sPyNNaker && python setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
+                sh 'cd SpiNNGym && python ./setup.py develop'
+                sh 'cd TestBase && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -104,6 +109,7 @@ pipeline {
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
+                sh 'pip install -r SpiNNGym/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 sh 'pip install python-coveralls "coverage>=5.0.0"'
@@ -172,18 +178,27 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'auto')
             }
         }
-        stage('Run sPyNNaker new Model Example') {
+        stage('Run IntroLab Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'auto')
-                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'auto')
+                sh 'python IntroLab/integration_tests/script_builder.py short'
+                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
             }
         }
-        stage('Run sPyNNaker example scripts') {
+        stage('Run PyNN8Examples Integration Tests LONG') {
             steps {
-                sh 'python sPyNNaker/p8_integration_tests/scripts_test/build_script.py shorter'
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/examples_auto_test.py', 1200, 'sPyNNakerScripts', 'auto')
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/intro_labs_auto_test.py', 1200, 'sPyNNakerScripts', '1')
-                // Not sPyNNaker/p8_integration_tests/scripts_test/test_microcircuit.py as it takes 1558  seconds
+                sh 'python PyNN8Examples/integration_tests/script_builder.py'
+                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
+            }
+        }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
+            }
+        }
+        stage('Run SpiNNGym Integration Tests') {
+            steps {
+                sh 'python SpiNNGym/integration_tests/script_builder.py short'
+                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
             }
         }
         stage('Reports') {
