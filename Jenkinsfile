@@ -153,12 +153,6 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Run SpiNNGym Integration Tests') {
-            steps {
-                sh 'python SpiNNGym/integration_tests/script_builder.py short'
-                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
-            }
-        }
         // Unit tests are done by Travis, and only done here on Daily tests
         /* stage('Unit Tests') {
             steps {
@@ -200,6 +194,12 @@ pipeline {
         stage('Run microcircuit_model Integration Tests') {
             steps {
                 run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
+            }
+        }
+        stage('Run SpiNNGym Integration Tests') {
+            steps {
+                sh 'python SpiNNGym/integration_tests/script_builder.py short'
+                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
             }
         }
         stage('Reports') {
