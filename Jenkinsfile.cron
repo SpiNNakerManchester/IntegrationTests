@@ -211,7 +211,7 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy --forked --instafail --timeout 120'
+                sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120'
             }
         }
     }
