@@ -181,6 +181,7 @@ pipeline {
         }
         stage('Run GFE Integeration Tests') {
             steps {
+                sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py short'
                 run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'auto')
             }
         }
@@ -209,7 +210,7 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                sh 'py.test sPyNNaker/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120'
+                sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy --forked --instafail --timeout 120'
             }
         }
     }
