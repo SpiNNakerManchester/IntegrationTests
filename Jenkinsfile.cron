@@ -179,27 +179,27 @@ pipeline {
                 run_pytest_single('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'integration')
             }
         }
-        stage('Run microcircuit_model Integration Tests') {
-            steps {
-                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
-            }
-        }
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py short'
-                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
+                run_pytest_single('IntroLab/integration_tests', 1200, 'IntroLab_Integration')
             }
         }
         stage('Run PyNN8Examples Integration Tests LONG') {
             steps {
                 sh 'python PyNN8Examples/integration_tests/script_builder.py'
-                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
+                run_pytest_single('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration')
+            }
+        }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                run_pytest_single('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration')
             }
         }
         stage('Run SpiNNGym Integration Tests') {
             steps {
                 sh 'python SpiNNGym/integration_tests/script_builder.py short'
-                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
+                run_pytest_single('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration')
             }
         }
         stage('Reports') {
