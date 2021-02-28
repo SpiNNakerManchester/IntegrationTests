@@ -183,24 +183,24 @@ pipeline {
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py short'
-                run_pytest_single('IntroLab/integration_tests', 1200, 'IntroLab_Integration')
+                run_pytest_single('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'integration')
             }
         }
         stage('Run PyNN8Examples Integration Tests LONG') {
             steps {
                 sh 'python PyNN8Examples/integration_tests/script_builder.py'
-                run_pytest_single('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration')
+                run_pytest_single('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'integration')
             }
         }
         stage('Run microcircuit_model Integration Tests') {
             steps {
-                run_pytest_single('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration')
+                run_pytest_single('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'integration')
             }
         }
         stage('Run SpiNNGym Integration Tests') {
             steps {
                 sh 'python SpiNNGym/integration_tests/script_builder.py short'
-                run_pytest_single('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration')
+                run_pytest_single('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'integration')
             }
         }
         stage('Reports') {
