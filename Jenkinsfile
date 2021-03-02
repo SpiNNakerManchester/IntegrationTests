@@ -250,7 +250,7 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
 }
 
 def getGitBranchName() {
-    if (env.BRANCH_NAME != null && env.BRANCH_NAME != "null") {
+    if (env.BRANCH_NAME) {
         return env.BRANCH_NAME;
     }
     dir('IntegrationTests') {
