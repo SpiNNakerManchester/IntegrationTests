@@ -38,9 +38,11 @@ pipeline {
         }
         stage('Before Install') {
             environment {
-                TRAVIS_BRANCH = "${env.BRANCH_NAME}"
+                TRAVIS_BRANCH = getGitBranchName()
             }
             steps {
+                // Verify the branch
+                sh 'echo "Branch is $TRAVIS_BRANCH"'
                 // remove all directories left if Jenkins ended badly
                 sh 'git clone https://github.com/SpiNNakerManchester/SupportScripts.git support'
                 sh 'pip3 install --upgrade setuptools wheel'
@@ -153,53 +155,53 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        // Unit tests are done by Travis, and only done here on Daily tests
-        /* stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
-                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'auto')
-                run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'auto')
-                run_pytest('SpiNNMan/unittests SpiNNMan/integration_tests', 1200, 'SpiNNMan', 'auto')
-                run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'auto')
-                run_pytest('spalloc/tests', 1200, 'spalloc', '1')
-                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'auto')
-                run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'auto')
-                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'auto')
-                run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'auto')
+                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
+                run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
+                run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
+                run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
+                run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
+                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
+                run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
+                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
+                run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
-        } */
+        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'auto')
+                run_pytest('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'integration', 'auto')
+                run_pytest('sPyNNaker/p8_integration_tests/long_test/', 12000, 'sPyNNaker_Integration_Long', 'integration', 'auto')
             }
         }
         stage('Run GFE Integeration Tests') {
             steps {
                 sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
-                run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'auto')
+                run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'integration', 'auto')
             }
         }
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py'
-                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'auto')
+                run_pytest('IntroLab/integration_tests', 1200, 'IntroLab_Integration', 'integration', 'auto')
             }
         }
         stage('Run PyNN8Examples Integration Tests') {
             steps {
                 sh 'python PyNN8Examples/integration_tests/script_builder.py'
-                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'auto')
+                run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'integration', 'auto')
             }
         }
         stage('Run microcircuit_model Integration Tests') {
             steps {
-                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'auto')
+                run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'integration', 'auto')
             }
         }
         stage('Run SpiNNGym Integration Tests') {
             steps {
-                sh 'python SpiNNGym/integration_tests/script_builder.py short'
-                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'auto')
+                sh 'python SpiNNGym/integration_tests/script_builder.py'
+                run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'integration', 'auto')
             }
         }
         stage('Reports') {
@@ -229,23 +231,29 @@ pipeline {
         }
         success {
             junit 'junit/*.xml'
-            cobertura coberturaReportFile: 'coverage.xml'
-            //script {
-            //    currentBuild.result = 'SUCCESS'
-            //}
-            //step([$class: 'CompareCoverageAction', publishResultAs: 'statusCheck'])
+            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
         }
     }
 }
 
-def run_pytest(String tests, int timeout, String results, String threads) {
+def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
     def resfile = 'junit/' + results + '.xml'
+    covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
-    sh 'py.test ' + tests + ' -rs -n ' + threads +
-        ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+    sh 'py.test ' + tests +
+        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
-        '--junitxml ' + resfile + ' --cov-report xml:coverage.xml --cov-append ' +
+        '--junitxml ' + resfile + ' --cov-report xml:' + covfile + ' --cov-append ' +
         '--timeout ' + timeout + ' --log-level=INFO '
+}
+
+def getGitBranchName() {
+    if (env.BRANCH_NAME) {
+        return env.BRANCH_NAME;
+    }
+    dir('IntegrationTests') {
+        return sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
 }
