@@ -172,7 +172,7 @@ pipeline {
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 run_pytest('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'integration', 'auto')
-                run_pytest_single('sPyNNaker/p8_integration_tests/long_test/', 12000, 'sPyNNaker_Integration_Long', 'integration', 'auto')
+                run_pytest('sPyNNaker/p8_integration_tests/long_test/', 12000, 'sPyNNaker_Integration_Long', 'integration', 'auto')
             }
         }
         stage('Run GFE Integeration Tests') {
@@ -219,7 +219,7 @@ pipeline {
     post {
         always {
             script {
-                emailext subject: '$DEFAULT_SUBJECT (${env.JOB_NAME})',
+                emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
                     recipientProviders: [
                         [$class: 'CulpritsRecipientProvider'],
