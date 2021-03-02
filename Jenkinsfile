@@ -196,7 +196,7 @@ pipeline {
         stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
             steps {
                 sh 'python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py'
-                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'sPyNNaker8NewModelTemplate_Integration', 'auto')
+                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
             }
         }
         stage('Run microcircuit_model Integration Tests') {
