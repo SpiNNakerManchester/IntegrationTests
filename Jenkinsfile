@@ -250,6 +250,9 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
 }
 
 def getGitBranchName() {
+    if (env.BRANCH_NAME != "") {
+        return env.BRANCH_NAME;
+    }
     dir('IntegrationTests') {
         return sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
     }
