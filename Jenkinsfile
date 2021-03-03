@@ -193,6 +193,12 @@ pipeline {
                 run_pytest('PyNN8Examples/integration_tests', 1200, 'PyNN8Examples_Integration', 'integration', 'auto')
             }
         }
+        stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
+            steps {
+                sh 'python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py'
+                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
+            }
+        }
         stage('Run microcircuit_model Integration Tests') {
             steps {
                 run_pytest('microcircuit_model/integration_tests', 3600, 'microcircuit_model_Integration', 'integration', 'auto')
