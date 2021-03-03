@@ -171,8 +171,7 @@ pipeline {
         }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'integration', 'auto')
-                run_pytest('sPyNNaker/p8_integration_tests/long_test/', 12000, 'sPyNNaker_Integration_Long', 'integration', 'auto')
+                run_pytest('sPyNNaker/spynnaker_integration_tests/', 12000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
             }
         }
         stage('Run GFE Integeration Tests') {
