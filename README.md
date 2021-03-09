@@ -9,4 +9,3 @@ In particular, tests:
 * [PyNN8 Examples](https://github.com/SpiNNakerManchester/PyNN8Examples)
 * [Introductory Lab Scripts](https://github.com/SpiNNakerManchester/IntroLab)
 * [Cortical microcircuit](https://github.com/SpiNNakerManchester/microcircuit_model) (overnight only)
-
