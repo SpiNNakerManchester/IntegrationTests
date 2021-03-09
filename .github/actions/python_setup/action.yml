@@ -1,0 +1,23 @@
+name: "Python Setup"
+description: "Setup Python repository in develop mode"
+inputs:
+  folder:
+    description: The folder (or folders on multiple lines) to setup
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - id: run_setup
+      run: |
+        SAVEIFS=$IFS   # Save current IFS
+        IFS=$'\n'      # Change IFS to new line
+        FOLDERS=(${{ inputs.folder }}) # split to array
+        IFS=$SAVEIFS   # Restore IFS
+        for (( i=0; i<${#FOLDERS[@]}; i++))
+        do
+          FOLDER=${FOLDERS[$i]}
+          cd $FOLDER
+          python setup.py develop
+          cd ..
+        done
+      shell: bash

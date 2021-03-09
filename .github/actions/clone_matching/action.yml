@@ -1,0 +1,36 @@
+name: "Clone matching"
+description: "Clone the branch with a name matching that of the tests being done, or master if that doesn't exist"
+inputs:
+  repository:
+    description: The repository (or repositories on multiple lines) to clone
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - id: git_clone_matching
+      run: |
+        SAVEIFS=$IFS   # Save current IFS
+        IFS=$'\n'      # Change IFS to new line
+        REPOS=(${{ inputs.repository }}) # split to array
+        IFS=$SAVEIFS   # Restore IFS
+        for (( i=0; i<${#REPOS[@]}; i++))
+        do
+          REPO=${REPOS[$i]}
+          echo "Testing branch of $REPO"
+          BRANCH=$(git ls-remote $REPO | awk '
+            BEGIN {
+                branch = "master"
+                target = ENVIRON["GITHUB_REF"]
+            }
+            $2==target {
+                branch = ENVIRON["GITHUB_REF"]
+            }
+            END {
+                print branch
+            }')
+          BRANCH=${BRANCH#refs/heads/}
+          git clone --branch $BRANCH --single-branch --depth 1 $REPO
+          echo "Checked out branch $BRANCH of $REPO"
+        done
+      shell: bash
+        
