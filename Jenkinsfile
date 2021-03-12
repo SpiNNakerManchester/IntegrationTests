@@ -114,7 +114,7 @@ pipeline {
                 sh 'pip install -r SpiNNGym/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                sh 'pip install python-coveralls "coverage>=5.0.0"'
+                sh 'pip install coveralls "coverage>=5.0.0"'
                 sh 'pip install pytest-instafail "pytest-xdist==1.34.0"'
                 // Java install
                 sh 'mvn -f JavaSpiNNaker package'
@@ -169,12 +169,17 @@ pipeline {
                 sh "python -m spinn_utilities.executable_finder"
             }
         }
+        stage('Upload Coverage') {
+        	steps {
+        		sh 'coveralls || echo NOT WORKING YET; not fatal'
+        	}
+        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 run_pytest('sPyNNaker/spynnaker_integration_tests/', 12000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
             }
         }
-        stage('Run GFE Integeration Tests') {
+        stage('Run GFE Integration Tests') {
             steps {
                 sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
                 run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'integration', 'auto')
