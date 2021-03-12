@@ -171,7 +171,7 @@ pipeline {
         }
         stage('Upload Coverage') {
         	steps {
-        		sh 'coveralls || echo NOT WORKING YET; not fatal'
+        		sh 'coveralls || echo "NOT WORKING YET; not fatal"'
         	}
         }
         stage('Run sPyNNaker Integration Tests') {
