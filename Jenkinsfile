@@ -172,24 +172,6 @@ pipeline {
                 sh "python -m spinn_utilities.executable_finder"
             }
         }
-        stage('Upload Coverage') {
-        	environment {
-        		COVERALLS_SERVICE_NAME = 'jenkins'
-        		COVERALLS_FLAG_NAME = 'Unit tests'
-        		GIT_ID = getGitInfo('%H')
-        		GIT_AUTHOR_NAME = getGitInfo('%aN')
-        		GIT_AUTHOR_EMAIL = getGitInfo('%ae')
-        		GIT_COMMITTER_NAME = getGitInfo('%cN')
-        		GIT_COMMITTER_EMAIL = getGitInfo('%ce')
-        		GIT_MESSAGE = getGitInfo('%s')
-        	}
-        	steps {
-        		// Bind in the secret
-        		withCredentials([string(credentialsId: 'integration-test-coveralls-token', variable: 'COVERALLS_REPO_TOKEN')]) {
-	        		sh 'coveralls || echo "NOT WORKING YET; not fatal"'
-	        	}
-        	}
-        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 run_pytest('sPyNNaker/spynnaker_integration_tests/', 12000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
@@ -229,6 +211,24 @@ pipeline {
                 sh 'python SpiNNGym/integration_tests/script_builder.py'
                 run_pytest('SpiNNGym/integration_tests', 1200, 'SpiNNGym_Integration', 'integration', 'auto')
             }
+        }
+        stage('Upload Coverage') {
+        	environment {
+        		COVERALLS_SERVICE_NAME = 'jenkins'
+        		COVERALLS_FLAG_NAME = 'Integration tests'
+        		GIT_ID = getGitInfo('%H')
+        		GIT_AUTHOR_NAME = getGitInfo('%aN')
+        		GIT_AUTHOR_EMAIL = getGitInfo('%ae')
+        		GIT_COMMITTER_NAME = getGitInfo('%cN')
+        		GIT_COMMITTER_EMAIL = getGitInfo('%ce')
+        		GIT_MESSAGE = getGitInfo('%s')
+        	}
+        	steps {
+        		// Bind in the secret
+        		withCredentials([string(credentialsId: 'integration-test-coveralls-token', variable: 'COVERALLS_REPO_TOKEN')]) {
+	        		sh 'coveralls'
+	        	}
+        	}
         }
         stage('Reports') {
             steps {
