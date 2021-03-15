@@ -171,7 +171,10 @@ pipeline {
         }
         stage('Upload Coverage') {
         	steps {
-        		sh 'coveralls || echo "NOT WORKING YET; not fatal"'
+        		// Bind in the secret
+        		withCredentials([string(credentialsId: 'integration-test-coveralls-token', variable: 'COVERALLS_REPO_TOKEN')]) {
+	        		sh 'coveralls || echo "NOT WORKING YET; not fatal"'
+	        	}
         	}
         }
         stage('Run sPyNNaker Integration Tests') {
