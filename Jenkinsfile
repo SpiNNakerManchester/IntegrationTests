@@ -22,6 +22,9 @@ pipeline {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
         BINARY_LOGS_DIR = "${workspace}"
+        // Just hardcoding these
+		GIT_REMOTE = 'origin'
+		GIT_URL = 'https://github.com/SpiNNakerManchester/IntegrationTests.git'
     }
     options {
         skipDefaultCheckout true
@@ -170,6 +173,16 @@ pipeline {
             }
         }
         stage('Upload Coverage') {
+        	environment {
+        		COVERALLS_SERVICE_NAME = 'jenkins'
+        		COVERALLS_FLAG_NAME = 'Unit tests'
+        		GIT_ID = getGitInfo('%H')
+        		GIT_AUTHOR_NAME = getGitInfo('%aN')
+        		GIT_AUTHOR_EMAIL = getGitInfo('%ae')
+        		GIT_COMMITTER_NAME = getGitInfo('%cN')
+        		GIT_COMMITTER_EMAIL = getGitInfo('%ce')
+        		GIT_MESSAGE = getGitInfo('%s')
+        	}
         	steps {
         		// Bind in the secret
         		withCredentials([string(credentialsId: 'integration-test-coveralls-token', variable: 'COVERALLS_REPO_TOKEN')]) {
@@ -269,4 +282,10 @@ def getGitBranchName() {
     dir('IntegrationTests') {
         return sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
     }
+}
+
+def getGitInfo(String fmt) {
+	dir('IntegrationTests') {
+		return sh(returnStdout: true, script: 'git --no-pager log -1 --pretty=format:' + fmt).trim()
+	}
 }
