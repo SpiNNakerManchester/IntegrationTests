@@ -9,3 +9,7 @@ In particular, tests:
 * [Introductory Lab Scripts](https://github.com/SpiNNakerManchester/IntroLab)
 * [Cortical microcircuit](https://github.com/SpiNNakerManchester/microcircuit_model) (overnight only)
 
+# Testing a branch
+The SpiNNaker software stack uses branch name matching to coordinate between repositories. To trigger an integration test for a branch, simply create a branch in this repository with same name, and a PR (can be Draft) for that branch. Typically such branches just use a trivial whitespace edit of this file and are tagged `jenkins trigger` so that the team knows not to merge them in this repo. You're _strongly_ encouraged to link to the PRs for the other branches in your branch here (or at least to the lead PR). Once the tests pass, we generally close the PR in this repo and delete the branch without merging it.
+
+This method of working means that this repo seems to have a strange commit pattern.
