@@ -177,15 +177,11 @@ pipeline {
                 sh "python -m spinn_utilities.executable_finder"
             }
         }
-        try {
-            stage('Run SpiNNaker_PDP2 Integration Tests') {
-                steps {
-                        sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
-                        run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
-                }
+        stage('Run SpiNNaker_PDP2 Integration Tests') {
+            steps {
+                    sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                    run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
             }
-        } catch (e) {
-            result = "FAIL" // make sure other exceptions are recorded as failure too
         }
         stage('Run sPyNNaker Integration Tests') {
             steps {
