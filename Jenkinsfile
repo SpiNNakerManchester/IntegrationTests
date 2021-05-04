@@ -106,6 +106,7 @@ pipeline {
                 sh 'cd SpiNNGym && python ./setup.py develop'
                 sh 'cd MarkovChainMonteCarlo && python ./setup.py develop'
                 sh 'cd TestBase && python ./setup.py develop'
+                sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
