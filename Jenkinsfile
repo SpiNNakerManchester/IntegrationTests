@@ -224,12 +224,12 @@ pipeline {
                 run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 1200, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
             }
         }
-        //stage('Run SpiNNaker_PDP2 Integration Tests') {
-        //    steps {
-        //            sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
-        //            run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
-        //    }
-        //}
+        stage('Run SpiNNaker_PDP2 Integration Tests') {
+            steps {
+                    sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                    run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+            }
+        }
         stage('Reports') {
             steps {
                 sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
