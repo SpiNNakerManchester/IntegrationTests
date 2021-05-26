@@ -127,7 +127,7 @@ pipeline {
                 // Java install
                 sh 'mvn -f JavaSpiNNaker package'
                 // install graphviz
-                apt install graphiz
+                sh 'apt install graphiz'
             }
         }
         stage('Before Script') {
