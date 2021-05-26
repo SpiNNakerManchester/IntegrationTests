@@ -126,6 +126,8 @@ pipeline {
                 sh 'pip install pytest-instafail "pytest-xdist==1.34.0"'
                 // Java install
                 sh 'mvn -f JavaSpiNNaker package'
+                // install graphviz
+                apt install graphiz
             }
         }
         stage('Before Script') {
