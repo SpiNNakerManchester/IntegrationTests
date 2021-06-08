@@ -174,6 +174,9 @@ pipeline {
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
+                run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
+                run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
+                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
