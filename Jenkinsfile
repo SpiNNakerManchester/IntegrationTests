@@ -70,6 +70,7 @@ pipeline {
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNGym.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNaker_PDP2.git'
             }
         }
         stage('Install') {
@@ -91,6 +92,7 @@ pipeline {
                 sh 'make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/'
                 sh 'make -C SpiNNGym/c_code'
                 sh 'make -C MarkovChainMonteCarlo/c_models'
+                sh 'make -C SpiNNaker_PDP2/c_code'
                 // Python install
                 sh 'cd SpiNNMachine && python setup.py develop'
                 sh 'cd SpiNNMan && python setup.py develop'
@@ -104,6 +106,7 @@ pipeline {
                 sh 'cd SpiNNGym && python ./setup.py develop'
                 sh 'cd MarkovChainMonteCarlo && python ./setup.py develop'
                 sh 'cd TestBase && python ./setup.py develop'
+                sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -116,6 +119,7 @@ pipeline {
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
                 sh 'pip install -r SpiNNGym/requirements-test.txt'
                 sh 'pip install -r MarkovChainMonteCarlo/requirements-test.txt'
+                sh 'pip install -r SpiNNaker_PDP2/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 sh 'pip install python-coveralls "coverage>=5.0.0"'
@@ -170,6 +174,10 @@ pipeline {
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
+                run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
+                run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
+                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
         }
@@ -217,6 +225,12 @@ pipeline {
             steps {
                 sh 'python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py'
                 run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 1200, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run SpiNNaker_PDP2 Integration Tests') {
+            steps {
+                    sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                    run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
             }
         }
         stage('Reports') {
