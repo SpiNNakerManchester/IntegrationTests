@@ -166,7 +166,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        /*stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
@@ -235,7 +235,7 @@ pipeline {
                 sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
                 run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
             }
-        } */
+        }
         stage('Run Visualiser Integration Tests') {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 3600, 'visualiser_Integration', 'integration', 'auto')
