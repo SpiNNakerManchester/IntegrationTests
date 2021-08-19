@@ -60,7 +60,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinn_common.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchesterVisualiser.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/Visualiser.git'
                 // Java dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
