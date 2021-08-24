@@ -60,6 +60,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinn_common.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/Visualiser.git'
                 // Java dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
@@ -93,6 +94,7 @@ pipeline {
                 sh 'make -C SpiNNGym/c_code'
                 sh 'make -C MarkovChainMonteCarlo/c_models'
                 sh 'make -C SpiNNaker_PDP2/c_code'
+                sh 'make -C Visualiser'
                 // Python install
                 sh 'cd SpiNNMachine && python setup.py develop'
                 sh 'cd SpiNNMan && python setup.py develop'
@@ -107,6 +109,7 @@ pipeline {
                 sh 'cd MarkovChainMonteCarlo && python ./setup.py develop'
                 sh 'cd TestBase && python ./setup.py develop'
                 sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
+                sh 'cd Visualiser && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -229,8 +232,13 @@ pipeline {
         }
         stage('Run SpiNNaker_PDP2 Integration Tests') {
             steps {
-                    sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
-                    run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+                sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                run_pytest('SpiNNaker_PDP2/integration_tests', 1200, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run Visualiser Integration Tests') {
+            steps {
+                run_pytest('Visualiser/visualiser_integration_tests', 3600, 'visualiser_Integration', 'integration', 'auto')
             }
         }
         stage('Reports') {
