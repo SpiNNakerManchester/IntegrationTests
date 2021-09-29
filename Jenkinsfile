@@ -175,7 +175,7 @@ pipeline {
                 run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
                 run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
-                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
+                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', '1')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
                 run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
@@ -186,7 +186,7 @@ pipeline {
         }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
+                run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', '1')
             }
         }
         stage('Run GFE Integeration Tests') {
