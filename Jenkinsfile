@@ -166,6 +166,16 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        stage('hack Tests1') {
+            steps {
+                run_pytest('sPyNNaker/unittests/test_using_virtual_board/test_index_based_probabliity_connector.test_other', 1200, 'sPyNNaker', 'unit', '1')
+            }
+        }
+        stage('hack Tests1') {
+            steps {
+                run_pytest('sPyNNaker/unittests/test_using_virtual_board/test_index_based_probabliity_connector', 1200, 'sPyNNaker', 'unit', '1')
+            }
+        }
         stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
