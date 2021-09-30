@@ -168,7 +168,7 @@ pipeline {
         }
         stage('hack Tests1') {
             steps {
-                run_pytest('sPyNNaker/unittests/test_using_virtual_board/test_index_based_probabliity_connector.test_other', 1200, 'sPyNNaker', 'unit', '1')
+                run_pytest('sPyNNaker/unittests/test_using_virtual_board/test_index_based_probabliity_connector1', 1200, 'sPyNNaker', 'unit', '1')
             }
         }
         stage('hack Tests2') {
