@@ -135,7 +135,7 @@ pipeline {
             steps {
                 // Write a sPyNNaker config file for spalloc and java use
                 sh 'echo "[Machine]" > ~/.spynnaker.cfg'
-                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11" >> ~/.spynnaker.cfg'
+                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11:22246" >> ~/.spynnaker.cfg'
                 sh 'echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg'
                 sh 'echo "[Java]" >> ~/.spynnaker.cfg'
                 sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
@@ -145,7 +145,7 @@ pipeline {
                 sh 'pwd >> ~/.spynnaker.cfg'
                 // Write a GFE config file for spalloc and java use
                 sh 'echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg'
+                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11:22246" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
                 sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
