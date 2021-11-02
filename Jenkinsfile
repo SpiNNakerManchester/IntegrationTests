@@ -134,25 +134,9 @@ pipeline {
         stage('Before Script') {
             steps {
                 // Write a sPyNNaker config file for spalloc and java use
-                sh 'echo "[Machine]" > ~/.spynnaker.cfg'
-                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11:22246" >> ~/.spynnaker.cfg'
-                sh 'echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg'
-                sh 'echo "[Java]" >> ~/.spynnaker.cfg'
-                sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
-                sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
-                sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
-                sh 'pwd >> ~/.spynnaker.cfg'
+                makeConfig('~/.spynnaker.cfg')
                 // Write a GFE config file for spalloc and java use
-                sh 'echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "spalloc_server = spalloc://Jenkins@10.11.192.11:22246" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
+                makeConfig('~/.spiNNakerGraphFrontEnd.cfg')
                 // Prepare coverage
                 sh 'rm -f coverage.xml'
                 sh 'rm -f .coverage'
@@ -271,10 +255,28 @@ pipeline {
     }
 }
 
+def makeConfig(String filename) {
+    //def spalloc = 'spalloc://Jenkins@10.11.192.11:22246'
+    def spalloc = 'spalloc://Jenkins@spinnaker.cs.man.ac.uk:22246'
+    def javaPath = '/usr/bin/java'
+    def numThreads = '10'
+
+    sh 'echo "[Machine]" > ' + filename
+    sh 'echo "spalloc_server = ' + spalloc + '" >> ' + filename
+    sh 'echo "enable_advanced_monitor_support = True" >> ' + filename
+
+    sh 'echo "[Java]" >> ' + filename
+    sh 'echo "use_java = True" >> ' + filename
+    sh 'echo "java_call=' + javaPath + '" >> ' + filename
+    sh 'echo "java_properties=-Dspinnaker.parallel_tasks=' + numThreads + '" >> ' + filename
+    sh 'printf "java_spinnaker_path=" >> ' + filename
+    sh 'pwd >> ' + filename
+}
+
 def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
     def resfile = 'junit/' + results + '.xml'
     covfile += '_cov.xml'
-    sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
+    writeFile file: resfile, text: '<testsuite tests="0"></testsuite>'
     sh 'py.test ' + tests +
         ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
