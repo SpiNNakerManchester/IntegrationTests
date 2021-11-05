@@ -141,7 +141,7 @@ pipeline {
                 sh 'echo "[Java]" >> ~/.spynnaker.cfg'
                 sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
                 sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
+                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10 -Dlogging.level=debug" >> ~/.spynnaker.cfg'
                 sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
                 sh 'pwd >> ~/.spynnaker.cfg'
                 // Write a GFE config file for spalloc and java use
