@@ -166,6 +166,11 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        stage('Run onen Tests') {
+            steps {
+                run_pytest('sPyNNaker/spynnaker_integration_tests/test_various/test_get_machine.py', 1200, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
+            }
+        }
         stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
