@@ -81,7 +81,7 @@ pipeline {
             }
             steps {
                 // Install SpiNNUtils first as needed for C build
-                sh 'cd SpiNNUtils && python setup.py develop'
+                sh 'pip install -e SpiNNUtils'
                 // C Build next as builds files to be installed in Python
                 sh 'make -C $SPINN_DIRS'
                 sh 'make -C spinn_common install'
@@ -96,20 +96,20 @@ pipeline {
                 sh 'make -C SpiNNaker_PDP2/c_code'
                 sh 'make -C Visualiser'
                 // Python install
-                sh 'cd SpiNNMachine && python setup.py develop'
-                sh 'cd SpiNNMan && python setup.py develop'
-                sh 'cd PACMAN && python setup.py develop'
-                sh 'cd DataSpecification && python setup.py develop'
-                sh 'cd spalloc && python setup.py develop'
-                sh 'cd SpiNNFrontEndCommon && python setup.py develop'
-                sh 'cd sPyNNaker && python setup.py develop'
-                sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
-                sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
-                sh 'cd SpiNNGym && python ./setup.py develop'
-                sh 'cd MarkovChainMonteCarlo && python ./setup.py develop'
-                sh 'cd TestBase && python ./setup.py develop'
-                sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
-                sh 'cd Visualiser && python ./setup.py develop'
+                sh 'pip install -e SpiNNMachine'
+                sh 'pip install -e SpiNNMan'
+                sh 'pip install -e PACMAN'
+                sh 'pip install -e DataSpecification'
+                sh 'pip install -e spalloc'
+                sh 'pip install -e SpiNNFrontEndCommon'
+                sh 'pip install -e sPyNNaker'
+                sh 'pip install -e sPyNNaker8NewModelTemplate'
+                sh 'pip install -e SpiNNakerGraphFrontEnd'
+                sh 'pip install -e SpiNNGym'
+                sh 'pip install -e MarkovChainMonteCarlo'
+                sh 'pip install -e TestBase'
+                sh 'pip install -e SpiNNaker_PDP2'
+                sh 'pip install -e Visualiser'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
