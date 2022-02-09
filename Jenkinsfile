@@ -266,10 +266,10 @@ pipeline {
                     replyTo: '$DEFAULT_REPLYTO'
             }
         }
-        success {
+        // success {
             // junit 'junit/*.xml'
             // cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
-        }
+        // }
     }
 }
 
