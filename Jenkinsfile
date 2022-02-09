@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        /*stage('Before Install') {
+        stage('Before Install') {
             environment {
                 TRAVIS_BRANCH = getGitBranchName()
             }
@@ -240,18 +240,18 @@ pipeline {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
             }
-        } */
-        //stage('Reports') {
-        //    steps {
-        //        sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
-        //        sh "python -m spinn_utilities.executable_finder"
-        //    }
-        //}
-        /* stage('Check Destroyed') {
+        }
+        stage('Reports') {
+            steps {
+                sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
+                sh "python -m spinn_utilities.executable_finder"
+            }
+        }
+        stage('Check Destroyed') {
             steps {
                 sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120'
             }
-        }*/
+        }
     }
     post {
         always {
@@ -266,10 +266,10 @@ pipeline {
                     replyTo: '$DEFAULT_REPLYTO'
             }
         }
-        // success {
-            // junit 'junit/*.xml'
-            // cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
-        // }
+        success {
+            junit 'junit/*.xml'
+            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
+        }
     }
 }
 
