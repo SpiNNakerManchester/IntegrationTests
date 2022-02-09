@@ -258,7 +258,7 @@ pipeline {
             script {
                 def recipients = ""
                 if (recipients == "") {
-                    recipients = 'spinnaker-software@listserv.manchester.ac.uk'
+                    recipients = '$DEFAULT_RECIPIENTS'
                 }
                 emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
