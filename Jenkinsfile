@@ -267,8 +267,8 @@ pipeline {
             }
         }
         success {
-            junit 'junit/*.xml'
-            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
+            // junit 'junit/*.xml'
+            // cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
         }
     }
 }
