@@ -256,7 +256,7 @@ pipeline {
     post {
         always {
             script {
-                def recipients = ""
+                def recipients = emailextrecipients([culprits(), developers(), buildUser()])
                 if (recipients == "") {
                     recipients = '$DEFAULT_RECIPIENTS'
                 }
