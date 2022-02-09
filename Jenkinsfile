@@ -256,7 +256,7 @@ pipeline {
     post {
         always {
             script {
-                def recipients = emailextrecipients([buildUser()])
+                def recipients = ""
                 if (recipients == "") {
                     recipients = 'spinnaker-software@listserv.manchester.ac.uk'
                 }
