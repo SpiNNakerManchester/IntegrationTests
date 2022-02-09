@@ -258,11 +258,7 @@ pipeline {
             script {
                 emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
-                    recipientProviders: [
-                        [$class: 'CulpritsRecipientProvider'],
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ],
+                    to: 'spinnaker-software@listserv.manchester.ac.uk',
                     replyTo: '$DEFAULT_REPLYTO'
             }
         }
