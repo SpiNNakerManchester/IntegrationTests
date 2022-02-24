@@ -22,6 +22,7 @@ pipeline {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
         BINARY_LOGS_DIR = "${workspace}"
+        THE_JOB = "${JOB_NAME.substring(JOB_NAME.lastIndexOf('/') + 1, JOB_NAME.length())}"
     }
     options {
         skipDefaultCheckout true
@@ -166,7 +167,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
+        /*stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
@@ -239,6 +240,12 @@ pipeline {
         stage('Run Visualiser Integration Tests') {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
+            }
+        }*/
+        stage('Run Whole Machine Tests') {
+            steps {
+                sh 'echo "Job name is $THE_JOB"'
+                run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', 'auto')
             }
         }
         stage('Reports') {
