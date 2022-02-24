@@ -22,7 +22,7 @@ pipeline {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
         BINARY_LOGS_DIR = "${workspace}"
-        THE_JOB = "${JOB_NAME.substring(JOB_NAME.lastIndexOf('/') + 1, JOB_NAME.length())}"
+        THE_JOB = "${JOB_NAME.substring(0, JOB_NAME.lastIndexOf('/'))}"
     }
     options {
         skipDefaultCheckout true
@@ -243,6 +243,9 @@ pipeline {
             }
         }*/
         stage('Run Whole Machine Tests') {
+            when {
+                environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
+            }
             steps {
                 sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '24')
