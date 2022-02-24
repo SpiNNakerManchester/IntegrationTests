@@ -244,8 +244,8 @@ pipeline {
         }*/
         stage('Run Whole Machine Tests') {
             steps {
-                sh 'echo "Job name is $THE_JOB"'
-                run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', 'auto')
+                sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
+                run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '24')
             }
         }
         stage('Reports') {
