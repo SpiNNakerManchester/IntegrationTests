@@ -256,13 +256,13 @@ pipeline {
     post {
         always {
             script {
+                def recipients = emailextrecipients([culprits(), developers(), buildUser()])
+                if (recipients == "") {
+                    recipients = '$DEFAULT_RECIPIENTS'
+                }
                 emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
-                    recipientProviders: [
-                        [$class: 'CulpritsRecipientProvider'],
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ],
+                    to: recipients,
                     replyTo: '$DEFAULT_REPLYTO'
             }
         }
