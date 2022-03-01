@@ -30,6 +30,7 @@ pipeline {
     stages {
         stage('Clean and Checkout') {
             steps {
+                sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 sh 'rm -rf ${WORKSPACE}/*'
                 sh 'rm -rf ${WORKSPACE}/.[a-zA-Z0-9]*'
                 dir('IntegrationTests') {
@@ -167,7 +168,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        /*stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
@@ -241,13 +242,12 @@ pipeline {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
             }
-        } */
+        }
         stage('Run Whole Machine Tests') {
-            /*when {
+            when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }*/
+            }
             steps {
-                sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
             }
         }
