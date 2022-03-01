@@ -167,7 +167,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
+        /*stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
@@ -241,7 +241,7 @@ pipeline {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
             }
-        }
+        } */
         stage('Run Whole Machine Tests') {
             when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
