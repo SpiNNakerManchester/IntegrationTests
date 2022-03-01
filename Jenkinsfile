@@ -243,9 +243,9 @@ pipeline {
             }
         } */
         stage('Run Whole Machine Tests') {
-            when {
+            /*when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }
+            }*/
             steps {
                 sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
