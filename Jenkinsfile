@@ -261,7 +261,7 @@ pipeline {
         }
         stage('Error 2') {
             steps {
-                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                catchError(stageResult: 'FAILURE') {
                     sh 'exit 1'
                 }
             }
