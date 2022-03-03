@@ -292,12 +292,8 @@ pipeline {
     //}
     post {
         always {
-            steps {
-                sh 'echo $BUILD_STATUS'
-            }
-
+            sh 'echo $BUILD_STATUS'
         }
-
     }
 
 }
