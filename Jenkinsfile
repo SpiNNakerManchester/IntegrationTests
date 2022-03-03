@@ -292,7 +292,7 @@ pipeline {
     //}
     post {
         always {
-            sh 'echo $BUILD_STATUS'
+            sh 'echo ${BUILD_STATUS}'
         }
     }
 
