@@ -254,14 +254,14 @@ pipeline {
         //}
         stage('Error 1') {
             steps {
-                catchError(stageResult=FAILURE) {
+                catchError(stageResult: FAILURE) {
                     sh 'exit 1'
                 }
             }
         }
         stage('Error 2') {
             steps {
-                catchError(buildResult=UNSTABLE, stageResult=FAILURE) {
+                catchError(buildResult: UNSTABLE, stageResult: FAILURE) {
                     sh 'exit 1'
                 }
             }
