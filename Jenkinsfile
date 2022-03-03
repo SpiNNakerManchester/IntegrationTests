@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        stage('Before Install') {
+        /*stage('Before Install') {
             environment {
                 TRAVIS_BRANCH = getGitBranchName()
             }
@@ -240,37 +240,66 @@ pipeline {
             steps {
                 run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
             }
-        }
-        stage('Reports') {
+        } */
+        //stage('Reports') {
+        //    steps {
+        //        sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
+        //        sh "python -m spinn_utilities.executable_finder"
+        //    }
+        //}
+        //stage('Check Destroyed') {
+        //    steps {
+        //        sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120'
+        //    }
+        //}
+        stage('Error 1') {
             steps {
-                sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
-                sh "python -m spinn_utilities.executable_finder"
+                catchError {
+                    sh 'exit 1'
+                }
             }
         }
-        stage('Check Destroyed') {
+        stage('Error 2') {
             steps {
-                sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120'
+                catchError(buildResult='UNSTABLE') {
+                    sh 'exit 1'
+                }
+            }
+        }
+        stage('OK') {
+            steps {
+                echo 'Done'
             }
         }
     }
+    //post {
+    //    always {
+    //        script {
+    //            def recipients = emailextrecipients([culprits(), developers(), buildUser()])
+    //            if (recipients == "") {
+    //                recipients = '$DEFAULT_RECIPIENTS'
+    //            }
+    //            emailext subject: '$DEFAULT_SUBJECT',
+    //                body: '$DEFAULT_CONTENT',
+    //                to: recipients,
+    //                replyTo: '$DEFAULT_REPLYTO'
+    //        }
+    //    }
+    //    success {
+    //        junit 'junit/*.xml'
+    //        cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
+    //    }
+    //}
     post {
         always {
-            script {
-                def recipients = emailextrecipients([culprits(), developers(), buildUser()])
-                if (recipients == "") {
-                    recipients = '$DEFAULT_RECIPIENTS'
-                }
-                emailext subject: '$DEFAULT_SUBJECT',
-                    body: '$DEFAULT_CONTENT',
-                    to: recipients,
-                    replyTo: '$DEFAULT_REPLYTO'
+            steps {
+                sh 'echo $BUILD_STATUS'
             }
+
         }
-        success {
-            junit 'junit/*.xml'
-            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
-        }
+
     }
+
 }
 
 def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
