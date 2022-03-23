@@ -16,7 +16,7 @@
 */
 pipeline {
     agent {
-        docker { image 'python3.6' }
+        docker { image 'python3.8' }
     }
     environment {
         // This is where 'pip install --user' puts things
@@ -38,12 +38,14 @@ pipeline {
         }
         stage('Before Install') {
             environment {
-                TRAVIS_BRANCH = "${env.BRANCH_NAME}"
+                TRAVIS_BRANCH = getGitBranchName()
             }
             steps {
+                // Verify the branch
+                sh 'echo "Branch is $TRAVIS_BRANCH"'
                 // remove all directories left if Jenkins ended badly
                 sh 'git clone https://github.com/SpiNNakerManchester/SupportScripts.git support'
-                sh 'pip3 install --upgrade setuptools wheel'
+                sh 'pip3 install --upgrade "setuptools<59.8" wheel'
                 sh 'pip install --user --upgrade pip'
                 // SpiNNakerManchester internal dependencies; development mode
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNUtils.git'
@@ -58,6 +60,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinn_common.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/Visualiser.git'
                 // Java dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
@@ -65,6 +68,10 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNGym.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/MarkovChainMonteCarlo.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNaker_PDP2.git'
             }
         }
         stage('Install') {
@@ -82,8 +89,12 @@ pipeline {
                 sh 'make -C SpiNNFrontEndCommon/c_common install'
                 sh 'make -C sPyNNaker/neural_modelling'
                 sh 'make -C sPyNNaker8NewModelTemplate/c_models'
-                sh 'make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples'
+                sh 'make -C SpiNNakerGraphFrontEnd/gfe_examples'
                 sh 'make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/'
+                sh 'make -C SpiNNGym/c_code'
+                sh 'make -C MarkovChainMonteCarlo/c_models'
+                sh 'make -C SpiNNaker_PDP2/c_code'
+                sh 'make -C Visualiser'
                 // Python install
                 sh 'cd SpiNNMachine && python setup.py develop'
                 sh 'cd SpiNNMan && python setup.py develop'
@@ -94,6 +105,11 @@ pipeline {
                 sh 'cd sPyNNaker && python setup.py develop'
                 sh 'cd sPyNNaker8NewModelTemplate && python ./setup.py develop'
                 sh 'cd SpiNNakerGraphFrontEnd && python ./setup.py develop'
+                sh 'cd SpiNNGym && python ./setup.py develop'
+                sh 'cd MarkovChainMonteCarlo && python ./setup.py develop'
+                sh 'cd TestBase && python ./setup.py develop'
+                sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
+                sh 'cd Visualiser && python ./setup.py develop'
                 sh 'python -m spynnaker8.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
@@ -104,6 +120,9 @@ pipeline {
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
+                sh 'pip install -r SpiNNGym/requirements-test.txt'
+                sh 'pip install -r MarkovChainMonteCarlo/requirements-test.txt'
+                sh 'pip install -r SpiNNaker_PDP2/requirements-test.txt'
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 sh 'pip install python-coveralls "coverage>=5.0.0"'
@@ -147,43 +166,79 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        // Unit tests are done by Travis, and only done here on Daily tests
-        /* stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
-                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'auto')
-                run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'auto')
-                run_pytest('SpiNNMan/unittests SpiNNMan/integration_tests', 1200, 'SpiNNMan', 'auto')
-                run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'auto')
-                run_pytest('spalloc/tests', 1200, 'spalloc', '1')
-                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'auto')
-                run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'auto')
-                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'auto')
-                run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'auto')
+                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
+                run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
+                run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
+                run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
+                run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
+                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
+                run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
+                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
+                run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
+                run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
+                run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
+                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
-        } */
+        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/quick_test/', 1200, 'sPyNNaker_Integration', 'auto')
+                run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
             }
         }
         stage('Run GFE Integeration Tests') {
             steps {
-                run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 1200, 'GFE_Integration', 'auto')
+                sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
+                run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
             }
         }
-        stage('Run sPyNNaker new Model Example') {
+        stage('Run IntroLab Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/p8_integration_tests/test_new_model_templates', 1200, 'new_model_example', 'auto')
-                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 1200, 'nmt_integration_tests', 'auto')
+                sh 'python IntroLab/integration_tests/script_builder.py'
+                run_pytest('IntroLab/integration_tests', 3600, 'IntroLab_Integration', 'integration', 'auto')
             }
         }
-        stage('Run sPyNNaker example scripts') {
+        stage('Run PyNN8Examples Integration Tests') {
             steps {
-                sh 'python sPyNNaker/p8_integration_tests/scripts_test/build_script.py shorter'
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/examples_auto_test.py', 1200, 'sPyNNakerScripts', 'auto')
-                run_pytest('sPyNNaker/p8_integration_tests/scripts_test/intro_labs_auto_test.py', 1200, 'sPyNNakerScripts', '1')
-                // Not sPyNNaker/p8_integration_tests/scripts_test/test_microcircuit.py as it takes 1558  seconds
+                sh 'python PyNN8Examples/integration_tests/script_builder.py'
+                run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
+            steps {
+                sh 'python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py'
+                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run SpiNNGym Integration Tests') {
+            steps {
+                sh 'python SpiNNGym/integration_tests/script_builder.py'
+                run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run MarkovChainMonteCarlo Integration Tests') {
+            steps {
+                sh 'python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py'
+                run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run SpiNNaker_PDP2 Integration Tests') {
+            steps {
+                sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+            }
+        }
+        stage('Run Visualiser Integration Tests') {
+            steps {
+                run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
             }
         }
         stage('Reports') {
@@ -194,42 +249,48 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                sh 'py.test sPyNNaker/p8_integration_tests/destroyed_checker_test --forked --instafail --timeout 120'
+                sh 'py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120'
             }
         }
     }
     post {
         always {
             script {
+                def recipients = emailextrecipients([culprits(), developers(), buildUser()])
+                if (recipients == "") {
+                    recipients = '$DEFAULT_RECIPIENTS'
+                }
                 emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
-                    recipientProviders: [
-                        [$class: 'CulpritsRecipientProvider'],
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ],
+                    to: recipients,
                     replyTo: '$DEFAULT_REPLYTO'
             }
         }
         success {
             junit 'junit/*.xml'
-            cobertura coberturaReportFile: 'coverage.xml'
-            //script {
-            //    currentBuild.result = 'SUCCESS'
-            //}
-            //step([$class: 'CompareCoverageAction', publishResultAs: 'statusCheck'])
+            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
         }
     }
 }
 
-def run_pytest(String tests, int timeout, String results, String threads) {
+def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
     def resfile = 'junit/' + results + '.xml'
+    covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
-    sh 'py.test ' + tests + ' -rs -n ' + threads +
-        ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+    sh 'py.test ' + tests +
+        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
-        '--junitxml ' + resfile + ' --cov-report xml:coverage.xml --cov-append ' +
+        '--junitxml ' + resfile + ' --cov-report xml:' + covfile + ' --cov-append ' +
         '--timeout ' + timeout + ' --log-level=INFO '
+}
+
+def getGitBranchName() {
+    if (env.BRANCH_NAME) {
+        return env.BRANCH_NAME;
+    }
+    dir('IntegrationTests') {
+        return sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
 }
