@@ -119,6 +119,7 @@ pipeline {
                 sh 'pip install -r spalloc/requirements-test.txt'
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
+                sh 'python -m spynnaker.pyNN.setup_pynn'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
                 sh 'pip install -r SpiNNGym/requirements-test.txt'
                 sh 'pip install -r MarkovChainMonteCarlo/requirements-test.txt'
