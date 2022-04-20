@@ -110,7 +110,7 @@ pipeline {
                 sh 'cd TestBase && python ./setup.py develop'
                 sh 'cd SpiNNaker_PDP2 && python ./setup.py develop'
                 sh 'cd Visualiser && python ./setup.py develop'
-                sh 'python -m spynnaker.pyyn.setup_pynn'
+                sh 'python -m spynnaker.pyNN.setup_pynn'
                 // Test requirements
                 sh 'pip install -r SpiNNMachine/requirements-test.txt'
                 sh 'pip install -r SpiNNMan/requirements-test.txt'
@@ -119,7 +119,6 @@ pipeline {
                 sh 'pip install -r spalloc/requirements-test.txt'
                 sh 'pip install -r SpiNNFrontEndCommon/requirements-test.txt'
                 sh 'pip install -r sPyNNaker/requirements-test.txt'
-                sh 'python -m spynnaker.pyNN.setup_pynn'
                 sh 'pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt'
                 sh 'pip install -r SpiNNGym/requirements-test.txt'
                 sh 'pip install -r MarkovChainMonteCarlo/requirements-test.txt'
