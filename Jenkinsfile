@@ -190,12 +190,14 @@ pipeline {
                 run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
             }
         }
+        /*
         stage('Run GFE Integeration Tests') {
             steps {
                 sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
                 run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
             }
         }
+        */
         stage('Run IntroLab Integration Tests') {
             steps {
                 sh 'python IntroLab/integration_tests/script_builder.py'
