@@ -264,9 +264,9 @@ pipeline {
             }
         }
         stage('Run Whole Machine Tests') {
-            /*when {
+            when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }*/
+            }
             steps {
                 catchError(stageResult: 'FAILURE') {
                     run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
