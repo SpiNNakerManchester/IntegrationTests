@@ -22,6 +22,7 @@ pipeline {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
         BINARY_LOGS_DIR = "${workspace}"
+        THE_JOB = "${JOB_NAME.substring(0, JOB_NAME.lastIndexOf('/'))}"
     }
     options {
         skipDefaultCheckout true
@@ -29,6 +30,7 @@ pipeline {
     stages {
         stage('Clean and Checkout') {
             steps {
+                sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 sh 'rm -rf ${WORKSPACE}/*'
                 sh 'rm -rf ${WORKSPACE}/.[a-zA-Z0-9]*'
                 dir('IntegrationTests') {
@@ -186,59 +188,89 @@ pipeline {
         }
         stage('Run sPyNNaker Integration Tests') {
             steps {
-                run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
+                }
             }
         }
         stage('Run GFE Integeration Tests') {
             steps {
-                sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
-                run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py'
+                    run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run IntroLab Integration Tests') {
             steps {
-                sh 'python IntroLab/integration_tests/script_builder.py'
-                run_pytest('IntroLab/integration_tests', 3600, 'IntroLab_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python IntroLab/integration_tests/script_builder.py'
+                    run_pytest('IntroLab/integration_tests', 3600, 'IntroLab_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run PyNN8Examples Integration Tests') {
             steps {
-                sh 'python PyNN8Examples/integration_tests/script_builder.py'
-                run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                  sh 'python PyNN8Examples/integration_tests/script_builder.py'
+                  run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
+              }
             }
         }
         stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
             steps {
-                sh 'python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py'
-                run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py'
+                    run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run microcircuit_model Integration Tests') {
             steps {
-                run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run SpiNNGym Integration Tests') {
             steps {
-                sh 'python SpiNNGym/integration_tests/script_builder.py'
-                run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python SpiNNGym/integration_tests/script_builder.py'
+                    run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run MarkovChainMonteCarlo Integration Tests') {
             steps {
-                sh 'python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py'
-                run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py'
+                    run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run SpiNNaker_PDP2 Integration Tests') {
             steps {
-                sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
-                run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    sh 'python SpiNNaker_PDP2/integration_tests/script_builder.py'
+                    run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run Visualiser Integration Tests') {
             steps {
-                run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE') {
+                    run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
+                }
+            }
+        }
+        stage('Run Whole Machine Tests') {
+            when {
+                environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
+            }
+            steps {
+                catchError(stageResult: 'FAILURE') {
+                    run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
+                }
             }
         }
         stage('Reports') {
