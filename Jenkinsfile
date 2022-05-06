@@ -22,7 +22,7 @@ pipeline {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
         BINARY_LOGS_DIR = "${workspace}"
-        THE_JOB = "${JOB_NAME.substring(0, JOB_NAME.lastIndexOf('/'))}"
+        THE_JOB = getJobName()
     }
     options {
         skipDefaultCheckout true
@@ -325,4 +325,13 @@ def getGitBranchName() {
     dir('IntegrationTests') {
         return sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
     }
+}
+
+def getJobName() {
+    def index = env.JOB_NAME.lastIndexOf('/')
+    if (index == -1) {
+        index = env.JOB_NAME.length()
+    }
+
+    return env.JOB_NAME.substring(0, index)
 }
