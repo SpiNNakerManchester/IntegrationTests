@@ -288,9 +288,14 @@ pipeline {
     post {
         always {
             script {
-                def recipients = emailextrecipients([culprits(), developers(), buildUser()])
-                if (recipients == "") {
+                def recipients = ""
+                if (env.THE_JOB.equals("Integration_Tests_Cron_Job")) {
                     recipients = '$DEFAULT_RECIPIENTS'
+                } else {
+                    recipients = emailextrecipients([culprits(), developers(), buildUser()])
+                    if (recipients == "") {
+                        recipients = '$DEFAULT_RECIPIENTS'
+                    }
                 }
                 emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
