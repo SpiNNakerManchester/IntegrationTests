@@ -2,7 +2,7 @@
 
 
 # IntegrationTests
-Integration Tests unified over all repositories
+Integration Tests unified over all repositories.
 
 
 In particular, tests:
