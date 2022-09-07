@@ -168,7 +168,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
+        /*stage('Unit Tests') {
             steps {
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
@@ -185,7 +185,7 @@ pipeline {
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 sh "python -m spinn_utilities.executable_finder"
             }
-        }
+        } */
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
