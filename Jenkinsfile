@@ -321,36 +321,41 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
 }
 
 def create_spynnaker_config() {
-    if (!fileExists('~/.spynnaker.cfg')) {
-        // Write a sPyNNaker config file for spalloc and java use
-        sh 'echo "[Machine]" > ~/.spynnaker.cfg'
-        sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg'
-        sh 'echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg'
-        sh 'echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg'
-        sh 'echo "[Java]" >> ~/.spynnaker.cfg'
-        sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
-        sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
-        sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
-        sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
-        sh 'pwd >> ~/.spynnaker.cfg'
-    }
+    // Write a sPyNNaker config file for spalloc and java use
+    sh '''
+        if [[ ! -f ~/.spynnaker.cfg ]]
+        then
+            echo "[Machine]" > ~/.spynnaker.cfg
+            echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
+            echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+            echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+            echo "[Java]" >> ~/.spynnaker.cfg
+            echo "use_java = True" >> ~/.spynnaker.cfg
+            echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
+            echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
+            printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
+            pwd >> ~/.spynnaker.cfg
+        fi
+    '''
 }
 
 def create_gfe_config() {
-    if (!fileExists('~/.spiNNakerGraphFrontEnd')) {
-        // Write a GFE config file for spalloc and java use
-        sh 'echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
-        sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
-    }
-
+    // Write a GFE config file for spalloc and java use
+    sh '''
+        if [[ ! -f ~/.spiNNakerGraphFrontEnd.cfg ]]
+        then
+            echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
+            printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
+            pwd >> ~/.spiNNakerGraphFrontEnd.cfg
+        fi
+    '''
 }
 
 def run_in_pyenv(String command) {
