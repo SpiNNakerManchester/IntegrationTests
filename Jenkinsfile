@@ -138,41 +138,19 @@ pipeline {
         }
         stage('Before Script') {
             steps {
-                // Write a sPyNNaker config file for spalloc and java use
-                sh 'echo "[Machine]" > ~/.spynnaker.cfg'
-                sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg'
-                sh 'echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg'
-                sh 'echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg'
-                sh 'echo "[Java]" >> ~/.spynnaker.cfg'
-                sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
-                sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
-                sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
-                sh 'pwd >> ~/.spynnaker.cfg'
-                // Write a GFE config file for spalloc and java use
-                sh 'echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
-                sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
                 // Prepare coverage
                 sh 'rm -f coverage.xml'
                 sh 'rm -f .coverage'
                 sh 'echo "[run]" > .coveragerc'
                 sh 'echo "parallel = True" >> .coveragerc'
-                // Prepare for unit tests
-                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 // Create a directory for test outputs
                 sh 'mkdir junit/'
             }
         }
         stage('Unit Tests') {
             steps {
+                // Empty config is sometimes needed in unit tests
+                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
@@ -192,6 +170,7 @@ pipeline {
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
                 }
             }
@@ -199,6 +178,7 @@ pipeline {
         stage('Run GFE Integeration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
                     run_in_pyenv('python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py')
                     run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
                 }
@@ -207,6 +187,7 @@ pipeline {
         stage('Run IntroLab Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_in_pyenv('python IntroLab/integration_tests/script_builder.py')
                     run_pytest('IntroLab/integration_tests', 3600, 'IntroLab_Integration', 'integration', 'auto')
                 }
@@ -215,14 +196,16 @@ pipeline {
         stage('Run PyNN8Examples Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                  run_in_pyenv('python PyNN8Examples/integration_tests/script_builder.py')
-                  run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
-              }
+                    create_spynnaker_config()
+                    run_in_pyenv('python PyNN8Examples/integration_tests/script_builder.py')
+                    run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_in_pyenv('python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py')
                     run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
                 }
@@ -231,6 +214,7 @@ pipeline {
         stage('Run microcircuit_model Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
                 }
             }
@@ -238,6 +222,7 @@ pipeline {
         stage('Run SpiNNGym Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_in_pyenv('python SpiNNGym/integration_tests/script_builder.py')
                     run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
                 }
@@ -246,6 +231,7 @@ pipeline {
         stage('Run MarkovChainMonteCarlo Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
                     run_in_pyenv('python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py')
                     run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
                 }
@@ -254,6 +240,7 @@ pipeline {
         stage('Run SpiNNaker_PDP2 Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
                     run_in_pyenv('python SpiNNaker_PDP2/integration_tests/script_builder.py')
                     run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
                 }
@@ -262,6 +249,7 @@ pipeline {
         stage('Run Visualiser Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
                 }
             }
@@ -272,6 +260,7 @@ pipeline {
             }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
                     run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
                 }
             }
@@ -326,10 +315,42 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
         '--timeout ' + timeout + ' --log-level=INFO ')
 }
 
+def create_spynnaker_config() {
+    if (!fileExists('~/.spynnaker.cfg')) {
+        // Write a sPyNNaker config file for spalloc and java use
+        sh 'echo "[Machine]" > ~/.spynnaker.cfg'
+        sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg'
+        sh 'echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg'
+        sh 'echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg'
+        sh 'echo "[Java]" >> ~/.spynnaker.cfg'
+        sh 'echo "use_java = True" >> ~/.spynnaker.cfg'
+        sh 'echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg'
+        sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg'
+        sh 'printf "java_spinnaker_path=" >> ~/.spynnaker.cfg'
+        sh 'pwd >> ~/.spynnaker.cfg'
+    }
+}
+
+def create_gfe_config() {
+    if (!fileExists('~/.spiNNakerGraphFrontEnd')) {
+        // Write a GFE config file for spalloc and java use
+        sh 'echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg'
+        sh 'pwd >> ~/.spiNNakerGraphFrontEnd.cfg'
+    }
+
+}
+
 def run_in_pyenv(String command) {
     sh script:'source ${WORKSPACE}/pyenv/bin/activate && ' + command, label: command
 }
-
 
 def getGitBranchName() {
     if (env.BRANCH_NAME) {
