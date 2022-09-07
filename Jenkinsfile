@@ -154,6 +154,8 @@ pipeline {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
+                create_spynnaker_config()
+                create_gfe_config()
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
