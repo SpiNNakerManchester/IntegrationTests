@@ -136,7 +136,7 @@ pipeline {
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0"')
                 run_in_pyenv('pip install pytest-instafail "pytest-xdist==1.34.0"')
                 // Java install, not server
-                sh 'mvn package -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
+                sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
             }
         }
         stage('Before Script') {
