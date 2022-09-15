@@ -135,8 +135,8 @@ pipeline {
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0"')
                 run_in_pyenv('pip install pytest-instafail "pytest-xdist==1.34.0"')
-                // Java install
-                sh 'mvn -f JavaSpiNNaker package'
+                // Java install, not server
+                sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
             }
         }
         stage('Before Script') {
