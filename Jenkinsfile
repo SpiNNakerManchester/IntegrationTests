@@ -240,8 +240,11 @@ pipeline {
         }
         stage('Run vor_cerebellum Integration Tests') {
             steps {
-                sh 'python vor_cerebellum/integration_tests/script_builder.py'
-                run_pytest('vor_cerebellum/integration_tests', 12000, 'vor_cerebellum_Integration', 'integration', 'auto')
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
+                    run_in_pyenv('python vor_cerebellum/integration_tests/script_builder.py')
+                    run_pytest('vor_cerebellum/integration_tests', 12000, 'vor_cerebellum_Integration', 'integration', 'auto')
+                }
             }
         }
         stage('Run MarkovChainMonteCarlo Integration Tests') {
