@@ -273,7 +273,7 @@ pipeline {
         }
         stage('Reports') {
             steps {
-                sh 'find . -maxdepth 2 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
+                sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
         }
