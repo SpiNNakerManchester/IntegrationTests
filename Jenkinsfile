@@ -135,6 +135,7 @@ pipeline {
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0"')
                 run_in_pyenv('pip install pytest-instafail "pytest-xdist==1.34.0"')
+                run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
             }
@@ -272,7 +273,7 @@ pipeline {
         }
         stage('Reports') {
             steps {
-                sh 'find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \\{\\}  \\;'
+                sh 'find . -maxdepth 3 -type f -wholename "*/global_reports/*" -print -exec cat \\{\\}  \\;'
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
         }
