@@ -147,8 +147,6 @@ pipeline {
                 sh 'rm -f .coverage'
                 sh 'echo "[run]" > .coveragerc'
                 sh 'echo "parallel = True" >> .coveragerc'
-                // Create a directory for test outputs
-                sh 'mkdir junit/'
             }
         }
         stage('Unit Tests') {
@@ -309,6 +307,7 @@ pipeline {
 }
 
 def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
+    sh 'mkdir -p junit'
     def resfile = 'junit/' + results + '.xml'
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
