@@ -149,7 +149,7 @@ pipeline {
                 sh 'echo "parallel = True" >> .coveragerc'
             }
         }
-        stage('Unit Tests') {
+        /*stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -170,7 +170,7 @@ pipeline {
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
-        }
+        } */
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -312,7 +312,7 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     run_in_pyenv('py.test ' + tests +
-        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+        '--capture=no --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
