@@ -149,7 +149,7 @@ pipeline {
                 sh 'echo "parallel = True" >> .coveragerc'
             }
         }
-        /*stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -170,7 +170,7 @@ pipeline {
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
-        } */
+        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -326,7 +326,8 @@ def create_spynnaker_config() {
         if [[ ! -f ~/.spynnaker.cfg ]]
         then
             echo "[Machine]" > ~/.spynnaker.cfg
-            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spynnaker.cfg
+            echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
+            echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
             echo "use_java = True" >> ~/.spynnaker.cfg
@@ -344,7 +345,8 @@ def create_gfe_config() {
         if [[ ! -f ~/.spiNNakerGraphFrontEnd.cfg ]]
         then
             echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
