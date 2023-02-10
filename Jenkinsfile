@@ -327,7 +327,7 @@ def create_spynnaker_config() {
         then
             echo "[Machine]" > ~/.spynnaker.cfg
             echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spynnaker.cfg
-            echo "spalloc_use_proxy = False" >> ~/.spynnaker.cfg
+            echo "spalloc_use_proxy = True" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
             echo "use_java = True" >> ~/.spynnaker.cfg
@@ -346,7 +346,7 @@ def create_gfe_config() {
         then
             echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
             echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spiNNakerGraphFrontEnd.cfg
-            echo "spalloc_use_proxy = False" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_use_proxy = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
