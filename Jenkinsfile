@@ -121,8 +121,7 @@ pipeline {
                 run_in_pyenv('pip install -r spalloc/requirements-test.txt')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0"')
-                run_in_pyenv('pip install pytest-progress pytest-forked pytest-timeout')
+                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
