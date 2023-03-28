@@ -116,7 +116,6 @@ pipeline {
                 run_in_pyenv('cd SpiNNGym && pip install -e .[test]')
                 run_in_pyenv('cd MarkovChainMonteCarlo && pip install -e .[test]')
                 run_in_pyenv('cd SpiNNaker_PDP2 && pip install -e .[test]')
-                run_in_pyenv('cd Visualiser && pip install -e .[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Test requirements where not yet installed
                 run_in_pyenv('pip install -r spalloc/requirements-test.txt')
