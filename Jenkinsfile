@@ -88,7 +88,7 @@ pipeline {
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Install SpiNNUtils first as needed for C build
-                run_in_pyenv('cd SpiNNUtils && pip install -e .[test]')
+                run_in_pyenv('pip install ./SpiNNUtils[test]')
                 // C Build next as builds files to be installed in Python
                 run_in_pyenv('make -C $SPINN_DIRS')
                 run_in_pyenv('make -C spinn_common install')
@@ -103,22 +103,21 @@ pipeline {
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
                 // Python install
-                run_in_pyenv('cd SpiNNMachine &&  pip install -e .[test]')
-                run_in_pyenv('cd SpiNNMan &&  pip install -e .[test]')
-                run_in_pyenv('cd PACMAN && pip install -e .[test]')
-                run_in_pyenv('cd DataSpecification &&  pip install -e .[test]')
-                run_in_pyenv('cd spalloc && python setup.py develop')
-                run_in_pyenv('cd SpiNNFrontEndCommon && pip install -e .[test]')
-                run_in_pyenv('cd TestBase && pip install -e .[test]')
-                run_in_pyenv('cd sPyNNaker && pip install -e .[test]')
-                run_in_pyenv('cd sPyNNaker8NewModelTemplate && pip install -e .[test]')
-                run_in_pyenv('cd SpiNNakerGraphFrontEnd && pip install -e .[test]')
-                run_in_pyenv('cd SpiNNGym && pip install -e .[test]')
-                run_in_pyenv('cd MarkovChainMonteCarlo && pip install -e .[test]')
-                run_in_pyenv('cd SpiNNaker_PDP2 && pip install -e .[test]')
+                run_in_pyenv('pip install ./SpiNNMachine[test]')
+                run_in_pyenv('pip install ./SpiNNMan[test]')
+                run_in_pyenv('pip install ./PACMAN[test]')
+                run_in_pyenv('pip install ./DataSpecification[test]')
+                run_in_pyenv('pip install ./spalloc[test]')
+                run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
+                run_in_pyenv('pip install ./TestBase[test]')
+                run_in_pyenv('pip install ./sPyNNaker[test]')
+                run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
+                run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
+                run_in_pyenv('pip install ./SpiNNGym[test]')
+                run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
+                run_in_pyenv('pip install ./SpiNNaker_PDP2[test]')
+                run_in_pyenv('pip install ./Visualiser[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
-                // Test requirements where not yet installed
-                run_in_pyenv('pip install -r spalloc/requirements-test.txt')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
