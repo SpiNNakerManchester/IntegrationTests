@@ -115,7 +115,8 @@ pipeline {
                 run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
-                run_in_pyenv('pip install ./SpiNNaker_PDP2[test]')
+                // Due to the binaries being outside of the package
+                run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
