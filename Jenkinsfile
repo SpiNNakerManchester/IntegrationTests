@@ -127,6 +127,33 @@ pipeline {
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
             }
         }
+        stage('Delete install sources') {
+            steps {
+                sh 'rm -r spinn_common'
+                sh 'rm -r SpiNNUtils/spinn_utilities'
+                sh 'rm -r SpiNNUtils/build'
+                sh 'rm -r SpiNNMachine/spinn_machine'
+                sh 'rm -r SpiNNMan/spinnman'
+                sh 'rm -r PACMAN/pacman'
+                sh 'rm -r PACMAN/pacman_test_objects'
+                sh 'rm -r DataSpecification/data_specification'
+                sh 'rm -r spalloc/spalloc_client'
+                sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
+                sh 'rm -r SpiNNFrontEndCommon/c_common'
+                sh 'rm -r TestBase/spinnaker_testbase'
+                sh 'rm -r sPyNNaker/spynnaker'
+                sh 'rm -r sPyNNaker/neural_modelling'
+                sh 'rm -r sPyNNaker8NewModelTemplate/python_models8'
+                sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
+                sh 'rm -r SpiNNGym/spinn_gym'
+                sh 'rm -r SpiNNGym/c_code'
+                sh 'rm -r MarkovChainMonteCarlo/mcmc'
+                sh 'rm -r MarkovChainMonteCarlo/c_models'
+                // Due to the binaries being outside of the package
+                //NO remove SpiNNaker_PDP2
+                sh 'rm -r Visualiser/visualiser_example_binaries')
+            }
+        }
         stage('Before Script') {
             steps {
                 // Prepare coverage
