@@ -138,6 +138,14 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        stage('Run Whole Machine Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
+                    run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
+                }
+            }
+        }
         stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
@@ -244,17 +252,6 @@ pipeline {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run Whole Machine Tests') {
-            when {
-                environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
                 }
             }
         }
