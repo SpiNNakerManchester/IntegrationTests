@@ -151,7 +151,7 @@ pipeline {
                 sh 'rm -r MarkovChainMonteCarlo/c_models'
                 // Due to the binaries being outside of the package
                 //NO remove SpiNNaker_PDP2
-                sh 'rm -r Visualiser/visualiser_example_binaries')
+                sh 'rm -r Visualiser/visualiser_example_binaries'
             }
         }
         stage('Before Script') {
