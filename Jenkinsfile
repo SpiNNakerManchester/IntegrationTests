@@ -305,7 +305,7 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                run_in_pyenv('python -m spinnaker_testbase/test_no_job_destroy')
+                run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
             }
         }
     }
