@@ -103,22 +103,18 @@ pipeline {
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
                 // Python install
-                run_in_pyenv('pip install ./SpiNNMachine[test]')
-                run_in_pyenv('pip install ./SpiNNMan[test]')
-                run_in_pyenv('pip install ./PACMAN[test]')
-                run_in_pyenv('pip install ./DataSpecification[test]')
-                run_in_pyenv('pip install ./spalloc[test]')
-                run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
-                run_in_pyenv('pip install ./TestBase[test]')
-                run_in_pyenv('pip install ./sPyNNaker[test]')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ sPyNNaker --pre')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ sPyNNaker --pre')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ SpiNNakerTestBase --pre')
                 run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
-                run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
+                // Stuff normally installed by [test] installs
+                run_in_pyenv('pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
