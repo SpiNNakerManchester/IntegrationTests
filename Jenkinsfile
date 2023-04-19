@@ -104,7 +104,7 @@ pipeline {
                 run_in_pyenv('make -C Visualiser')
                 // Python install
                 run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre')
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre')
                 run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre')
                 run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
