@@ -5,7 +5,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -69,12 +69,12 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/microcircuit_model.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNGym.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/vor_cerebellum.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/MarkovChainMonteCarlo.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TestBase.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/SpiNNaker_PDP2.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNGym.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/vor_cerebellum.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
             }
         }
         stage('Install') {
@@ -89,7 +89,7 @@ pipeline {
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Install SpiNNUtils first as needed for C build
-                run_in_pyenv('cd SpiNNUtils && python setup.py develop')
+                run_in_pyenv('pip install ./SpiNNUtils[test]')
                 // C Build next as builds files to be installed in Python
                 run_in_pyenv('make -C $SPINN_DIRS')
                 run_in_pyenv('make -C spinn_common install')
@@ -104,42 +104,68 @@ pipeline {
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
                 // Python install
-                run_in_pyenv('cd SpiNNMachine && python setup.py develop')
-                run_in_pyenv('cd SpiNNMan && python setup.py develop')
-                run_in_pyenv('cd PACMAN && python setup.py develop')
-                run_in_pyenv('cd DataSpecification && python setup.py develop')
-                run_in_pyenv('cd spalloc && python setup.py develop')
-                run_in_pyenv('cd SpiNNFrontEndCommon && python setup.py develop')
-                run_in_pyenv('cd sPyNNaker && python setup.py develop')
-                run_in_pyenv('cd sPyNNaker8NewModelTemplate && python ./setup.py develop')
-                run_in_pyenv('cd SpiNNakerGraphFrontEnd && python ./setup.py develop')
-                run_in_pyenv('cd SpiNNGym && python ./setup.py develop')
-                run_in_pyenv('cd vor_cerebellum && python ./setup.py develop')
-                run_in_pyenv('cd MarkovChainMonteCarlo && python ./setup.py develop')
-                run_in_pyenv('cd TestBase && python ./setup.py develop')
-                run_in_pyenv('cd SpiNNaker_PDP2 && python ./setup.py develop')
-                run_in_pyenv('cd Visualiser && python ./setup.py develop')
+                run_in_pyenv('pip install ./SpiNNMachine[test]')
+                run_in_pyenv('pip install ./SpiNNMan[test]')
+                run_in_pyenv('pip install ./PACMAN[test]')
+                run_in_pyenv('pip install ./DataSpecification[test]')
+                run_in_pyenv('pip install ./spalloc[test]')
+                run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
+                run_in_pyenv('pip install ./TestBase[test]')
+                run_in_pyenv('pip install ./sPyNNaker[test]')
+                run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
+                run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
+                run_in_pyenv('pip install ./SpiNNGym[test]')
+                run_in_pyenv('pip install ./vor_cerebellum[test]')
+                run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
+                // Due to the binaries being outside of the package
+                run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
+                run_in_pyenv('pip install ./Visualiser[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
-                // Test requirements
-                run_in_pyenv('pip install -r SpiNNMachine/requirements-test.txt')
-                run_in_pyenv('pip install -r SpiNNMan/requirements-test.txt')
-                run_in_pyenv('pip install -r PACMAN/requirements-test.txt')
-                run_in_pyenv('pip install -r DataSpecification/requirements-test.txt')
-                run_in_pyenv('pip install -r spalloc/requirements-test.txt')
-                run_in_pyenv('pip install -r SpiNNFrontEndCommon/requirements-test.txt')
-                run_in_pyenv('pip install -r sPyNNaker/requirements-test.txt')
-                run_in_pyenv('pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt')
-                run_in_pyenv('pip install -r SpiNNGym/requirements-test.txt')
-                run_in_pyenv('pip install -r vor_cerebellum/requirements-test.txt')
-                run_in_pyenv('pip install -r MarkovChainMonteCarlo/requirements-test.txt')
-                run_in_pyenv('pip install -r SpiNNaker_PDP2/requirements-test.txt')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0"')
-                run_in_pyenv('pip install pytest-instafail "pytest-xdist==1.34.0"')
+                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
+            }
+        }
+        stage('Delete install sources') {
+            steps {
+                sh 'rm -r spinn_common'
+                sh 'rm -r SpiNNUtils/spinn_utilities'
+                sh 'rm -r SpiNNUtils/build'
+                sh 'rm -r SpiNNMachine/spinn_machine'
+                sh 'rm -r SpiNNMachine/build'
+                sh 'rm -r SpiNNMan/spinnman'
+                sh 'rm -r SpiNNMan/build'
+                sh 'rm -r PACMAN/pacman'
+                sh 'rm -r PACMAN/pacman_test_objects'
+                sh 'rm -r PACMAN/build'
+                sh 'rm -r DataSpecification/data_specification'
+                sh 'rm -r DataSpecification/build'
+                sh 'rm -r spalloc/spalloc_client'
+                sh 'rm -r spalloc/build'
+                sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
+                sh 'rm -r SpiNNFrontEndCommon/c_common'
+                sh 'rm -r SpiNNFrontEndCommon/build'
+                sh 'rm -r TestBase/spinnaker_testbase'
+                sh 'rm -r TestBase/build'
+                sh 'rm -r sPyNNaker/spynnaker'
+                sh 'rm -r sPyNNaker/neural_modelling'
+                sh 'rm -r sPyNNaker/build'
+                sh 'rm -r sPyNNaker8NewModelTemplate/python_models8'
+                sh 'rm -r sPyNNaker8NewModelTemplate/build'
+                sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
+                sh 'rm -r SpiNNakerGraphFrontEnd/build'
+                sh 'rm -r SpiNNGym/spinn_gym'
+                sh 'rm -r SpiNNGym/c_code'
+                sh 'rm -r SpiNNGym/build'
+                sh 'rm -r MarkovChainMonteCarlo/mcmc'
+                sh 'rm -r MarkovChainMonteCarlo/build'
+                // Due to the binaries being outside of the package
+                //NO remove SpiNNaker_PDP2
+                sh 'rm -r Visualiser/visualiser_example_binaries'
+                sh 'rm -r Visualiser/build'
             }
         }
         stage('Before Script') {
@@ -291,7 +317,7 @@ pipeline {
         }
         stage('Check Destroyed') {
             steps {
-                run_in_pyenv('py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120')
+                run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
             }
         }
     }
