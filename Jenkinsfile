@@ -20,7 +20,7 @@ pipeline {
     environment {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
-        BINARY_LOGS_DIR = "${workspace}"
+        GLOBAL_REPORTS = "${workspace}/global_reports"
         THE_JOB = getJobName()
     }
     options {
@@ -299,7 +299,7 @@ pipeline {
         }
         stage('Reports') {
             steps {
-                sh 'find . -maxdepth 3 -type f -wholename "*/global_reports/*" -print -exec cat \\{\\}  \\;'
+                sh 'find ${workspace}/global_reports -print -exec cat \\{\\}  \\;'
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
         }
