@@ -20,7 +20,7 @@ pipeline {
     environment {
         // This is where 'pip install --user' puts things
         PATH = "$HOME/.local/bin:$PATH"
-        GLOBAL_REPORTS = "${workspace}/global_reports"
+        GLOBAL_REPORTS = "${WORKSPACE}/global_reports"
         THE_JOB = getJobName()
     }
     options {
@@ -32,6 +32,7 @@ pipeline {
                 sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 sh 'rm -rf ${WORKSPACE}/*'
                 sh 'rm -rf ${WORKSPACE}/.[a-zA-Z0-9]*'
+                sh 'mkdir ${WORKSPACE}/global_reports'
                 dir('IntegrationTests') {
                     checkout scm
                 }
@@ -299,8 +300,8 @@ pipeline {
         }
         stage('Reports') {
             steps {
-                sh 'find ${workspace}/global_reports -print -exec cat \\{\\}  \\;'
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
+                sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
         stage('Check Destroyed') {
