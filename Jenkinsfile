@@ -178,6 +178,14 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        stage('Run microcircuit_model Integration Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
+                    run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
+                }
+            }
+        }
         stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
@@ -241,14 +249,6 @@ pipeline {
                     create_spynnaker_config()
                     run_in_pyenv('python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py')
                     run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run microcircuit_model Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
                 }
             }
         }
