@@ -122,7 +122,7 @@ pipeline {
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
+                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout setproctitle')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
@@ -336,6 +336,7 @@ pipeline {
 }
 
 def run_pytest(String tests, int timeout, String results, String covfile, String threads) {
+    sh 'mkdir -p junit'
     def resfile = 'junit/' + results + '.xml'
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
@@ -354,8 +355,8 @@ def create_spynnaker_config() {
         if [[ ! -f ~/.spynnaker.cfg ]]
         then
             echo "[Machine]" > ~/.spynnaker.cfg
-            echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
-            echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spynnaker.cfg
+            echo "spalloc_use_proxy = True" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
             echo "use_java = True" >> ~/.spynnaker.cfg
@@ -373,8 +374,8 @@ def create_gfe_config() {
         if [[ ! -f ~/.spiNNakerGraphFrontEnd.cfg ]]
         then
             echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-            echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
-            echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc/" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_use_proxy = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
