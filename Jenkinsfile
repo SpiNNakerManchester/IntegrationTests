@@ -353,7 +353,7 @@ def create_spynnaker_config() {
             echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
-            echo "use_java = True" >> ~/.spynnaker.cfg
+            echo "use_java = False" >> ~/.spynnaker.cfg
             echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
             echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
             printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
@@ -372,7 +372,7 @@ def create_gfe_config() {
             echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
-            echo "use_java = False" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
             printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
