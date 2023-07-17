@@ -32,7 +32,6 @@ pipeline {
                 sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 sh 'rm -rf ${WORKSPACE}/*'
                 sh 'rm -rf ${WORKSPACE}/.[a-zA-Z0-9]*'
-                sh 'mkdir ${WORKSPACE}/global_reports'
                 dir('IntegrationTests') {
                     checkout scm
                 }
@@ -87,8 +86,11 @@ pipeline {
                 run_in_pyenv('pip3 install --upgrade "setuptools<59.8" wheel')
                 run_in_pyenv('pip install --upgrade pip')
 
-                // Install SpiNNUtils first as needed for C build
-                run_in_pyenv('pip install ./SpiNNUtils[test]')
+                // Python install from testpypi
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre')
+                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre')
+
                 // C Build next as builds files to be installed in Python
                 run_in_pyenv('make -C $SPINN_DIRS')
                 run_in_pyenv('make -C spinn_common install')
@@ -102,22 +104,17 @@ pipeline {
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
-                // Python install
-                run_in_pyenv('pip install ./SpiNNMachine[test]')
-                run_in_pyenv('pip install ./SpiNNMan[test]')
-                run_in_pyenv('pip install ./PACMAN[test]')
-                run_in_pyenv('pip install ./spalloc[test]')
-                run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
-                run_in_pyenv('pip install ./TestBase[test]')
-                run_in_pyenv('pip install ./sPyNNaker[test]')
+
+                // Python install not on testpypi
                 run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
-                run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
+                // Stuff normally installed by [test] installs
+                run_in_pyenv('pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
                 run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
@@ -130,28 +127,20 @@ pipeline {
             steps {
                 sh 'rm -r spinn_common'
                 sh 'rm -r SpiNNUtils/spinn_utilities'
-                sh 'rm -r SpiNNUtils/build'
                 sh 'rm -r SpiNNMachine/spinn_machine'
-                sh 'rm -r SpiNNMachine/build'
                 sh 'rm -r SpiNNMan/spinnman'
-                sh 'rm -r SpiNNMan/build'
                 sh 'rm -r PACMAN/pacman'
                 sh 'rm -r PACMAN/pacman_test_objects'
-                sh 'rm -r PACMAN/build'
+                sh 'rm -r DataSpecification/data_specification'
                 sh 'rm -r spalloc/spalloc_client'
-                sh 'rm -r spalloc/build'
                 sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
                 sh 'rm -r SpiNNFrontEndCommon/c_common'
-                sh 'rm -r SpiNNFrontEndCommon/build'
                 sh 'rm -r TestBase/spinnaker_testbase'
-                sh 'rm -r TestBase/build'
                 sh 'rm -r sPyNNaker/spynnaker'
                 sh 'rm -r sPyNNaker/neural_modelling'
-                sh 'rm -r sPyNNaker/build'
                 sh 'rm -r sPyNNaker8NewModelTemplate/python_models8'
                 sh 'rm -r sPyNNaker8NewModelTemplate/build'
                 sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
-                sh 'rm -r SpiNNakerGraphFrontEnd/build'
                 sh 'rm -r SpiNNGym/spinn_gym'
                 sh 'rm -r SpiNNGym/c_code'
                 sh 'rm -r SpiNNGym/build'
@@ -185,6 +174,7 @@ pipeline {
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
                 run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
+                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
@@ -295,8 +285,8 @@ pipeline {
         }
         stage('Reports') {
             steps {
+                sh 'find . -maxdepth 3 -type f -wholename "*/global_reports/*" -print -exec cat \\{\\}  \\;'
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
-                sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
         stage('Check Destroyed') {
