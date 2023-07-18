@@ -325,7 +325,7 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     run_in_pyenv('py.test ' + tests +
         ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
-        '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
+        '--cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
         '--junitxml ' + resfile + ' --cov-report xml:' + covfile + ' --cov-append ' +
         '--timeout ' + timeout + ' --log-level=INFO ')
