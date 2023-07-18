@@ -131,7 +131,6 @@ pipeline {
                 sh 'rm -r SpiNNMan/spinnman'
                 sh 'rm -r PACMAN/pacman'
                 sh 'rm -r PACMAN/pacman_test_objects'
-                sh 'rm -r DataSpecification/data_specification'
                 sh 'rm -r spalloc/spalloc_client'
                 sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
                 sh 'rm -r SpiNNFrontEndCommon/c_common'
@@ -174,7 +173,6 @@ pipeline {
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
                 run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
-                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
