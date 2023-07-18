@@ -87,9 +87,9 @@ pipeline {
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Python install from pypi
-                run_in_pyenv('pip install -i sPyNNaker==1!7.0.0a6')
-                run_in_pyenv('pip install -i SpiNNakerGraphFrontEnd==1!7.0.0a6')
-                run_in_pyenv('pip install -i SpiNNakerTestBase==1!7.0.0a6')
+                run_in_pyenv('pip install sPyNNaker==1!7.0.0a6')
+                run_in_pyenv('pip install SpiNNakerGraphFrontEnd==1!7.0.0a6')
+                run_in_pyenv('pip install SpiNNakerTestBase==1!7.0.0a6')
 
                 // C Build next as builds files to be installed in Python
                 run_in_pyenv('make -C $SPINN_DIRS')
