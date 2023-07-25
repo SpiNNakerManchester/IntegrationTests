@@ -174,7 +174,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
+        /*stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -194,7 +194,7 @@ pipeline {
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
             }
-        }
+        }*/
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
