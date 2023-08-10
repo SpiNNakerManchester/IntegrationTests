@@ -367,7 +367,7 @@ def create_gfe_config() {
         if [[ ! -f ~/.spiNNakerGraphFrontEnd.cfg ]]
         then
             echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-            echo "https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc_demo/" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc_demo/" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
