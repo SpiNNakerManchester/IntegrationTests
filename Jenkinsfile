@@ -292,6 +292,7 @@ pipeline {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
+                    run_pytest('SpiNNakerGraphFrontEnd/link_test/run_link_test.py', 12000, 'test_links', 'integration', '16')
                     run_pytest('sPyNNaker/test_whole_board/test_borders.py', 12000, 'test_borders', 'integration', '16')
                     run_pytest('sPyNNaker/test_whole_board/test_board_sets.py', 12000, 'test_board_sets', 'integration', '16')
                     run_pytest('sPyNNaker/test_whole_board/test_whole_board.py', 12000, 'test_whole_machine', 'integration', '16')
