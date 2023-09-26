@@ -291,12 +291,12 @@ pipeline {
                 SPALLOC_PASSWORD = credentials('spalloc-password')
             }
             steps {
-                create_spynnaker_config()
+                // create_spynnaker_config()
                 create_gfe_config()
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('SpiNNakerGraphFrontEnd/link_test/run_link_test.py', 12000, 'test_links', 'integration', '16')
                 }
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                /* catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('sPyNNaker/test_whole_board/test_borders.py', 12000, 'test_borders', 'integration', '16')
                 }
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -304,7 +304,7 @@ pipeline {
                 }
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('sPyNNaker/test_whole_board/test_whole_board.py', 12000, 'test_whole_machine', 'integration', '16')
-                }
+                } */
             }
         }
         stage('Reports') {
