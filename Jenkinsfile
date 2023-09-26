@@ -98,6 +98,7 @@ pipeline {
                 run_in_pyenv('make -C sPyNNaker8NewModelTemplate/c_models')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_examples')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/')
+                run_in_pyenv('make -C SpiNNakerGraphFrontEnd/link_test/')
                 run_in_pyenv('make -C SpiNNGym/c_code')
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
