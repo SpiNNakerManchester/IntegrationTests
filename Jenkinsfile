@@ -86,10 +86,10 @@ pipeline {
                 run_in_pyenv('pip3 install --upgrade "setuptools<59.8" wheel')
                 run_in_pyenv('pip install --upgrade pip')
 
-                // Python install from testpypi
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker==1!7.1.0')
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd==1!7.1.0')
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase==1!7.1.0')
+                // Python install from pypi
+                run_in_pyenv('pip install -i https://pypi.org/simple/ sPyNNaker==1!7.1.0')
+                run_in_pyenv('pip install -i https://pypi.org/simple/ SpiNNakerGraphFrontEnd==1!7.1.0')
+                run_in_pyenv('pip install -i https://pypi.org/simple/ SpiNNakerTestBase==1!7.1.0')
 
                 // C Build next as builds files to be installed in Python
                 run_in_pyenv('make -C $SPINN_DIRS')
@@ -105,7 +105,7 @@ pipeline {
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
 
-                // Python install not on testpypi
+                // Python install not on pypi
                 run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
