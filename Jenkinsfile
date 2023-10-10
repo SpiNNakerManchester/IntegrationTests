@@ -98,6 +98,8 @@ pipeline {
                 run_in_pyenv('make -C sPyNNaker8NewModelTemplate/c_models')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_examples')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/')
+                // Keep for later
+                // run_in_pyenv('make -C SpiNNakerGraphFrontEnd/link_test/')
                 run_in_pyenv('make -C SpiNNGym/c_code')
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
@@ -286,10 +288,24 @@ pipeline {
             when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
             }
+            environment {
+                SPALLOC_PASSWORD = credentials('spalloc-password')
+            }
             steps {
+                create_spynnaker_config()
+                create_gfe_config()
+                // Keep for later
+                /* catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    run_pytest('SpiNNakerGraphFrontEnd/link_test/run_link_test.py', 12000, 'test_links', 'integration', '16')
+                }
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
+                    run_pytest('sPyNNaker/test_whole_board/test_borders.py', 12000, 'test_borders', 'integration', '16')
+                }
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    run_pytest('sPyNNaker/test_whole_board/test_board_sets.py', 12000, 'test_board_sets', 'integration', '16')
+                } */
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    run_pytest('sPyNNaker/test_whole_board/test_whole_board.py', 12000, 'test_whole_machine', 'integration', '16')
                 }
             }
         }
@@ -335,7 +351,8 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     run_in_pyenv('py.test ' + tests +
-        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+        ' -rs -n ' + threads + ' --forked --maxschedchunk=1 --show-progress' +
+        ' --cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker8 --cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov data_specification --cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
