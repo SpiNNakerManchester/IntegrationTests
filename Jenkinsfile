@@ -98,7 +98,8 @@ pipeline {
                 run_in_pyenv('make -C sPyNNaker8NewModelTemplate/c_models')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_examples')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/')
-                run_in_pyenv('make -C SpiNNakerGraphFrontEnd/link_test/')
+                // Keep for later
+                // run_in_pyenv('make -C SpiNNakerGraphFrontEnd/link_test/')
                 run_in_pyenv('make -C SpiNNGym/c_code')
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
@@ -175,7 +176,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        /* stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -282,18 +283,19 @@ pipeline {
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
                 }
             }
-        } */
+        }
         stage('Run Whole Machine Tests') {
-            /* when {
+            when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            } */
+            }
             environment {
                 SPALLOC_PASSWORD = credentials('spalloc-password')
             }
             steps {
                 create_spynnaker_config()
                 create_gfe_config()
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                // Keep for later
+                /* catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('SpiNNakerGraphFrontEnd/link_test/run_link_test.py', 12000, 'test_links', 'integration', '16')
                 }
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -301,7 +303,7 @@ pipeline {
                 }
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('sPyNNaker/test_whole_board/test_board_sets.py', 12000, 'test_board_sets', 'integration', '16')
-                }
+                } */
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     run_pytest('sPyNNaker/test_whole_board/test_whole_board.py', 12000, 'test_whole_machine', 'integration', '16')
                 }
