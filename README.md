@@ -15,6 +15,7 @@ In particular, tests:
 * [Markov Chain Monte Carlo](https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo)
 * [SpiNNaker_PDP2](https://github.com/SpiNNakerManchester/SpiNNaker_PDP2)
 * [Visualiser](https://github.com/SpiNNakerManchester/Visualiser)
+* [ICub VOR-cerebellum examples](https://github.com/SpiNNakerManchester/vor_cerebellum)
 * [Whole Machine Tests](https://github.com/SpiNNakerManchester/sPyNNaker/tree/master/test_whole_board) (overnight only)
 
 # Testing a branch

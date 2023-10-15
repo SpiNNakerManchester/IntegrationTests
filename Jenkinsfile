@@ -71,6 +71,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNGym.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/vor_cerebellum.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
@@ -113,6 +114,7 @@ pipeline {
                 run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
                 run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
+                run_in_pyenv('pip install ./vor_cerebellum[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
@@ -190,6 +192,7 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
                 run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
+                run_pytest('vor_cerebellum/unittests', 1200, 'vor_cerebellum', 'unit', 'auto')
                 run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
@@ -253,6 +256,15 @@ pipeline {
                     create_spynnaker_config()
                     run_in_pyenv('python SpiNNGym/integration_tests/script_builder.py')
                     run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
+                }
+            }
+        }
+        stage('Run vor_cerebellum Integration Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_spynnaker_config()
+                    run_in_pyenv('python vor_cerebellum/integration_tests/script_builder.py')
+                    run_pytest('vor_cerebellum/integration_tests', 12000, 'vor_cerebellum_Integration', 'integration', 'auto')
                 }
             }
         }
