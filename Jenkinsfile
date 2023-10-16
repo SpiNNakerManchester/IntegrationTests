@@ -55,7 +55,6 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNMan.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PACMAN.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/DataSpecification.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spalloc.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git'
                 // C dependencies
@@ -107,7 +106,6 @@ pipeline {
                 run_in_pyenv('pip install ./SpiNNMachine[test]')
                 run_in_pyenv('pip install ./SpiNNMan[test]')
                 run_in_pyenv('pip install ./PACMAN[test]')
-                run_in_pyenv('pip install ./DataSpecification[test]')
                 run_in_pyenv('pip install ./spalloc[test]')
                 run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
                 run_in_pyenv('pip install ./TestBase[test]')
@@ -140,8 +138,6 @@ pipeline {
                 sh 'rm -r PACMAN/pacman'
                 sh 'rm -r PACMAN/pacman_test_objects'
                 sh 'rm -r PACMAN/build'
-                sh 'rm -r DataSpecification/data_specification'
-                sh 'rm -r DataSpecification/build'
                 sh 'rm -r spalloc/spalloc_client'
                 sh 'rm -r spalloc/build'
                 sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
@@ -189,7 +185,6 @@ pipeline {
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
                 run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
-                run_pytest('DataSpecification/unittests', 1200, 'DataSpecification', 'unit', 'auto')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
