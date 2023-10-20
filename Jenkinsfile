@@ -349,9 +349,9 @@ def create_spynnaker_config() {
         if [[ ! -f ~/.spynnaker.cfg ]]
         then
             echo "[Machine]" > ~/.spynnaker.cfg
-            echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
-            echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc_demo/" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+            echo "spalloc_use_proxy = False" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
             echo "use_java = True" >> ~/.spynnaker.cfg
             echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
@@ -368,9 +368,10 @@ def create_gfe_config() {
         if [[ ! -f ~/.spiNNakerGraphFrontEnd.cfg ]]
         then
             echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
-            echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_server = https://jenkins:jenkins@spinnaker.cs.man.ac.uk/spalloc_demo/" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+            echo "spalloc_use_proxy = False" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
             echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
