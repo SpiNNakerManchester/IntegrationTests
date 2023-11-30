@@ -338,7 +338,7 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     run_in_pyenv('py.test ' + tests +
-        ' -rs -n ' + threads + ' --forked --show-progress --maxschedchunk=1' +
+        ' -rs -n ' + threads + ' --forked --show-progress --maxschedchunk=1 ' +
         '--cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov spinnman --cov spinn_machine --cov spalloc ' +
