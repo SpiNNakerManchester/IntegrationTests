@@ -174,7 +174,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        /* stage('Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -281,11 +281,11 @@ pipeline {
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
                 }
             }
-        } */
+        }
         stage('Run Whole Machine Tests') {
-            /* when {
+            when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            } */
+            }
             environment {
                 SPALLOC_PASSWORD = credentials('spalloc-password')
             }
