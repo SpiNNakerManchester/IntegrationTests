@@ -286,6 +286,9 @@ pipeline {
             when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
             }
+            environment {
+                SPALLOC_PASSWORD = credentials('spalloc-password')
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -335,7 +338,8 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     run_in_pyenv('py.test ' + tests +
-        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+        ' -rs -n ' + threads + ' --forked --show-progress --maxschedchunk=1 ' +
+        '--cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
