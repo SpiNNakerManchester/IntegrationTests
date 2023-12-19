@@ -175,6 +175,9 @@ pipeline {
             }
         }
         stage('Unit Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
@@ -196,6 +199,9 @@ pipeline {
             }
         }
         stage('Run sPyNNaker Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -204,6 +210,9 @@ pipeline {
             }
         }
         stage('Run GFE Integeration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_gfe_config()
@@ -213,6 +222,9 @@ pipeline {
             }
         }
         stage('Run IntroLab Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -222,6 +234,9 @@ pipeline {
             }
         }
         stage('Run PyNN8Examples Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -231,6 +246,9 @@ pipeline {
             }
         }
         stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -240,6 +258,9 @@ pipeline {
             }
         }
         stage('Run microcircuit_model Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -248,6 +269,9 @@ pipeline {
             }
         }
         stage('Run SpiNNGym Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -257,6 +281,9 @@ pipeline {
             }
         }
         stage('Run MarkovChainMonteCarlo Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_gfe_config()
@@ -266,6 +293,9 @@ pipeline {
             }
         }
         stage('Run SpiNNaker_PDP2 Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_gfe_config()
@@ -275,6 +305,9 @@ pipeline {
             }
         }
         stage('Run Visualiser Integration Tests') {
+            environment {
+                TYPE_OVERRIDES = "true"
+            }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
