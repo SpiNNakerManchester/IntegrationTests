@@ -84,7 +84,7 @@ pipeline {
             steps {
                 // Make a virtualenv
                 sh 'virtualenv pyenv'
-                run_in_pyenv('pip3 install --upgrade "setuptools<59.8" wheel')
+                run_in_pyenv('pip3 install --upgrade wheel')
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Install SpiNNUtils first as needed for C build
