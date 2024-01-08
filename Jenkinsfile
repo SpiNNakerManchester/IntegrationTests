@@ -15,7 +15,7 @@
 */
 pipeline {
     agent {
-        docker { image 'python3.8' }
+        docker { image 'python3.12' }
     }
     environment {
         // This is where 'pip install --user' puts things
@@ -46,7 +46,7 @@ pipeline {
                 sh 'echo "Branch is $TRAVIS_BRANCH"'
                 // remove all directories left if Jenkins ended badly
                 sh 'git clone https://github.com/SpiNNakerManchester/SupportScripts.git support'
-                sh 'pip3 install --upgrade "setuptools<59.8" wheel'
+                sh 'pip3 install --upgrade setuptools wheel'
                 sh 'pip install --user --upgrade pip'
                 sh 'pip install virtualenv'
                 // SpiNNakerManchester internal dependencies; development mode
@@ -83,7 +83,7 @@ pipeline {
             steps {
                 // Make a virtualenv
                 sh 'virtualenv pyenv'
-                run_in_pyenv('pip3 install --upgrade "setuptools<59.8" wheel')
+                run_in_pyenv('pip3 install --upgrade setuptools wheel')
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Python install from testpypi
