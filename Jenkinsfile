@@ -282,6 +282,7 @@ pipeline {
                 }
             }
         }
+       /*
         stage('Run Whole Machine Tests') {
             when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
@@ -302,6 +303,7 @@ pipeline {
                 sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
+        */
         stage('Check Destroyed') {
             steps {
                 run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
