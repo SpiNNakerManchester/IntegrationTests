@@ -179,7 +179,9 @@ pipeline {
         }
         // TODO move later
         stage("SpiNNakerJupyterExamples") {
-            run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            steps {
+                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            }
         }
         stage('Unit Tests') {
             steps {
