@@ -175,6 +175,10 @@ pipeline {
                 sh 'echo "parallel = True" >> .coveragerc'
                 // Create a directory for test outputs
                 sh 'mkdir junit/'
+                // Empty config is sometimes needed in unit tests
+                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
+                create_spynnaker_config()
+                create_gfe_config()
             }
         }
         // TODO move later
@@ -185,10 +189,6 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                // Empty config is sometimes needed in unit tests
-                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
-                create_spynnaker_config()
-                create_gfe_config()
                 l('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
