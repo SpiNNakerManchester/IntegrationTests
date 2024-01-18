@@ -175,21 +175,15 @@ pipeline {
                 sh 'echo "parallel = True" >> .coveragerc'
                 // Create a directory for test outputs
                 sh 'mkdir junit/'
-                // Empty config is sometimes needed in unit tests
-                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
-                create_spynnaker_config()
-                create_gfe_config()
-            }
-        }
-        // TODO move later
-        stage("SpiNNakerJupyterExamples") {
-            steps {
-                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
             }
         }
         stage('Unit Tests') {
             steps {
-                l('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
+                // Empty config is sometimes needed in unit tests
+                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
+                create_spynnaker_config()
+                create_gfe_config()
+                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
@@ -290,6 +284,12 @@ pipeline {
                     create_spynnaker_config()
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
                 }
+            }
+        }
+        stage("SpiNNakerJupyterExamples") {
+            steps {
+                create_spynnaker_config()
+                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
             }
         }
        /*
