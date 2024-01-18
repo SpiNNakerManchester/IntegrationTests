@@ -122,7 +122,7 @@ pipeline {
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
+                run_in_pyenv('pip install ndmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
@@ -307,13 +307,13 @@ pipeline {
                 }
             }
         }
+        */
         stage('Reports') {
             steps {
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
                 sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
-        */
         stage('Check Destroyed') {
             steps {
                 run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
