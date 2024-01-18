@@ -74,6 +74,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
+                sh 'support/gitclone.sh  https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
             }
         }
         stage('Install') {
@@ -117,6 +118,7 @@ pipeline {
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
+                // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
@@ -161,6 +163,7 @@ pipeline {
                 //NO remove SpiNNaker_PDP2
                 sh 'rm -r Visualiser/visualiser_example_binaries'
                 sh 'rm -r Visualiser/build'
+                // No remove SpiNNakerJupyterExamples
             }
         }
         stage('Before Script') {
@@ -174,13 +177,17 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        // TODO move later
+        stage("SpiNNakerJupyterExamples") {
+            run_in_pyenv("pytest -n auto --nbmake */*.ipynb */**/*.ipynb */**/**/*.ipynb */**/**/**/*.ipynb */**/**/**/*.ipynb */**/**/**/**/*.ipynb"
+        }
         stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 create_spynnaker_config()
                 create_gfe_config()
-                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
+                l('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
@@ -193,6 +200,7 @@ pipeline {
                 run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
+                // no SpiNNakerJupyterExamples
             }
         }
         stage('Run sPyNNaker Integration Tests') {
