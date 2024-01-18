@@ -74,6 +74,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
+                sh 'support/gitclone.sh  https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
             }
         }
         stage('Install') {
@@ -117,10 +118,11 @@ pipeline {
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
+                // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
+                run_in_pyenv('pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
@@ -161,6 +163,7 @@ pipeline {
                 //NO remove SpiNNaker_PDP2
                 sh 'rm -r Visualiser/visualiser_example_binaries'
                 sh 'rm -r Visualiser/build'
+                // No remove SpiNNakerJupyterExamples
             }
         }
         stage('Before Script') {
@@ -193,6 +196,7 @@ pipeline {
                 run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
+                // no SpiNNakerJupyterExamples
             }
         }
         stage('Run sPyNNaker Integration Tests') {
@@ -282,6 +286,12 @@ pipeline {
                 }
             }
         }
+        stage("SpiNNakerJupyterExamples") {
+            steps {
+                create_spynnaker_config()
+                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            }
+        }
        /*
         stage('Run Whole Machine Tests') {
             when {
@@ -297,13 +307,13 @@ pipeline {
                 }
             }
         }
+        */
         stage('Reports') {
             steps {
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
                 sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
-        */
         stage('Check Destroyed') {
             steps {
                 run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
