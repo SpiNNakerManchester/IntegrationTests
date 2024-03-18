@@ -15,7 +15,7 @@
 */
 pipeline {
     agent {
-        docker { image 'python3.8' }
+        docker { image 'python3.12' }
     }
     environment {
         // This is where 'pip install --user' puts things
@@ -47,7 +47,7 @@ pipeline {
                 sh 'echo "Branch is $TRAVIS_BRANCH"'
                 // remove all directories left if Jenkins ended badly
                 sh 'git clone https://github.com/SpiNNakerManchester/SupportScripts.git support'
-                sh 'pip3 install --upgrade "setuptools<59.8" wheel'
+                sh 'pip3 install --upgrade setuptools wheel'
                 sh 'pip install --user --upgrade pip'
                 sh 'pip install virtualenv'
                 // SpiNNakerManchester internal dependencies; development mode
@@ -74,6 +74,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
+                sh 'support/gitclone.sh  https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
             }
         }
         stage('Install') {
@@ -84,7 +85,7 @@ pipeline {
             steps {
                 // Make a virtualenv
                 sh 'virtualenv pyenv'
-                run_in_pyenv('pip3 install --upgrade "setuptools<59.8" wheel')
+                run_in_pyenv('pip3 install --upgrade setuptools wheel')
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Install SpiNNUtils first as needed for C build
@@ -117,10 +118,11 @@ pipeline {
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
+                // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
                 // coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
-                run_in_pyenv('pip install python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
+                run_in_pyenv('pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
                 sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
@@ -161,6 +163,7 @@ pipeline {
                 //NO remove SpiNNaker_PDP2
                 sh 'rm -r Visualiser/visualiser_example_binaries'
                 sh 'rm -r Visualiser/build'
+                // No remove SpiNNakerJupyterExamples
             }
         }
         stage('Before Script') {
@@ -193,6 +196,7 @@ pipeline {
                 run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
+                // no SpiNNakerJupyterExamples
             }
         }
         stage('Run sPyNNaker Integration Tests') {
@@ -282,9 +286,19 @@ pipeline {
                 }
             }
         }
+        stage("SpiNNakerJupyterExamples") {
+            steps {
+                create_spynnaker_config()
+                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            }
+        }
+       /*
         stage('Run Whole Machine Tests') {
             when {
                 environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
+            }
+            environment {
+                SPALLOC_PASSWORD = credentials('spalloc-password')
             }
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -293,6 +307,7 @@ pipeline {
                 }
             }
         }
+        */
         stage('Reports') {
             steps {
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
@@ -335,7 +350,8 @@ def run_pytest(String tests, int timeout, String results, String covfile, String
     covfile += '_cov.xml'
     sh 'echo "<testsuite tests="0"></testsuite>" > ' + resfile
     run_in_pyenv('py.test ' + tests +
-        ' -rs -n ' + threads + ' --forked --show-progress --cov-config=.coveragerc --cov-branch ' +
+        ' -rs -n ' + threads + ' --forked --show-progress --maxschedchunk=1 ' +
+        '--cov-config=.coveragerc --cov-branch ' +
         '--cov spynnaker --cov spinn_front_end_common --cov pacman ' +
         '--cov spinnman --cov spinn_machine --cov spalloc ' +
         '--cov spinn_utilities --cov spinnaker_graph_front_end ' +
