@@ -75,7 +75,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TSPonSpiNNaker.git'
+                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TSPonSpiNNaker.git'
             }
         }
         stage('Install') {
