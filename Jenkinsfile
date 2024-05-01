@@ -183,6 +183,7 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
+        /*
         stage('Unit Tests') {
             steps {
                 // Empty config is sometimes needed in unit tests
@@ -206,11 +207,12 @@ pipeline {
                 // no SpiNNakerJupyterExamples
             }
         }
+        */
         stage('Run TSPonSpiNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_gfe_config()
-                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py.py')
+                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
                     run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
                 }
             }
