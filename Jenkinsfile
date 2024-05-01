@@ -163,13 +163,13 @@ pipeline {
                 sh 'rm -r SpiNNGym/build'
                 sh 'rm -r MarkovChainMonteCarlo/mcmc'
                 sh 'rm -r MarkovChainMonteCarlo/build'
-                sh 'rm -r TSPonSpiNNaker/spinnaker_c'
-                sh 'rm -r TSPonSpiNNaker/build'
                 // Due to the binaries being outside of the package
                 //NO remove SpiNNaker_PDP2
                 sh 'rm -r Visualiser/visualiser_example_binaries'
                 sh 'rm -r Visualiser/build'
                 // No remove SpiNNakerJupyterExamples
+                sh 'rm -r TSPonSpiNNaker/spinnaker_c'
+                sh 'rm -r TSPonSpiNNaker/build'
             }
         }
         stage('Before Script') {
@@ -204,15 +204,6 @@ pipeline {
                 run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
                 // no SpiNNakerJupyterExamples
-            }
-        }
-        stage('Run TSPonSpiNNaker Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
-                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
-                }
             }
         }
         stage('Run sPyNNaker Integration Tests') {
@@ -306,6 +297,15 @@ pipeline {
             steps {
                 create_spynnaker_config()
                 run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            }
+        }
+        stage('Run TSPonSpiNNaker Integration Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
+                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
+                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
+                }
             }
         }
        /*
