@@ -41,6 +41,7 @@ pipeline {
         stage('Before Install') {
             environment {
                 TRAVIS_BRANCH = getGitBranchName()
+                GITHUB_TOKEN = credentials('98413a50-3a5d-4ca9-b672-5bfc168f01a5')
             }
             steps {
                 // Verify the branch
@@ -75,7 +76,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
-                sh 'support/gitclone.sh git@github.com:SpiNNakerManchester/TSPonSpiNNaker.git'
+                sh 'support/gitclone.sh https://$GITHUB_TOKEN@github.com:SpiNNakerManchester/TSPonSpiNNaker.git'
             }
         }
         stage('Install') {
