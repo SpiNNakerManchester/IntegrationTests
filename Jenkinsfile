@@ -105,6 +105,7 @@ pipeline {
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
+                run_in_pyenv('make -C TSPonSpiNNaker/spinnaker_c')
                 // Python install
                 run_in_pyenv('pip install ./SpiNNMachine[test]')
                 run_in_pyenv('pip install ./SpiNNMan[test]')
@@ -120,6 +121,7 @@ pipeline {
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
+                run_in_pyenv('pip install ./TSPonSpiNNaker[test]')
                 // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
@@ -161,6 +163,8 @@ pipeline {
                 sh 'rm -r SpiNNGym/build'
                 sh 'rm -r MarkovChainMonteCarlo/mcmc'
                 sh 'rm -r MarkovChainMonteCarlo/build'
+                sh 'rm -r TSPonSpiNNaker/spinnaker_c'
+                sh 'rm -r TSPonSpiNNaker/build'
                 // Due to the binaries being outside of the package
                 //NO remove SpiNNaker_PDP2
                 sh 'rm -r Visualiser/visualiser_example_binaries'
@@ -195,10 +199,20 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
                 run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
-                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'MarkovChainMonteCarlo', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
                 // no SpiNNakerJupyterExamples
+            }
+        }
+        stage('Run TSPonSpiNNaker Integration Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
+                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py.py')
+                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
+                }
             }
         }
         stage('Run sPyNNaker Integration Tests') {
