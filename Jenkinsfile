@@ -68,7 +68,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNN8Examples.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNNExamples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNGym.git'
@@ -197,7 +197,7 @@ pipeline {
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
-                run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
+                run_pytest('PyNNExamples/unittests', 1200, 'PyNNExamples', 'unit', 'auto')
                 run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
                 run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'MarkovChainMonteCarlo', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
@@ -232,12 +232,12 @@ pipeline {
                 }
             }
         }
-        stage('Run PyNN8Examples Integration Tests') {
+        stage('Run PyNNExamples Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
-                    run_in_pyenv('python PyNN8Examples/integration_tests/script_builder.py')
-                    run_pytest('PyNN8Examples/integration_tests', 3600, 'PyNN8Examples_Integration', 'integration', 'auto')
+                    run_in_pyenv('python PyNNExamples/integration_tests/script_builder.py')
+                    run_pytest('PyNNExamples/integration_tests', 3600, 'PyNNExamples_Integration', 'integration', 'auto')
                 }
             }
         }
