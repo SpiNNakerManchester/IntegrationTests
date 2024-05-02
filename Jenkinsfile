@@ -41,6 +41,7 @@ pipeline {
         stage('Before Install') {
             environment {
                 TRAVIS_BRANCH = getGitBranchName()
+                GITHUB_TOKEN = credentials('98413a50-3a5d-4ca9-b672-5bfc168f01a5')
             }
             steps {
                 // Verify the branch
@@ -74,7 +75,8 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
-                sh 'support/gitclone.sh  https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
+                sh 'support/gitclone.sh https://$GITHUB_TOKEN@github.com/SpiNNakerManchester/TSPonSpiNNaker.git'
             }
         }
         stage('Install') {
@@ -103,6 +105,7 @@ pipeline {
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
+                run_in_pyenv('make -C TSPonSpiNNaker/spinnaker_c')
                 // Python install
                 run_in_pyenv('pip install ./SpiNNMachine[test]')
                 run_in_pyenv('pip install ./SpiNNMan[test]')
@@ -118,6 +121,7 @@ pipeline {
                 // Due to the binaries being outside of the package
                 run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
                 run_in_pyenv('pip install ./Visualiser[test]')
+                run_in_pyenv('pip install ./TSPonSpiNNaker[test]')
                 // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Additional requirements for testing here
@@ -164,6 +168,8 @@ pipeline {
                 sh 'rm -r Visualiser/visualiser_example_binaries'
                 sh 'rm -r Visualiser/build'
                 // No remove SpiNNakerJupyterExamples
+                sh 'rm -r TSPonSpiNNaker/spinnaker_c'
+                sh 'rm -r TSPonSpiNNaker/build'
             }
         }
         stage('Before Script') {
@@ -193,8 +199,9 @@ pipeline {
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 run_pytest('PyNN8Examples/unittests', 1200, 'PyNN8Examples', 'unit', 'auto')
                 run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
-                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'MarkovChainMonteCarlo', 'unit', 'auto')
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
+                run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
                 // no SpiNNakerJupyterExamples
             }
@@ -290,6 +297,15 @@ pipeline {
             steps {
                 create_spynnaker_config()
                 run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+            }
+        }
+        stage('Run TSPonSpiNNaker Integration Tests') {
+            steps {
+                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
+                    create_gfe_config()
+                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
+                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
+                }
             }
         }
        /*
