@@ -69,7 +69,7 @@ pipeline {
                 // scripts
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNNExamples.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git'
+                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNGym.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
@@ -98,7 +98,7 @@ pipeline {
                 run_in_pyenv('make -C SpiNNFrontEndCommon/c_common')
                 run_in_pyenv('make -C SpiNNFrontEndCommon/c_common install')
                 run_in_pyenv('make -C sPyNNaker/neural_modelling')
-                run_in_pyenv('make -C sPyNNaker8NewModelTemplate/c_models')
+                run_in_pyenv('make -C sPyNNakerNewModelTemplate/c_models')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_examples')
                 run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/')
                 run_in_pyenv('make -C SpiNNGym/c_code')
@@ -114,7 +114,7 @@ pipeline {
                 run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
                 run_in_pyenv('pip install ./TestBase[test]')
                 run_in_pyenv('pip install ./sPyNNaker[test]')
-                run_in_pyenv('pip install ./sPyNNaker8NewModelTemplate[test]')
+                run_in_pyenv('pip install ./sPyNNakerNewModelTemplate[test]')
                 run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
                 run_in_pyenv('pip install ./SpiNNGym[test]')
                 run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
@@ -154,8 +154,8 @@ pipeline {
                 sh 'rm -r sPyNNaker/spynnaker'
                 sh 'rm -r sPyNNaker/neural_modelling'
                 sh 'rm -r sPyNNaker/build'
-                sh 'rm -r sPyNNaker8NewModelTemplate/python_models8'
-                sh 'rm -r sPyNNaker8NewModelTemplate/build'
+                sh 'rm -r sPyNNakerNewModelTemplate/python_models8'
+                sh 'rm -r sPyNNakerNewModelTemplate/build'
                 sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
                 sh 'rm -r SpiNNakerGraphFrontEnd/build'
                 sh 'rm -r SpiNNGym/spinn_gym'
@@ -241,12 +241,12 @@ pipeline {
                 }
             }
         }
-        stage('Run sPyNNaker8NewModelTemplate Integration Tests') {
+        stage('Run sPyNNakerNewModelTemplate Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
-                    run_in_pyenv('python sPyNNaker8NewModelTemplate/nmt_integration_tests/script_builder.py')
-                    run_pytest('sPyNNaker8NewModelTemplate/nmt_integration_tests', 3600, 'sPyNNaker8NewModelTemplate_Integration', 'integration', 'auto')
+                    run_in_pyenv('python sPyNNakerNewModelTemplate/nmt_integration_tests/script_builder.py')
+                    run_pytest('sPyNNakerNewModelTemplate/nmt_integration_tests', 3600, 'sPyNNakerNewModelTemplate_Integration', 'integration', 'auto')
                 }
             }
         }
