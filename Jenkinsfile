@@ -298,11 +298,10 @@ pipeline {
                 }
             }
         }
-       /*
         stage('Run Whole Machine Tests') {
-            when {
-                environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }
+            //when {
+            //    environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
+           // }
             environment {
                 SPALLOC_PASSWORD = credentials('spalloc-password')
             }
@@ -313,7 +312,6 @@ pipeline {
                 }
             }
         }
-        */
         stage('Reports') {
             steps {
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
