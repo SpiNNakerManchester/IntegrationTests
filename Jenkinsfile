@@ -67,7 +67,6 @@ pipeline {
                 // Java dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/IntroLab.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNNExamples.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
