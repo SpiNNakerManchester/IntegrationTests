@@ -15,7 +15,7 @@
 */
 pipeline {
     agent {
-        docker { image 'python3.12' }
+        docker { image 'python3.8' }
     }
     environment {
         // This is where 'pip install --user' puts things
