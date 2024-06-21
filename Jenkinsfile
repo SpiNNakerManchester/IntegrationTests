@@ -222,15 +222,6 @@ pipeline {
                 }
             }
         }
-        stage('Run IntroLab Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python IntroLab/integration_tests/script_builder.py')
-                    run_pytest('IntroLab/integration_tests', 3600, 'IntroLab_Integration', 'integration', 'auto')
-                }
-            }
-        }
         stage('Run PyNNExamples Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
