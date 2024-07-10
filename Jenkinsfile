@@ -190,7 +190,7 @@ pipeline {
                 create_gfe_config()
                 run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
-                run_pytest('SpiNNMan/spinnman_tests', 1200, 'SpiNNMan', 'unit', 'auto')
+                run_pytest('SpiNNMan/unittest', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
                 run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
