@@ -374,6 +374,7 @@ def create_spynnaker_config() {
             echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
             echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
             echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+            echo "disable_advanced_monitor_usage_for_data_in = True" >> ~/.spynnaker.cfg
             echo "[Java]" >> ~/.spynnaker.cfg
             echo "use_java = True" >> ~/.spynnaker.cfg
             echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
