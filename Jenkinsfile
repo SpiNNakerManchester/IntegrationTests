@@ -67,14 +67,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PyNNExamples.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/microcircuit_model.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNGym.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/TestBase.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
-                sh 'support/gitclone.sh https://$GITHUB_TOKEN@github.com/SpiNNakerManchester/TSPonSpiNNaker.git'
             }
         }
         stage('Install') {
@@ -93,39 +86,6 @@ pipeline {
                 run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre')
                 run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre')
 
-                // C Build next as builds files to be installed in Python
-                run_in_pyenv('make -C $SPINN_DIRS')
-                run_in_pyenv('make -C spinn_common install')
-                run_in_pyenv('make -C SpiNNFrontEndCommon/c_common')
-                run_in_pyenv('make -C SpiNNFrontEndCommon/c_common install')
-                run_in_pyenv('make -C sPyNNaker/neural_modelling')
-                run_in_pyenv('make -C sPyNNakerNewModelTemplate/c_models')
-                run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_examples')
-                run_in_pyenv('make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/')
-                run_in_pyenv('make -C SpiNNGym/c_code')
-                run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
-                run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
-                run_in_pyenv('make -C Visualiser')
-
-                // Python install not on testpypi
-                run_in_pyenv('make -C TSPonSpiNNaker/spinnaker_c')
-                // Python install
-                run_in_pyenv('pip install ./SpiNNMachine[test]')
-                run_in_pyenv('pip install ./SpiNNMan[test]')
-                run_in_pyenv('pip install ./PACMAN[test]')
-                run_in_pyenv('pip install ./spalloc[test]')
-                run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
-                run_in_pyenv('pip install ./TestBase[test]')
-                run_in_pyenv('pip install ./sPyNNaker[test]')
-                run_in_pyenv('pip install ./sPyNNakerNewModelTemplate[test]')
-                run_in_pyenv('pip install ./SpiNNakerGraphFrontEnd[test]')
-                run_in_pyenv('pip install ./SpiNNGym[test]')
-                run_in_pyenv('pip install ./MarkovChainMonteCarlo[test]')
-                // Due to the binaries being outside of the package
-                run_in_pyenv('pip install -e ./SpiNNaker_PDP2[test]')
-                run_in_pyenv('pip install ./Visualiser[test]')
-                run_in_pyenv('pip install ./TSPonSpiNNaker[test]')
-                // no install SpiNNakerJupyterExamples
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Stuff normally installed by [test] installs
                 run_in_pyenv('pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz')
@@ -151,23 +111,9 @@ pipeline {
                 sh 'rm -r TestBase/spinnaker_testbase'
                 sh 'rm -r sPyNNaker/spynnaker'
                 sh 'rm -r sPyNNaker/neural_modelling'
-                sh 'rm -r sPyNNaker/build'
                 sh 'rm -r sPyNNakerNewModelTemplate/python_models8'
-                sh 'rm -r sPyNNakerNewModelTemplate/build'
                 sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
-                sh 'rm -r SpiNNGym/spinn_gym'
-                sh 'rm -r SpiNNGym/c_code'
-                sh 'rm -r SpiNNGym/build'
-                sh 'rm -r MarkovChainMonteCarlo/mcmc'
-                sh 'rm -r MarkovChainMonteCarlo/build'
-                // Due to the binaries being outside of the package
-                //NO remove SpiNNaker_PDP2
-                sh 'rm -r Visualiser/visualiser_example_binaries'
-                sh 'rm -r Visualiser/build'
-                // No remove SpiNNakerJupyterExamples
-                sh 'rm -r TSPonSpiNNaker/spinnaker_c'
-                sh 'rm -r TSPonSpiNNaker/build'
-            }
+           }
         }
         stage('Before Script') {
             steps {
@@ -195,12 +141,7 @@ pipeline {
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
                 run_pytest('PyNNExamples/unittests', 1200, 'PyNNExamples', 'unit', 'auto')
-                run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
-                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'MarkovChainMonteCarlo', 'unit', 'auto')
-                run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
-                run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
-                // no SpiNNakerJupyterExamples
             }
         }
         stage('Run sPyNNaker Integration Tests') {
@@ -229,15 +170,6 @@ pipeline {
                 }
             }
         }
-        stage('Run sPyNNakerNewModelTemplate Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python sPyNNakerNewModelTemplate/nmt_integration_tests/script_builder.py')
-                    run_pytest('sPyNNakerNewModelTemplate/nmt_integration_tests', 3600, 'sPyNNakerNewModelTemplate_Integration', 'integration', 'auto')
-                }
-            }
-        }
         stage('Run microcircuit_model Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
@@ -246,72 +178,6 @@ pipeline {
                 }
             }
         }
-        stage('Run SpiNNGym Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python SpiNNGym/integration_tests/script_builder.py')
-                    run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run MarkovChainMonteCarlo Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py')
-                    run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run SpiNNaker_PDP2 Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python SpiNNaker_PDP2/integration_tests/script_builder.py')
-                    run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run Visualiser Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage("SpiNNakerJupyterExamples") {
-            steps {
-                create_spynnaker_config()
-                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
-            }
-        }
-        stage('Run TSPonSpiNNaker Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
-                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
-                }
-            }
-        }
-       /*
-        stage('Run Whole Machine Tests') {
-            when {
-                environment name: 'THE_JOB', value: 'Integration_Tests_Cron_Job'
-            }
-            environment {
-                SPALLOC_PASSWORD = credentials('spalloc-password')
-            }
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('sPyNNaker/test_whole_board', 12000, 'test_whole_machine', 'integration', '16')
-                }
-            }
-        }
-        */
         stage('Reports') {
             steps {
                 sh 'find . -maxdepth 3 -type f -wholename "*/global_reports/*" -print -exec cat \\{\\}  \\;'
