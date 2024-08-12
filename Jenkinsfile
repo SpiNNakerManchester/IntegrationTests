@@ -81,9 +81,9 @@ pipeline {
                 run_in_pyenv('pip install --upgrade pip')
 
                 // Python install from testpypi
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre')
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre')
-                run_in_pyenv('pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre')
+                run_in_pyenv('pip install sPyNNaker==1!7.2.1')
+                run_in_pyenv('pip install SpiNNakerGraphFrontEnd==1!7.2.1')
+                run_in_pyenv('pip install SpiNNakerTestBase==1!7.2.1'')
 
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Stuff normally installed by [test] installs
