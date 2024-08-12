@@ -32,6 +32,7 @@ pipeline {
                 sh 'echo "Job name is $THE_JOB (from $JOB_NAME)"'
                 sh 'rm -rf ${WORKSPACE}/*'
                 sh 'rm -rf ${WORKSPACE}/.[a-zA-Z0-9]*'
+                sh 'mkdir ${WORKSPACE}/global_reports'
                 dir('IntegrationTests') {
                     checkout scm
                 }
