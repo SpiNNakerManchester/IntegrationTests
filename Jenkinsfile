@@ -62,7 +62,6 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinn_common.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/sPyNNaker.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/Visualiser.git'
                 // Java dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/JavaSpiNNaker'
                 // scripts
@@ -108,10 +107,8 @@ pipeline {
                 sh 'rm -r spalloc/spalloc_client'
                 sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
                 sh 'rm -r SpiNNFrontEndCommon/c_common'
-                sh 'rm -r TestBase/spinnaker_testbase'
                 sh 'rm -r sPyNNaker/spynnaker'
                 sh 'rm -r sPyNNaker/neural_modelling'
-                sh 'rm -r sPyNNakerNewModelTemplate/python_models8'
                 sh 'rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end'
            }
         }
