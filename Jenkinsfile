@@ -83,7 +83,7 @@ pipeline {
                 // Python install from testpypi
                 run_in_pyenv('pip install sPyNNaker==1!7.2.1')
                 run_in_pyenv('pip install SpiNNakerGraphFrontEnd==1!7.2.1')
-                run_in_pyenv('pip install SpiNNakerTestBase==1!7.2.1'')
+                run_in_pyenv('pip install SpiNNakerTestBase==1!7.2.1')
 
                 run_in_pyenv('python -m spynnaker.pyNN.setup_pynn')
                 // Stuff normally installed by [test] installs
