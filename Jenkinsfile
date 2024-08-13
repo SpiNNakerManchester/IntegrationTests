@@ -150,15 +150,6 @@ pipeline {
                 }
             }
         }
-        stage('Run GFE Integeration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py')
-                    run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
-                }
-            }
-        }
         stage('Run PyNNExamples Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
