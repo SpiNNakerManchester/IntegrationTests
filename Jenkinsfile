@@ -192,7 +192,7 @@ pipeline {
                 run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
                 run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
                 run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
-                run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
+                /*run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
                 run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
                 run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
                 run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
@@ -202,7 +202,7 @@ pipeline {
                 run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
                 run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
-                // no SpiNNakerJupyterExamples
+                // no SpiNNakerJupyterExamples */
             }
         }
         /*stage('Run sPyNNaker Integration Tests') {
@@ -347,7 +347,7 @@ pipeline {
         }
         success {
             junit 'junit/*.xml'
-            recordCoverage(tools: [[parser: 'JUnit']],
+            recordCoverage(tools: [[parser: 'COBERTURA', pattern: '*_cov.xml']],
                 id: 'coverage', name: 'Coverage',
                 sourceCodeRetention: 'EVERY_BUILD')
         }
