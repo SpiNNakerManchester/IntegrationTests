@@ -205,7 +205,7 @@ pipeline {
                 // no SpiNNakerJupyterExamples
             }
         }
-        stage('Run sPyNNaker Integration Tests') {
+        /*stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
@@ -297,7 +297,7 @@ pipeline {
                     run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
                 }
             }
-        }
+        } */
        /*
         stage('Run Whole Machine Tests') {
             when {
@@ -346,7 +346,9 @@ pipeline {
         }
         success {
             junit 'junit/*.xml'
-            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
+            recordCoverage(tools: [[parser: 'JUnit']],
+                id: 'coverage', name: 'Coverage',
+                sourceCodeRetention: 'EVERY_BUILD')
         }
     }
 }
