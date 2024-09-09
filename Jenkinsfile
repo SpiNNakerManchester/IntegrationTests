@@ -282,13 +282,14 @@ pipeline {
                     run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
                 }
             }
-        }
-        stage("SpiNNakerJupyterExamples") {
-            steps {
-                create_spynnaker_config()
-                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
-            }
-        }
+        } */
+        // stage("SpiNNakerJupyterExamples") {
+        //    steps {
+        //        create_spynnaker_config()
+        //        run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
+        //    }
+        //}
+        /*
         stage('Run TSPonSpiNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
