@@ -134,7 +134,7 @@ pipeline {
         }
         stage('Delete install sources') {
             steps {
-                sh 'rm -r spinn_common'
+                // sh 'rm -r spinn_common'
                 sh 'rm -r SpiNNUtils/spinn_utilities'
                 sh 'rm -r SpiNNUtils/build'
                 sh 'rm -r SpiNNMachine/spinn_machine'
