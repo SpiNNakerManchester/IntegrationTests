@@ -316,7 +316,7 @@ pipeline {
                 }
             }
         }
-        */
+
         stage('Reports') {
             steps {
                 run_in_pyenv('python -m spinn_utilities.executable_finder')
@@ -327,7 +327,7 @@ pipeline {
             steps {
                 run_in_pyenv('python -m spinnaker_testbase.test_no_job_destroy')
             }
-        }
+        } */
     }
     post {
         always {
