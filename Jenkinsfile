@@ -56,7 +56,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNMachine.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNMan.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/PACMAN.git'
-                sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spalloc.git'
+                /*sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spalloc.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git'
                 // C dependencies
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/spinnaker_tools.git'
@@ -76,6 +76,7 @@ pipeline {
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git'
                 sh 'support/gitclone.sh https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git'
                 sh 'support/gitclone.sh https://$GITHUB_TOKEN@github.com/SpiNNakerManchester/TSPonSpiNNaker.git'
+                */
             }
         }
         stage('Install') {
@@ -92,7 +93,7 @@ pipeline {
                 // Install SpiNNUtils first as needed for C build
                 run_in_pyenv('pip install ./SpiNNUtils[test]')
                 // C Build next as builds files to be installed in Python
-                run_in_pyenv('make -C $SPINN_DIRS')
+                /*run_in_pyenv('make -C $SPINN_DIRS')
                 run_in_pyenv('make -C spinn_common install')
                 run_in_pyenv('make -C SpiNNFrontEndCommon/c_common')
                 run_in_pyenv('make -C SpiNNFrontEndCommon/c_common install')
@@ -104,12 +105,12 @@ pipeline {
                 run_in_pyenv('make -C MarkovChainMonteCarlo/c_models')
                 run_in_pyenv('make -C SpiNNaker_PDP2/c_code')
                 run_in_pyenv('make -C Visualiser')
-                run_in_pyenv('make -C TSPonSpiNNaker/spinnaker_c')
+                run_in_pyenv('make -C TSPonSpiNNaker/spinnaker_c') */
                 // Python install
                 run_in_pyenv('pip install ./SpiNNMachine[test]')
                 run_in_pyenv('pip install ./SpiNNMan[test]')
                 run_in_pyenv('pip install ./PACMAN[test]')
-                run_in_pyenv('pip install ./spalloc[test]')
+                /*run_in_pyenv('pip install ./spalloc[test]')
                 run_in_pyenv('pip install ./SpiNNFrontEndCommon[test]')
                 run_in_pyenv('pip install ./TestBase[test]')
                 run_in_pyenv('pip install ./sPyNNaker[test]')
@@ -128,7 +129,7 @@ pipeline {
                 run_in_pyenv('pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout')
                 run_in_pyenv('pip freeze')
                 // Java install, not server
-                sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv'
+                sh 'mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv' */
             }
         }
         stage('Delete install sources') {
@@ -143,7 +144,7 @@ pipeline {
                 sh 'rm -r PACMAN/pacman'
                 sh 'rm -r PACMAN/pacman_test_objects'
                 sh 'rm -r PACMAN/build'
-                sh 'rm -r spalloc/spalloc_client'
+                /*sh 'rm -r spalloc/spalloc_client'
                 sh 'rm -r spalloc/build'
                 sh 'rm -r SpiNNFrontEndCommon/spinn_front_end_common'
                 sh 'rm -r SpiNNFrontEndCommon/c_common'
@@ -168,7 +169,7 @@ pipeline {
                 sh 'rm -r Visualiser/build'
                 // No remove SpiNNakerJupyterExamples
                 sh 'rm -r TSPonSpiNNaker/spinnaker_c'
-                sh 'rm -r TSPonSpiNNaker/build'
+                sh 'rm -r TSPonSpiNNaker/build' */
             }
         }
         stage('Before Script') {
