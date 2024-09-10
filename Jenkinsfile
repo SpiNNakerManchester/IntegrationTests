@@ -199,7 +199,9 @@ pipeline {
         }
         success {
             junit 'junit/*.xml'
-            cobertura coberturaReportFile: '*_cov.xml', enableNewApi: true
+            recordCoverage(tools: [[parser: 'COBERTURA', pattern: '*_cov.xml']],
+                id: 'coverage', name: 'Coverage',
+                sourceCodeRetention: 'EVERY_BUILD')
         }
     }
 }
