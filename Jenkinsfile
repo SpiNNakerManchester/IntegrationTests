@@ -182,7 +182,6 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        /*
         stage('Unit Tests') {
             steps {
                // Empty config is sometimes needed in unit tests
@@ -206,7 +205,6 @@ pipeline {
                 // no SpiNNakerJupyterExamples
             }
         }
-        */
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
