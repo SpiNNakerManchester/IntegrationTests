@@ -184,7 +184,7 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-               // Empty config is sometimes needed in unit tests
+                // Empty config is sometimes needed in unit tests
                 sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
                 create_spynnaker_config()
                 create_gfe_config()
