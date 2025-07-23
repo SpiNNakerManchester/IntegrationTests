@@ -208,7 +208,7 @@ pipeline {
         */
         stage('Reports') {
             steps {
-                run_in_pyenv('python -m spinn_utilities.executable_finder')
+                //run_in_pyenv('python -m spinn_utilities.executable_finder')
                 sh 'find ${WORKSPACE}/global_reports -print -exec cat \\{\\}  \\;'
             }
         }
