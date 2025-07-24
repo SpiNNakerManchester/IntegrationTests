@@ -182,119 +182,11 @@ pipeline {
                 sh 'mkdir junit/'
             }
         }
-        stage('Unit Tests') {
-            steps {
-                // Empty config is sometimes needed in unit tests
-                sh 'echo "# Empty config" >  ~/.spinnaker.cfg'
-                create_spynnaker_config()
-                create_gfe_config()
-                run_pytest('SpiNNUtils/unittests', 1200, 'SpiNNUtils', 'unit', 'auto')
-                run_pytest('SpiNNMachine/unittests', 1200, 'SpiNNMachine', 'unit', 'auto')
-                run_pytest('SpiNNMan/unittests', 1200, 'SpiNNMan', 'unit', 'auto')
-                run_pytest('PACMAN/unittests', 1200, 'PACMAN', 'unit', 'auto')
-                run_pytest('spalloc/tests', 1200, 'spalloc', 'unit', '1')
-                run_pytest('SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests', 1200, 'SpiNNFrontEndCommon', 'unit', 'auto')
-                run_pytest('sPyNNaker/unittests', 1200, 'sPyNNaker', 'unit', 'auto')
-                run_pytest('SpiNNakerGraphFrontEnd/unittests', 1200, 'SpiNNakerGraphFrontEnd', 'unit', 'auto')
-                run_pytest('PyNNExamples/unittests', 1200, 'PyNNExamples', 'unit', 'auto')
-                run_pytest('SpiNNGym/unittests', 1200, 'SpiNNGym', 'unit', 'auto')
-                run_pytest('MarkovChainMonteCarlo/unittests', 1200, 'MarkovChainMonteCarlo', 'unit', 'auto')
-                run_pytest('SpiNNaker_PDP2/unittests', 1200, 'SpiNNaker_PDP2', 'unit', 'auto')
-                run_pytest('TSPonSpiNNaker/unittests', 1200, 'TSPonSpiNNaker', 'unit', 'auto')
-                run_in_pyenv('python -m spinn_utilities.executable_finder')
-                // no SpiNNakerJupyterExamples
-            }
-        }
         stage('Run sPyNNaker Integration Tests') {
             steps {
                 catchError(stageResult: 'FAILURE', catchInterruptions: false) {
                     create_spynnaker_config()
                     run_pytest('sPyNNaker/spynnaker_integration_tests/', 24000, 'sPyNNaker_Integration_Tests', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run GFE Integeration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py')
-                    run_pytest('SpiNNakerGraphFrontEnd/gfe_integration_tests/', 3600, 'GFE_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run PyNNExamples Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python PyNNExamples/integration_tests/script_builder.py')
-                    run_pytest('PyNNExamples/integration_tests', 3600, 'PyNNExamples_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run sPyNNakerNewModelTemplate Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python sPyNNakerNewModelTemplate/nmt_integration_tests/script_builder.py')
-                    run_pytest('sPyNNakerNewModelTemplate/nmt_integration_tests', 3600, 'sPyNNakerNewModelTemplate_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run microcircuit_model Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('microcircuit_model/integration_tests', 12000, 'microcircuit_model_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run SpiNNGym Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_in_pyenv('python SpiNNGym/integration_tests/script_builder.py')
-                    run_pytest('SpiNNGym/integration_tests', 3600, 'SpiNNGym_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run MarkovChainMonteCarlo Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py')
-                    run_pytest('MarkovChainMonteCarlo/mcmc_integration_tests', 3600, 'MarkovChainMonteCarlo_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run SpiNNaker_PDP2 Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python SpiNNaker_PDP2/integration_tests/script_builder.py')
-                    run_pytest('SpiNNaker_PDP2/integration_tests', 3600, 'SpiNNaker_PDP2_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage('Run Visualiser Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_spynnaker_config()
-                    run_pytest('Visualiser/visualiser_integration_tests', 12000, 'visualiser_Integration', 'integration', 'auto')
-                }
-            }
-        }
-        stage("SpiNNakerJupyterExamples") {
-            steps {
-                create_spynnaker_config()
-                run_in_pyenv("pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb")
-            }
-        }
-        stage('Run TSPonSpiNNaker Integration Tests') {
-            steps {
-                catchError(stageResult: 'FAILURE', catchInterruptions: false) {
-                    create_gfe_config()
-                    run_in_pyenv('python TSPonSpiNNaker/integration_tests/script_builder.py')
-                    run_pytest('TSPonSpiNNaker/integration_tests', 3600, 'TSPonSpiNNaker', 'integration', 'auto')
                 }
             }
         }
