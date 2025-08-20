@@ -27,11 +27,11 @@ jobs:
   integration_tests:
     runs-on: self-hosted
     container:
-        image: python3.6:latest
+        image: python3.13:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - name: Setup Environment
       shell: bash
       run: |
@@ -44,7 +44,7 @@ jobs:
               echo "##[set-output name=n_threads;]auto"
           fi
       id: set_env_step
-      
+
     - name: Install Python Dependencies
       run: |
         echo "${{ steps.set_env_step.outputs.n_threads }}"
@@ -54,7 +54,7 @@ jobs:
 
     - name: Clone Repositories to be tested
       uses: ./.github/actions/clone_matching
-      with: 
+      with:
         repository: |
           https://github.com/SpiNNakerManchester/SpiNNUtils.git
           https://github.com/SpiNNakerManchester/SpiNNMachine.git
@@ -88,7 +88,7 @@ jobs:
         make -C sPyNNaker8NewModelTemplate/c_models
         make -C SpiNNakerGraphFrontEnd/spinnaker_graph_front_end/examples
         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests/
-    
+
     - name: Install Python Modules
       uses: ./.github/actions/python_setup
       with:
@@ -104,7 +104,7 @@ jobs:
           sPyNNaker8NewModelTemplate
           SpiNNakerGraphFrontEnd
           SpiNNGym
-         
+
     - name: Install Requirements
       run: |
         pip install -r SpiNNMachine/requirements-test.txt
@@ -116,10 +116,10 @@ jobs:
         pip install -r sPyNNaker/requirements-test.txt
         pip install -r SpiNNakerGraphFrontEnd/requirements-test.txt
         pip install -r SpiNNGym/requirements-test.txt
-       
+
     - name: Install Java
       run: mvn -f JavaSpiNNaker -Dmaven.test.skip=true -DskipTests --no-transfer-progress package
-      
+
     - name: Prepare Configuration
       run: |
         # Write a sPyNNaker config file for spalloc and java use
@@ -160,7 +160,7 @@ jobs:
         timeout: 1200
         cov_name: spinnutils
         n_threads: 1
-    
+
     - name: Run SpiNNMachine Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -169,7 +169,7 @@ jobs:
         timeout: 1200
         cov_name: spinnmachine
         n_threads: 1
-   
+
     - name: Run SpiNNMan Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -178,7 +178,7 @@ jobs:
         timeout: 1200
         cov_name: spinnman
         n_threads: 1
-    
+
     - name: Run PACMAN Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -187,7 +187,7 @@ jobs:
         timeout: 1200
         cov_name: pacman
         n_threads: 1
-    
+
     - name: Run spalloc Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -196,7 +196,7 @@ jobs:
         timeout: 1200
         cov_name: spalloc
         n_threads: 1
-    
+
     - name: Run DataSpecification Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -205,7 +205,7 @@ jobs:
         timeout: 1200
         cov_name: dataspec
         n_threads: 1
-    
+
     - name: Run SpiNNFrontEndCommon Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -214,7 +214,7 @@ jobs:
         timeout: 1200
         cov_name: fec
         n_threads: 1
-        
+
     - name: Run sPyNNaker Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -223,7 +223,7 @@ jobs:
         timeout: 1200
         cov_name: spynnaker
         n_threads: 1
-    
+
     - name: Run sPyNNaker8 Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -232,7 +232,7 @@ jobs:
         timeout: 1200
         cov_name: spynnaker8
         n_threads: 1
-        
+
     - name: Run SpiNNakerGraphFrontEnd Unit Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -261,7 +261,7 @@ jobs:
         timeout: 1200
         cov_name: sPyNNaker_Integration
         n_threads: ${{ steps.set_env_step.outputs.n_threads }}
-        
+
     - name: Run sPyNNaker Long Integration Tests
       if: (github.event_name == 'schedule')
       uses: ./.github/actions/pytest_local
@@ -270,7 +270,7 @@ jobs:
         timeout: 12000
         cov_name: sPyNNaker_Integration_Long
         n_threads: 1
-        
+
     - name: Run GFE Integration Tests
       uses: ./.github/actions/pytest_local
       with:
@@ -326,7 +326,7 @@ jobs:
         timeout: 1200
         cov_name: new_model_example
         n_threads: ${{ steps.set_env_step.outputs.n_threads }}
-     
+
     - name: Run New Model Template Integeration Tests
       uses: ./.github/actions/pytest_local
       with:
@@ -334,10 +334,10 @@ jobs:
         timeout: 1200
         cov_name: nmt_integration_tests
         n_threads: ${{ steps.set_env_step.outputs.n_threads }}
-        
+
     - name: Build Scripts to Run
       run: python sPyNNaker8/p8_integration_tests/scripts_test/build_script.py shorter
-    
+
     - name: Run PyNN8Examples Scripts
       uses: ./.github/actions/pytest_local
       with:
@@ -345,7 +345,7 @@ jobs:
         timeout: 1200
         cov_name: p8_examples
         n_threads: ${{ steps.set_env_step.outputs.n_threads }}
-    
+
     - name: Run IntroLabs Scripts
       uses: ./.github/actions/pytest_local
       with:
@@ -358,22 +358,22 @@ jobs:
 
     - name: Check Reports
       run: find . -maxdepth 3 -type f -wholename "*/reports/*" -print -exec cat \{\}  \;
-    
+
     - name: Check Destroyed
       run: py.test TestBase/spinnaker_testbase/test_no_job_destroy.py --forked --instafail --timeout 120
-      
+
     - name: Check Executables Used
       run: python -m spinn_utilities.executable_finder
 
     - name: Create Coverage HTML
       run: |
         coverage html -d coverage_html
-        
+
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-        
+
     - name: Deploy Coverage to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
@@ -381,7 +381,7 @@ jobs:
         branch: gh-pages
         folder: coverage_html
         target_folder: ${{ steps.extract_branch.outputs.branch }}
-        
+
     - name: Add coverage to comment
       uses: peter-evans/commit-comment@v1
       with:
