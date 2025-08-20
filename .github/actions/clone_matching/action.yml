@@ -6,7 +6,7 @@ inputs:
     required: true
 runs:
   using: "composite"
-  steps: 
+  steps:
     - id: git_clone_matching
       run: |
         SAVEIFS=$IFS   # Save current IFS
@@ -18,19 +18,32 @@ runs:
           REPO=${REPOS[$i]}
           echo "Testing branch of $REPO"
           BRANCH=$(git ls-remote $REPO | awk '
-            BEGIN {
-                branch = "master"
-                target = ENVIRON["GITHUB_REF"]
-            }
-            $2==target {
-                branch = ENVIRON["GITHUB_REF"]
-            }
-            END {
-                print branch
-            }')
+              BEGIN {
+                  id = "x"
+                  # The next line is a default default only
+                  branch = "REMOTE_PARSE_FAILED"
+                  target_branch = "refs/heads/" ENVIRON["GITHUB_REF"]
+                  target_tag = "refs/tags/" ENVIRON["GITHUB_REF"]
+              }
+              $2=="HEAD" {
+                  # Note that the remote HEAD ref comes first
+                  id = $1
+              }
+              $1==id {
+                  sub(/refs\/(heads|tags)\//, "", $2)
+                  branch = $2
+                  # May be overwritten by the rule below; this is OK
+              }
+              $2==target_branch || $2==target_tag {
+                  branch = ENVIRON["GITHUB_REF"]
+                  # Reset the ID to a non-hash so the rule to match it will not fire
+                  id = "x"
+              }
+              END {
+                  print branch
+              }')
           BRANCH=${BRANCH#refs/heads/}
           git clone --branch $BRANCH --single-branch --depth 1 $REPO
           echo "Checked out branch $BRANCH of $REPO"
         done
       shell: bash
-        
