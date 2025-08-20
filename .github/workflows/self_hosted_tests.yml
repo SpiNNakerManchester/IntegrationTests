@@ -27,7 +27,7 @@ jobs:
   integration_tests:
     runs-on: self-hosted
     container:
-        image: python3.13:latest
+        image: localhost:5000/python3.13:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
