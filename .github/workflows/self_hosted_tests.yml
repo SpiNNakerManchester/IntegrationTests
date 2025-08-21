@@ -414,7 +414,7 @@ jobs:
       id: extract_branch
 
     - name: Deploy Coverage to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.SPINNAKER_PAT }}
         branch: gh-pages
@@ -422,7 +422,7 @@ jobs:
         target_folder: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Add coverage to comment
-      uses: peter-evans/commit-comment@v1
+      uses: peter-evans/commit-comment@v3
       with:
         body: |
           Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
