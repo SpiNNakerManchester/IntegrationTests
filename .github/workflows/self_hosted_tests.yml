@@ -30,27 +30,20 @@ jobs:
         image: localhost:5000/python3.13:latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
 
     - name: Setup Environment
       shell: bash
       run: |
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
-          if [[ "${{ github.event_name }}" == "schedule" ]]
-          then
-              echo "##[set-output name=n_threads;]1"
-          else
-              echo "##[set-output name=n_threads;]auto"
-          fi
       id: set_env_step
 
     - name: Install Python Dependencies
       run: |
-        echo "${{ steps.set_env_step.outputs.n_threads }}"
-        pip3 install --upgrade "setuptools < 50.0.0" wheel
+        pip3 install --upgrade setuptools wheel
         pip install --user --upgrade pip
-        pip install --user --only-binary=numpy,scipy,matplotlib numpy scipy matplotlib coverage
+        pip install virtualenv
 
     - name: Clone Repositories to be tested
       uses: ./.github/actions/clone_matching
@@ -60,20 +53,24 @@ jobs:
           https://github.com/SpiNNakerManchester/SpiNNMachine.git
           https://github.com/SpiNNakerManchester/SpiNNMan.git
           https://github.com/SpiNNakerManchester/PACMAN.git
-          https://github.com/SpiNNakerManchester/DataSpecification.git
           https://github.com/SpiNNakerManchester/spalloc.git
-          https://github.com/SpiNNakerManchester/TestBase.git
           https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
           https://github.com/SpiNNakerManchester/spinnaker_tools.git
           https://github.com/SpiNNakerManchester/spinn_common.git
           https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
           https://github.com/SpiNNakerManchester/sPyNNaker.git
+          https://github.com/SpiNNakerManchester/Visualiser.git
           https://github.com/SpiNNakerManchester/JavaSpiNNaker.git
-          https://github.com/SpiNNakerManchester/IntroLab.git
-          https://github.com/SpiNNakerManchester/PyNN8Examples.git
-          https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
+          https://github.com/SpiNNakerManchester/PyNNExamples.git
+          https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git
+          https://github.com/SpiNNakerManchester/microcircuit_model.git
           https://github.com/SpiNNakerManchester/SpiNNGym.git
-          https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/microcircuit_model.git
+          https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git
+          https://github.com/SpiNNakerManchester/TestBase.git
+          https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git
+          https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git
+          https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/TSPonSpiNNaker.git
+
     - name: Setup SpiNNUtils
       run: python setup.py develop
       working-directory: SpiNNUtils
