@@ -35,16 +35,17 @@ jobs:
 
     - name: Install Python Dependencies
       run: |
-        pip3 install --upgrade setuptools wheel
-        pip install --user --upgrade pip
         pip install virtualenv
+        virtualenv pyenv
+        source pyenv/bin/activate
+        pip install --upgrade setuptools wheel
+        pip install --upgrade pip
 
     - name: Setup Environment
       shell: bash
       run: |
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
-          virtualenv pyenv
       id: set_env_step
 
     - name: Clone Repositories to be tested
