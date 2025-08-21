@@ -74,6 +74,12 @@ jobs:
           https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git
           https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/TSPonSpiNNaker.git
 
+    - name: Install Java
+      run: |
+        java -version
+        mvn -version
+        mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv
+
     - name: Setup SpiNNUtils
       run: |
         source pyenv/bin/activate
@@ -121,9 +127,6 @@ jobs:
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
         pip freeze
-
-    - name: Install Java
-      run: mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv
 
     - name: Delete Install Sources
       run: |
