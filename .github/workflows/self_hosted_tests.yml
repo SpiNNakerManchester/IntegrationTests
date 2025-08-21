@@ -73,7 +73,7 @@ jobs:
           https://github.com/SpiNNakerManchester/PyNN8Examples.git
           https://github.com/SpiNNakerManchester/sPyNNaker8NewModelTemplate.git
           https://github.com/SpiNNakerManchester/SpiNNGym.git
-          https://${secrets.SPINNAKER_PAT}@github.com/SpiNNakerManchester/microcircuit_model.git
+          https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/microcircuit_model.git
     - name: Setup SpiNNUtils
       run: python setup.py develop
       working-directory: SpiNNUtils
