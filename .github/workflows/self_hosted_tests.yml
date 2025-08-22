@@ -130,42 +130,42 @@ jobs:
 
     - name: Delete Install Sources
       run: |
-        rm -r spinn_common
-        rm -r SpiNNUtils/spinn_utilities
-        rm -r SpiNNUtils/build
-        rm -r SpiNNMachine/spinn_machine
-        rm -r SpiNNMachine/build
-        rm -r SpiNNMan/spinnman
-        rm -r SpiNNMan/build
-        rm -r PACMAN/pacman
-        rm -r PACMAN/pacman_test_objects
-        rm -r PACMAN/build
-        rm -r spalloc/spalloc_client
-        rm -r spalloc/build
-        rm -r SpiNNFrontEndCommon/spinn_front_end_common
-        rm -r SpiNNFrontEndCommon/c_common
-        rm -r SpiNNFrontEndCommon/build
-        rm -r TestBase/spinnaker_testbase
-        rm -r TestBase/build
-        rm -r sPyNNaker/spynnaker
-        rm -r sPyNNaker/neural_modelling
-        rm -r sPyNNaker/build
-        rm -r sPyNNakerNewModelTemplate/python_models8
-        rm -r sPyNNakerNewModelTemplate/build
-        rm -r SpiNNakerGraphFrontEnd/spinnaker_graph_front_end
-        rm -r SpiNNakerGraphFrontEnd/build
-        rm -r SpiNNGym/spinn_gym
-        rm -r SpiNNGym/c_code
-        rm -r SpiNNGym/build
-        rm -r MarkovChainMonteCarlo/mcmc
-        rm -r MarkovChainMonteCarlo/build
+        rm -rf spinn_common
+        rm -rf SpiNNUtils/spinn_utilities
+        rm -rf SpiNNUtils/build
+        rm -rf SpiNNMachine/spinn_machine
+        rm -rf SpiNNMachine/build
+        rm -rf SpiNNMan/spinnman
+        rm -rf SpiNNMan/build
+        rm -rf PACMAN/pacman
+        rm -rf PACMAN/pacman_test_objects
+        rm -rf PACMAN/build
+        rm -rf spalloc/spalloc_client
+        rm -rf spalloc/build
+        rm -rf SpiNNFrontEndCommon/spinn_front_end_common
+        rm -rf SpiNNFrontEndCommon/c_common
+        rm -rf SpiNNFrontEndCommon/build
+        rm -rf TestBase/spinnaker_testbase
+        rm -rf TestBase/build
+        rm -rf sPyNNaker/spynnaker
+        rm -rf sPyNNaker/neural_modelling
+        rm -rf sPyNNaker/build
+        rm -rf sPyNNakerNewModelTemplate/python_models8
+        rm -rf sPyNNakerNewModelTemplate/build
+        rm -rf SpiNNakerGraphFrontEnd/spinnaker_graph_front_end
+        rm -rf SpiNNakerGraphFrontEnd/build
+        rm -rf SpiNNGym/spinn_gym
+        rm -rf SpiNNGym/c_code
+        rm -rf SpiNNGym/build
+        rm -rf MarkovChainMonteCarlo/mcmc
+        rm -rf MarkovChainMonteCarlo/build
         # Due to the binaries being outside of the package
         # NO remove SpiNNaker_PDP2
-        rm -r Visualiser/visualiser_example_binaries
-        rm -r Visualiser/build
+        rm -rf Visualiser/visualiser_example_binaries
+        rm -rf Visualiser/build
         # No remove SpiNNakerJupyterExamples
-        rm -r TSPonSpiNNaker/spinnaker_c
-        rm -r TSPonSpiNNaker/build
+        rm -rf TSPonSpiNNaker/spinnaker_c
+        rm -rf TSPonSpiNNaker/build
 
     # --------------------------------------------------------------------
 
