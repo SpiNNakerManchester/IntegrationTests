@@ -77,8 +77,7 @@ jobs:
     - name: Setup SpiNNUtils
       run: |
         source pyenv/bin/activate
-        cd SpiNNUtils
-        python setup.py develop
+        pip install ./SpiNNUtils[test]
 
     - name: Make C Code
       run: |
