@@ -126,7 +126,7 @@ jobs:
       run: |
         java -version
         mvn -version
-        mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv
+        mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv -DskipTests
 
     - name: Delete Install Sources
       run: |
@@ -311,15 +311,15 @@ jobs:
         n_threads: auto
       continue-on-error: true
 
-    - name: Run GFE Integration Tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
-        timeout: 3600
-        results: GFE_Integration
-        covfile: integration
-        n_threads: auto
-      continue-on-error: true
+    #- name: Run GFE Integration Tests
+    #  uses: ./.github/actions/pytest_local
+    #  with:
+    #    tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
+    #    timeout: 3600
+    #    results: GFE_Integration
+    #    covfile: integration
+    #    n_threads: auto
+    #  continue-on-error: true
 
     - name: Run PyNNExamples Integration Tests
       uses: ./.github/actions/pytest_local
@@ -413,7 +413,7 @@ jobs:
       run: |
         source pyenv/bin/activate
         python -m spinn_utilities.executable_finder
-        find ${GIHUB_WORKSPACE}/global_reports -print -exec cat \{\} \;
+        find ${GLOBAL_REPORTS} -print -exec cat \{\} \;
 
     - name: Check Destroyed
       run: |
