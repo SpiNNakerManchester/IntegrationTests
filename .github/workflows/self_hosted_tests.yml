@@ -46,8 +46,6 @@ jobs:
       run: |
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
-          # This is where 'pip install --user' puts things
-          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
       id: set_env_step
 
@@ -415,7 +413,7 @@ jobs:
       run: |
         source pyenv/bin/activate
         python -m spinn_utilities.executable_finder
-        find ${WORKSPACE}/global_reports -print -exec cat \{\} \;
+        find ${GIHUB_WORKSPACE}/global_reports -print -exec cat \{\} \;
 
     - name: Check Destroyed
       run: |
