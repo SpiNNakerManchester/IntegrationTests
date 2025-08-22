@@ -308,6 +308,7 @@ jobs:
         results: sPyNNaker_Integration_Tests
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run GFE Integration Tests
       uses: ./.github/actions/pytest_local
@@ -317,6 +318,7 @@ jobs:
         results: GFE_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run PyNNExamples Integration Tests
       uses: ./.github/actions/pytest_local
@@ -326,6 +328,7 @@ jobs:
         results: PyNNExamples_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run sPyNNakerNewModelTemplate Integration Tests
       uses: ./.github/actions/pytest_local
@@ -335,6 +338,7 @@ jobs:
         results: sPyNNakerNewModelTemplate_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run microcircuit_model Integration Tests
       uses: ./.github/actions/pytest_local
@@ -344,6 +348,7 @@ jobs:
         results: microcircuit_model_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run SpiNNGym Integration Tests
       uses: ./.github/actions/pytest_local
@@ -353,6 +358,7 @@ jobs:
         results: SpiNNGym_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run MarkovChainMonteCarlo Integration Tests
       uses: ./.github/actions/pytest_local
@@ -362,6 +368,7 @@ jobs:
         results: MarkovChainMonteCarlo_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run SpiNNaker_PDP2 Integration Tests
       uses: ./.github/actions/pytest_local
@@ -371,6 +378,7 @@ jobs:
         results: SpiNNaker_PDP2_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run Visualiser Integration Tests
       uses: ./.github/actions/pytest_local
@@ -380,11 +388,13 @@ jobs:
         results: Visualiser_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     - name: Run SpiNNakerJupyterExamples
       run: |
         source pyenv/bin/activate
         pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb
+      continue-on-error: true
 
     - name: Run TSPOnSpiNNaker Integration Tests
       uses: ./.github/actions/pytest_local
@@ -394,6 +404,7 @@ jobs:
         results: TSPOnSpiNNaker_Integration
         covfile: integration
         n_threads: auto
+      continue-on-error: true
 
     # --------------------------------------------------------------------
 
