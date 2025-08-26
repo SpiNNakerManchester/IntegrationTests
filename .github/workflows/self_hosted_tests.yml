@@ -454,5 +454,5 @@ jobs:
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       run: |
-        echo "$STEPS_CONTEXT"
+        echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"'
         exit 1
