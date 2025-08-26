@@ -438,7 +438,7 @@ jobs:
       with:
         token: ${{ secrets.SPINNAKER_PAT }}
         branch: gh-pages
-        folder: ${{ env.GITHUB_WORKSPACE }}/coverage_html
+        folder: $GITHUB_WORKSPACE/coverage_html
         target-folder: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Add coverage to comment
