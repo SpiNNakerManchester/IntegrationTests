@@ -425,7 +425,8 @@ jobs:
     - name: Create Coverage HTML
       run: |
         source pyenv/bin/activate
-        coverage html -d coverage_html
+        coverage html -d ${GITHUB_WORKSPACE}/coverage_html
+        ls -l ${GITHUB_WORKSPACE}/coverage_html
 
     - name: Extract branch name
       shell: bash
@@ -437,7 +438,7 @@ jobs:
       with:
         token: ${{ secrets.SPINNAKER_PAT }}
         branch: gh-pages
-        folder: coverage_html
+        folder: ${{ env.GITHUB_WORKSPACE }}/coverage_html
         target-folder: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Add coverage to comment
@@ -446,3 +447,12 @@ jobs:
         body: |
           Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
         token: ${{ secrets.SPINNAKER_PAT }}
+
+    - name: Fail if any step failed
+      if: failure()
+      shell: bash
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: |
+        echo "$STEPS_CONTEXT"
+        exit 1
