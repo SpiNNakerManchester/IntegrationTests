@@ -306,6 +306,7 @@ jobs:
     # --------------------------------------------------------------------
 
     - name: Run sPyNNaker Integration Tests
+      id: spynnaker-integration-tests
       uses: ./.github/actions/pytest_local
       with:
         tests: sPyNNaker/spynnaker_integration_tests
@@ -316,6 +317,7 @@ jobs:
       continue-on-error: true
 
     #- name: Run GFE Integration Tests
+    #  id: gfe-integration-tests
     #  uses: ./.github/actions/pytest_local
     #  with:
     #    tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
@@ -326,6 +328,7 @@ jobs:
     #  continue-on-error: true
 
     - name: Run PyNNExamples Integration Tests
+      id: pynn-examples-integration-tests
       uses: ./.github/actions/pytest_local
       with:
         tests: PyNNExamples/integration_tests/
