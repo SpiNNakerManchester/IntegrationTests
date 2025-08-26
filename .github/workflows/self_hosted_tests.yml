@@ -34,6 +34,8 @@ jobs:
       with:
         token: ${{ secrets.SPINNAKER_PAT }}
 
+    - name: 'Setup jq'
+      uses: dcarbone/install-jq-action@v3
 
     - name: Install Python Dependencies
       run: |
