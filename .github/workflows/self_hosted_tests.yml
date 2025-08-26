@@ -457,7 +457,7 @@ jobs:
         path: coverage_html
 
   deploy:
-    needs: integration-tests
+    needs: integration_tests
     runs-on: ubuntu-latest
     environment:
       name: github-pages
