@@ -427,6 +427,15 @@ jobs:
         source pyenv/bin/activate
         python -m spinnaker_testbase.test_no_job_destroy
 
+    # - name: Fail if any step failed
+    #  if: failure()
+    #  shell: bash
+    #  env:
+    #    STEPS_CONTEXT: ${{ toJson(steps) }}
+    #  run: |
+    #    echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"'
+    #    exit 1
+
     - name: Create Coverage HTML
       run: |
         source pyenv/bin/activate
@@ -435,16 +444,30 @@ jobs:
 
     - name: Extract branch name
       shell: bash
-      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
+      run: |
+        ls -l ${GITHUB_WORKSPACE}/coverage_html
+        ls -l coverage_html
+        echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
       id: extract_branch
 
-    - name: Deploy Coverage to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
+    - name: Upload static files as artifact
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: coverage_html
+
+  deploy:
+    needs: integration-tests
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy coverage to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
       with:
         token: ${{ secrets.SPINNAKER_PAT }}
-        branch: gh-pages
-        folder: coverage_html
-        target-folder: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Add coverage to comment
       uses: peter-evans/commit-comment@v3
@@ -453,11 +476,3 @@ jobs:
           Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
         token: ${{ secrets.SPINNAKER_PAT }}
 
-    - name: Fail if any step failed
-      if: failure()
-      shell: bash
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      run: |
-        echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"'
-        exit 1
