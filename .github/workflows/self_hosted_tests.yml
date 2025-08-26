@@ -31,6 +31,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v5
+      with:
+        token: ${{ secrets.SPINNAKER_PAT }}
 
 
     - name: Install Python Dependencies
@@ -433,7 +435,7 @@ jobs:
     - name: Deploy Coverage to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        github_token: ${{ secrets.SPINNAKER_PAT }}
+        token: ${{ secrets.SPINNAKER_PAT }}
         branch: gh-pages
         folder: coverage_html
         target_folder: ${{ steps.extract_branch.outputs.branch }}
