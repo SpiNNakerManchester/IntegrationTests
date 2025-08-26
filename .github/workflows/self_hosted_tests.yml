@@ -429,7 +429,7 @@ jobs:
 
     - name: Extract branch name
       shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
       id: extract_branch
 
     - name: Deploy Coverage to GitHub Pages
@@ -438,10 +438,11 @@ jobs:
         token: ${{ secrets.SPINNAKER_PAT }}
         branch: gh-pages
         folder: coverage_html
-        target_folder: ${{ steps.extract_branch.outputs.branch }}
+        target-folder: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Add coverage to comment
       uses: peter-evans/commit-comment@v3
       with:
         body: |
           Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
+        token: ${{ secrets.SPINNAKER_PAT }}
