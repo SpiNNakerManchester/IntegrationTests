@@ -436,43 +436,20 @@ jobs:
     #    echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"'
     #    exit 1
 
+    - name: Extract branch name
+      shell: bash
+      run: |
+        echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
+      id: extract_branch
+
     - name: Create Coverage HTML
       run: |
         source pyenv/bin/activate
         coverage html -d ${GITHUB_WORKSPACE}/coverage_html
         ls -l ${GITHUB_WORKSPACE}/coverage_html
 
-    - name: Extract branch name
-      shell: bash
-      run: |
-        ls -l ${GITHUB_WORKSPACE}/coverage_html
-        ls -l coverage_html
-        echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
-      id: extract_branch
-
     - name: Upload static files as artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
         path: coverage_html
-
-  deploy:
-    needs: integration_tests
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-    - name: Deploy coverage to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-      with:
-        token: ${{ secrets.SPINNAKER_PAT }}
-
-    - name: Add coverage to comment
-      uses: peter-evans/commit-comment@v3
-      with:
-        body: |
-          Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
-        token: ${{ secrets.SPINNAKER_PAT }}
-
