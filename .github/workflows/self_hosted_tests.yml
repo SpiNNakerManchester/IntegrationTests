@@ -446,10 +446,10 @@ jobs:
       run: |
         source pyenv/bin/activate
         coverage html -d ${GITHUB_WORKSPACE}/coverage_html
-        ls -l ${GITHUB_WORKSPACE}/coverage_html
+        ls -l ./coverage_html
 
     - name: Deploy Coverage HTML
-      uses: peaceiris/actions-gh-pages@v4
+      uses: rowleya/actions-gh-pages@main
       with:
         github_token: ${{ secrets.SPINNAKER_PAT }}
         publish_dir: ./coverage_html
