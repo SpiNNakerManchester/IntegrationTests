@@ -448,8 +448,43 @@ jobs:
         coverage html -d ${GITHUB_WORKSPACE}/coverage_html
         ls -l ${GITHUB_WORKSPACE}/coverage_html
 
-    - name: Upload static files as artifact
-      id: deployment
-      uses: actions/upload-pages-artifact@v3
+    - name: Deploy Coverage HTML
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        path: coverage_html
+        github_token: ${{ secrets.SPINNAKER_PAT }}
+        publish_dir: ./coverage_html
+        destination_dir: ${{ steps.extract_branch.outputs.branch }}
+
+    - name: Add coverage to comment
+      uses: peter-evans/commit-comment@v3
+      with:
+        body: |
+          Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
+        token: ${{ secrets.SPINNAKER_PAT }}
+
+  #  - name: Upload static files as artifact
+  #    id: deployment
+  #    uses: actions/upload-pages-artifact@v3
+  #    with:
+  #      path: coverage_html
+
+  # deploy:
+  #   needs: integration_tests
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages
+  #    url: ${{ steps.deployment.outputs.page_url }}
+  #  steps:
+  #  - name: Deploy coverage to GitHub Pages
+  #    id: deployment
+  #    uses: actions/deploy-pages@v4
+  #    with:
+  #      token: ${{ secrets.SPINNAKER_PAT }}
+
+  #  - name: Add coverage to comment
+  #    uses: peter-evans/commit-comment@v3
+  #    with:
+  #      body: |
+  #        Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/
+  #      token: ${{ secrets.SPINNAKER_PAT }}
+
