@@ -452,7 +452,7 @@ jobs:
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
-        path: coverage_html
+        path: ./coverage_html
 
   deploy:
     needs: integration_tests
