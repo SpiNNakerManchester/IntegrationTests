@@ -428,7 +428,7 @@ jobs:
         python -m spinnaker_testbase.test_no_job_destroy
 
     - name: Fail if any step failed
-      if: failure()
+      if: ${{ failure() }}
       shell: bash
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
