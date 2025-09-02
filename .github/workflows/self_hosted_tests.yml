@@ -459,13 +459,16 @@ jobs:
         rm -rf ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
         mkdir -p ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
         cp -a ./coverage_html/* ghpagesupdate/${{ steps.extract_branch.outputs.branch }}/
+        ls -l ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
 
-    - name: Commit coverage
+    - name: Push Coverage to GitHub Pages
       env:
         GH_TOKEN: ${{ github.token }}
+      working-directory: ghpagesupdate
       run: |
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
+        # git config --global --add safe.directory ${GITHUB_WORKSPACE}
         git add -A
         git commit -a -m "Update Coverage"
         git push origin gh-pages
