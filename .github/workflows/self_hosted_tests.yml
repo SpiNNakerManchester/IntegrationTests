@@ -428,13 +428,15 @@ jobs:
         python -m spinnaker_testbase.test_no_job_destroy
 
     - name: Fail if any step failed
-      if: ${{ failure() }}
       shell: bash
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       run: |
-        echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"'
-        exit 1
+        export failed_steps=$(echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"')
+        echo $failed_steps
+        if echo "$failed_steps" | grep -q "failure"; then
+            exit 1
+        fi
 
     - name: Extract branch name
       shell: bash
