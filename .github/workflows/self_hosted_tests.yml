@@ -446,9 +446,8 @@ jobs:
       run: |
         source pyenv/bin/activate
         coverage html -d ${GITHUB_WORKSPACE}/coverage_html
-        ls -l ./coverage_html
 
-    - name: Checkout
+    - name: Checkout Pages
       uses: actions/checkout@v5
       with:
         ref: gh-pages
@@ -460,7 +459,6 @@ jobs:
         rm -rf ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
         mkdir -p ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
         cp -a ./coverage_html/* ghpagesupdate/${{ steps.extract_branch.outputs.branch }}/
-        ls -l ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
 
     - name: Push Coverage to GitHub Pages
       env:
@@ -469,7 +467,6 @@ jobs:
       run: |
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
-        # git config --global --add safe.directory ${GITHUB_WORKSPACE}
         git add -A
         git commit -a -m "Update Coverage"
         git push origin gh-pages
