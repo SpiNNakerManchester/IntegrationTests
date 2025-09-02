@@ -453,6 +453,7 @@ jobs:
       with:
         ref: gh-pages
         path: ghpagesupdate
+        token: ${{ secrets.SPINNAKER_PAT }}
 
     - name: Copy coverage for branch
       run: |
