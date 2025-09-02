@@ -433,7 +433,7 @@ jobs:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       run: |
         export failed_steps=$(echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"')
-        echo $failed_steps
+        echo "$failed_steps"
         if echo "$failed_steps" | grep -q "failure"; then
             exit 1
         fi
