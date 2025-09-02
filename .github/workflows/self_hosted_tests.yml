@@ -463,7 +463,7 @@ jobs:
 
     - name: Push Coverage to GitHub Pages
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ secrets.SPINNAKER_PAT }}
       working-directory: ghpagesupdate
       run: |
         git config --global user.email "no-reply@github.com"
