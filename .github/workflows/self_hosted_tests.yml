@@ -119,7 +119,7 @@ jobs:
         pip install -e ./SpiNNaker_PDP2[test]
         pip install ./Visualiser[test]
         pip install ./TSPonSpiNNaker[test]
-        no install SpiNNakerJupyterExamples
+        # no install SpiNNakerJupyterExamples
         python -m spynnaker.pyNN.setup_pynn
         # Additional requirements for testing here
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
