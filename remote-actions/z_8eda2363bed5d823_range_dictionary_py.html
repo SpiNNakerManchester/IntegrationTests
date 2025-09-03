@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_utilities/ranged/range_dictionary.py: 96%</title>
+    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_utilities/ranged/range_dictionary.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>pyenv/lib/python3.13/site-packages/spinn_utilities/ranged/range_dictionary.py</b>:
-            <span class="pc_cov">96%</span>
+            <span class="pc_cov">97%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -56,10 +56,10 @@
         </aside>
         <h2>
             <span class="text">222 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">219<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">3<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">220<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">2<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">47<span class="text"> excluded</span></button>
-            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">9<span class="text"> partial</span></button>
+            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">8<span class="text"> partial</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_8eda2363bed5d823_multiple_values_exception_py.html">&#xab; prev</a> &nbsp; &nbsp;
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_8eda2363bed5d823_ranged_list_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-02 09:33 +0000
+            created at 2025-09-03 11:36 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -665,8 +665,8 @@
     <p class="run"><span class="n"><a id="t581" href="#t581">581</a></span><span class="t">        <span class="key">for</span> <span class="nam">key</span> <span class="key">in</span> <span class="nam">other</span><span class="op">.</span><span class="nam">keys</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t582" href="#t582">582</a></span><span class="t">            <span class="nam">value</span> <span class="op">=</span> <span class="nam">other</span><span class="op">[</span><span class="nam">key</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="par run show_par"><span class="n"><a id="t583" href="#t583">583</a></span><span class="t">            <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">RangedList</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">583&#x202F;&#x219B;&#x202F;589</span><span class="annotate long">line 583 didn't jump to line 589 because the condition on line 583 was always true</span></span></p>
-    <p class="par run show_par"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">                <span class="key">if</span> <span class="nam">key</span> <span class="key">in</span> <span class="nam">self</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">584&#x202F;&#x219B;&#x202F;585</span><span class="annotate long">line 584 didn't jump to line 585 because the condition on line 584 was never true</span></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">                    <span class="nam">self</span><span class="op">.</span><span class="nam">_value_lists</span><span class="op">[</span><span class="nam">key</span><span class="op">]</span><span class="op">.</span><span class="nam">copy_into</span><span class="op">(</span><span class="nam">value</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">                <span class="key">if</span> <span class="nam">key</span> <span class="key">in</span> <span class="nam">self</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">                    <span class="nam">self</span><span class="op">.</span><span class="nam">_value_lists</span><span class="op">[</span><span class="nam">key</span><span class="op">]</span><span class="op">.</span><span class="nam">copy_into</span><span class="op">(</span><span class="nam">value</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t">                <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">                    <span class="nam">self</span><span class="op">.</span><span class="nam">_value_lists</span><span class="op">[</span><span class="nam">key</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span><span class="op">.</span><span class="nam">copy</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -693,7 +693,7 @@
             <a class="nav" href="z_8eda2363bed5d823_ranged_list_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-02 09:33 +0000
+            created at 2025-09-03 11:36 +0000
         </p>
     </div>
 </footer>

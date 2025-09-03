@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for pyenv/lib/python3.13/site-packages/spinnman/extended/extended_transceiver.py: 23%</title>
+    <title>Coverage for pyenv/lib/python3.13/site-packages/spinnman/extended/extended_transceiver.py: 30%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>pyenv/lib/python3.13/site-packages/spinnman/extended/extended_transceiver.py</b>:
-            <span class="pc_cov">23%</span>
+            <span class="pc_cov">30%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -56,8 +56,8 @@
         </aside>
         <h2>
             <span class="text">215 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">58<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">157<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">70<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">145<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">0<span class="text"> partial</span></button>
         </h2>
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_5a1d68c1eb346777_read_adc_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-02 09:33 +0000
+            created at 2025-09-03 11:36 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -777,20 +777,20 @@
     <p class="pln"><span class="n"><a id="t693" href="#t693">693</a></span><span class="t"><span class="str">            timer count to</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t694" href="#t694">694</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t695" href="#t695">695</a></span><span class="t">        <span class="com"># build what we expect it to be</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t696" href="#t696">696</a></span><span class="t">        <span class="nam">warn_once</span><span class="op">(</span><span class="nam">logger</span><span class="op">,</span> <span class="str">"The set_watch_dog_on_chip method is deprecated "</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t697" href="#t697">697</a></span><span class="t">                          <span class="str">"and untested due to no known use."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t698" href="#t698">698</a></span><span class="t">        <span class="key">assert</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">Transceiver</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t699" href="#t699">699</a></span><span class="t">        <span class="nam">value_to_set</span><span class="op">:</span> <span class="nam">Union</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">bool</span><span class="op">,</span> <span class="nam">bytes</span><span class="op">]</span> <span class="op">=</span> <span class="nam">watch_dog</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t700" href="#t700">700</a></span><span class="t">        <span class="nam">watchdog</span> <span class="op">=</span> <span class="nam">SystemVariableDefinition</span><span class="op">.</span><span class="nam">software_watchdog_count</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t701" href="#t701">701</a></span><span class="t">        <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">watch_dog</span><span class="op">,</span> <span class="nam">bool</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t702" href="#t702">702</a></span><span class="t">            <span class="nam">value_to_set</span> <span class="op">=</span> <span class="nam">watchdog</span><span class="op">.</span><span class="nam">default</span> <span class="key">if</span> <span class="nam">watch_dog</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t696" href="#t696">696</a></span><span class="t">        <span class="nam">warn_once</span><span class="op">(</span><span class="nam">logger</span><span class="op">,</span> <span class="str">"The set_watch_dog_on_chip method is deprecated "</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t697" href="#t697">697</a></span><span class="t">                          <span class="str">"and untested due to no known use."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t698" href="#t698">698</a></span><span class="t">        <span class="key">assert</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">Transceiver</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t699" href="#t699">699</a></span><span class="t">        <span class="nam">value_to_set</span><span class="op">:</span> <span class="nam">Union</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">bool</span><span class="op">,</span> <span class="nam">bytes</span><span class="op">]</span> <span class="op">=</span> <span class="nam">watch_dog</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t700" href="#t700">700</a></span><span class="t">        <span class="nam">watchdog</span> <span class="op">=</span> <span class="nam">SystemVariableDefinition</span><span class="op">.</span><span class="nam">software_watchdog_count</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t701" href="#t701">701</a></span><span class="t">        <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">watch_dog</span><span class="op">,</span> <span class="nam">bool</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t702" href="#t702">702</a></span><span class="t">            <span class="nam">value_to_set</span> <span class="op">=</span> <span class="nam">watchdog</span><span class="op">.</span><span class="nam">default</span> <span class="key">if</span> <span class="nam">watch_dog</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t703" href="#t703">703</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t704" href="#t704">704</a></span><span class="t">        <span class="com"># build data holder</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t705" href="#t705">705</a></span><span class="t">        <span class="nam">data</span> <span class="op">=</span> <span class="nam">_ONE_BYTE</span><span class="op">.</span><span class="nam">pack</span><span class="op">(</span><span class="nam">value_to_set</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t705" href="#t705">705</a></span><span class="t">        <span class="nam">data</span> <span class="op">=</span> <span class="nam">_ONE_BYTE</span><span class="op">.</span><span class="nam">pack</span><span class="op">(</span><span class="nam">value_to_set</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t706" href="#t706">706</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t707" href="#t707">707</a></span><span class="t">        <span class="com"># write data</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t708" href="#t708">708</a></span><span class="t">        <span class="nam">address</span> <span class="op">=</span> <span class="nam">SYSTEM_VARIABLE_BASE_ADDRESS</span> <span class="op">+</span> <span class="nam">watchdog</span><span class="op">.</span><span class="nam">offset</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t709" href="#t709">709</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">write_memory</span><span class="op">(</span><span class="nam">x</span><span class="op">=</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">=</span><span class="nam">y</span><span class="op">,</span> <span class="nam">base_address</span><span class="op">=</span><span class="nam">address</span><span class="op">,</span> <span class="nam">data</span><span class="op">=</span><span class="nam">data</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t708" href="#t708">708</a></span><span class="t">        <span class="nam">address</span> <span class="op">=</span> <span class="nam">SYSTEM_VARIABLE_BASE_ADDRESS</span> <span class="op">+</span> <span class="nam">watchdog</span><span class="op">.</span><span class="nam">offset</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t709" href="#t709">709</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">write_memory</span><span class="op">(</span><span class="nam">x</span><span class="op">=</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">=</span><span class="nam">y</span><span class="op">,</span> <span class="nam">base_address</span><span class="op">=</span><span class="nam">address</span><span class="op">,</span> <span class="nam">data</span><span class="op">=</span><span class="nam">data</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t710" href="#t710">710</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t711" href="#t711">711</a></span><span class="t">    <span class="key">def</span> <span class="nam">set_watch_dog</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">watch_dog</span><span class="op">:</span> <span class="nam">Union</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">bool</span><span class="op">]</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t712" href="#t712">712</a></span><span class="t">        <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
@@ -806,10 +806,10 @@
     <p class="pln"><span class="n"><a id="t722" href="#t722">722</a></span><span class="t"><span class="str">            disable (False) the watch dog timer, or an int value to set the</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t723" href="#t723">723</a></span><span class="t"><span class="str">            timer count to.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t724" href="#t724">724</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t725" href="#t725">725</a></span><span class="t">        <span class="nam">warn_once</span><span class="op">(</span><span class="nam">logger</span><span class="op">,</span> <span class="str">"The set_watch_dog method is deprecated and "</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t726" href="#t726">726</a></span><span class="t">                          <span class="str">"untested due to no known use."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t727" href="#t727">727</a></span><span class="t">        <span class="key">for</span> <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span> <span class="key">in</span> <span class="nam">SpiNNManDataView</span><span class="op">.</span><span class="nam">get_machine</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">chip_coordinates</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t728" href="#t728">728</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">__set_watch_dog_on_chip</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">watch_dog</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t725" href="#t725">725</a></span><span class="t">        <span class="nam">warn_once</span><span class="op">(</span><span class="nam">logger</span><span class="op">,</span> <span class="str">"The set_watch_dog method is deprecated and "</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t726" href="#t726">726</a></span><span class="t">                          <span class="str">"untested due to no known use."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t727" href="#t727">727</a></span><span class="t">        <span class="key">for</span> <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span> <span class="key">in</span> <span class="nam">SpiNNManDataView</span><span class="op">.</span><span class="nam">get_machine</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">chip_coordinates</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t728" href="#t728">728</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">__set_watch_dog_on_chip</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">watch_dog</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -819,7 +819,7 @@
             <a class="nav" href="z_5a1d68c1eb346777_read_adc_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-02 09:33 +0000
+            created at 2025-09-03 11:36 +0000
         </p>
     </div>
 </footer>
