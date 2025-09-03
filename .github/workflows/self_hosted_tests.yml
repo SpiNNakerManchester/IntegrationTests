@@ -397,7 +397,7 @@ jobs:
       id: visualiser-integration-tests
       uses: ./.github/actions/pytest_local
       with:
-        tests: Visualiser/integration_tests/
+        tests: Visualiser/visualiser_integration_tests/
         timeout: 3600
         results: Visualiser_Integration
         covfile: integration
@@ -415,7 +415,7 @@ jobs:
       id: tsp-on-spinnaker-integration-tests
       uses: ./.github/actions/pytest_local
       with:
-        tests: TSPOnSpiNNaker/integration_tests/
+        tests: TSPonSpiNNaker/integration_tests/
         timeout: 3600
         results: TSPOnSpiNNaker_Integration
         covfile: integration
