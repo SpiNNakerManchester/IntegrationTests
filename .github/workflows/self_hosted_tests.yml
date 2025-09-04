@@ -515,4 +515,4 @@ jobs:
         git add -A
         git commit -a -m "Update Coverage"
         git push origin gh-pages
-        core.notice("Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/")
+        echo "::notice::Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/"
