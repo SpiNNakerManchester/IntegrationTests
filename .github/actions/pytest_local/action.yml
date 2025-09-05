@@ -1,0 +1,69 @@
+name: 'Run PyTest'
+description: 'Run PyTest for the Integration tests'
+inputs:
+  tests:
+    description: 'The tests to run'
+    required: true
+  timeout:
+    description: 'Test timeout'
+    required: true
+  results:
+    description: 'Name of the results file'
+    required: true
+  covfile:
+    description: 'Name of coverage file'
+    required: true
+  n_threads:
+    description: 'The number of threads to run with'
+    required: false
+    default: 'auto'
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare Configuration
+      shell: bash
+      run: |
+        # Write a sPyNNaker config file for spalloc and java use
+        echo "[Machine]" > ~/.spynnaker.cfg
+        echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
+        echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
+        echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+        echo "[Java]" >> ~/.spynnaker.cfg
+        echo "use_java = True" >> ~/.spynnaker.cfg
+        echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
+        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spynnaker.cfg
+        printf "java_spinnaker_path=" >> ~/.spynnaker.cfg
+        pwd >> ~/.spynnaker.cfg
+        # Write a GFE config file for spalloc and java use
+        echo "[Machine]" > ~/.spiNNakerGraphFrontEnd.cfg
+        echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "java_properties=-Dspinnaker.parallel_tasks=10" >> ~/.spiNNakerGraphFrontEnd.cfg
+        printf "java_spinnaker_path=" >> ~/.spiNNakerGraphFrontEnd.cfg
+        pwd >> ~/.spiNNakerGraphFrontEnd.cfg
+
+    - id: set_env
+      env:
+        COV_OPTS: --cov-config=.coveragerc --cov-branch
+          --cov spynnaker --cov spinn_front_end_common --cov pacman
+          --cov spinnman --cov spinn_machine --cov spalloc
+          --cov spinn_utilities --cov spinnaker_graph_front_end
+          --cov-append
+      run: |
+        mkdir -p junit/
+        echo "<testsuite tests='0'></testsuite>" > junit/${{ inputs.results }}.xml
+        echo "COV_ARGS=${COV_OPTS} --cov-report xml:${{ inputs.covfile }}_cov.xml --junitxml junit/${{ inputs.results }}.xml" >> $GITHUB_ENV
+        echo "[run]" > .coveragerc
+        echo "parallel = True" >> .coveragerc
+      shell: bash
+
+    - id: pytest_run
+      run: |
+        source pyenv/bin/activate
+        py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show-progress --maxschedchunk=1 \
+          ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO
+      shell: bash

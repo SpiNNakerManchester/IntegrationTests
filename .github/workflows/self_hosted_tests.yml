@@ -1,0 +1,518 @@
+# Copyright (c) 2020 The University of Manchester
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# This workflow will install Python dependencies, run tests, lint and rat with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Self Hosted Tests
+
+on:
+  push:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  integration_tests:
+    runs-on: self-hosted
+    container:
+        image: localhost:5000/python3.13:latest
+    steps:
+    - name: Checkout
+      id: checkout
+      uses: actions/checkout@v5
+      with:
+        token: ${{ secrets.SPINNAKER_PAT }}
+
+    - name: 'Setup jq'
+      id: setup-jq
+      uses: dcarbone/install-jq-action@v3
+
+    - name: Install Python Dependencies
+      id: python-install
+      run: |
+        pip install virtualenv
+        virtualenv pyenv
+        source pyenv/bin/activate
+        pip install --upgrade setuptools wheel
+        pip install --upgrade pip
+
+    - name: Setup Environment
+      shell: bash
+      run: |
+          echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
+          echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
+          echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
+      id: set_env_step
+
+    - name: Clone Repositories to be tested
+      id: clone-repos
+      uses: ./.github/actions/clone_matching
+      with:
+        repository: |
+          https://github.com/SpiNNakerManchester/SpiNNUtils.git
+          https://github.com/SpiNNakerManchester/SpiNNMachine.git
+          https://github.com/SpiNNakerManchester/SpiNNMan.git
+          https://github.com/SpiNNakerManchester/PACMAN.git
+          https://github.com/SpiNNakerManchester/spalloc.git
+          https://github.com/SpiNNakerManchester/SpiNNakerGraphFrontEnd.git
+          https://github.com/SpiNNakerManchester/spinnaker_tools.git
+          https://github.com/SpiNNakerManchester/spinn_common.git
+          https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
+          https://github.com/SpiNNakerManchester/sPyNNaker.git
+          https://github.com/SpiNNakerManchester/Visualiser.git
+          https://github.com/SpiNNakerManchester/JavaSpiNNaker.git
+          https://github.com/SpiNNakerManchester/PyNNExamples.git
+          https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git
+          https://github.com/SpiNNakerManchester/microcircuit_model.git
+          https://github.com/SpiNNakerManchester/SpiNNGym.git
+          https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git
+          https://github.com/SpiNNakerManchester/TestBase.git
+          https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git
+          https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git
+          https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/TSPonSpiNNaker.git
+
+    - name: Setup SpiNNUtils
+      id: setup-spinnutils
+      run: |
+        source pyenv/bin/activate
+        pip install ./SpiNNUtils[test]
+
+    - name: Make C Code
+      id: make-c-code
+      run: |
+        source pyenv/bin/activate
+        make -C $SPINN_DIRS
+        make -C spinn_common install
+        make -C SpiNNFrontEndCommon/c_common
+        make -C SpiNNFrontEndCommon/c_common install
+        make -C sPyNNaker/neural_modelling
+        make -C sPyNNakerNewModelTemplate/c_models
+        make -C SpiNNakerGraphFrontEnd/gfe_examples
+        make -C SpiNNakerGraphFrontEnd/gfe_integration_tests
+        make -C SpiNNGym/c_code
+        make -C MarkovChainMonteCarlo/c_models
+        make -C SpiNNaker_PDP2/c_code
+        make -C Visualiser
+        make -C TSPonSpiNNaker/spinnaker_c
+
+    - name: Install Python Modules
+      id: install-python-modules
+      run: |
+        source pyenv/bin/activate
+        pip install ./SpiNNMachine[test]
+        pip install ./SpiNNMan[test]
+        pip install ./PACMAN[test]
+        pip install ./spalloc[test]
+        pip install ./SpiNNFrontEndCommon[test]
+        pip install ./TestBase[test]
+        pip install ./sPyNNaker[test]
+        pip install ./sPyNNakerNewModelTemplate[test]
+        pip install ./SpiNNakerGraphFrontEnd[test]
+        pip install ./SpiNNGym[test]
+        pip install ./MarkovChainMonteCarlo[test]
+        # Due to the binaries being outside of the package
+        pip install -e ./SpiNNaker_PDP2[test]
+        pip install ./Visualiser[test]
+        pip install ./TSPonSpiNNaker[test]
+        # no install SpiNNakerJupyterExamples
+        python -m spynnaker.pyNN.setup_pynn
+        # Additional requirements for testing here
+        # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
+        pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
+        pip freeze
+
+    - name: Install Java
+      id: install-java
+      run: |
+        java -version
+        mvn -version
+        mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv -DskipTests
+
+    - name: Delete Install Sources
+      id: delete-install-sources
+      run: |
+        rm -rf spinn_common
+        rm -rf SpiNNUtils/spinn_utilities
+        rm -rf SpiNNUtils/build
+        rm -rf SpiNNMachine/spinn_machine
+        rm -rf SpiNNMachine/build
+        rm -rf SpiNNMan/spinnman
+        rm -rf SpiNNMan/build
+        rm -rf PACMAN/pacman
+        rm -rf PACMAN/pacman_test_objects
+        rm -rf PACMAN/build
+        rm -rf spalloc/spalloc_client
+        rm -rf spalloc/build
+        rm -rf SpiNNFrontEndCommon/spinn_front_end_common
+        rm -rf SpiNNFrontEndCommon/c_common
+        rm -rf SpiNNFrontEndCommon/build
+        rm -rf TestBase/spinnaker_testbase
+        rm -rf TestBase/build
+        rm -rf sPyNNaker/spynnaker
+        rm -rf sPyNNaker/neural_modelling
+        rm -rf sPyNNaker/build
+        rm -rf sPyNNakerNewModelTemplate/python_models8
+        rm -rf sPyNNakerNewModelTemplate/build
+        rm -rf SpiNNakerGraphFrontEnd/spinnaker_graph_front_end
+        rm -rf SpiNNakerGraphFrontEnd/build
+        rm -rf SpiNNGym/spinn_gym
+        rm -rf SpiNNGym/c_code
+        rm -rf SpiNNGym/build
+        rm -rf MarkovChainMonteCarlo/mcmc
+        rm -rf MarkovChainMonteCarlo/build
+        # Due to the binaries being outside of the package
+        # NO remove SpiNNaker_PDP2
+        rm -rf Visualiser/visualiser_example_binaries
+        rm -rf Visualiser/build
+        # No remove SpiNNakerJupyterExamples
+        rm -rf TSPonSpiNNaker/spinnaker_c
+        rm -rf TSPonSpiNNaker/build
+
+    # --------------------------------------------------------------------
+
+    - name: Run SpiNNUtils Unit Tests
+      id: spinnutils-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNUtils/unittests
+        timeout: 1200
+        results: SpiNNUtils
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNMachine Unit Tests
+      id: spinnmachine-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNMachine/unittests
+        timeout: 1200
+        results: SpiNNMachine
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNMan Unit Tests
+      id: spinnman-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNMan/unittests
+        timeout: 1200
+        results: SpiNNMan
+        covfile: unit
+        n_threads: auto
+
+    - name: Run PACMAN Unit Tests
+      id: pacman-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: PACMAN/unittests
+        timeout: 1200
+        results: PACMAN
+        covfile: unit
+        n_threads: auto
+
+    - name: Run spalloc Unit Tests
+      id: spalloc-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: spalloc/tests
+        timeout: 1200
+        results: spalloc
+        covfile: unit
+        n_threads: 1
+
+    - name: Run SpiNNFrontEndCommon Unit Tests
+      id: fec-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests
+        timeout: 1200
+        results: SpiNNFrontEndCommon
+        covfile: unit
+        n_threads: auto
+
+    - name: Run sPyNNaker Unit Tests
+      id: spynnaker-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker/unittests
+        timeout: 1200
+        results: sPyNNaker
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNakerGraphFrontEnd Unit Tests
+      id: gfe-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNakerGraphFrontEnd/unittests
+        timeout: 1200
+        results: SpiNNakerGraphFrontEnd
+        covfile: unit
+        n_threads: auto
+
+    - name: Run PyNNExamples Unit Tests
+      id: pynn-examples-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: PyNNExamples/unittests
+        timeout: 1200
+        results: PyNNExamples
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNGym Unit Tests
+      id: spinn-gym-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNGym/unittests
+        timeout: 1200
+        results: SpiNNGym
+        covfile: unit
+        n_threads: auto
+
+    - name: Run MarkovChainMonteCarlo Unit Tests
+      id: mcmc-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: MarkovChainMonteCarlo/unittests
+        timeout: 1200
+        results: MarkovChainMonteCarlo
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNaker_PDP2 Unit Tests
+      id: pdp2-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNaker_PDP2/unittests
+        timeout: 1200
+        results: SpiNNaker_PDP2
+        covfile: unit
+        n_threads: auto
+
+    - name: Run TSPonSpiNNaker Unit Tests
+      id: tsp-on-spinnaker-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: TSPonSpiNNaker/unittests
+        timeout: 1200
+        results: TSPonSpiNNaker
+        covfile: unit
+        n_threads: auto
+
+    # --------------------------------------------------------------------
+
+    - name: Refresh test runner scripts
+      id: refresh-runner-scripts
+      run: |
+        source pyenv/bin/activate
+        python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py
+        python PyNNExamples/integration_tests/script_builder.py
+        python sPyNNakerNewModelTemplate/nmt_integration_tests/script_builder.py
+        python SpiNNGym/integration_tests/script_builder.py
+        python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py
+        python SpiNNaker_PDP2/integration_tests/script_builder.py
+        python TSPonSpiNNaker/integration_tests/script_builder.py
+
+    - name: Check previous
+      id: test-previous
+      if: always()
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: |
+        export failed_steps=$(echo "$STEPS_CONTEXT" | jq -r 'keys[] as $k | select(.[$k].outcome=="failure") | "\($k): \(.[$k].outcome)"')
+        echo "$failed_steps"
+        if echo "$failed_steps" | grep -q "failure"; then
+          echo "prev_ok=false" >> $GITHUB_OUTPUT
+          echo "fail"
+        else
+          echo "prev_ok=true" >> $GITHUB_OUTPUT
+          echo "pass"
+        fi
+
+    # --------------------------------------------------------------------
+
+    - name: Run sPyNNaker Integration Tests
+      id: spynnaker-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker/spynnaker_integration_tests
+        timeout: 24000
+        results: sPyNNaker_Integration_Tests
+        covfile: integration
+        n_threads: auto
+
+    - name: Run GFE Integration Tests
+      id: gfe-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
+        timeout: 3600
+        results: GFE_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run PyNNExamples Integration Tests
+      id: pynn-examples-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: PyNNExamples/integration_tests/
+        timeout: 3600
+        results: PyNNExamples_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run sPyNNakerNewModelTemplate Integration Tests
+      id: spynnaker-new-model-template-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNakerNewModelTemplate/nmt_integration_tests/
+        timeout: 3600
+        results: sPyNNakerNewModelTemplate_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run microcircuit_model Integration Tests
+      id: microcircuit-model-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: microcircuit_model/integration_tests/
+        timeout: 12000
+        results: microcircuit_model_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run SpiNNGym Integration Tests
+      id: spinn-gym-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNGym/integration_tests/
+        timeout: 3600
+        results: SpiNNGym_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run MarkovChainMonteCarlo Integration Tests
+      id: markov-chain-monte-carlo-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: MarkovChainMonteCarlo/mcmc_integration_tests/
+        timeout: 3600
+        results: MarkovChainMonteCarlo_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run SpiNNaker_PDP2 Integration Tests
+      id: spinnaker-pdp2-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNaker_PDP2/integration_tests/
+        timeout: 3600
+        results: SpiNNaker_PDP2_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run Visualiser Integration Tests
+      id: visualiser-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: Visualiser/visualiser_integration_tests/
+        timeout: 3600
+        results: Visualiser_Integration
+        covfile: integration
+        n_threads: auto
+
+    - name: Run SpiNNakerJupyterExamples
+      id: spinnaker-jupyter-examples
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        source pyenv/bin/activate
+        pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb
+
+    - name: Run TSPOnSpiNNaker Integration Tests
+      id: tsp-on-spinnaker-integration-tests
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: TSPonSpiNNaker/integration_tests/
+        timeout: 3600
+        results: TSPOnSpiNNaker_Integration
+        covfile: integration
+        n_threads: auto
+
+    # --------------------------------------------------------------------
+
+    - name: Check Reports
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        source pyenv/bin/activate
+        python -m spinn_utilities.executable_finder
+        find ${GLOBAL_REPORTS} -print -exec cat \{\} \;
+
+    - name: Check Destroyed
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        source pyenv/bin/activate
+        python -m spinnaker_testbase.test_no_job_destroy
+
+    - name: Extract branch name
+      shell: bash
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+    - name: Create Coverage HTML
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        source pyenv/bin/activate
+        coverage html -d ${GITHUB_WORKSPACE}/coverage_html
+
+    - name: Checkout Pages
+      uses: actions/checkout@v5
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      with:
+        ref: gh-pages
+        path: ghpagesupdate
+        token: ${{ secrets.SPINNAKER_PAT }}
+
+    - name: Copy coverage for branch
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      run: |
+        rm -rf ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
+        mkdir -p ghpagesupdate/${{ steps.extract_branch.outputs.branch }}
+        cp -a ./coverage_html/* ghpagesupdate/${{ steps.extract_branch.outputs.branch }}/
+
+    - name: Push Coverage to GitHub Pages
+      if: always() && steps.test-previous.outputs.prev_ok == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.SPINNAKER_PAT }}
+      working-directory: ghpagesupdate
+      run: |
+        git config --global user.email "no-reply@github.com"
+        git config --global user.name "GitHub Actions"
+        git add -A
+        git commit -a -m "Update Coverage"
+        git push origin gh-pages
+        echo "::notice::Coverage information deployed to https://spinnakermanchester.github.io/IntegrationTests/${{ steps.extract_branch.outputs.branch }}/"
