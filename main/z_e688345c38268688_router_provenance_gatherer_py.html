@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_front_end_common/interface/interface_functions/router_provenance_gatherer.py: 84%</title>
+    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_front_end_common/interface/interface_functions/router_provenance_gatherer.py: 81%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>pyenv/lib/python3.13/site-packages/spinn_front_end_common/interface/interface_functions/router_provenance_gatherer.py</b>:
-            <span class="pc_cov">84%</span>
+            <span class="pc_cov">81%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -56,10 +56,10 @@
         </aside>
         <h2>
             <span class="text">107 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">94<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">13<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">92<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">15<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
-            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">10<span class="text"> partial</span></button>
+            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">12<span class="text"> partial</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_e688345c38268688_read_routing_tables_from_machine_py.html">&#xab; prev</a> &nbsp; &nbsp;
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_e688345c38268688_routing_table_loader_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-08 05:18 +0000
+            created at 2025-09-09 05:32 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -346,10 +346,10 @@
     <p class="run"><span class="n"><a id="t262" href="#t262">262</a></span><span class="t">            <span class="nam">db</span><span class="op">.</span><span class="nam">insert_router</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t263" href="#t263">263</a></span><span class="t">                <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">prefix</span><span class="op">}</span><span class="fst">Missed_For_Reinjection</span><span class="fst">"</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t264" href="#t264">264</a></span><span class="t">                <span class="nam">status</span><span class="op">.</span><span class="nam">n_missed_dropped_packets</span><span class="op">,</span> <span class="nam">expected</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t265" href="#t265">265</a></span><span class="t">            <span class="key">if</span> <span class="nam">status</span><span class="op">.</span><span class="nam">n_missed_dropped_packets</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t266" href="#t266">266</a></span><span class="t">                <span class="nam">db</span><span class="op">.</span><span class="nam">insert_report</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t267" href="#t267">267</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">The extra monitor on </span><span class="op">{</span><span class="nam">x</span><span class="op">}</span><span class="fst">, </span><span class="op">{</span><span class="nam">y</span><span class="op">}</span><span class="fst"> has missed </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t268" href="#t268">268</a></span><span class="t">                    <span class="fst">f"</span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">n_missed_dropped_packets</span><span class="op">}</span><span class="fst"> packets.</span><span class="fst">"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par run show_par"><span class="n"><a id="t265" href="#t265">265</a></span><span class="t">            <span class="key">if</span> <span class="nam">status</span><span class="op">.</span><span class="nam">n_missed_dropped_packets</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">265&#x202F;&#x219B;&#x202F;266</span><span class="annotate long">line 265 didn't jump to line 266 because the condition on line 265 was never true</span></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t266" href="#t266">266</a></span><span class="t">                <span class="nam">db</span><span class="op">.</span><span class="nam">insert_report</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t267" href="#t267">267</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">The extra monitor on </span><span class="op">{</span><span class="nam">x</span><span class="op">}</span><span class="fst">, </span><span class="op">{</span><span class="nam">y</span><span class="op">}</span><span class="fst"> has missed </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t268" href="#t268">268</a></span><span class="t">                    <span class="fst">f"</span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">n_missed_dropped_packets</span><span class="op">}</span><span class="fst"> packets.</span><span class="fst">"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t269" href="#t269">269</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t270" href="#t270">270</a></span><span class="t">            <span class="nam">db</span><span class="op">.</span><span class="nam">insert_router</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t271" href="#t271">271</a></span><span class="t">                <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">prefix</span><span class="op">}</span><span class="fst">Reinjection_Overflows</span><span class="fst">"</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -366,16 +366,16 @@
     <p class="run"><span class="n"><a id="t282" href="#t282">282</a></span><span class="t">            <span class="nam">db</span><span class="op">.</span><span class="nam">insert_router</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t283" href="#t283">283</a></span><span class="t">                <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">prefix</span><span class="op">}</span><span class="fst">Dumped_from_a_Link</span><span class="fst">"</span><span class="op">,</span> <span class="nam">status</span><span class="op">.</span><span class="nam">n_link_dumps</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t284" href="#t284">284</a></span><span class="t">                <span class="nam">expected</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t285" href="#t285">285</a></span><span class="t">            <span class="key">if</span> <span class="nam">status</span><span class="op">.</span><span class="nam">n_link_dumps</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t286" href="#t286">286</a></span><span class="t">                <span class="nam">db</span><span class="op">.</span><span class="nam">insert_report</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t287" href="#t287">287</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">The extra monitor on </span><span class="op">{</span><span class="nam">x</span><span class="op">}</span><span class="fst">, </span><span class="op">{</span><span class="nam">y</span><span class="op">}</span><span class="fst"> has detected that </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t288" href="#t288">288</a></span><span class="t">                    <span class="fst">f"</span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">n_link_dumps</span><span class="op">}</span><span class="fst"> packets were dumped from </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t289" href="#t289">289</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">outgoing links </span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">links_dropped_from</span><span class="op">}</span><span class="fst"> of this </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t290" href="#t290">290</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">chip's router. This often occurs </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t291" href="#t291">291</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">when external devices are used in the script but not </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t292" href="#t292">292</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">connected to the communication fabric correctly. </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t293" href="#t293">293</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">These packets may have been reinjected multiple times </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t294" href="#t294">294</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">and so this number may be an overestimate.</span><span class="fst">"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par run show_par"><span class="n"><a id="t285" href="#t285">285</a></span><span class="t">            <span class="key">if</span> <span class="nam">status</span><span class="op">.</span><span class="nam">n_link_dumps</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">285&#x202F;&#x219B;&#x202F;286</span><span class="annotate long">line 285 didn't jump to line 286 because the condition on line 285 was never true</span></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t286" href="#t286">286</a></span><span class="t">                <span class="nam">db</span><span class="op">.</span><span class="nam">insert_report</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t287" href="#t287">287</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">The extra monitor on </span><span class="op">{</span><span class="nam">x</span><span class="op">}</span><span class="fst">, </span><span class="op">{</span><span class="nam">y</span><span class="op">}</span><span class="fst"> has detected that </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t288" href="#t288">288</a></span><span class="t">                    <span class="fst">f"</span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">n_link_dumps</span><span class="op">}</span><span class="fst"> packets were dumped from </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t289" href="#t289">289</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">outgoing links </span><span class="op">{</span><span class="nam">status</span><span class="op">.</span><span class="nam">links_dropped_from</span><span class="op">}</span><span class="fst"> of this </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t290" href="#t290">290</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">chip's router. This often occurs </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t291" href="#t291">291</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">when external devices are used in the script but not </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t292" href="#t292">292</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">connected to the communication fabric correctly. </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t293" href="#t293">293</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">These packets may have been reinjected multiple times </span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t294" href="#t294">294</a></span><span class="t">                    <span class="fst">f"</span><span class="fst">and so this number may be an overestimate.</span><span class="fst">"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t295" href="#t295">295</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t296" href="#t296">296</a></span><span class="t">            <span class="nam">db</span><span class="op">.</span><span class="nam">insert_router</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t297" href="#t297">297</a></span><span class="t">                <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">prefix</span><span class="op">}</span><span class="fst">Dumped_from_a_processor</span><span class="fst">"</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -400,7 +400,7 @@
             <a class="nav" href="z_e688345c38268688_routing_table_loader_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-08 05:18 +0000
+            created at 2025-09-09 05:32 +0000
         </p>
     </div>
 </footer>
