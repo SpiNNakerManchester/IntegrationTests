@@ -55,9 +55,9 @@
             </div>
         </aside>
         <h2>
-            <span class="text">197 statements &nbsp;</span>
+            <span class="text">198 statements &nbsp;</span>
             <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">52<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">145<span class="text"> missing</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">146<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">4<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">0<span class="text"> partial</span></button>
         </h2>
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_14bded6290410b3c_recorder_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-12 05:15 +0000
+            created at 2025-09-13 05:12 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -425,9 +425,9 @@
     <p class="mis show_mis"><span class="n"><a id="t341" href="#t341">341</a></span><span class="t">        <span class="nam">fixed_values</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">Tuple</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t342" href="#t342">342</a></span><span class="t">        <span class="key">for</span> <span class="nam">attribute</span> <span class="key">in</span> <span class="nam">attribute_names</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t343" href="#t343">343</a></span><span class="t">            <span class="nam">data_items</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">attribute</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t344" href="#t344">344</a></span><span class="t">            <span class="key">if</span> <span class="nam">attribute</span> <span class="key">not</span> <span class="key">in</span> <span class="op">{</span><span class="str">"source"</span><span class="op">,</span> <span class="str">"target"</span><span class="op">,</span> <span class="str">"weight"</span><span class="op">,</span> <span class="str">"delay"</span><span class="op">}</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t345" href="#t345">345</a></span><span class="t">                <span class="nam">value</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_synapse_information</span><span class="op">.</span><span class="nam">synapse_dynamics</span><span class="op">.</span><span class="nam">get_value</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t346" href="#t346">346</a></span><span class="t">                    <span class="nam">attribute</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t344" href="#t344">344</a></span><span class="t">            <span class="nam">synapse_dynamics</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_synapse_information</span><span class="op">.</span><span class="nam">synapse_dynamics</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t345" href="#t345">345</a></span><span class="t">            <span class="key">if</span> <span class="nam">attribute</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">synapse_dynamics</span><span class="op">.</span><span class="nam">get_synapse_parameter_names</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t346" href="#t346">346</a></span><span class="t">                <span class="nam">value</span> <span class="op">=</span> <span class="nam">synapse_dynamics</span><span class="op">.</span><span class="nam">get_value</span><span class="op">(</span><span class="nam">attribute</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t347" href="#t347">347</a></span><span class="t">                <span class="nam">fixed_values</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="op">(</span><span class="nam">attribute</span><span class="op">,</span> <span class="nam">value</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t348" href="#t348">348</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t349" href="#t349">349</a></span><span class="t">        <span class="com"># Return the connection data</span>&nbsp;</span><span class="r"></span></p>
@@ -611,7 +611,7 @@
             <a class="nav" href="z_14bded6290410b3c_recorder_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-12 05:15 +0000
+            created at 2025-09-13 05:12 +0000
         </p>
     </div>
 </footer>
