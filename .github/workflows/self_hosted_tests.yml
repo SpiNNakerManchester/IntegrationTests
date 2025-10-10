@@ -71,17 +71,9 @@ jobs:
           https://github.com/SpiNNakerManchester/spinn_common.git
           https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
           https://github.com/SpiNNakerManchester/sPyNNaker.git
-          https://github.com/SpiNNakerManchester/Visualiser.git
           https://github.com/SpiNNakerManchester/JavaSpiNNaker.git
           https://github.com/SpiNNakerManchester/PyNNExamples.git
-          https://github.com/SpiNNakerManchester/sPyNNakerNewModelTemplate.git
           https://github.com/SpiNNakerManchester/microcircuit_model.git
-          https://github.com/SpiNNakerManchester/SpiNNGym.git
-          https://github.com/SpiNNakerManchester/MarkovChainMonteCarlo.git
-          https://github.com/SpiNNakerManchester/TestBase.git
-          https://github.com/SpiNNakerManchester/SpiNNaker_PDP2.git
-          https://github.com/SpiNNakerManchester/SpiNNakerJupyterExamples.git
-          https://${{ secrets.SPINNAKER_PAT }}@github.com/SpiNNakerManchester/TSPonSpiNNaker.git
 
     - name: Setup SpiNNUtils
       id: setup-spinnutils
@@ -89,49 +81,19 @@ jobs:
         source pyenv/bin/activate
         pip install ./SpiNNUtils[test]
 
-    - name: Make C Code
-      id: make-c-code
-      run: |
-        source pyenv/bin/activate
-        make -C $SPINN_DIRS
-        make -C spinn_common install
-        make -C SpiNNFrontEndCommon/c_common
-        make -C SpiNNFrontEndCommon/c_common install
-        make -C sPyNNaker/neural_modelling
-        make -C sPyNNakerNewModelTemplate/c_models
-        make -C SpiNNakerGraphFrontEnd/gfe_examples
-        make -C SpiNNakerGraphFrontEnd/gfe_integration_tests
-        make -C SpiNNGym/c_code
-        make -C MarkovChainMonteCarlo/c_models
-        make -C SpiNNaker_PDP2/c_code
-        make -C Visualiser
-        make -C TSPonSpiNNaker/spinnaker_c
-
     - name: Install Python Modules
       id: install-python-modules
       run: |
         source pyenv/bin/activate
-        pip install ./SpiNNMachine[test]
-        pip install ./SpiNNMan[test]
-        pip install ./PACMAN[test]
-        pip install ./spalloc[test]
-        pip install ./SpiNNFrontEndCommon[test]
-        pip install ./TestBase[test]
-        pip install ./sPyNNaker[test]
-        pip install ./sPyNNakerNewModelTemplate[test]
-        pip install ./SpiNNakerGraphFrontEnd[test]
-        pip install ./SpiNNGym[test]
-        pip install ./MarkovChainMonteCarlo[test]
-        # Due to the binaries being outside of the package
-        pip install -e ./SpiNNaker_PDP2[test]
-        pip install ./Visualiser[test]
-        pip install ./TSPonSpiNNaker[test]
-        # no install SpiNNakerJupyterExamples
+        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre
+        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre
+        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre        
         python -m spynnaker.pyNN.setup_pynn
         # Additional requirements for testing here
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
-        pip freeze
+        # Stuff normally installed by [test] installs
+        pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz
 
     - name: Install Java
       id: install-java
@@ -145,40 +107,16 @@ jobs:
       run: |
         rm -rf spinn_common
         rm -rf SpiNNUtils/spinn_utilities
-        rm -rf SpiNNUtils/build
         rm -rf SpiNNMachine/spinn_machine
-        rm -rf SpiNNMachine/build
         rm -rf SpiNNMan/spinnman
-        rm -rf SpiNNMan/build
         rm -rf PACMAN/pacman
         rm -rf PACMAN/pacman_test_objects
-        rm -rf PACMAN/build
         rm -rf spalloc/spalloc_client
-        rm -rf spalloc/build
         rm -rf SpiNNFrontEndCommon/spinn_front_end_common
         rm -rf SpiNNFrontEndCommon/c_common
-        rm -rf SpiNNFrontEndCommon/build
-        rm -rf TestBase/spinnaker_testbase
-        rm -rf TestBase/build
         rm -rf sPyNNaker/spynnaker
         rm -rf sPyNNaker/neural_modelling
-        rm -rf sPyNNaker/build
-        rm -rf sPyNNakerNewModelTemplate/python_models8
-        rm -rf sPyNNakerNewModelTemplate/build
         rm -rf SpiNNakerGraphFrontEnd/spinnaker_graph_front_end
-        rm -rf SpiNNakerGraphFrontEnd/build
-        rm -rf SpiNNGym/spinn_gym
-        rm -rf SpiNNGym/c_code
-        rm -rf SpiNNGym/build
-        rm -rf MarkovChainMonteCarlo/mcmc
-        rm -rf MarkovChainMonteCarlo/build
-        # Due to the binaries being outside of the package
-        # NO remove SpiNNaker_PDP2
-        rm -rf Visualiser/visualiser_example_binaries
-        rm -rf Visualiser/build
-        # No remove SpiNNakerJupyterExamples
-        rm -rf TSPonSpiNNaker/spinnaker_c
-        rm -rf TSPonSpiNNaker/build
 
     # --------------------------------------------------------------------
 
@@ -272,46 +210,6 @@ jobs:
         covfile: unit
         n_threads: auto
 
-    - name: Run SpiNNGym Unit Tests
-      id: spinn-gym-unit-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNGym/unittests
-        timeout: 1200
-        results: SpiNNGym
-        covfile: unit
-        n_threads: auto
-
-    - name: Run MarkovChainMonteCarlo Unit Tests
-      id: mcmc-unit-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: MarkovChainMonteCarlo/unittests
-        timeout: 1200
-        results: MarkovChainMonteCarlo
-        covfile: unit
-        n_threads: auto
-
-    - name: Run SpiNNaker_PDP2 Unit Tests
-      id: pdp2-unit-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNaker_PDP2/unittests
-        timeout: 1200
-        results: SpiNNaker_PDP2
-        covfile: unit
-        n_threads: auto
-
-    - name: Run TSPonSpiNNaker Unit Tests
-      id: tsp-on-spinnaker-unit-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: TSPonSpiNNaker/unittests
-        timeout: 1200
-        results: TSPonSpiNNaker
-        covfile: unit
-        n_threads: auto
-
     # --------------------------------------------------------------------
 
     - name: Refresh test runner scripts
@@ -320,11 +218,6 @@ jobs:
         source pyenv/bin/activate
         python SpiNNakerGraphFrontEnd/gfe_integration_tests/script_builder.py
         python PyNNExamples/integration_tests/script_builder.py
-        python sPyNNakerNewModelTemplate/nmt_integration_tests/script_builder.py
-        python SpiNNGym/integration_tests/script_builder.py
-        python MarkovChainMonteCarlo/mcmc_integration_tests/script_builder.py
-        python SpiNNaker_PDP2/integration_tests/script_builder.py
-        python TSPonSpiNNaker/integration_tests/script_builder.py
 
     - name: Check previous
       id: test-previous
@@ -377,17 +270,6 @@ jobs:
         covfile: integration
         n_threads: auto
 
-    - name: Run sPyNNakerNewModelTemplate Integration Tests
-      id: spynnaker-new-model-template-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: sPyNNakerNewModelTemplate/nmt_integration_tests/
-        timeout: 3600
-        results: sPyNNakerNewModelTemplate_Integration
-        covfile: integration
-        n_threads: auto
-
     - name: Run microcircuit_model Integration Tests
       id: microcircuit-model-integration-tests
       if: always() && steps.test-previous.outputs.prev_ok == 'true'
@@ -396,68 +278,6 @@ jobs:
         tests: microcircuit_model/integration_tests/
         timeout: 12000
         results: microcircuit_model_Integration
-        covfile: integration
-        n_threads: auto
-
-    - name: Run SpiNNGym Integration Tests
-      id: spinn-gym-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNGym/integration_tests/
-        timeout: 3600
-        results: SpiNNGym_Integration
-        covfile: integration
-        n_threads: auto
-
-    - name: Run MarkovChainMonteCarlo Integration Tests
-      id: markov-chain-monte-carlo-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: MarkovChainMonteCarlo/mcmc_integration_tests/
-        timeout: 3600
-        results: MarkovChainMonteCarlo_Integration
-        covfile: integration
-        n_threads: auto
-
-    - name: Run SpiNNaker_PDP2 Integration Tests
-      id: spinnaker-pdp2-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNaker_PDP2/integration_tests/
-        timeout: 3600
-        results: SpiNNaker_PDP2_Integration
-        covfile: integration
-        n_threads: auto
-
-    - name: Run Visualiser Integration Tests
-      id: visualiser-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: Visualiser/visualiser_integration_tests/
-        timeout: 3600
-        results: Visualiser_Integration
-        covfile: integration
-        n_threads: auto
-
-    - name: Run SpiNNakerJupyterExamples
-      id: spinnaker-jupyter-examples
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      run: |
-        source pyenv/bin/activate
-        pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb
-
-    - name: Run TSPOnSpiNNaker Integration Tests
-      id: tsp-on-spinnaker-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: TSPonSpiNNaker/integration_tests/
-        timeout: 3600
-        results: TSPOnSpiNNaker_Integration
         covfile: integration
         n_threads: auto
 
