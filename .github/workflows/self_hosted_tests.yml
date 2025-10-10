@@ -75,12 +75,6 @@ jobs:
           https://github.com/SpiNNakerManchester/PyNNExamples.git
           https://github.com/SpiNNakerManchester/microcircuit_model.git
 
-    - name: Setup SpiNNUtils
-      id: setup-spinnutils
-      run: |
-        source pyenv/bin/activate
-        pip install ./SpiNNUtils[test]
-
     - name: Install Python Modules
       id: install-python-modules
       run: |
