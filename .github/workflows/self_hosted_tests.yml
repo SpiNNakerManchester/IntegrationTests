@@ -87,7 +87,7 @@ jobs:
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
         # Stuff normally installed by [test] installs
-        pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz
+        pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz deepdiff
 
     - name: Install Java
       id: install-java
