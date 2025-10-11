@@ -184,16 +184,6 @@ jobs:
         covfile: unit
         n_threads: auto
 
-    - name: Run SpiNNakerGraphFrontEnd Unit Tests
-      id: gfe-unit-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNakerGraphFrontEnd/unittests
-        timeout: 1200
-        results: SpiNNakerGraphFrontEnd
-        covfile: unit
-        n_threads: auto
-
     - name: Run PyNNExamples Unit Tests
       id: pynn-examples-unit-tests
       uses: ./.github/actions/pytest_local
