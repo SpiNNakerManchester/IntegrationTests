@@ -19,6 +19,7 @@ runs:
           echo "Trying branch $GITHUB_REF_NAME of $REPO"
           if git clone --branch $GITHUB_REF_NAME --depth 1 $REPO
           then
+            echo "Successful cloned --branch $GITHUB_REF_NAME"
           else
             echo "Check out HEAD of $REPO"
             git clone --depth 1 $REPO
