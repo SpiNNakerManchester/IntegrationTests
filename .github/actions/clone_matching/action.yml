@@ -16,34 +16,12 @@ runs:
         for (( i=0; i<${#REPOS[@]}; i++))
         do
           REPO=${REPOS[$i]}
-          echo "Testing branch of $REPO"
-          BRANCH=$(git ls-remote $REPO | awk '
-              BEGIN {
-                  id = "x"
-                  # The next line is a default default only
-                  branch = "REMOTE_PARSE_FAILED"
-                  target_branch = "refs/heads/" ENVIRON["GITHUB_REF"]
-                  target_tag = "refs/tags/" ENVIRON["GITHUB_REF"]
-              }
-              $2=="HEAD" {
-                  # Note that the remote HEAD ref comes first
-                  id = $1
-              }
-              $1==id {
-                  sub(/refs\/(heads|tags)\//, "", $2)
-                  branch = $2
-                  # May be overwritten by the rule below; this is OK
-              }
-              $2==target_branch || $2==target_tag {
-                  branch = ENVIRON["GITHUB_REF"]
-                  # Reset the ID to a non-hash so the rule to match it will not fire
-                  id = "x"
-              }
-              END {
-                  print branch
-              }')
-          BRANCH=${BRANCH#refs/heads/}
-          git clone --branch $BRANCH --single-branch --depth 1 $REPO
-          echo "Checked out branch $BRANCH of $REPO"
+          echo "Trying branch $GITHUB_REF_NAME of $REPO"
+          if git clone --branch $GITHUB_REF_NAME --depth 1 $REPO
+          then
+          else
+            echo "Check out HEAD of $REPO"
+            git clone --depth 1 $REPO
+          fi
         done
       shell: bash
