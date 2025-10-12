@@ -88,6 +88,7 @@ jobs:
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
         # Stuff normally installed by [test] installs
         pip install pytest-cov testfixtures "httpretty != 1.0.0" pylint testfixtures mock graphviz deepdiff
+        pip freeze
 
     - name: Install Java
       id: install-java
