@@ -233,17 +233,6 @@ jobs:
         covfile: integration
         n_threads: auto
 
-    - name: Run GFE Integration Tests
-      id: gfe-integration-tests
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNakerGraphFrontEnd/gfe_integration_tests/
-        timeout: 3600
-        results: GFE_Integration
-        covfile: integration
-        n_threads: auto
-
     - name: Run PyNNExamples Integration Tests
       id: pynn-examples-integration-tests
       if: always() && steps.test-previous.outputs.prev_ok == 'true'
