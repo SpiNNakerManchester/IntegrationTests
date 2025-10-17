@@ -79,9 +79,9 @@ jobs:
       id: install-python-modules
       run: |
         source pyenv/bin/activate
-        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ sPyNNaker --pre
-        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerGraphFrontEnd --pre
-        pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ SpiNNakerTestBase --pre        
+        pip install sPyNNaker
+        pip install SpiNNakerGraphFrontEnd
+        pip install SpiNNakerTestBase        
         python -m spynnaker.pyNN.setup_pynn
         # Additional requirements for testing here
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
