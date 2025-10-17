@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_f5a9ebe8d9454c55_synapse_dynamics_structural_common_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-16 05:18 +0000
+            created at 2025-10-17 05:18 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -118,8 +118,8 @@
     <p class="run run2"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">    <span class="nam">AbstractConnector</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">models</span><span class="op">.</span><span class="nam">neuron</span><span class="op">.</span><span class="nam">plasticity</span><span class="op">.</span><span class="nam">stdp</span><span class="op">.</span><span class="nam">weight_dependence</span><span class="op">.</span><span class="xx">\</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">    <span class="nam">abstract_has_a_plus_a_minus</span> <span class="key">import</span> <span class="nam">AbstractHasAPlusAMinus</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">types</span> <span class="key">import</span> <span class="nam">WEIGHTS</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">types</span> <span class="key">import</span> <span class="nam">WEIGHTS_DELAYS_IN</span> <span class="key">as</span> <span class="nam">_In_Types</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">types</span> <span class="key">import</span> <span class="nam">Weights</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">types</span> <span class="key">import</span> <span class="nam">WeightsDelysIn</span> <span class="key">as</span> <span class="nam">_In_Types</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">utilities</span><span class="op">.</span><span class="nam">utility_calls</span> <span class="key">import</span> <span class="nam">get_n_bits</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t"><span class="key">from</span> <span class="nam">spynnaker</span><span class="op">.</span><span class="nam">pyNN</span><span class="op">.</span><span class="nam">models</span><span class="op">.</span><span class="nam">neuron</span><span class="op">.</span><span class="nam">synapse_dynamics</span><span class="op">.</span><span class="nam">types</span> <span class="key">import</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">    <span class="nam">NUMPY_CONNECTORS_DTYPE</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -600,7 +600,7 @@
     <p class="pln"><span class="n"><a id="t516" href="#t516">516</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t517" href="#t517">517</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractPlasticSynapseDynamics</span><span class="op">.</span><span class="nam">get_weight_variance</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t518" href="#t518">518</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_weight_variance</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t519" href="#t519">519</a></span><span class="t">           <span class="nam">self</span><span class="op">,</span> <span class="nam">connector</span><span class="op">:</span> <span class="nam">AbstractConnector</span><span class="op">,</span> <span class="nam">weights</span><span class="op">:</span> <span class="nam">WEIGHTS</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t519" href="#t519">519</a></span><span class="t">           <span class="nam">self</span><span class="op">,</span> <span class="nam">connector</span><span class="op">:</span> <span class="nam">AbstractConnector</span><span class="op">,</span> <span class="nam">weights</span><span class="op">:</span> <span class="nam">Weights</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t520" href="#t520">520</a></span><span class="t">            <span class="nam">synapse_info</span><span class="op">:</span> <span class="nam">SynapseInformation</span><span class="op">)</span> <span class="op">-></span> <span class="nam">float</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t521" href="#t521">521</a></span><span class="t">        <span class="com"># Because the weights could all be changed to the maximum, the variance</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t522" href="#t522">522</a></span><span class="t">        <span class="com"># has to be given as no variance</span>&nbsp;</span><span class="r"></span></p>
@@ -729,7 +729,7 @@
             <a class="nav" href="z_f5a9ebe8d9454c55_synapse_dynamics_structural_common_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-16 05:18 +0000
+            created at 2025-10-17 05:18 +0000
         </p>
     </div>
 </footer>
