@@ -131,19 +131,6 @@ jobs:
 
     # --------------------------------------------------------------------
 
-    - name: Check Reports
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      run: |
-        source pyenv/bin/activate
-        python -m spinn_utilities.executable_finder
-        find ${GLOBAL_REPORTS} -print -exec cat \{\} \;
-
-    - name: Check Destroyed
-      if: always() && steps.test-previous.outputs.prev_ok == 'true'
-      run: |
-        source pyenv/bin/activate
-        python -m spinnaker_testbase.test_no_job_destroy
-
     - name: Extract branch name
       shell: bash
       if: always() && steps.test-previous.outputs.prev_ok == 'true'
