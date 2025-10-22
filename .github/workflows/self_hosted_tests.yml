@@ -170,6 +170,7 @@ jobs:
         results: sPyNNaker_whole_board
         covfile: integration
         n_threads: auto
+      secrets: inherit
 
     # --------------------------------------------------------------------
 
