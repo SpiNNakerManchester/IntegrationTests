@@ -66,14 +66,6 @@ jobs:
           https://github.com/SpiNNakerManchester/SpiNNUtils.git
           https://github.com/SpiNNakerManchester/SpiNNMachine.git
           https://github.com/SpiNNakerManchester/SpiNNMan.git
-          https://github.com/SpiNNakerManchester/PACMAN.git
-          https://github.com/SpiNNakerManchester/spalloc.git
-          https://github.com/SpiNNakerManchester/spinnaker_tools.git
-          https://github.com/SpiNNakerManchester/spinn_common.git
-          https://github.com/SpiNNakerManchester/SpiNNFrontEndCommon.git
-          https://github.com/SpiNNakerManchester/sPyNNaker.git
-          https://github.com/SpiNNakerManchester/JavaSpiNNaker.git
-          https://github.com/SpiNNakerManchester/TestBase.git
 
     - name: Setup SpiNNUtils
       id: setup-spinnutils
@@ -81,39 +73,16 @@ jobs:
         source pyenv/bin/activate
         pip install ./SpiNNUtils[test]
 
-    - name: Make C Code
-      id: make-c-code
-      run: |
-        source pyenv/bin/activate
-        make -C $SPINN_DIRS
-        make -C spinn_common install
-        make -C SpiNNFrontEndCommon/c_common
-        make -C SpiNNFrontEndCommon/c_common install
-        make -C sPyNNaker/neural_modelling
-
     - name: Install Python Modules
       id: install-python-modules
       run: |
         source pyenv/bin/activate
         pip install ./SpiNNMachine[test]
         pip install ./SpiNNMan[test]
-        pip install ./PACMAN[test]
-        pip install ./spalloc[test]
-        pip install ./SpiNNFrontEndCommon[test]
-        pip install ./TestBase[test]
-        pip install ./sPyNNaker[test]
-        python -m spynnaker.pyNN.setup_pynn
         # Additional requirements for testing here
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
         pip freeze
-
-    - name: Install Java
-      id: install-java
-      run: |
-        java -version
-        mvn -version
-        mvn package -B -f JavaSpiNNaker -pl -SpiNNaker-allocserv -DskipTests
 
     - name: Delete Install Sources
       id: delete-install-sources
@@ -125,19 +94,6 @@ jobs:
         rm -rf SpiNNMachine/build
         rm -rf SpiNNMan/spinnman
         rm -rf SpiNNMan/build
-        rm -rf PACMAN/pacman
-        rm -rf PACMAN/pacman_test_objects
-        rm -rf PACMAN/build
-        rm -rf spalloc/spalloc_client
-        rm -rf spalloc/build
-        rm -rf SpiNNFrontEndCommon/spinn_front_end_common
-        rm -rf SpiNNFrontEndCommon/c_common
-        rm -rf SpiNNFrontEndCommon/build
-        rm -rf TestBase/spinnaker_testbase
-        rm -rf TestBase/build
-        rm -rf sPyNNaker/spynnaker
-        rm -rf sPyNNaker/neural_modelling
-        rm -rf sPyNNaker/build
 
     # --------------------------------------------------------------------
 
@@ -163,13 +119,13 @@ jobs:
     # --------------------------------------------------------------------
 
     - name: Run Whole  Board Integration Tests
-      id: spynnaker-whole_board
+      id: SpiNNMan-whole_board
       if: always() && steps.test-previous.outputs.prev_ok == 'true'
       uses: ./.github/actions/pytest_local
       with:
-        tests: sPyNNaker/test_whole_board
+        tests: SpiNNMan/test_whole_board
         timeout: 96000
-        results: sPyNNaker_whole_board
+        results: SpiNNMan_whole_board
         covfile: integration
         n_threads: auto
 
