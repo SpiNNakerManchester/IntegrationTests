@@ -88,7 +88,6 @@ jobs:
         make -C SpiNNFrontEndCommon/c_common
         make -C SpiNNFrontEndCommon/c_common install
         make -C sPyNNaker/neural_modelling
-        make -C sPyNNakerNewModelTemplate/c_models
 
     - name: Install Python Modules
       id: install-python-modules
