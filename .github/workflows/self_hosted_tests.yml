@@ -171,6 +171,8 @@ jobs:
         results: sPyNNaker_whole_board
         covfile: integration
         n_threads: auto
+        spalloc_user: ${{ secrets.SPALLOC_USER }}
+        spalloc_password: ${{ secrets.SPALLOC_PASSWORD }}
 
     # --------------------------------------------------------------------
 
