@@ -17,12 +17,6 @@ inputs:
     description: 'The number of threads to run with'
     required: false
     default: 'auto'
-  spalloc_user:
-    description: 'user for spalloc'
-    required: true
-  spalloc_password:
-    descrption: 'password for spalloc'
-    required: true
 runs:
   using: "composite"
   steps:
@@ -59,8 +53,6 @@ runs:
           --cov spinnman --cov spinn_machine --cov spalloc
           --cov spinn_utilities --cov spinnaker_graph_front_end
           --cov-append
-        SPALLOC_USER: ${{ inputs.spalloc_user }}
-        SPALLOC_PASSWORD: ${{ inputs.spalloc_password }}
 
       run: |
         mkdir -p junit/
