@@ -53,6 +53,9 @@ runs:
           --cov spinnman --cov spinn_machine --cov spalloc
           --cov spinn_utilities --cov spinnaker_graph_front_end
           --cov-append
+        SPALLOC_USER: ${{ secrets.SPALLOC_USER }}
+        SPALLOC_PASSWORD: ${{ secrets.SPALLOC_PASSWORD }}
+
       run: |
         mkdir -p junit/
         echo "<testsuite tests='0'></testsuite>" > junit/${{ inputs.results }}.xml
