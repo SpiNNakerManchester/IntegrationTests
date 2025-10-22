@@ -28,6 +28,7 @@ jobs:
     runs-on: self-hosted
     container:
         image: localhost:5000/python3.13:latest
+    secrets: inherit
     steps:
     - name: Checkout
       id: checkout
@@ -170,7 +171,6 @@ jobs:
         results: sPyNNaker_whole_board
         covfile: integration
         n_threads: auto
-      secrets: inherit
 
     # --------------------------------------------------------------------
 
