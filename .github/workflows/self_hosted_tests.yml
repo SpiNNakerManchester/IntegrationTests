@@ -56,8 +56,6 @@ jobs:
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
           echo "SPALLOC_USER=${{ secrets.SPALLOC_USER }}" >> $GITHUB_ENV
           echo "SPALLOC_PASSWORD=${{ secrets.SPALLOC_PASSWORD }}" >> $GITHUB_ENV
-
-        echo
       id: set_env_step
 
     - name: Clone Repositories to be tested
