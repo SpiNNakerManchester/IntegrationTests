@@ -54,6 +54,8 @@ jobs:
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
+          echo "SPALLOC_USER=${{ secrets.SPALLOC_USER }}" >> $GITHUB_ENV
+          echo "SPALLOC_PASSWORD=${{ secrets.SPALLOC_PASSWORD }}" >> $GITHUB_ENV
       id: set_env_step
 
     - name: Clone Repositories to be tested
@@ -212,6 +214,16 @@ jobs:
         covfile: unit
         n_threads: auto
 
+    - name: spinnman_integration_tests
+      id: spinnman-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNMan/spinnman_integration_tests
+        timeout: 1200
+        results: SpiNNMan
+        covfile: unit
+        n_threads: auto
+
     - name: Run PACMAN Unit Tests
       id: pacman-unit-tests
       uses: ./.github/actions/pytest_local
@@ -236,7 +248,17 @@ jobs:
       id: fec-unit-tests
       uses: ./.github/actions/pytest_local
       with:
-        tests: SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests
+        tests: SpiNNFrontEndCommon/unittests
+        timeout: 1200
+        results: SpiNNFrontEndCommon
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNFrontEndCommon Integeration Tests
+      id: fec-unit-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNFrontEndCommon/fec_integration_tests
         timeout: 1200
         results: SpiNNFrontEndCommon
         covfile: unit
