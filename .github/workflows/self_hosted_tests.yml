@@ -54,6 +54,8 @@ jobs:
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
+          echo "SPALLOC_USER=${{ secrets.SPALLOC_USER }}" >> $GITHUB_ENV
+          echo "SPALLOC_PASSWORD=${{ secrets.SPALLOC_PASSWORD }}" >> $GITHUB_ENV
       id: set_env_step
 
     - name: Clone Repositories to be tested
