@@ -215,7 +215,7 @@ jobs:
         n_threads: auto
 
     - name: spinnman_integration_tests
-      id: spinnman-unit-tests
+      id: spinnman-integration-tests
       uses: ./.github/actions/pytest_local
       with:
         tests: SpiNNMan/spinnman_integration_tests
@@ -255,7 +255,7 @@ jobs:
         n_threads: auto
 
     - name: Run SpiNNFrontEndCommon Integeration Tests
-      id: fec-unit-tests
+      id: fec-integratio-tests
       uses: ./.github/actions/pytest_local
       with:
         tests: SpiNNFrontEndCommon/fec_integration_tests
