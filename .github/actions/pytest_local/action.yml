@@ -28,6 +28,7 @@ runs:
         echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
         echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
         echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+        echo "spalloc_use_proxy = False" >> ~/.spynnaker.cfg
         echo "[Java]" >> ~/.spynnaker.cfg
         echo "use_java = True" >> ~/.spynnaker.cfg
         echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
