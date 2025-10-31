@@ -26,6 +26,7 @@ on:
 jobs:
   integration_tests:
     runs-on: self-hosted
+    timeout-minutes: 1200
     container:
         image: localhost:5000/python3.13:latest
     steps:
