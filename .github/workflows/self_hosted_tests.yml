@@ -214,7 +214,7 @@ jobs:
         covfile: unit
         n_threads: auto
 
-    - name: spinnman_integration_tests
+    - name: Run SpiNNMan Integration Tests
       id: spinnman-integration-tests
       uses: ./.github/actions/pytest_local
       with:
@@ -248,7 +248,17 @@ jobs:
       id: fec-unit-tests
       uses: ./.github/actions/pytest_local
       with:
-        tests: SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests
+        tests: SpiNNFrontEndCommon/unittests
+        timeout: 1200
+        results: SpiNNFrontEndCommon
+        covfile: unit
+        n_threads: auto
+
+    - name: Run SpiNNFrontEndCommon Integration Tests
+      id: fec-integration-tests
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: SpiNNFrontEndCommon/fec_integration_tests
         timeout: 1200
         results: SpiNNFrontEndCommon
         covfile: unit
