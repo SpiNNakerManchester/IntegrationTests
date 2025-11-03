@@ -248,17 +248,7 @@ jobs:
       id: fec-unit-tests
       uses: ./.github/actions/pytest_local
       with:
-        tests: SpiNNFrontEndCommon/unittests
-        timeout: 1200
-        results: SpiNNFrontEndCommon
-        covfile: unit
-        n_threads: auto
-
-    - name: Run SpiNNFrontEndCommon Integeration Tests
-      id: fec-integratio-tests
-      uses: ./.github/actions/pytest_local
-      with:
-        tests: SpiNNFrontEndCommon/fec_integration_tests
+        tests: SpiNNFrontEndCommon/unittests SpiNNFrontEndCommon/fec_integration_tests
         timeout: 1200
         results: SpiNNFrontEndCommon
         covfile: unit
@@ -481,6 +471,17 @@ jobs:
         timeout: 3600
         results: TSPOnSpiNNaker_Integration
         covfile: integration
+        n_threads: auto
+
+    - name: Run schedule check
+      id: schedule_check
+      if: ${{ github.event_name == 'schedule' }}
+      uses: ./.github/actions/pytest_local
+      with:
+        tests: sPyNNaker/unittests
+        timeout: 1200
+        results: sPyNNaker
+        covfile: unit
         n_threads: auto
 
     # --------------------------------------------------------------------
