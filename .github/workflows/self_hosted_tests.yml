@@ -21,11 +21,14 @@ name: Self Hosted Tests
 on:
   push:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 1 * * 0,6'
+    - cron: '0 1 * * 1-5'
 
 jobs:
   integration_tests:
     runs-on: self-hosted
+    # 24 * 60 minutes
+    timeout-minutes: 1440
     container:
         image: localhost:5000/python3.13:latest
     steps:
@@ -54,6 +57,8 @@ jobs:
           echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
           echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
+          echo "SPALLOC_USER=${{ secrets.SPALLOC_USER }}" >> $GITHUB_ENV
+          echo "SPALLOC_PASSWORD=${{ secrets.SPALLOC_PASSWORD }}" >> $GITHUB_ENV
       id: set_env_step
 
     - name: Clone Repositories to be tested
@@ -461,17 +466,18 @@ jobs:
         covfile: integration
         n_threads: auto
 
-    - name: Run schedule check
-      id: schedule_check
-      if: ${{ github.event_name == 'schedule' }}
+    - name: Run Whole Board Test
+      id: whole_board_test
+      # Only weekends
+      if: github.event.schedule != '0 1 * * 0,6'
       uses: ./.github/actions/pytest_local
       with:
-        tests: sPyNNaker/unittests
-        timeout: 1200
-        results: sPyNNaker
-        covfile: unit
+        tests: sPyNNaker/test_whole_board
+        # 20 * 60 * 60 seconds
+        timeout: 72000
+        results: sPyNNaker_whole_board
+        covfile: integration
         n_threads: auto
-
     # --------------------------------------------------------------------
 
     - name: Check Reports
