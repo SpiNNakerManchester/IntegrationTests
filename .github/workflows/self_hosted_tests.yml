@@ -469,7 +469,7 @@ jobs:
     - name: Run Whole Board Test
       id: whole_board_test
       # Only weekends
-      if: github.event.schedule != '0 1 * * 0,6'
+      if: github.event.schedule == '0 1 * * 0,6'
       uses: ./.github/actions/pytest_local
       with:
         tests: sPyNNaker/test_whole_board
