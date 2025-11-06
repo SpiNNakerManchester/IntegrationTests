@@ -65,5 +65,5 @@ runs:
       run: |
         source pyenv/bin/activate
         py.test ${{ inputs.tests }} -rs -n ${{ inputs.n_threads }} --forked --show-progress --maxschedchunk=1 \
-          ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO
+          ${COV_ARGS} --timeout ${{ inputs.timeout }} --log-level=INFO --dist loadgroup
       shell: bash
