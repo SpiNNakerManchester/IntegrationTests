@@ -135,6 +135,7 @@ jobs:
         python -m spynnaker.pyNN.setup_pynn
         # Additional requirements for testing here
         # coverage version capped due to https://github.com/nedbat/coveragepy/issues/883
+        pip install pytest!=9.0.0
         pip install nbmake python-coveralls "coverage>=5.0.0" pytest-instafail pytest-xdist pytest-progress pytest-forked pytest-timeout
         pip freeze
 
