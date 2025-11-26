@@ -28,6 +28,8 @@ runs:
         echo "spalloc_server = 10.11.192.11" >> ~/.spynnaker.cfg
         echo "spalloc_user = Jenkins" >> ~/.spynnaker.cfg
         echo "enable_advanced_monitor_support = True" >> ~/.spynnaker.cfg
+        echo "[Mapping]" > ~/.spynnaker.cfg
+        echo "router_table_compress_as_far_as_possible = True" >> ~/.spynnaker.cfg
         echo "[Java]" >> ~/.spynnaker.cfg
         echo "use_java = True" >> ~/.spynnaker.cfg
         echo "java_call=/usr/bin/java" >> ~/.spynnaker.cfg
@@ -39,6 +41,8 @@ runs:
         echo "spalloc_server = 10.11.192.11" >> ~/.spiNNakerGraphFrontEnd.cfg
         echo "spalloc_user = Jenkins" >> ~/.spiNNakerGraphFrontEnd.cfg
         echo "enable_advanced_monitor_support = True" >> ~/.spiNNakerGraphFrontEnd.cfg
+        echo "[Mapping]" > ~/.spiNNakerGraphFrontEnd.cfg
+        echo "router_table_compress_as_far_as_possible = True" >> ~/.spiNNakerGraphFrontEnd.cfg
         echo "[Java]" >> ~/.spiNNakerGraphFrontEnd.cfg
         echo "use_java = True" >> ~/.spiNNakerGraphFrontEnd.cfg
         echo "java_call=/usr/bin/java" >> ~/.spiNNakerGraphFrontEnd.cfg
