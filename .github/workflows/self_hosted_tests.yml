@@ -54,8 +54,10 @@ jobs:
     - name: Setup Environment
       shell: bash
       run: |
-          echo "SPINN_DIRS=${GITHUB_WORKSPACE}/spinnaker_tools" >> $GITHUB_ENV
-          echo "NEURAL_MODELLING_DIRS=${GITHUB_WORKSPACE}/sPyNNaker/neural_modelling" >> $GITHUB_ENV
+          echo "SPINN_INSTALL_DIR=${GITHUB_WORKSPACE}/spinnaker_tools_install" >> $GITHUB_ENV
+          echo "SPINN_COMMON_INSTALL_DIR=${GITHUB_WORKSPACE}/spinn_common_install" >> $GITHUB_ENV
+          echo "FEC_INSTALL_DIR=${GITHUB_WORKSPACE}/fec_install" >> $GITHUB_ENV
+          echo "SPYNNAKER_INSTALL_DIR=${GITHUB_WORKSPACE}/spynnaker_install" >> $GITHUB_ENV
           echo "GLOBAL_REPORTS=${GITHUB_WORKSPACE}/global_reports" >> $GITHUB_ENV
           echo "SPALLOC_USER=${{ secrets.SPALLOC_USER }}" >> $GITHUB_ENV
           echo "SPALLOC_PASSWORD=${{ secrets.SPALLOC_PASSWORD }}" >> $GITHUB_ENV
@@ -98,11 +100,11 @@ jobs:
       id: make-c-code
       run: |
         source pyenv/bin/activate
-        make -C $SPINN_DIRS
+        make -C spinnaker_tools install
         make -C spinn_common install
         make -C SpiNNFrontEndCommon/c_common
-        make -C SpiNNFrontEndCommon/c_common install
         make -C sPyNNaker/neural_modelling
+        make -C sPyNNaker/neural_modelling install
         make -C sPyNNakerNewModelTemplate/c_models
         make -C SpiNNakerGraphFrontEnd/gfe_examples
         make -C SpiNNakerGraphFrontEnd/gfe_integration_tests
