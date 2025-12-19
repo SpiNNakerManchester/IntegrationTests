@@ -102,8 +102,7 @@ jobs:
         source pyenv/bin/activate
         make -C spinnaker_tools install
         make -C spinn_common install
-        make -C SpiNNFrontEndCommon/c_common
-        make -C sPyNNaker/neural_modelling
+        make -C SpiNNFrontEndCommon/c_common install
         make -C sPyNNaker/neural_modelling install
         make -C sPyNNakerNewModelTemplate/c_models
         make -C SpiNNakerGraphFrontEnd/gfe_examples
