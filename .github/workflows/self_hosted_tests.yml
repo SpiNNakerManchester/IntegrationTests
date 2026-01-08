@@ -186,6 +186,8 @@ jobs:
         # No remove SpiNNakerJupyterExamples
         rm -rf TSPonSpiNNaker/spinnaker_c
         rm -rf TSPonSpiNNaker/build
+        rm -rf TSPonSpiNNaker/binaries
+        
 
     # --------------------------------------------------------------------
 
