@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_c0bdcaa9347ab43d_neo_compare_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
-            created at 2026-01-21 13:39 +0000
+            created at 2026-01-23 05:20 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -1010,10 +1010,10 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t926" href="#t926">926</a></span><span class="t">            <span class="nam">dtype</span><span class="op">=</span><span class="str">"&lt;i4"</span><span class="op">)</span><span class="op">.</span><span class="nam">reshape</span><span class="op">(</span><span class="op">[</span><span class="op">-</span><span class="num">1</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__REWIRING_N_WORDS</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t927" href="#t927">927</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t928" href="#t928">928</a></span><span class="t">        <span class="nam">record_time</span> <span class="op">=</span> <span class="op">(</span><span class="nam">raw_data</span><span class="op">[</span><span class="op">:</span><span class="op">,</span> <span class="num">0</span><span class="op">]</span> <span class="op">*</span> <span class="nam">sampling_interval_ms</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t929" href="#t929">929</a></span><span class="t">        <span class="nam">rewires_raw</span> <span class="op">=</span> <span class="nam">raw_data</span><span class="op">[</span><span class="op">:</span><span class="op">,</span> <span class="num">1</span><span class="op">:</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t929" href="#t929">929</a></span><span class="t">        <span class="nam">rewires_raw</span> <span class="op">=</span> <span class="nam">raw_data</span><span class="op">[</span><span class="op">:</span><span class="op">,</span> <span class="num">1</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t930" href="#t930">930</a></span><span class="t">        <span class="nam">rew_length</span> <span class="op">=</span> <span class="nam">len</span><span class="op">(</span><span class="nam">rewires_raw</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t931" href="#t931">931</a></span><span class="t">        <span class="com"># rewires is 0 (elimination) or 1 (formation) in the first bit</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t932" href="#t932">932</a></span><span class="t">        <span class="nam">rewires</span> <span class="op">=</span> <span class="op">(</span><span class="nam">rewires_raw</span><span class="op">[</span><span class="nam">i</span><span class="op">]</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">&amp;</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__FIRST_BIT</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t932" href="#t932">932</a></span><span class="t">        <span class="nam">rewires</span> <span class="op">=</span> <span class="op">(</span><span class="nam">rewires_raw</span><span class="op">[</span><span class="nam">i</span><span class="op">]</span> <span class="op">&amp;</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__FIRST_BIT</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t933" href="#t933">933</a></span><span class="t">                   <span class="key">for</span> <span class="nam">i</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="nam">rew_length</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t934" href="#t934">934</a></span><span class="t">        <span class="com"># the post-neuron ID is stored in the next 8 bytes</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t935" href="#t935">935</a></span><span class="t">        <span class="nam">post_ids</span> <span class="op">=</span> <span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="nam">int</span><span class="op">(</span><span class="nam">rewires_raw</span><span class="op">[</span><span class="nam">i</span><span class="op">]</span><span class="op">)</span> <span class="op">>></span> <span class="nam">self</span><span class="op">.</span><span class="nam">__POST_ID_SHIFT</span><span class="op">)</span> <span class="op">%</span>&nbsp;</span><span class="r"></span></p>
@@ -1636,7 +1636,7 @@
             <a class="nav" href="z_c0bdcaa9347ab43d_neo_compare_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
-            created at 2026-01-21 13:39 +0000
+            created at 2026-01-23 05:20 +0000
         </p>
     </div>
 </footer>
