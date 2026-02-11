@@ -170,7 +170,7 @@ jobs:
         rm -rf sPyNNaker/spynnaker
         rm -rf sPyNNaker/neural_modelling
         rm -rf sPyNNaker/build
-        rm -rf sPyNNakerNewModelTemplate/python_models8
+        rm -rf sPyNNakerNewModelTemplate/python_models
         rm -rf sPyNNakerNewModelTemplate/build
         rm -rf SpiNNakerGraphFrontEnd/spinnaker_graph_front_end
         rm -rf SpiNNakerGraphFrontEnd/build
