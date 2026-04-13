@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_ab8c0682009d1736_vec2mesh_reader_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.5">coverage.py v7.13.5</a>,
-            created at 2026-04-13 15:13 +0000
+            created at 2026-04-13 19:50 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -612,21 +612,22 @@
     <p class="pln"><span class="n"><a id="t528" href="#t528">528</a></span><span class="t"><span class="str">        :param n_frames: The number of frames</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t529" href="#t529">529</a></span><span class="t"><span class="str">        :param n_boards: The number of boards</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t530" href="#t530">530</a></span><span class="t"><span class="str">        :param n_chips: The number of chips</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t531" href="#t531">531</a></span><span class="t"><span class="str">        :param sum_chip_active_time: Sum of times the cores were active in seconds</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t532" href="#t532">532</a></span><span class="t"><span class="str">        :param router_packets: The number of packets sent by each router</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t533" href="#t533">533</a></span><span class="t"><span class="str">        :returns: the active energy consumption of the system in joules</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t534" href="#t534">534</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t535" href="#t535">535</a></span><span class="t">        <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t536" href="#t536">536</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t537" href="#t537">537</a></span><span class="t">    <span class="op">@</span><span class="nam">abstractmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t538" href="#t538">538</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_router_report_packet_types</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">List</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t539" href="#t539">539</a></span><span class="t">        <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t540" href="#t540">540</a></span><span class="t"><span class="str">        :returns: The list of packet types that the router can send</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t542" href="#t542">542</a></span><span class="t">        <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t543" href="#t543">543</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t">    <span class="key">def</span> <span class="nam">__hash__</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">int</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t545" href="#t545">545</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">number</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t531" href="#t531">531</a></span><span class="t"><span class="str">        :param sum_chip_active_time:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t532" href="#t532">532</a></span><span class="t"><span class="str">            Sum of times the cores were active in seconds</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t533" href="#t533">533</a></span><span class="t"><span class="str">        :param router_packets: The number of packets sent by each router</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t534" href="#t534">534</a></span><span class="t"><span class="str">        :returns: the active energy consumption of the system in joules</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t535" href="#t535">535</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t536" href="#t536">536</a></span><span class="t">        <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t537" href="#t537">537</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t538" href="#t538">538</a></span><span class="t">    <span class="op">@</span><span class="nam">abstractmethod</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t539" href="#t539">539</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_router_report_packet_types</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">List</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t540" href="#t540">540</a></span><span class="t">        <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t"><span class="str">        :returns: The list of packet types that the router can send</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t542" href="#t542">542</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t543" href="#t543">543</a></span><span class="t">        <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t545" href="#t545">545</a></span><span class="t">    <span class="key">def</span> <span class="nam">__hash__</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">int</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t546" href="#t546">546</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">number</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -636,7 +637,7 @@
             <a class="nav" href="z_ab8c0682009d1736_vec2mesh_reader_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.5">coverage.py v7.13.5</a>,
-            created at 2026-04-13 15:13 +0000
+            created at 2026-04-13 19:50 +0000
         </p>
     </div>
 </footer>
