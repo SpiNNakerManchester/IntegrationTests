@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_c639d7e22d5d5f4a_buffered_sending_region_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-19 05:34 +0000
+            created at 2026-05-22 05:47 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -422,7 +422,7 @@
     <p class="mis show_mis"><span class="n"><a id="t338" href="#t338">338</a></span><span class="t">        <span class="key">raise</span> <span class="nam">LookupError</span><span class="op">(</span><span class="str">"No Extraction id found"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t339" href="#t339">339</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t340" href="#t340">340</a></span><span class="t">    <span class="key">def</span> <span class="nam">store_recording</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">x</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">y</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">p</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">region</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t341" href="#t341">341</a></span><span class="t">                        <span class="nam">missing</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span> <span class="nam">data</span><span class="op">:</span> <span class="nam">bytes</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t341" href="#t341">341</a></span><span class="t">                        <span class="nam">missing</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span> <span class="nam">data</span><span class="op">:</span> <span class="nam">bytearray</span> <span class="op">|</span> <span class="nam">bytes</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t342" href="#t342">342</a></span><span class="t">        <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t343" href="#t343">343</a></span><span class="t"><span class="str">        Store some information in the corresponding buffer for a</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t344" href="#t344">344</a></span><span class="t"><span class="str">        specific chip, core and recording region.</span>&nbsp;</span><span class="r"></span></p>
@@ -452,7 +452,7 @@
     <p class="pln"><span class="n"><a id="t368" href="#t368">368</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t369" href="#t369">369</a></span><span class="t">    <span class="key">def</span> <span class="nam">store_download</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t370" href="#t370">370</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">x</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">y</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">p</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">region</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">missing</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t371" href="#t371">371</a></span><span class="t">            <span class="nam">data</span><span class="op">:</span> <span class="nam">bytes</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t371" href="#t371">371</a></span><span class="t">            <span class="nam">data</span><span class="op">:</span> <span class="nam">bytearray</span> <span class="op">|</span> <span class="nam">bytes</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t372" href="#t372">372</a></span><span class="t">        <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t373" href="#t373">373</a></span><span class="t"><span class="str">        Store some information in the corresponding buffer for a</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t374" href="#t374">374</a></span><span class="t"><span class="str">        specific chip, core and recording region.</span>&nbsp;</span><span class="r"></span></p>
@@ -640,7 +640,7 @@
             <a class="nav" href="z_c639d7e22d5d5f4a_buffered_sending_region_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-19 05:34 +0000
+            created at 2026-05-22 05:47 +0000
         </p>
     </div>
 </footer>

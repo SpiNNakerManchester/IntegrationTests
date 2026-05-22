@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_front_end_common/interface/interface_functions/insert_chip_power_monitors_to_graphs.py: 44%</title>
+    <title>Coverage for pyenv/lib/python3.13/site-packages/spinn_front_end_common/interface/interface_functions/insert_chip_power_monitors.py: 44%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
     <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
     <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
@@ -11,7 +11,7 @@
 <header>
     <div class="content">
         <h1>
-            <span class="text">Coverage for </span><b>pyenv&#8201;/&#8201;lib&#8201;/&#8201;python3.13&#8201;/&#8201;site-packages&#8201;/&#8201;spinn_front_end_common&#8201;/&#8201;interface&#8201;/&#8201;interface_functions&#8201;/&#8201;insert_chip_power_monitors_to_graphs.py</b>:
+            <span class="text">Coverage for </span><b>pyenv&#8201;/&#8201;lib&#8201;/&#8201;python3.13&#8201;/&#8201;site-packages&#8201;/&#8201;spinn_front_end_common&#8201;/&#8201;interface&#8201;/&#8201;interface_functions&#8201;/&#8201;insert_chip_power_monitors.py</b>:
             <span class="pc_cov">44%</span>
         </h1>
         <aside id="help_panel_wrapper">
@@ -64,10 +64,10 @@
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_e688345c38268688_host_no_bitfield_router_compression_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
-            <a id="nextFileLink" class="nav" href="z_e688345c38268688_insert_extra_monitor_vertices_to_graphs_py.html">&#xbb; next</a>
+            <a id="nextFileLink" class="nav" href="z_e688345c38268688_insert_extra_monitor_vertices_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-19 05:34 +0000
+            created at 2026-05-22 05:47 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -116,7 +116,7 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t32" href="#t32">32</a></span><span class="t">        <span class="str">"Sample ChipPowerMonitorMachineVertex"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="key">def</span> <span class="nam">insert_chip_power_monitors_to_graphs</span><span class="op">(</span><span class="nam">placements</span><span class="op">:</span> <span class="nam">Placements</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="key">def</span> <span class="nam">insert_chip_power_monitors</span><span class="op">(</span><span class="nam">placements</span><span class="op">:</span> <span class="nam">Placements</span><span class="op">)</span> <span class="op">-></span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t"><span class="str">    Adds chip power monitors into a given graph.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -125,7 +125,7 @@
     <p class="mis show_mis"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">    <span class="nam">machine</span> <span class="op">=</span> <span class="nam">FecDataView</span><span class="op">.</span><span class="nam">get_machine</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t42" href="#t42">42</a></span><span class="t">    <span class="com"># create progress bar</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t43" href="#t43">43</a></span><span class="t">    <span class="nam">progress</span> <span class="op">=</span> <span class="nam">ProgressBar</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t44" href="#t44">44</a></span><span class="t">        <span class="nam">machine</span><span class="op">.</span><span class="nam">n_chips</span><span class="op">,</span> <span class="str">"Adding Chip power monitors to Graph"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t44" href="#t44">44</a></span><span class="t">        <span class="nam">machine</span><span class="op">.</span><span class="nam">n_chips</span><span class="op">,</span> <span class="str">"Adding Chip power monitors"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t45" href="#t45">45</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t46" href="#t46">46</a></span><span class="t">    <span class="key">for</span> <span class="nam">chip</span> <span class="key">in</span> <span class="nam">progress</span><span class="op">.</span><span class="nam">over</span><span class="op">(</span><span class="nam">machine</span><span class="op">.</span><span class="nam">chips</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t">        <span class="nam">vertex</span> <span class="op">=</span> <span class="nam">ChipPowerMonitorMachineVertex</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -138,10 +138,10 @@
         <p>
             <a class="nav" href="z_e688345c38268688_host_no_bitfield_router_compression_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
-            <a class="nav" href="z_e688345c38268688_insert_extra_monitor_vertices_to_graphs_py.html">&#xbb; next</a>
+            <a class="nav" href="z_e688345c38268688_insert_extra_monitor_vertices_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-19 05:34 +0000
+            created at 2026-05-22 05:47 +0000
         </p>
     </div>
 </footer>
