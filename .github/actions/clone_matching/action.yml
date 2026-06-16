@@ -54,6 +54,7 @@ runs:
                   # AKA set $BRANCH to branch 
                   print branch
               }')
+          echo "Using branch $BRANCH of $REPO"
           git clone --branch $BRANCH --single-branch --depth 1 $REPO
           echo "Checked out branch $BRANCH of $REPO"
         done
