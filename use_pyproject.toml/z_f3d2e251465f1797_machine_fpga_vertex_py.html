@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for pyenv/lib/python3.13/site-packages/pacman/model/graphs/machine/machine_fpga_vertex.py: 65%</title>
+    <title>Coverage for pyenv/lib/python3.13/site-packages/pacman/model/graphs/machine/machine_fpga_vertex.py: 63%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
-    <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
+    <link rel="stylesheet" href="style_cb_4667309f.css" type="text/css">
     <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
 </head>
 <body class="pyfile">
 <header>
     <div class="content">
         <h1>
-            <span class="text">Coverage for </span><b>pyenv&#8201;/&#8201;lib&#8201;/&#8201;python3.13&#8201;/&#8201;site-packages&#8201;/&#8201;pacman&#8201;/&#8201;model&#8201;/&#8201;graphs&#8201;/&#8201;machine&#8201;/&#8201;machine_fpga_vertex.py</b>:
-            <span class="pc_cov">65%</span>
+            <span class="text">Coverage for </span><b>pyenv<span class="sep">/</span>lib<span class="sep">/</span>python3.13<span class="sep">/</span>site-packages<span class="sep">/</span>pacman<span class="sep">/</span>model<span class="sep">/</span>graphs<span class="sep">/</span>machine<span class="sep">/</span>machine_fpga_vertex.py</b>:
+            <span class="pc_cov">63%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -55,10 +55,10 @@
             </div>
         </aside>
         <h2>
-            <span class="text">49 statements &nbsp;</span>
+            <span class="text">51 statements &nbsp;</span>
             <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">32<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">17<span class="text"> missing</span></button>
-            <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">7<span class="text"> excluded</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">19<span class="text"> missing</span></button>
+            <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">6<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">0<span class="text"> partial</span></button>
         </h2>
         <p class="text">
@@ -66,8 +66,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_f3d2e251465f1797_machine_sdram_edge_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-22 14:40 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.14.1">coverage.py v7.14.1</a>,
+            created at 2026-06-16 17:02 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -98,12 +98,12 @@
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">__future__</span> <span class="key">import</span> <span class="nam">annotations</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">TYPE_CHECKING</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">overrides</span> <span class="key">import</span> <span class="nam">overrides</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">graphs</span> <span class="key">import</span> <span class="nam">AbstractVirtual</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">resources</span> <span class="key">import</span> <span class="nam">ConstantSDRAM</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="op">.</span><span class="nam">machine_vertex</span> <span class="key">import</span> <span class="nam">MachineVertex</span>&nbsp;</span><span class="r"></span></p>
-    <p class="exc show_exc"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">if</span> <span class="nam">TYPE_CHECKING</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="exc show_exc"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">    <span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">typing</span><span class="op">.</span><span class="nam">coords</span> <span class="key">import</span> <span class="nam">XY</span>&nbsp;</span><span class="r"></span></p>
-    <p class="exc show_exc"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">    <span class="key">from</span> <span class="nam">spinn_machine</span> <span class="key">import</span> <span class="nam">Machine</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">graphs</span> <span class="key">import</span> <span class="nam">AbstractVirtual</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">resources</span> <span class="key">import</span> <span class="nam">ConstantSDRAM</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="op">.</span><span class="nam">machine_vertex</span> <span class="key">import</span> <span class="nam">MachineVertex</span>&nbsp;</span><span class="r"></span></p>
+    <p class="exc show_exc"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="key">if</span> <span class="nam">TYPE_CHECKING</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="exc show_exc"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">    <span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">typing</span><span class="op">.</span><span class="nam">coords</span> <span class="key">import</span> <span class="nam">XY</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc show_exc"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t">    <span class="key">from</span> <span class="nam">spinn_machine</span><span class="op">.</span><span class="nam">link_data_objects</span> <span class="key">import</span> <span class="nam">FPGALinkData</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc show_exc"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">    <span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">graphs</span><span class="op">.</span><span class="nam">application</span> <span class="key">import</span> <span class="nam">ApplicationVertex</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc show_exc"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">    <span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">graphs</span><span class="op">.</span><span class="nam">common</span> <span class="key">import</span> <span class="nam">Slice</span>&nbsp;</span><span class="r"></span></p>
@@ -205,10 +205,14 @@
     <p class="mis show_mis"><span class="n"><a id="t121" href="#t121">121</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_outgoing</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t122" href="#t122">122</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t123" href="#t123">123</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractVirtual</span><span class="op">.</span><span class="nam">get_link_data</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t124" href="#t124">124</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_link_data</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">machine</span><span class="op">:</span> <span class="nam">Machine</span><span class="op">)</span> <span class="op">-></span> <span class="nam">FPGALinkData</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t125" href="#t125">125</a></span><span class="t">        <span class="key">return</span> <span class="nam">machine</span><span class="op">.</span><span class="nam">get_fpga_link_with_id</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t126" href="#t126">126</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_fpga_id</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_fpga_link_id</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_board_address</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t127" href="#t127">127</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_linked_chip_coordinates</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t124" href="#t124">124</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_link_data</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">FPGALinkData</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t125" href="#t125">125</a></span><span class="t">        <span class="com"># delayed import due to circular dependencies</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t126" href="#t126">126</a></span><span class="t">        <span class="com"># pylint: disable=import-outside-toplevel</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t127" href="#t127">127</a></span><span class="t">        <span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">data</span> <span class="key">import</span> <span class="nam">PacmanDataView</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t128" href="#t128">128</a></span><span class="t">        <span class="nam">fpga_links</span> <span class="op">=</span> <span class="nam">PacmanDataView</span><span class="op">.</span><span class="nam">get_fpga_links</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t129" href="#t129">129</a></span><span class="t">        <span class="key">return</span> <span class="nam">fpga_links</span><span class="op">.</span><span class="nam">get_fpga_link_with_id</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t130" href="#t130">130</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_fpga_id</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_fpga_link_id</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_board_address</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t131" href="#t131">131</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_linked_chip_coordinates</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -217,8 +221,8 @@
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_f3d2e251465f1797_machine_sdram_edge_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.14.0">coverage.py v7.14.0</a>,
-            created at 2026-05-22 14:40 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.14.1">coverage.py v7.14.1</a>,
+            created at 2026-06-16 17:02 +0000
         </p>
     </div>
 </footer>
