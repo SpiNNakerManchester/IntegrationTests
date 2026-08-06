@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_3ac4b14990fe0e4d_routing_entry_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.3">coverage.py v7.15.3</a>,
-            created at 2026-08-03 06:31 +0000
+            created at 2026-08-06 06:01 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -233,7 +233,7 @@
     <p class="pln"><span class="n"><a id="t149" href="#t149">149</a></span><span class="t"><span class="str">            of all chip links and core links.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t150" href="#t150">150</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t151" href="#t151">151</a></span><span class="t">        <span class="nam">route_entry</span> <span class="op">=</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t152" href="#t152">152</a></span><span class="t">        <span class="nam">max_cores</span> <span class="op">=</span> <span class="nam">MachineDataView</span><span class="op">.</span><span class="nam">get_machine_version</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">max_cores_per_chip</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t152" href="#t152">152</a></span><span class="t">        <span class="nam">max_cores</span> <span class="op">=</span> <span class="nam">MachineDataView</span><span class="op">.</span><span class="nam">get_machine_version</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">max_cores_per_router</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t153" href="#t153">153</a></span><span class="t">        <span class="key">for</span> <span class="nam">processor_id</span> <span class="key">in</span> <span class="nam">routing_table_entry</span><span class="op">.</span><span class="nam">processor_ids</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t154" href="#t154">154</a></span><span class="t">            <span class="key">if</span> <span class="num">0</span> <span class="op">></span> <span class="nam">processor_id</span> <span class="op">>=</span> <span class="nam">max_cores</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t155" href="#t155">155</a></span><span class="t">                <span class="key">raise</span> <span class="nam">SpinnMachineInvalidParameterException</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -261,7 +261,7 @@
     <p class="pln"><span class="n"><a id="t177" href="#t177">177</a></span><span class="t"><span class="str">        :param route: The routing table entry</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t178" href="#t178">178</a></span><span class="t"><span class="str">        :return: The list of processor IDs, and the list of link IDs.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t179" href="#t179">179</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t180" href="#t180">180</a></span><span class="t">        <span class="nam">max_cores</span> <span class="op">=</span> <span class="nam">MachineDataView</span><span class="op">.</span><span class="nam">get_machine_version</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">max_cores_per_chip</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t180" href="#t180">180</a></span><span class="t">        <span class="nam">max_cores</span> <span class="op">=</span> <span class="nam">MachineDataView</span><span class="op">.</span><span class="nam">get_machine_version</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">max_cores_per_router</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t181" href="#t181">181</a></span><span class="t">        <span class="nam">processor_ids</span> <span class="op">=</span> <span class="op">[</span><span class="nam">pi</span> <span class="key">for</span> <span class="nam">pi</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">max_cores</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t182" href="#t182">182</a></span><span class="t">                         <span class="key">if</span> <span class="nam">route</span> <span class="op">&amp;</span> <span class="num">1</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="nam">Router</span><span class="op">.</span><span class="nam">MAX_LINKS_PER_ROUTER</span> <span class="op">+</span> <span class="nam">pi</span><span class="op">)</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t183" href="#t183">183</a></span><span class="t">        <span class="nam">link_ids</span> <span class="op">=</span> <span class="op">[</span><span class="nam">li</span> <span class="key">for</span> <span class="nam">li</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">Router</span><span class="op">.</span><span class="nam">MAX_LINKS_PER_ROUTER</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -309,7 +309,7 @@
             <a class="nav" href="z_3ac4b14990fe0e4d_routing_entry_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.3">coverage.py v7.15.3</a>,
-            created at 2026-08-03 06:31 +0000
+            created at 2026-08-06 06:01 +0000
         </p>
     </div>
 </footer>
