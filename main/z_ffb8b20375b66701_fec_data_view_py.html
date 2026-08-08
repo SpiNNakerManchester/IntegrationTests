@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_ffb8b20375b66701_fec_data_writer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-07 05:54 +0000
+            created at 2026-08-08 05:48 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -228,7 +228,7 @@
     <p class="run run2"><span class="n"><a id="t144" href="#t144">144</a></span><span class="t">            <span class="nam">LivePacketGatherParameters</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t145" href="#t145">145</a></span><span class="t">            <span class="nam">LivePacketGather</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t146" href="#t146">146</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_live_output_vertices</span><span class="op">:</span> <span class="nam">Set</span><span class="op">[</span><span class="nam">Tuple</span><span class="op">[</span><span class="nam">ApplicationVertex</span><span class="op">,</span> <span class="nam">str</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t147" href="#t147">147</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_live_output_devices</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">LiveOutputDevice</span><span class="op">]</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t147" href="#t147">147</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_live_output_devices</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">LiveOutputDevice</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t148" href="#t148">148</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_java_caller</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">JavaCaller</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t149" href="#t149">149</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_none_labelled_edge_count</span> <span class="op">=</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t150" href="#t150">150</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_simulation_time_step_ms</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">float</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
@@ -807,7 +807,7 @@
     <p class="pln"><span class="n"><a id="t723" href="#t723">723</a></span><span class="t"><span class="str">            can also be a single string (strings are iterable)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t724" href="#t724">724</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t725" href="#t725">725</a></span><span class="t">        <span class="key">if</span> <span class="nam">cls</span><span class="op">.</span><span class="nam">__fec_data</span><span class="op">.</span><span class="nam">_live_packet_recorder_params</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t726" href="#t726">726</a></span><span class="t">            <span class="nam">cls</span><span class="op">.</span><span class="nam">__fec_data</span><span class="op">.</span><span class="nam">_live_packet_recorder_params</span> <span class="op">=</span> <span class="nam">dict</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t726" href="#t726">726</a></span><span class="t">            <span class="nam">cls</span><span class="op">.</span><span class="nam">__fec_data</span><span class="op">.</span><span class="nam">_live_packet_recorder_params</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t727" href="#t727">727</a></span><span class="t">        <span class="nam">lpg_vertex</span> <span class="op">=</span> <span class="nam">cls</span><span class="op">.</span><span class="nam">__fec_data</span><span class="op">.</span><span class="nam">_live_packet_recorder_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t728" href="#t728">728</a></span><span class="t">            <span class="nam">live_packet_gatherer_params</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t729" href="#t729">729</a></span><span class="t">        <span class="key">if</span> <span class="nam">lpg_vertex</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -1157,7 +1157,7 @@
             <a class="nav" href="z_ffb8b20375b66701_fec_data_writer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-07 05:54 +0000
+            created at 2026-08-08 05:48 +0000
         </p>
     </div>
 </footer>

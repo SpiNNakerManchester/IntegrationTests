@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_1d7e3ceccd6bb28f___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-07 05:54 +0000
+            created at 2026-08-08 05:48 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -341,7 +341,7 @@
     <p class="pln"><span class="n"><a id="t257" href="#t257">257</a></span><span class="t">        <span class="com"># Compute list of chips that are possible based on configuration</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t258" href="#t258">258</a></span><span class="t">        <span class="com"># If there are no wrap arounds, and the the size is not 2 * 2,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t259" href="#t259">259</a></span><span class="t">        <span class="com"># the possible chips depend on the 48 chip board&#x27;s gaps</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t260" href="#t260">260</a></span><span class="t">        <span class="nam">configured_chips</span><span class="op">:</span> <span class="nam">Dict</span><span class="op">[</span><span class="nam">XY</span><span class="op">,</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">XY</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="nam">dict</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t260" href="#t260">260</a></span><span class="t">        <span class="nam">configured_chips</span><span class="op">:</span> <span class="nam">Dict</span><span class="op">[</span><span class="nam">XY</span><span class="op">,</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">XY</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t261" href="#t261">261</a></span><span class="t">        <span class="key">for</span> <span class="nam">eth</span> <span class="key">in</span> <span class="nam">ethernet_chips</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t262" href="#t262">262</a></span><span class="t">            <span class="key">for</span> <span class="op">(</span><span class="nam">xy</span><span class="op">,</span> <span class="nam">n_cores</span><span class="op">)</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_machine</span><span class="op">.</span><span class="nam">get_xy_cores_by_ethernet</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t263" href="#t263">263</a></span><span class="t">                    <span class="op">*</span><span class="nam">eth</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -399,7 +399,7 @@
     <p class="pln"><span class="n"><a id="t315" href="#t315">315</a></span><span class="t"><span class="str">        Calculate the links needed for a machine structure</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t316" href="#t316">316</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t317" href="#t317">317</a></span><span class="t">        <span class="nam">x</span><span class="op">,</span> <span class="nam">y</span> <span class="op">=</span> <span class="nam">xy</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t318" href="#t318">318</a></span><span class="t">        <span class="nam">links</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t318" href="#t318">318</a></span><span class="t">        <span class="nam">links</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t319" href="#t319">319</a></span><span class="t">        <span class="key">for</span> <span class="nam">link_id</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">6</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t320" href="#t320">320</a></span><span class="t">            <span class="key">if</span> <span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">link_id</span><span class="op">)</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_unused_links</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t321" href="#t321">321</a></span><span class="t">                <span class="nam">link_x_y</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_machine</span><span class="op">.</span><span class="nam">xy_over_link</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">link_id</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -419,7 +419,7 @@
             <a class="nav" href="z_1d7e3ceccd6bb28f___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-07 05:54 +0000
+            created at 2026-08-08 05:48 +0000
         </p>
     </div>
 </footer>
