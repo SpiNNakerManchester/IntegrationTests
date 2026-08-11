@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_f5a9ebe8d9454c55_abstract_generate_on_machine_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-10 05:49 +0000
+            created at 2026-08-11 05:56 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -119,21 +119,20 @@
     <p class="run"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="key">from</span> <span class="op">.</span><span class="nam">synapse_dynamics_weight_changable</span> <span class="key">import</span> <span class="nam">SynapseDynamicsWeightChangable</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t"><span class="key">from</span> <span class="op">.</span><span class="nam">synapse_dynamics_weight_changer</span> <span class="key">import</span> <span class="nam">SynapseDynamicsWeightChanger</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t"><span class="nam">__all__</span> <span class="op">=</span> <span class="op">(</span><span class="str">&quot;AbstractGenerateOnMachine&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractPlasticSynapseDynamics&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t">           <span class="str">&quot;AbstractStaticSynapseDynamics&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractSynapseDynamics&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">           <span class="str">&quot;AbstractSDRAMSynapseDynamics&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractSynapseDynamicsStructural&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">           <span class="str">&quot;calculate_spike_pair_additive_stdp_weight&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t42" href="#t42">42</a></span><span class="t">           <span class="str">&quot;calculate_spike_pair_multiplicative_stdp_weight&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t43" href="#t43">43</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsStatic&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t44" href="#t44">44</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsSTDP&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractHasParameterNames&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t45" href="#t45">45</a></span><span class="t">           <span class="com"># Structural plasticity</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t46" href="#t46">46</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsStructuralCommon&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsStructuralStatic&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t48" href="#t48">48</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsStructuralSTDP&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t49" href="#t49">49</a></span><span class="t">           <span class="com"># Neuromodulation</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsNeuromodulation&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t51" href="#t51">51</a></span><span class="t">           <span class="str">&quot;AbstractSupportsSignedWeights&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t52" href="#t52">52</a></span><span class="t">           <span class="str">&quot;SynapseDynamicsWeightChanger&quot;</span><span class="op">,</span> <span class="str">&quot;SynapseDynamicsWeightChangable&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t"><span class="nam">__all__</span> <span class="op">=</span> <span class="op">(</span>  <span class="com"># noqa: RUF022</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t">    <span class="str">&quot;AbstractGenerateOnMachine&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractPlasticSynapseDynamics&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">    <span class="str">&quot;AbstractStaticSynapseDynamics&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractSynapseDynamics&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">    <span class="str">&quot;AbstractSDRAMSynapseDynamics&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractSynapseDynamicsStructural&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t42" href="#t42">42</a></span><span class="t">    <span class="str">&quot;calculate_spike_pair_additive_stdp_weight&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t43" href="#t43">43</a></span><span class="t">    <span class="str">&quot;calculate_spike_pair_multiplicative_stdp_weight&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t44" href="#t44">44</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsStatic&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t45" href="#t45">45</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsSTDP&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractHasParameterNames&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t46" href="#t46">46</a></span><span class="t">    <span class="com"># Structural plasticity</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsStructuralCommon&quot;</span><span class="op">,</span> <span class="str">&quot;SynapseDynamicsStructuralStatic&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t48" href="#t48">48</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsStructuralSTDP&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t49" href="#t49">49</a></span><span class="t">    <span class="com"># Neuromodulation</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsNeuromodulation&quot;</span><span class="op">,</span> <span class="str">&quot;AbstractSupportsSignedWeights&quot;</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t51" href="#t51">51</a></span><span class="t">    <span class="str">&quot;SynapseDynamicsWeightChanger&quot;</span><span class="op">,</span> <span class="str">&quot;SynapseDynamicsWeightChangable&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -143,7 +142,7 @@
             <a class="nav" href="z_f5a9ebe8d9454c55_abstract_generate_on_machine_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-10 05:49 +0000
+            created at 2026-08-11 05:56 +0000
         </p>
     </div>
 </footer>
