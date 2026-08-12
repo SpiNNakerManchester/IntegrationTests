@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_fe1e49de85fdd594_utility_calls_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -96,7 +96,7 @@
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t"><span class="com"># See the License for the specific language governing permissions and</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">import</span> <span class="nam">time</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Callable</span><span class="op">,</span> <span class="nam">FrozenSet</span><span class="op">,</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Callable</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">log</span> <span class="key">import</span> <span class="nam">FormatAdapter</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">progress_bar</span> <span class="key">import</span> <span class="nam">ProgressBar</span>&nbsp;</span><span class="r"></span></p>
@@ -118,8 +118,8 @@
     <p class="run run2"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">        <span class="nam">read_algorithm_iobuf</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t">        <span class="nam">check_for_success_function</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">            <span class="nam">Callable</span><span class="op">[</span><span class="op">[</span><span class="nam">ExecutableTargets</span><span class="op">]</span><span class="op">,</span> <span class="nam">bool</span><span class="op">]</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">        <span class="nam">cpu_end_states</span><span class="op">:</span> <span class="nam">FrozenSet</span><span class="op">[</span><span class="nam">CPUState</span><span class="op">]</span><span class="op">,</span> <span class="nam">needs_sync_barrier</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t">        <span class="nam">filename_template</span><span class="op">:</span> <span class="nam">str</span><span class="op">,</span> <span class="nam">binaries_to_track</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">List</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">        <span class="nam">cpu_end_states</span><span class="op">:</span> <span class="nam">frozenset</span><span class="op">[</span><span class="nam">CPUState</span><span class="op">]</span><span class="op">,</span> <span class="nam">needs_sync_barrier</span><span class="op">:</span> <span class="nam">bool</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t">        <span class="nam">filename_template</span><span class="op">:</span> <span class="nam">str</span><span class="op">,</span> <span class="nam">binaries_to_track</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">list</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t">        <span class="nam">progress_bar</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">ProgressBar</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">        <span class="nam">logger</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">FormatAdapter</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">        <span class="nam">timeout</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">float</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -269,7 +269,7 @@
             <a class="nav" href="z_fe1e49de85fdd594_utility_calls_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

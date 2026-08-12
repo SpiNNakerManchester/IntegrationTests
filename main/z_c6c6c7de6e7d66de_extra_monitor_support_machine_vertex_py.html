@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_c6c6c7de6e7d66de_live_packet_gather_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -101,7 +101,7 @@
     <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">import</span> <span class="nam">struct</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">enum</span> <span class="key">import</span> <span class="nam">Enum</span><span class="op">,</span> <span class="nam">IntEnum</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">types</span> <span class="key">import</span> <span class="nam">TracebackType</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">ContextManager</span><span class="op">,</span> <span class="nam">Dict</span><span class="op">,</span> <span class="nam">Iterable</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Type</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">ContextManager</span><span class="op">,</span> <span class="nam">Iterable</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t"><span class="key">from</span> <span class="nam">typing_extensions</span> <span class="key">import</span> <span class="nam">Literal</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -517,7 +517,7 @@
     <p class="mis show_mis"><span class="n"><a id="t433" href="#t433">433</a></span><span class="t">            <span class="key">return</span> <span class="nam">process</span><span class="op">.</span><span class="nam">get_reinjection_status</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t434" href="#t434">434</a></span><span class="t">                <span class="nam">placement</span><span class="op">.</span><span class="nam">x</span><span class="op">,</span> <span class="nam">placement</span><span class="op">.</span><span class="nam">y</span><span class="op">,</span> <span class="nam">placement</span><span class="op">.</span><span class="nam">p</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t435" href="#t435">435</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t436" href="#t436">436</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_reinjection_status_for_vertices</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Dict</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t436" href="#t436">436</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_reinjection_status_for_vertices</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">dict</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t437" href="#t437">437</a></span><span class="t">            <span class="nam">Chip</span><span class="op">,</span> <span class="nam">ReInjectionStatus</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t438" href="#t438">438</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t439" href="#t439">439</a></span><span class="t"><span class="str">        Get the reinjection status from a set of extra monitor cores.</span>&nbsp;</span><span class="r"></span></p>
@@ -622,7 +622,7 @@
     <p class="run"><span class="n"><a id="t538" href="#t538">538</a></span><span class="t">    <span class="key">def</span> <span class="nam">__enter__</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Placement</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t539" href="#t539">539</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__placement</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t540" href="#t540">540</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t">    <span class="key">def</span> <span class="nam">__exit__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">exc_type</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">Type</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t">    <span class="key">def</span> <span class="nam">__exit__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">exc_type</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">type</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t542" href="#t542">542</a></span><span class="t">                 <span class="nam">exc_val</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">BaseException</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t543" href="#t543">543</a></span><span class="t">                 <span class="nam">exc_tb</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">TracebackType</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Literal</span><span class="op">[</span><span class="key">False</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t">        <span class="key">if</span> <span class="nam">exc_val</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -637,7 +637,7 @@
             <a class="nav" href="z_c6c6c7de6e7d66de_live_packet_gather_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

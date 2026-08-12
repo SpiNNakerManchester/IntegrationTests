@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_1e15941d398fb89d_ignore_link_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -95,7 +95,7 @@
     <p class="pln"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t"><span class="com"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t"><span class="com"># See the License for the specific language governing permissions and</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Set</span><span class="op">,</span> <span class="nam">Union</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Union</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing_extensions</span> <span class="key">import</span> <span class="nam">TypeAlias</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -108,7 +108,7 @@
     <p class="run run2"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">    <span class="num">12</span><span class="op">:</span> <span class="num">13</span><span class="op">,</span> <span class="num">13</span><span class="op">:</span> <span class="num">14</span><span class="op">,</span> <span class="num">14</span><span class="op">:</span> <span class="num">15</span><span class="op">,</span> <span class="num">15</span><span class="op">:</span> <span class="num">16</span><span class="op">,</span> <span class="num">16</span><span class="op">:</span> <span class="num">17</span><span class="op">,</span> <span class="num">17</span><span class="op">:</span> <span class="num">18</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="key">class</span> <span class="nam">IgnoreCore</span><span class="op">(</span><span class="nam">object</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="key">class</span> <span class="nam">IgnoreCore</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t"><span class="str">    Represents a core to be ignored when building a machine.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t"><span class="str">    &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -151,7 +151,7 @@
     <p class="mis show_mis"><span class="n"><a id="t67" href="#t67">67</a></span><span class="t">            <span class="key">return</span> <span class="nam">TYPICAL_PHYSICAL_VIRTUAL_MAP</span><span class="op">[</span><span class="num">0</span><span class="op">-</span><span class="nam">self</span><span class="op">.</span><span class="nam">p</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t68" href="#t68">68</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t69" href="#t69">69</a></span><span class="t">    <span class="op">@</span><span class="nam">staticmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t">    <span class="key">def</span> <span class="nam">parse_single_string</span><span class="op">(</span><span class="nam">downed_core</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">List</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t">    <span class="key">def</span> <span class="nam">parse_single_string</span><span class="op">(</span><span class="nam">downed_core</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">list</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t"><span class="str">        Converts a string into an :py:class:`IgnoreCore` object.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -191,7 +191,7 @@
     <p class="mis show_mis"><span class="n"><a id="t107" href="#t107">107</a></span><span class="t">            <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="fst">f&quot;</span><span class="fst">Unexpected downed_core: </span><span class="op">{</span><span class="nam">downed_core</span><span class="op">}</span><span class="fst">&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t108" href="#t108">108</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t109" href="#t109">109</a></span><span class="t">    <span class="op">@</span><span class="nam">staticmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t110" href="#t110">110</a></span><span class="t">    <span class="key">def</span> <span class="nam">parse_string</span><span class="op">(</span><span class="nam">downed_cores</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Set</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t110" href="#t110">110</a></span><span class="t">    <span class="key">def</span> <span class="nam">parse_string</span><span class="op">(</span><span class="nam">downed_cores</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">set</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t111" href="#t111">111</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t112" href="#t112">112</a></span><span class="t"><span class="str">        Converts a string into a (possibly empty) set of</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t113" href="#t113">113</a></span><span class="t"><span class="str">        :py:class:`IgnoreCore` objects.</span>&nbsp;</span><span class="r"></span></p>
@@ -221,7 +221,7 @@
     <p class="pln"><span class="n"><a id="t137" href="#t137">137</a></span><span class="t"><span class="str">        :param downed_cores: representation of zero or chips to ignore</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t"><span class="str">        :return: Set (possibly empty) of IgnoreCores</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">        <span class="nam">ignored_cores</span><span class="op">:</span> <span class="nam">Set</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">        <span class="nam">ignored_cores</span><span class="op">:</span> <span class="nam">set</span><span class="op">[</span><span class="str">&#x27;IgnoreCore&#x27;</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">        <span class="key">if</span> <span class="nam">downed_cores</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t142" href="#t142">142</a></span><span class="t">            <span class="key">return</span> <span class="nam">ignored_cores</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t143" href="#t143">143</a></span><span class="t">        <span class="key">if</span> <span class="nam">downed_cores</span><span class="op">.</span><span class="nam">lower</span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="str">&quot;none&quot;</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -247,7 +247,7 @@
             <a class="nav" href="z_1e15941d398fb89d_ignore_link_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

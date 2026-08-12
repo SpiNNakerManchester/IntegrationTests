@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_7a17ebfe3ace447b_spynnaker_data_writer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -98,7 +98,7 @@
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">__future__</span> <span class="key">import</span> <span class="nam">annotations</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Iterator</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Set</span><span class="op">,</span> <span class="nam">Tuple</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Iterator</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">log</span> <span class="key">import</span> <span class="nam">FormatAdapter</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -114,7 +114,7 @@
     <p class="pln"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t"><span class="com"># pylint: disable=protected-access</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t31" href="#t31">31</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t32" href="#t32">32</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t"><span class="key">class</span> <span class="nam">_SpynnakerDataModel</span><span class="op">(</span><span class="nam">object</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t"><span class="key">class</span> <span class="nam">_SpynnakerDataModel</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="str">    Singleton data model.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -153,8 +153,8 @@
     <p class="run"><span class="n"><a id="t69" href="#t69">69</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_id_counter</span> <span class="op">=</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_min_delay</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">float</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t">        <span class="com"># Using a dict to verify if later could be stored here only</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_populations</span><span class="op">:</span> <span class="nam">Set</span><span class="op">[</span><span class="nam">Population</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_projections</span><span class="op">:</span> <span class="nam">Set</span><span class="op">[</span><span class="nam">Projection</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_populations</span><span class="op">:</span> <span class="nam">set</span><span class="op">[</span><span class="nam">Population</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_projections</span><span class="op">:</span> <span class="nam">set</span><span class="op">[</span><span class="nam">Projection</span><span class="op">]</span> <span class="op">=</span> <span class="nam">set</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t74" href="#t74">74</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t75" href="#t75">75</a></span><span class="t">    <span class="key">def</span> <span class="nam">_hard_reset</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t76" href="#t76">76</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -279,7 +279,7 @@
     <p class="mis show_mis"><span class="n"><a id="t195" href="#t195">195</a></span><span class="t">        <span class="key">return</span> <span class="nam">len</span><span class="op">(</span><span class="nam">cls</span><span class="op">.</span><span class="nam">__spy_data</span><span class="op">.</span><span class="nam">_populations</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t196" href="#t196">196</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t197" href="#t197">197</a></span><span class="t">    <span class="op">@</span><span class="nam">classmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t198" href="#t198">198</a></span><span class="t">    <span class="key">def</span> <span class="nam">add_population</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">population</span><span class="op">:</span> <span class="nam">Population</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t198" href="#t198">198</a></span><span class="t">    <span class="key">def</span> <span class="nam">add_population</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">population</span><span class="op">:</span> <span class="nam">Population</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">tuple</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t199" href="#t199">199</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t200" href="#t200">200</a></span><span class="t"><span class="str">        Called by each population to add itself to the list.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t201" href="#t201">201</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -328,7 +328,7 @@
             <a class="nav" href="z_7a17ebfe3ace447b_spynnaker_data_writer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

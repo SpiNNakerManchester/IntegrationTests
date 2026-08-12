@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_4e99233b101deeb1_spynnaker_connection_holder_generations_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -95,7 +95,7 @@
     <p class="pln"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t"><span class="com"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t"><span class="com"># See the License for the specific language governing permissions and</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">progress_bar</span> <span class="key">import</span> <span class="nam">ProgressBar</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -152,7 +152,7 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t68" href="#t68">68</a></span><span class="t">        <span class="nam">string_describing_what_being_progressed</span><span class="op">=</span><span class="nam">PROGRESS_BAR_NAME</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t69" href="#t69">69</a></span><span class="t">        <span class="nam">total_number_of_things_to_do</span><span class="op">=</span><span class="nam">SpynnakerDataView</span><span class="op">.</span><span class="nam">get_n_vertices</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t">    <span class="nam">remaining</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">ApplicationVertex</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t">    <span class="nam">remaining</span><span class="op">:</span> <span class="nam">list</span><span class="op">[</span><span class="nam">ApplicationVertex</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t">    <span class="key">for</span> <span class="nam">app_vertex</span> <span class="key">in</span> <span class="nam">SpynnakerDataView</span><span class="op">.</span><span class="nam">iterate_vertices</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="com"># Do Poisson first</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t74" href="#t74">74</a></span><span class="t">        <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">app_vertex</span><span class="op">,</span> <span class="nam">SpikeSourcePoissonVertex</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -207,7 +207,7 @@
             <a class="nav" href="z_4e99233b101deeb1_spynnaker_connection_holder_generations_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

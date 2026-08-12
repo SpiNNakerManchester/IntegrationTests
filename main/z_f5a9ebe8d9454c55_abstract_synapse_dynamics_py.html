@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_f5a9ebe8d9454c55_abstract_synapse_dynamics_structural_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -99,7 +99,7 @@
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">__future__</span> <span class="key">import</span> <span class="nam">annotations</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">Set</span><span class="op">,</span> <span class="nam">Tuple</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">import</span> <span class="nam">numpy</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="key">from</span> <span class="nam">pyNN</span><span class="op">.</span><span class="nam">random</span> <span class="key">import</span> <span class="nam">RandomDistribution</span>&nbsp;</span><span class="r"></span></p>
@@ -131,7 +131,7 @@
     <p class="run"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t"><span class="nam">logger</span> <span class="op">=</span> <span class="nam">FormatAdapter</span><span class="op">(</span><span class="nam">logging</span><span class="op">.</span><span class="nam">getLogger</span><span class="op">(</span><span class="nam">__name__</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t48" href="#t48">48</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t49" href="#t49">49</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t"><span class="key">class</span> <span class="nam">AbstractSynapseDynamics</span><span class="op">(</span><span class="nam">object</span><span class="op">,</span> <span class="nam">metaclass</span><span class="op">=</span><span class="nam">AbstractBase</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t"><span class="key">class</span> <span class="nam">AbstractSynapseDynamics</span><span class="op">(</span><span class="nam">metaclass</span><span class="op">=</span><span class="nam">AbstractBase</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t51" href="#t51">51</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t52" href="#t52">52</a></span><span class="t"><span class="str">    How do the dynamics of a synapse interact with the rest of the model.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t53" href="#t53">53</a></span><span class="t"><span class="str">    &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -311,7 +311,7 @@
     <p class="pln"><span class="n"><a id="t227" href="#t227">227</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t228" href="#t228">228</a></span><span class="t">        <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t229" href="#t229">229</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t230" href="#t230">230</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_synapse_parameter_names</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Set</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t230" href="#t230">230</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_synapse_parameter_names</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">set</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t231" href="#t231">231</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t232" href="#t232">232</a></span><span class="t"><span class="str">        :return: the names of the parameters that can be extracted from</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t233" href="#t233">233</a></span><span class="t"><span class="str">         synapses read from the machine.</span>&nbsp;</span><span class="r"></span></p>
@@ -423,7 +423,7 @@
     <p class="run run2"><span class="n"><a id="t339" href="#t339">339</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">s_info</span><span class="op">:</span> <span class="nam">SynapseInformation</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t340" href="#t340">340</a></span><span class="t">            <span class="nam">source_vertex</span><span class="op">:</span> <span class="nam">ApplicationVertex</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t341" href="#t341">341</a></span><span class="t">            <span class="nam">target_vertex</span><span class="op">:</span> <span class="nam">ApplicationVertex</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Sequence</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t342" href="#t342">342</a></span><span class="t">                <span class="nam">Tuple</span><span class="op">[</span><span class="nam">MachineVertex</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">[</span><span class="nam">AbstractVertex</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t342" href="#t342">342</a></span><span class="t">                <span class="nam">tuple</span><span class="op">[</span><span class="nam">MachineVertex</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">[</span><span class="nam">AbstractVertex</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t343" href="#t343">343</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t344" href="#t344">344</a></span><span class="t"><span class="str">        Get the machine vertices that are connected to each other with</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t345" href="#t345">345</a></span><span class="t"><span class="str">        this connector.</span>&nbsp;</span><span class="r"></span></p>
@@ -482,7 +482,7 @@
             <a class="nav" href="z_f5a9ebe8d9454c55_abstract_synapse_dynamics_structural_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

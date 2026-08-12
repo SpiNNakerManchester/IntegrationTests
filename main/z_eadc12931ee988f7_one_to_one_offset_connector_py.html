@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_eadc12931ee988f7_pool_dense_connector_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -97,7 +97,7 @@
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">__future__</span> <span class="key">import</span> <span class="nam">annotations</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Dict</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">import</span> <span class="nam">numpy</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span> <span class="key">import</span> <span class="nam">int32</span><span class="op">,</span> <span class="nam">uint32</span>&nbsp;</span><span class="r"></span></p>
@@ -175,7 +175,7 @@
     <p class="mis show_mis"><span class="n"><a id="t91" href="#t91">91</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">__wrap</span> <span class="op">=</span> <span class="nam">wrap</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t92" href="#t92">92</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t93" href="#t93">93</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractGenerateConnectorOnMachine</span><span class="op">.</span><span class="nam">get_parameters</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t94" href="#t94">94</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_parameters</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Dict</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Any</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t94" href="#t94">94</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_parameters</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">dict</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Any</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t95" href="#t95">95</a></span><span class="t">        <span class="nam">parameters</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_get_parameters</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t96" href="#t96">96</a></span><span class="t">        <span class="nam">parameters</span><span class="op">[</span><span class="str">&quot;n_neurons_per_group&quot;</span><span class="op">]</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__n_neurons_per_group</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">        <span class="nam">parameters</span><span class="op">[</span><span class="str">&quot;offset&quot;</span><span class="op">]</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__offset</span>&nbsp;</span><span class="r"></span></p>
@@ -344,7 +344,7 @@
             <a class="nav" href="z_eadc12931ee988f7_pool_dense_connector_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

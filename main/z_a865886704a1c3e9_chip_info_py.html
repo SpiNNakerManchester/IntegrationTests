@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_a865886704a1c3e9_chip_summary_info_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -97,12 +97,12 @@
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">import</span> <span class="nam">struct</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Iterable</span><span class="op">,</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Iterable</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">spinnman</span><span class="op">.</span><span class="nam">messages</span><span class="op">.</span><span class="nam">spinnaker_boot</span> <span class="key">import</span> <span class="nam">SystemVariableDefinition</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="key">class</span> <span class="nam">ChipInfo</span><span class="op">(</span><span class="nam">object</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="key">class</span> <span class="nam">ChipInfo</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t"><span class="str">    Represents the system variables for a chip, received from the chip SDRAM.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">    &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -131,7 +131,7 @@
     <p class="mis show_mis"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_offset</span> <span class="op">=</span> <span class="nam">offset</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t48" href="#t48">48</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t49" href="#t49">49</a></span><span class="t">        <span class="nam">links_available</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_read_int</span><span class="op">(</span><span class="str">&quot;links_available&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_links_available</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_links_available</span><span class="op">:</span> <span class="nam">list</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t51" href="#t51">51</a></span><span class="t">        <span class="key">for</span> <span class="nam">i</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">6</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t52" href="#t52">52</a></span><span class="t">            <span class="key">if</span> <span class="op">(</span><span class="op">(</span><span class="nam">links_available</span> <span class="op">&gt;&gt;</span> <span class="nam">i</span><span class="op">)</span> <span class="op">&amp;</span> <span class="num">0x1</span><span class="op">)</span> <span class="op">!=</span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t53" href="#t53">53</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">_links_available</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">i</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -145,7 +145,7 @@
     <p class="mis show_mis"><span class="n"><a id="t61" href="#t61">61</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_virtual_to_physical_core_map</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_read_bytes</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t62" href="#t62">62</a></span><span class="t">            <span class="str">&quot;virtual_to_physical_core_map&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t63" href="#t63">63</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_virtual_core_ids</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_virtual_core_ids</span><span class="op">:</span> <span class="nam">list</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t65" href="#t65">65</a></span><span class="t">        <span class="key">for</span> <span class="nam">virtual_core_id</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_physical_to_virtual_core_map</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t66" href="#t66">66</a></span><span class="t">            <span class="key">if</span> <span class="nam">virtual_core_id</span> <span class="op">!=</span> <span class="num">0xFF</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t67" href="#t67">67</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">_virtual_core_ids</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">virtual_core_id</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -328,7 +328,7 @@
             <a class="nav" href="z_a865886704a1c3e9_chip_summary_info_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

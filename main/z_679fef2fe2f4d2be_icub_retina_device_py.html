@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_679fef2fe2f4d2be_machine_munich_motor_device_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -97,7 +97,7 @@
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">math</span> <span class="key">import</span> <span class="nam">ceil</span><span class="op">,</span> <span class="nam">log2</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Dict</span><span class="op">,</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">log</span> <span class="key">import</span> <span class="nam">FormatAdapter</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">overrides</span> <span class="key">import</span> <span class="nam">overrides</span>&nbsp;</span><span class="r"></span></p>
@@ -156,7 +156,7 @@
     <p class="pln"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t">        <span class="com"># avoid!</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">is_power_of_2</span><span class="op">(</span><span class="nam">width</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t74" href="#t74">74</a></span><span class="t">            <span class="key">if</span> <span class="nam">width</span> <span class="op">==</span> <span class="nam">DEFAULT_WIDTH</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t75" href="#t75">75</a></span><span class="t">                <span class="nam">width</span> <span class="op">=</span> <span class="num">2</span> <span class="op">**</span> <span class="nam">int</span><span class="op">(</span><span class="nam">ceil</span><span class="op">(</span><span class="nam">log2</span><span class="op">(</span><span class="nam">width</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t75" href="#t75">75</a></span><span class="t">                <span class="nam">width</span> <span class="op">=</span> <span class="num">2</span> <span class="op">**</span> <span class="nam">ceil</span><span class="op">(</span><span class="nam">log2</span><span class="op">(</span><span class="nam">width</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t76" href="#t76">76</a></span><span class="t">                <span class="nam">logger</span><span class="op">.</span><span class="nam">warning</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t77" href="#t77">77</a></span><span class="t">                    <span class="str">&quot;The width of the ICUB retina has been rounded up from {}&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t78" href="#t78">78</a></span><span class="t">                    <span class="str">&quot; to {}.  This is to ensure that the coordinates are&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -180,7 +180,7 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t96" href="#t96">96</a></span><span class="t">            <span class="nam">board_address</span><span class="op">,</span> <span class="nam">incoming</span><span class="op">=</span><span class="key">True</span><span class="op">,</span> <span class="nam">outgoing</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t">        <span class="com"># A dictionary to get vertex index from FPGA and slice</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">__index_by_slice</span><span class="op">:</span> <span class="nam">Dict</span><span class="op">[</span><span class="nam">Slice</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">__index_by_slice</span><span class="op">:</span> <span class="nam">dict</span><span class="op">[</span><span class="nam">Slice</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">__base_key</span> <span class="op">=</span> <span class="nam">base_key</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">Application2DSpiNNakerLinkVertex</span><span class="op">.</span><span class="nam">get_incoming_slice</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -231,7 +231,7 @@
             <a class="nav" href="z_679fef2fe2f4d2be_machine_munich_motor_device_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

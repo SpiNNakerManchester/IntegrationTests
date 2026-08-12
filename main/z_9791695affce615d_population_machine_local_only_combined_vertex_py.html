@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_9791695affce615d_population_machine_neurons_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -100,7 +100,7 @@
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">import</span> <span class="nam">ctypes</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">import</span> <span class="nam">os</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">enum</span> <span class="key">import</span> <span class="nam">IntEnum</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span> <span class="key">import</span> <span class="nam">floating</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">typing</span> <span class="key">import</span> <span class="nam">NDArray</span>&nbsp;</span><span class="r"></span></p>
@@ -366,7 +366,7 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t282" href="#t282">282</a></span><span class="t">                    <span class="str">&quot; the .spynnaker.cfg file or in the pynn.setup() method.&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t283" href="#t283">283</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t284" href="#t284">284</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">PopulationMachineCommon</span><span class="op">.</span><span class="nam">get_recorded_region_ids</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t285" href="#t285">285</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_recorded_region_ids</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">List</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t285" href="#t285">285</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_recorded_region_ids</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">list</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t286" href="#t286">286</a></span><span class="t">        <span class="nam">ids</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_pop_vertex</span><span class="op">.</span><span class="nam">neuron_recorder</span><span class="op">.</span><span class="nam">recorded_ids_by_slice</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t287" href="#t287">287</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">vertex_slice</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t288" href="#t288">288</a></span><span class="t">        <span class="nam">ids</span><span class="op">.</span><span class="nam">extend</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">_pop_vertex</span><span class="op">.</span><span class="nam">synapse_recorder</span><span class="op">.</span><span class="nam">recorded_ids_by_slice</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -490,7 +490,7 @@
             <a class="nav" href="z_9791695affce615d_population_machine_neurons_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

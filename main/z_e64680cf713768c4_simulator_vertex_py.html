@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_1159b076b44d0a32___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -98,7 +98,7 @@
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">import</span> <span class="nam">sys</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">types</span> <span class="key">import</span> <span class="nam">ModuleType</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Tuple</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Optional</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">abstract_base</span> <span class="key">import</span> <span class="nam">abstractmethod</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">log</span> <span class="key">import</span> <span class="nam">FormatAdapter</span>&nbsp;</span><span class="r"></span></p>
@@ -183,7 +183,7 @@
     <p class="mis show_mis"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="key">return</span> <span class="nam">FecDataView</span><span class="op">.</span><span class="nam">get_placement_of_vertex</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_recording_channel_data</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">recording_id</span><span class="op">:</span> <span class="nam">int</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">memoryview</span><span class="op">,</span> <span class="nam">bool</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">recording_id</span><span class="op">:</span> <span class="nam">int</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">tuple</span><span class="op">[</span><span class="nam">memoryview</span><span class="op">,</span> <span class="nam">bool</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t103" href="#t103">103</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t104" href="#t104">104</a></span><span class="t"><span class="str">        Get the data from a recording channel. The simulation must have</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t105" href="#t105">105</a></span><span class="t"><span class="str">        :py:func:`spinnaker_graph_front_end.run` before this will work,</span>&nbsp;</span><span class="r"></span></p>
@@ -214,7 +214,7 @@
     <p class="pln"><span class="n"><a id="t130" href="#t130">130</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t131" href="#t131">131</a></span><span class="t">    <span class="key">def</span> <span class="nam">generate_recording_region</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t132" href="#t132">132</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">spec</span><span class="op">:</span> <span class="nam">DataSpecificationGenerator</span><span class="op">,</span> <span class="nam">region_id</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t133" href="#t133">133</a></span><span class="t">            <span class="nam">channel_sizes</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t133" href="#t133">133</a></span><span class="t">            <span class="nam">channel_sizes</span><span class="op">:</span> <span class="nam">list</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t134" href="#t134">134</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t135" href="#t135">135</a></span><span class="t"><span class="str">        Generate the recording region for the data specification.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t136" href="#t136">136</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -241,7 +241,7 @@
             <a class="nav" href="z_1159b076b44d0a32___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

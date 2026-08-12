@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_b279e3246eec0937_config_handler_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -99,7 +99,7 @@
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">collections</span> <span class="key">import</span> <span class="nam">deque</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">threading</span> <span class="key">import</span> <span class="nam">Lock</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Deque</span><span class="op">,</span> <span class="nam">Iterable</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Iterable</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="nam">spinn_utilities</span><span class="op">.</span><span class="nam">log</span> <span class="key">import</span> <span class="nam">FormatAdapter</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -117,7 +117,7 @@
     <p class="run"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t"><span class="nam">_N_SEQUENCES</span> <span class="op">=</span> <span class="num">256</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t"><span class="key">class</span> <span class="nam">BuffersSentDeque</span><span class="op">(</span><span class="nam">object</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t"><span class="key">class</span> <span class="nam">BuffersSentDeque</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t"><span class="str">    A tracker of buffers sent / to send for a region</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t"><span class="str">    &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -154,7 +154,7 @@
     <p class="pln"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t"><span class="str">            The number of sequences allowed in each transmission set</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t72" href="#t72">72</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_region</span> <span class="op">=</span> <span class="nam">region</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_buffers_sent</span><span class="op">:</span> <span class="nam">Deque</span><span class="op">[</span><span class="nam">HostSendSequencedData</span><span class="op">]</span> <span class="op">=</span> <span class="nam">deque</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t73" href="#t73">73</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_buffers_sent</span><span class="op">:</span> <span class="nam">deque</span><span class="op">[</span><span class="nam">HostSendSequencedData</span><span class="op">]</span> <span class="op">=</span> <span class="nam">deque</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t74" href="#t74">74</a></span><span class="t">            <span class="nam">maxlen</span><span class="op">=</span><span class="nam">n_sequences_per_tranmission</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t75" href="#t75">75</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_sequence_number</span> <span class="op">=</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t76" href="#t76">76</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_sequence_lock</span> <span class="op">=</span> <span class="nam">Lock</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -288,7 +288,7 @@
             <a class="nav" href="z_b279e3246eec0937_config_handler_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

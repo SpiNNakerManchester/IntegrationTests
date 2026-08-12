@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_1d7e3ceccd6bb28f_safe_eval_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -96,7 +96,7 @@
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t"><span class="com"># See the License for the specific language governing permissions and</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">,</span> <span class="nam">Dict</span><span class="op">,</span> <span class="nam">Type</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Callable</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">class</span> <span class="nam">_RequiresSubclassTypeError</span><span class="op">(</span><span class="nam">TypeError</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -108,7 +108,7 @@
     <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">    &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="key">def</span> <span class="nam">require_subclass</span><span class="op">(</span><span class="nam">required_class</span><span class="op">:</span> <span class="nam">Type</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Callable</span><span class="op">[</span><span class="op">[</span><span class="nam">Type</span><span class="op">]</span><span class="op">,</span> <span class="nam">Type</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="key">def</span> <span class="nam">require_subclass</span><span class="op">(</span><span class="nam">required_class</span><span class="op">:</span> <span class="nam">type</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Callable</span><span class="op">[</span><span class="op">[</span><span class="nam">type</span><span class="op">]</span><span class="op">,</span> <span class="nam">type</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc show_exc"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc exc2 show_exc"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t"><span class="str">    Decorator that arranges for subclasses of the decorated class to</span>&nbsp;</span><span class="r"></span></p>
     <p class="exc exc2 show_exc"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t"><span class="str">    require that they are also subclasses of the given class.</span>&nbsp;</span><span class="r"></span></p>
@@ -139,13 +139,13 @@
     <p class="pln"><span class="n"><a id="t55" href="#t55">55</a></span><span class="t">    <span class="com"># without it, some very weird interactions with meta classes happen and I</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t56" href="#t56">56</a></span><span class="t">    <span class="com"># really don&#x27;t want to debug that stuff.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t57" href="#t57">57</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t58" href="#t58">58</a></span><span class="t">    <span class="key">def</span> <span class="nam">decorate</span><span class="op">(</span><span class="nam">target_class</span><span class="op">:</span> <span class="nam">Type</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Type</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t58" href="#t58">58</a></span><span class="t">    <span class="key">def</span> <span class="nam">decorate</span><span class="op">(</span><span class="nam">target_class</span><span class="op">:</span> <span class="nam">type</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">type</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t59" href="#t59">59</a></span><span class="t">        <span class="com"># pylint: disable=unused-variable</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t60" href="#t60">60</a></span><span class="t">        <span class="nam">__class__</span> <span class="op">=</span> <span class="nam">target_class</span>  <span class="com"># @ReservedAssignment # noqa: F841</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t61" href="#t61">61</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t62" href="#t62">62</a></span><span class="t">        <span class="key">def</span> <span class="nam">__init_subclass__</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t63" href="#t63">63</a></span><span class="t">                <span class="nam">cls</span><span class="op">:</span> <span class="nam">Type</span><span class="op">,</span> <span class="nam">allow_derivation</span><span class="op">:</span> <span class="nam">bool</span> <span class="op">=</span> <span class="key">False</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">                <span class="op">**</span><span class="nam">kwargs</span><span class="op">:</span> <span class="nam">Dict</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Any</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t63" href="#t63">63</a></span><span class="t">                <span class="nam">cls</span><span class="op">:</span> <span class="nam">type</span><span class="op">,</span> <span class="nam">allow_derivation</span><span class="op">:</span> <span class="nam">bool</span> <span class="op">=</span> <span class="key">False</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">                <span class="op">**</span><span class="nam">kwargs</span><span class="op">:</span> <span class="nam">dict</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Any</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t65" href="#t65">65</a></span><span class="t">            <span class="key">if</span> <span class="key">not</span> <span class="nam">issubclass</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">required_class</span><span class="op">)</span> <span class="key">and</span> <span class="key">not</span> <span class="nam">allow_derivation</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t66" href="#t66">66</a></span><span class="t">                <span class="key">raise</span> <span class="nam">_RequiresSubclassTypeError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t67" href="#t67">67</a></span><span class="t">                    <span class="fst">f&quot;</span><span class="op">{</span><span class="nam">cls</span><span class="op">.</span><span class="nam">__name__</span><span class="op">}</span><span class="fst"> must be a subclass </span><span class="fst">&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -170,7 +170,7 @@
             <a class="nav" href="z_1d7e3ceccd6bb28f_safe_eval_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>

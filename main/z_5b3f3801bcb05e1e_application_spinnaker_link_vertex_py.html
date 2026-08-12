@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_5b3f3801bcb05e1e_application_vertex_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -182,8 +182,8 @@
     <p class="pln"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t"><span class="str">            The index of the connection, for when n_machine_vertices &gt; 1</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t"><span class="str">        :returns: The slice to be given to the connection.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t"><span class="str">        &quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">        <span class="nam">atoms_per_slice</span> <span class="op">=</span> <span class="nam">int</span><span class="op">(</span><span class="nam">math</span><span class="op">.</span><span class="nam">ceil</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_n_atoms</span> <span class="op">/</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_n_machine_vertices</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">        <span class="nam">atoms_per_slice</span> <span class="op">=</span> <span class="nam">math</span><span class="op">.</span><span class="nam">ceil</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_n_atoms</span> <span class="op">/</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_n_machine_vertices</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t103" href="#t103">103</a></span><span class="t">        <span class="nam">low_atom</span> <span class="op">=</span> <span class="nam">atoms_per_slice</span> <span class="op">*</span> <span class="nam">index</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t104" href="#t104">104</a></span><span class="t">        <span class="nam">hi_atom</span> <span class="op">=</span> <span class="op">(</span><span class="nam">atoms_per_slice</span> <span class="op">*</span> <span class="op">(</span><span class="nam">index</span> <span class="op">+</span> <span class="num">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t105" href="#t105">105</a></span><span class="t">        <span class="nam">hi_atom</span> <span class="op">=</span> <span class="nam">min</span><span class="op">(</span><span class="op">(</span><span class="nam">hi_atom</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">n_atoms</span> <span class="op">-</span> <span class="num">1</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -222,7 +222,7 @@
     <p class="pln"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">ApplicationVirtualVertex</span><span class="op">.</span><span class="nam">get_max_atoms_per_core</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_max_atoms_per_core</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">int</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">        <span class="key">return</span> <span class="nam">int</span><span class="op">(</span><span class="nam">math</span><span class="op">.</span><span class="nam">ceil</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">_n_atoms</span> <span class="op">/</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_n_machine_vertices</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">        <span class="key">return</span> <span class="nam">math</span><span class="op">.</span><span class="nam">ceil</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">_n_atoms</span> <span class="op">/</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_n_machine_vertices</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -232,7 +232,7 @@
             <a class="nav" href="z_5b3f3801bcb05e1e_application_vertex_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-11 05:56 +0000
+            created at 2026-08-12 06:31 +0000
         </p>
     </div>
 </footer>
