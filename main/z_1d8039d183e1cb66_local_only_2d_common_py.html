@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_1d8039d183e1cb66_multi_spike_recorder_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-14 05:59 +0000
+            created at 2026-08-15 05:46 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -97,7 +97,7 @@
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="com"># limitations under the License.</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">from</span> <span class="nam">collections</span> <span class="key">import</span> <span class="nam">defaultdict</span><span class="op">,</span> <span class="nam">namedtuple</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">from</span> <span class="nam">math</span> <span class="key">import</span> <span class="nam">ceil</span><span class="op">,</span> <span class="nam">floor</span><span class="op">,</span> <span class="nam">log2</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span><span class="op">,</span> <span class="nam">Union</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">TYPE_CHECKING</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="key">from</span> <span class="nam">pacman</span><span class="op">.</span><span class="nam">model</span><span class="op">.</span><span class="nam">graphs</span><span class="op">.</span><span class="nam">application</span> <span class="key">import</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t">    <span class="nam">ApplicationVertex</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -226,7 +226,7 @@
     <p class="pln"><span class="n"><a id="t142" href="#t142">142</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t143" href="#t143">143</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t144" href="#t144">144</a></span><span class="t"><span class="key">def</span> <span class="nam">get_first_and_last_slice</span><span class="op">(</span><span class="nam">pre_vertex</span><span class="op">:</span> <span class="nam">ApplicationVertex</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="xx">\</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t145" href="#t145">145</a></span><span class="t">        <span class="nam">Union</span><span class="op">[</span><span class="nam">tuple</span><span class="op">[</span><span class="nam">Slice</span><span class="op">,</span> <span class="nam">Slice</span><span class="op">]</span><span class="op">,</span> <span class="nam">tuple</span><span class="op">[</span><span class="nam">MDSlice</span><span class="op">,</span> <span class="nam">MDSlice</span><span class="op">]</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t145" href="#t145">145</a></span><span class="t">        <span class="nam">tuple</span><span class="op">[</span><span class="nam">Slice</span><span class="op">,</span> <span class="nam">Slice</span><span class="op">]</span> <span class="op">|</span> <span class="nam">tuple</span><span class="op">[</span><span class="nam">MDSlice</span><span class="op">,</span> <span class="nam">MDSlice</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t146" href="#t146">146</a></span><span class="t">    <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t147" href="#t147">147</a></span><span class="t"><span class="str">    :param pre_vertex: The source vertex</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t148" href="#t148">148</a></span><span class="t"><span class="str">    :returns: The first and last slice of an application vertex.</span>&nbsp;</span><span class="r"></span></p>
@@ -251,7 +251,7 @@
             <a class="nav" href="z_1d8039d183e1cb66_multi_spike_recorder_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-14 05:59 +0000
+            created at 2026-08-15 05:46 +0000
         </p>
     </div>
 </footer>

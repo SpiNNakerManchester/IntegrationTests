@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_aa829ef70b0764b6_splitter_utils_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-14 05:59 +0000
+            created at 2026-08-15 05:46 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -98,7 +98,7 @@
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="key">import</span> <span class="nam">logging</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="key">import</span> <span class="nam">math</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="key">from</span> <span class="nam">collections</span> <span class="key">import</span> <span class="nam">defaultdict</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Optional</span><span class="op">,</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Sequence</span><span class="op">,</span> <span class="nam">cast</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span> <span class="key">import</span> <span class="nam">floating</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">typing</span> <span class="key">import</span> <span class="nam">NDArray</span>&nbsp;</span><span class="r"></span></p>
@@ -406,7 +406,7 @@
     <p class="run run2"><span class="n"><a id="t322" href="#t322">322</a></span><span class="t">            <span class="nam">neuron_vertex</span><span class="op">:</span> <span class="nam">PopulationNeuronsMachineVertex</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t323" href="#t323">323</a></span><span class="t">            <span class="nam">atoms_per_core</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">synaptic_matrices</span><span class="op">:</span> <span class="nam">SynapticMatrices</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">tuple</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t324" href="#t324">324</a></span><span class="t">                <span class="nam">SynapseRegionReferences</span><span class="op">,</span> <span class="nam">str</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t325" href="#t325">325</a></span><span class="t">                <span class="nam">Optional</span><span class="op">[</span><span class="nam">MulticastEdgePartition</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t325" href="#t325">325</a></span><span class="t">                <span class="nam">MulticastEdgePartition</span> <span class="op">|</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t326" href="#t326">326</a></span><span class="t">                <span class="nam">PopulationSynapsesMachineVertexLead</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t327" href="#t327">327</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t328" href="#t328">328</a></span><span class="t"><span class="str">        Add the first synapse core for a neuron core.  This core will</span>&nbsp;</span><span class="r"></span></p>
@@ -452,7 +452,7 @@
     <p class="run run2"><span class="n"><a id="t368" href="#t368">368</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">syn_label</span><span class="op">:</span> <span class="nam">str</span><span class="op">,</span> <span class="nam">s_index</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">vertex_slice</span><span class="op">:</span> <span class="nam">Slice</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t369" href="#t369">369</a></span><span class="t">            <span class="nam">synapse_references</span><span class="op">:</span> <span class="nam">SynapseRegionReferences</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t370" href="#t370">370</a></span><span class="t">            <span class="nam">shared_synapse_sdram</span><span class="op">:</span> <span class="nam">AbstractSDRAM</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t371" href="#t371">371</a></span><span class="t">            <span class="nam">feedback_partition</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">AbstractEdgePartition</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t371" href="#t371">371</a></span><span class="t">            <span class="nam">feedback_partition</span><span class="op">:</span> <span class="nam">AbstractEdgePartition</span> <span class="op">|</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t372" href="#t372">372</a></span><span class="t">            <span class="nam">neuron_vertex</span><span class="op">:</span> <span class="nam">PopulationNeuronsMachineVertex</span><span class="op">)</span><span class="xx">\</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t373" href="#t373">373</a></span><span class="t">            <span class="op">-&gt;</span> <span class="nam">PopulationSynapsesMachineVertexShared</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t374" href="#t374">374</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
@@ -487,8 +487,8 @@
     <p class="pln"><span class="n"><a id="t403" href="#t403">403</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t404" href="#t404">404</a></span><span class="t">    <span class="key">def</span> <span class="nam">__add_plastic_feedback</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t405" href="#t405">405</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">neuron_vertex</span><span class="op">:</span> <span class="nam">PopulationNeuronsMachineVertex</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t406" href="#t406">406</a></span><span class="t">            <span class="nam">synapse_vertex</span><span class="op">:</span> <span class="nam">PopulationSynapsesMachineVertexCommon</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">Optional</span><span class="op">[</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t407" href="#t407">407</a></span><span class="t">                <span class="nam">MulticastEdgePartition</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t406" href="#t406">406</a></span><span class="t">            <span class="nam">synapse_vertex</span><span class="op">:</span> <span class="nam">PopulationSynapsesMachineVertexCommon</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t407" href="#t407">407</a></span><span class="t">            <span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">MulticastEdgePartition</span> <span class="op">|</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t408" href="#t408">408</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t409" href="#t409">409</a></span><span class="t"><span class="str">        Add an edge if needed from the neuron core back to the synapse core</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t410" href="#t410">410</a></span><span class="t"><span class="str">        to allow the synapse core to process plastic synapses.</span>&nbsp;</span><span class="r"></span></p>
@@ -752,7 +752,7 @@
     <p class="pln"><span class="n"><a id="t668" href="#t668">668</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t669" href="#t669">669</a></span><span class="t">    <span class="key">def</span> <span class="nam">__get_synapse_sdram</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t670" href="#t670">670</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">n_atoms</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t671" href="#t671">671</a></span><span class="t">            <span class="nam">shared_sdram</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">MultiRegionSDRAM</span><span class="op">]</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t671" href="#t671">671</a></span><span class="t">            <span class="nam">shared_sdram</span><span class="op">:</span> <span class="nam">MultiRegionSDRAM</span> <span class="op">|</span> <span class="key">None</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
     <p class="run run2"><span class="n"><a id="t672" href="#t672">672</a></span><span class="t">            <span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">MultiRegionSDRAM</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t673" href="#t673">673</a></span><span class="t">        <span class="str">&quot;&quot;&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t674" href="#t674">674</a></span><span class="t"><span class="str">        Get the resources of the synapses of a slice of atoms from a</span>&nbsp;</span><span class="r"></span></p>
@@ -842,7 +842,7 @@
             <a class="nav" href="z_aa829ef70b0764b6_splitter_utils_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-08-14 05:59 +0000
+            created at 2026-08-15 05:46 +0000
         </p>
     </div>
 </footer>
