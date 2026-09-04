@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_e688345c38268688_chip_iobuf_clearer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-01 06:10 +0000
+            created at 2026-09-04 05:36 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -213,7 +213,7 @@
     <p class="mis show_mis"><span class="n"><a id="t129" href="#t129">129</a></span><span class="t">                <span class="nam">SendPauseProcess</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t130" href="#t130">130</a></span><span class="t">                    <span class="nam">FecDataView</span><span class="op">.</span><span class="nam">get_scamp_connection_selector</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">.</span><span class="nam">send_pause</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t131" href="#t131">131</a></span><span class="t">                        <span class="nam">core_subsets</span><span class="op">,</span> <span class="nam">n_cores</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t132" href="#t132">132</a></span><span class="t">            <span class="key">except</span> <span class="nam">SpinnmanException</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t132" href="#t132">132</a></span><span class="t">            <span class="key">except</span> <span class="nam">SpinnmanException</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t133" href="#t133">133</a></span><span class="t">                <span class="com"># Check if cores have failed now</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t134" href="#t134">134</a></span><span class="t">                <span class="nam">rte_cores</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__txrx</span><span class="op">.</span><span class="nam">get_core_state_count</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t135" href="#t135">135</a></span><span class="t">                    <span class="nam">self</span><span class="op">.</span><span class="nam">__app_id</span><span class="op">,</span> <span class="nam">CPUState</span><span class="op">.</span><span class="nam">RUN_TIME_EXCEPTION</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -221,7 +221,7 @@
     <p class="pln"><span class="n"><a id="t137" href="#t137">137</a></span><span class="t">                <span class="com"># If there are no cores in the RTE state, then re-raise the</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">                <span class="com"># original exception, otherwise the wait_for_end will handle it</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t">                <span class="key">if</span> <span class="nam">rte_cores</span> <span class="op">==</span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">                    <span class="key">raise</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">                    <span class="key">raise</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_wait_for_end</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t142" href="#t142">142</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t143" href="#t143">143</a></span><span class="t">            <span class="nam">process</span> <span class="op">=</span> <span class="nam">GetCurrentTimeProcess</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -322,7 +322,7 @@
             <a class="nav" href="z_e688345c38268688_chip_iobuf_clearer_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-01 06:10 +0000
+            created at 2026-09-04 05:36 +0000
         </p>
     </div>
 </footer>
