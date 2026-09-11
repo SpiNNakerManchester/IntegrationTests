@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_c0bdcaa9347ab43d_neo_compare_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-10 05:37 +0000
+            created at 2026-09-11 05:38 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -668,7 +668,7 @@
     <p class="mis show_mis"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">                    <span class="nam">spike_times</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">record_time</span><span class="op">[</span><span class="nam">time_indice</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t">            <span class="nam">indices</span> <span class="op">=</span> <span class="nam">neurons</span><span class="op">[</span><span class="nam">local_indices</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">            <span class="nam">times</span> <span class="op">=</span> <span class="nam">record_time</span><span class="op">[</span><span class="nam">time_indices</span><span class="op">]</span><span class="op">.</span><span class="nam">reshape</span><span class="op">(</span><span class="op">(</span><span class="op">-</span><span class="num">1</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">            <span class="nam">times</span> <span class="op">=</span> <span class="nam">record_time</span><span class="op">[</span><span class="nam">time_indices</span><span class="op">]</span><span class="op">.</span><span class="nam">reshape</span><span class="op">(</span><span class="op">-</span><span class="num">1</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t">            <span class="nam">spike_ids</span><span class="op">.</span><span class="nam">extend</span><span class="op">(</span><span class="nam">indices</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t589" href="#t589">589</a></span><span class="t">            <span class="nam">spike_times</span><span class="op">.</span><span class="nam">extend</span><span class="op">(</span><span class="nam">times</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t590" href="#t590">590</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -1498,7 +1498,7 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t1414" href="#t1414">1414</a></span><span class="t"><span class="str">                    FROM region_metadata NATURAL JOIN recording_view</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t1415" href="#t1415">1415</a></span><span class="t"><span class="str">                    WHERE label = ? AND variable = ?</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t1416" href="#t1416">1416</a></span><span class="t"><span class="str">                    &quot;&quot;&quot;</span><span class="op">,</span> <span class="op">(</span><span class="nam">pop_label</span><span class="op">,</span> <span class="nam">variable</span><span class="op">)</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1417" href="#t1417">1417</a></span><span class="t">                <span class="nam">region_ids</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">int</span><span class="op">(</span><span class="op">(</span><span class="nam">row</span><span class="op">[</span><span class="str">&quot;region_id&quot;</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t1417" href="#t1417">1417</a></span><span class="t">                <span class="nam">region_ids</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">int</span><span class="op">(</span><span class="nam">row</span><span class="op">[</span><span class="str">&quot;region_id&quot;</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1418" href="#t1418">1418</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t1419" href="#t1419">1419</a></span><span class="t">        <span class="key">for</span> <span class="nam">region_id</span> <span class="key">in</span> <span class="nam">region_ids</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t1420" href="#t1420">1420</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_clear_recording_region</span><span class="op">(</span><span class="nam">region_id</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -1645,7 +1645,7 @@
             <a class="nav" href="z_c0bdcaa9347ab43d_neo_compare_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-10 05:37 +0000
+            created at 2026-09-11 05:38 +0000
         </p>
     </div>
 </footer>
