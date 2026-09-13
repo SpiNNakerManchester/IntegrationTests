@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_8eda2363bed5d823___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-11 05:38 +0000
+            created at 2026-09-13 05:45 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -199,7 +199,7 @@
     <p class="pln"><span class="n"><a id="t115" href="#t115">115</a></span><span class="t">        <span class="com"># Print the progress bar itself</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t116" href="#t116">116</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_print_distance_line</span><span class="op">(</span><span class="nam">first_space</span><span class="op">,</span> <span class="nam">second_space</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t117" href="#t117">117</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_in_bad_terminal</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t118" href="#t118">118</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="str">&quot;&quot;</span><span class="op">,</span> <span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t118" href="#t118">118</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t119" href="#t119">119</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="str">&quot; &quot;</span><span class="op">,</span> <span class="nam">end</span><span class="op">=</span><span class="str">&quot;&quot;</span><span class="op">,</span> <span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t120" href="#t120">120</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t121" href="#t121">121</a></span><span class="t">    <span class="key">def</span> <span class="nam">_print_distance_line</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -227,7 +227,7 @@
     <p class="mis show_mis"><span class="n"><a id="t143" href="#t143">143</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_in_bad_terminal</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t144" href="#t144">144</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">_end_character</span><span class="op">,</span> <span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t145" href="#t145">145</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t146" href="#t146">146</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="str">&quot;&quot;</span><span class="op">,</span> <span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t146" href="#t146">146</a></span><span class="t">            <span class="nam">print</span><span class="op">(</span><span class="nam">file</span><span class="op">=</span><span class="nam">self</span><span class="op">.</span><span class="nam">_destination</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t147" href="#t147">147</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t148" href="#t148">148</a></span><span class="t">    <span class="key">def</span> <span class="nam">_create_initial_progress_bar</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">description</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t149" href="#t149">149</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_number_of_things</span> <span class="op">==</span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -367,7 +367,7 @@
             <a class="nav" href="z_8eda2363bed5d823___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-09-11 05:38 +0000
+            created at 2026-09-13 05:45 +0000
         </p>
     </div>
 </footer>
