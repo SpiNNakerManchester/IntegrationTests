@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_919ae386762f6d36_spynnaker_live_spikes_connection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -400,13 +400,13 @@
     <p class="pln"><span class="n"><a id="t316" href="#t316">316</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t317" href="#t317">317</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">__handle_unknown_key</span><span class="op">(</span><span class="nam">key</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t318" href="#t318">318</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t319" href="#t319">319</a></span><span class="t">        <span class="key">for</span> <span class="nam">label_id</span> <span class="key">in</span> <span class="nam">key_labels</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t319" href="#t319">319</a></span><span class="t">        <span class="key">for</span> <span class="nam">label_id</span><span class="op">,</span> <span class="nam">label_value</span> <span class="key">in</span> <span class="nam">key_labels</span><span class="op">.</span><span class="nam">items</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t320" href="#t320">320</a></span><span class="t">            <span class="nam">label</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__receive_labels</span><span class="op">[</span><span class="nam">label_id</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t321" href="#t321">321</a></span><span class="t">            <span class="key">for</span> <span class="nam">c_back</span><span class="op">,</span> <span class="nam">use_atom</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__live_event_callbacks</span><span class="op">[</span><span class="nam">label_id</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t322" href="#t322">322</a></span><span class="t">                <span class="key">if</span> <span class="nam">use_atom</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t323" href="#t323">323</a></span><span class="t">                    <span class="nam">c_back</span><span class="op">(</span><span class="nam">label</span><span class="op">,</span> <span class="nam">atoms_labels</span><span class="op">[</span><span class="nam">label_id</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t324" href="#t324">324</a></span><span class="t">                <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t325" href="#t325">325</a></span><span class="t">                    <span class="nam">c_back</span><span class="op">(</span><span class="nam">label</span><span class="op">,</span> <span class="nam">key_labels</span><span class="op">[</span><span class="nam">label_id</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t325" href="#t325">325</a></span><span class="t">                    <span class="nam">c_back</span><span class="op">(</span><span class="nam">label</span><span class="op">,</span> <span class="nam">label_value</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t326" href="#t326">326</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t327" href="#t327">327</a></span><span class="t">    <span class="key">def</span> <span class="nam">__handle_unknown_key</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">key</span><span class="op">:</span> <span class="nam">int</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t328" href="#t328">328</a></span><span class="t">        <span class="key">if</span> <span class="nam">key</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__error_keys</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -421,7 +421,7 @@
             <a class="nav" href="z_919ae386762f6d36_spynnaker_live_spikes_connection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
     </div>
 </footer>

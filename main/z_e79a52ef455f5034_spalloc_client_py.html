@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_e79a52ef455f5034_spalloc_eieio_connection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -903,8 +903,8 @@
     <p class="mis show_mis"><span class="n"><a id="t819" href="#t819">819</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t820" href="#t820">820</a></span><span class="t">            <span class="key">while</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__keepalive</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t821" href="#t821">821</a></span><span class="t">                <span class="nam">time</span><span class="op">.</span><span class="nam">sleep</span><span class="op">(</span><span class="nam">KEEP_ALIVE_PERIOND</span> <span class="op">/</span> <span class="num">2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t822" href="#t822">822</a></span><span class="t">        <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">ex</span><span class="op">:</span>  <span class="com"># pylint: disable=broad-except</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t823" href="#t823">823</a></span><span class="t">            <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="nam">ex</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t822" href="#t822">822</a></span><span class="t">        <span class="key">except</span> <span class="nam">Exception</span><span class="op">:</span>  <span class="com"># pylint: disable=broad-except</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t823" href="#t823">823</a></span><span class="t">            <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="str">&quot;Keep alive failed&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t824" href="#t824">824</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t825" href="#t825">825</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">SpallocJob</span><span class="op">.</span><span class="nam">where_is_machine</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t826" href="#t826">826</a></span><span class="t">    <span class="key">def</span> <span class="nam">where_is_machine</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">x</span><span class="op">:</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">y</span><span class="op">:</span> <span class="nam">int</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="nam">tuple</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">int</span><span class="op">]</span> <span class="op">|</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -1371,7 +1371,7 @@
             <a class="nav" href="z_e79a52ef455f5034_spalloc_eieio_connection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
     </div>
 </footer>

@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_6a2c48897f277d10___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -593,8 +593,8 @@
     <p class="mis show_mis"><span class="n"><a id="t509" href="#t509">509</a></span><span class="t">            <span class="key">if</span> <span class="nam">get_config_str</span><span class="op">(</span><span class="str">&quot;Mode&quot;</span><span class="op">,</span> <span class="str">&quot;mode&quot;</span><span class="op">)</span> <span class="op">!=</span> <span class="str">&quot;Debug&quot;</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t510" href="#t510">510</a></span><span class="t">                <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t511" href="#t511">511</a></span><span class="t">                    <span class="nam">self</span><span class="op">.</span><span class="nam">stop</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t512" href="#t512">512</a></span><span class="t">                <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">stop_e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t513" href="#t513">513</a></span><span class="t">                    <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="fst">f&quot;</span><span class="fst">Error </span><span class="op">{</span><span class="nam">stop_e</span><span class="op">}</span><span class="fst"> when attempting to stop</span><span class="fst">&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t512" href="#t512">512</a></span><span class="t">                <span class="key">except</span> <span class="nam">Exception</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t513" href="#t513">513</a></span><span class="t">                    <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="str">&quot;Error when attempting to stop&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t514" href="#t514">514</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_data_writer</span><span class="op">.</span><span class="nam">shut_down</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t515" href="#t515">515</a></span><span class="t">            <span class="key">raise</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t516" href="#t516">516</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -2208,9 +2208,9 @@
     <p class="run"><span class="n"><a id="t2124" href="#t2124">2124</a></span><span class="t">    <span class="key">def</span> <span class="nam">_recover_from_error</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">exception</span><span class="op">:</span> <span class="nam">Exception</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t2125" href="#t2125">2125</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t2126" href="#t2126">2126</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">__recover_from_error</span><span class="op">(</span><span class="nam">exception</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t2127" href="#t2127">2127</a></span><span class="t">        <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">rec_e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t2127" href="#t2127">2127</a></span><span class="t">        <span class="key">except</span> <span class="nam">Exception</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t2128" href="#t2128">2128</a></span><span class="t">            <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t2129" href="#t2129">2129</a></span><span class="t">                <span class="fst">f&quot;</span><span class="fst">Error </span><span class="op">{</span><span class="nam">rec_e</span><span class="op">}</span><span class="fst"> when attempting to recover from error</span><span class="fst">&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t2129" href="#t2129">2129</a></span><span class="t">                <span class="str">&quot;Error when attempting to recover from error&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t2130" href="#t2130">2130</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t2131" href="#t2131">2131</a></span><span class="t">    <span class="key">def</span> <span class="nam">__recover_from_error</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">exception</span><span class="op">:</span> <span class="nam">Exception</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t2132" href="#t2132">2132</a></span><span class="t">        <span class="com"># if exception has an exception, print to system</span>&nbsp;</span><span class="r"></span></p>
@@ -2277,8 +2277,8 @@
     <p class="mis show_mis"><span class="n"><a id="t2193" href="#t2193">2193</a></span><span class="t">                <span class="nam">placements_provenance_gatherer</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t2194" href="#t2194">2194</a></span><span class="t">                    <span class="nam">finished_placements</span><span class="op">.</span><span class="nam">n_placements</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t2195" href="#t2195">2195</a></span><span class="t">                    <span class="nam">finished_placements</span><span class="op">.</span><span class="nam">placements</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t2196" href="#t2196">2196</a></span><span class="t">            <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">pro_e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t2197" href="#t2197">2197</a></span><span class="t">                <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="fst">f&quot;</span><span class="fst">Could not read provenance due to </span><span class="op">{</span><span class="nam">pro_e</span><span class="op">}</span><span class="fst">&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t2196" href="#t2196">2196</a></span><span class="t">            <span class="key">except</span> <span class="nam">Exception</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t2197" href="#t2197">2197</a></span><span class="t">                <span class="nam">logger</span><span class="op">.</span><span class="nam">exception</span><span class="op">(</span><span class="str">&quot;Could not read provenance&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t2198" href="#t2198">2198</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t2199" href="#t2199">2199</a></span><span class="t">        <span class="com"># Read IOBUF where possible (that should be everywhere)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t2200" href="#t2200">2200</a></span><span class="t">        <span class="nam">iobuf</span> <span class="op">=</span> <span class="nam">IOBufExtractor</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -2441,7 +2441,7 @@
             <a class="nav" href="z_6a2c48897f277d10___init___py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-22 05:42 +0000
+            created at 2026-09-23 05:50 +0000
         </p>
     </div>
 </footer>
