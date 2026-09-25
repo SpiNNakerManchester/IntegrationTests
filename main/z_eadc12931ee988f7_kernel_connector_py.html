@@ -55,9 +55,9 @@
             </div>
         </aside>
         <h2>
-            <span class="text">258 statements &nbsp;</span>
+            <span class="text">256 statements &nbsp;</span>
             <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">70<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">188<span class="text"> missing</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">186<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">2<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">0<span class="text"> partial</span></button>
         </h2>
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_eadc12931ee988f7_multapse_connector_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -656,24 +656,20 @@
     <p class="mis show_mis"><span class="n"><a id="t572" href="#t572">572</a></span><span class="t">        <span class="nam">max_pre_y</span> <span class="op">=</span> <span class="op">(</span><span class="nam">post_slice_y</span><span class="op">.</span><span class="nam">stop</span> <span class="op">+</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_hlf_k_h</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t573" href="#t573">573</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t574" href="#t574">574</a></span><span class="t">        <span class="com"># No part of the pre square overlaps the post-square, don&#x27;t connect</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t575" href="#t575">575</a></span><span class="t">        <span class="key">if</span> <span class="op">(</span><span class="nam">pre_slice_x</span><span class="op">.</span><span class="nam">stop</span> <span class="op">&lt;=</span> <span class="nam">min_pre_x</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t576" href="#t576">576</a></span><span class="t">                <span class="nam">pre_slice_x</span><span class="op">.</span><span class="nam">start</span> <span class="op">&gt;</span> <span class="nam">max_pre_x</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t577" href="#t577">577</a></span><span class="t">                <span class="nam">pre_slice_y</span><span class="op">.</span><span class="nam">stop</span> <span class="op">&lt;=</span> <span class="nam">min_pre_y</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t578" href="#t578">578</a></span><span class="t">                <span class="nam">pre_slice_y</span><span class="op">.</span><span class="nam">start</span> <span class="op">&gt;</span> <span class="nam">max_pre_y</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t579" href="#t579">579</a></span><span class="t">            <span class="key">return</span> <span class="key">False</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t580" href="#t580">580</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t581" href="#t581">581</a></span><span class="t">        <span class="com"># Otherwise, they do</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t582" href="#t582">582</a></span><span class="t">        <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t583" href="#t583">583</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractConnector</span><span class="op">.</span><span class="nam">validate_connection</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">    <span class="key">def</span> <span class="nam">validate_connection</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">application_edge</span><span class="op">:</span> <span class="nam">ProjectionApplicationEdge</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run run2"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">            <span class="nam">synapse_info</span><span class="op">:</span> <span class="nam">SynapseInformation</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t">        <span class="nam">pre</span> <span class="op">=</span> <span class="nam">application_edge</span><span class="op">.</span><span class="nam">pre_vertex</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t589" href="#t589">589</a></span><span class="t">        <span class="nam">post</span> <span class="op">=</span> <span class="nam">application_edge</span><span class="op">.</span><span class="nam">post_vertex</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t590" href="#t590">590</a></span><span class="t">        <span class="key">if</span> <span class="nam">len</span><span class="op">(</span><span class="nam">pre</span><span class="op">.</span><span class="nam">atoms_shape</span><span class="op">)</span> <span class="op">!=</span> <span class="num">1</span> <span class="key">or</span> <span class="nam">len</span><span class="op">(</span><span class="nam">post</span><span class="op">.</span><span class="nam">atoms_shape</span><span class="op">)</span> <span class="op">!=</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t591" href="#t591">591</a></span><span class="t">            <span class="key">raise</span> <span class="nam">ConfigurationException</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t592" href="#t592">592</a></span><span class="t">                <span class="str">&quot;The Kernel Connector is designed to work with 1D vertices&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t575" href="#t575">575</a></span><span class="t">        <span class="key">return</span> <span class="key">not</span> <span class="op">(</span><span class="nam">pre_slice_x</span><span class="op">.</span><span class="nam">stop</span> <span class="op">&lt;=</span> <span class="nam">min_pre_x</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t576" href="#t576">576</a></span><span class="t">                    <span class="nam">pre_slice_x</span><span class="op">.</span><span class="nam">start</span> <span class="op">&gt;</span> <span class="nam">max_pre_x</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t577" href="#t577">577</a></span><span class="t">                    <span class="nam">pre_slice_y</span><span class="op">.</span><span class="nam">stop</span> <span class="op">&lt;=</span> <span class="nam">min_pre_y</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t578" href="#t578">578</a></span><span class="t">                    <span class="nam">pre_slice_y</span><span class="op">.</span><span class="nam">start</span> <span class="op">&gt;</span> <span class="nam">max_pre_y</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t579" href="#t579">579</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t580" href="#t580">580</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractConnector</span><span class="op">.</span><span class="nam">validate_connection</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t581" href="#t581">581</a></span><span class="t">    <span class="key">def</span> <span class="nam">validate_connection</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t582" href="#t582">582</a></span><span class="t">            <span class="nam">self</span><span class="op">,</span> <span class="nam">application_edge</span><span class="op">:</span> <span class="nam">ProjectionApplicationEdge</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t583" href="#t583">583</a></span><span class="t">            <span class="nam">synapse_info</span><span class="op">:</span> <span class="nam">SynapseInformation</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">        <span class="nam">pre</span> <span class="op">=</span> <span class="nam">application_edge</span><span class="op">.</span><span class="nam">pre_vertex</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">        <span class="nam">post</span> <span class="op">=</span> <span class="nam">application_edge</span><span class="op">.</span><span class="nam">post_vertex</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t">        <span class="key">if</span> <span class="nam">len</span><span class="op">(</span><span class="nam">pre</span><span class="op">.</span><span class="nam">atoms_shape</span><span class="op">)</span> <span class="op">!=</span> <span class="num">1</span> <span class="key">or</span> <span class="nam">len</span><span class="op">(</span><span class="nam">post</span><span class="op">.</span><span class="nam">atoms_shape</span><span class="op">)</span> <span class="op">!=</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">            <span class="key">raise</span> <span class="nam">ConfigurationException</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t">                <span class="str">&quot;The Kernel Connector is designed to work with 1D vertices&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -683,7 +679,7 @@
             <a class="nav" href="z_eadc12931ee988f7_multapse_connector_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
     </div>
 </footer>

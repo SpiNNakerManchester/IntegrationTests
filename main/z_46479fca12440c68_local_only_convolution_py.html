@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_46479fca12440c68_local_only_pool_dense_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -401,7 +401,7 @@
     <p class="pln"><span class="n"><a id="t317" href="#t317">317</a></span><span class="t">        <span class="com"># We know the connector doesn&#x27;t care about the argument</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t318" href="#t318">318</a></span><span class="t">        <span class="com"># conn.kernel_weights known to be an array of floats</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t319" href="#t319">319</a></span><span class="t">        <span class="nam">max_weight</span> <span class="op">=</span> <span class="nam">cast</span><span class="op">(</span><span class="nam">float</span><span class="op">,</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">amax</span><span class="op">(</span><span class="nam">conn</span><span class="op">.</span><span class="nam">kernel_weights</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t320" href="#t320">320</a></span><span class="t">        <span class="key">return</span> <span class="nam">max_weight</span> <span class="key">if</span> <span class="nam">max_weight</span> <span class="op">&gt;</span> <span class="num">0</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t320" href="#t320">320</a></span><span class="t">        <span class="key">return</span> <span class="nam">max</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">max_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t321" href="#t321">321</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t322" href="#t322">322</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractSupportsSignedWeights</span><span class="op">.</span><span class="nam">get_minimum_negative_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t323" href="#t323">323</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_minimum_negative_weight</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -410,7 +410,7 @@
     <p class="pln"><span class="n"><a id="t326" href="#t326">326</a></span><span class="t">        <span class="com"># This is different because the connector happens to support this</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t327" href="#t327">327</a></span><span class="t">        <span class="com"># conn.kernel_weights known to be an array of floats</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t328" href="#t328">328</a></span><span class="t">        <span class="nam">min_weight</span> <span class="op">=</span> <span class="nam">cast</span><span class="op">(</span><span class="nam">float</span><span class="op">,</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">amin</span><span class="op">(</span><span class="nam">conn</span><span class="op">.</span><span class="nam">kernel_weights</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t329" href="#t329">329</a></span><span class="t">        <span class="key">return</span> <span class="nam">min_weight</span> <span class="key">if</span> <span class="nam">min_weight</span> <span class="op">&lt;</span> <span class="num">0</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t329" href="#t329">329</a></span><span class="t">        <span class="key">return</span> <span class="nam">min</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">min_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t330" href="#t330">330</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t331" href="#t331">331</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractSupportsSignedWeights</span><span class="op">.</span><span class="nam">get_mean_positive_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t332" href="#t332">332</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_mean_positive_weight</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -462,7 +462,7 @@
             <a class="nav" href="z_46479fca12440c68_local_only_pool_dense_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
     </div>
 </footer>

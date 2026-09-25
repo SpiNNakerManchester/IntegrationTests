@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_9791695affce615d_master_pop_table_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -369,7 +369,7 @@
     <p class="mis show_mis"><span class="n"><a id="t285" href="#t285">285</a></span><span class="t">        <span class="nam">conn</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__connector</span><span class="op">(</span><span class="nam">incoming_projection</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t286" href="#t286">286</a></span><span class="t">        <span class="com"># We know the connector doesn&#x27;t care about the argument</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t287" href="#t287">287</a></span><span class="t">        <span class="nam">max_weight</span> <span class="op">=</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">amax</span><span class="op">(</span><span class="nam">conn</span><span class="op">.</span><span class="nam">weights</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t288" href="#t288">288</a></span><span class="t">        <span class="key">return</span> <span class="nam">max_weight</span> <span class="key">if</span> <span class="nam">max_weight</span> <span class="op">&gt;</span> <span class="num">0</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t288" href="#t288">288</a></span><span class="t">        <span class="key">return</span> <span class="nam">max</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">max_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t289" href="#t289">289</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t290" href="#t290">290</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractSupportsSignedWeights</span><span class="op">.</span><span class="nam">get_minimum_negative_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t291" href="#t291">291</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_minimum_negative_weight</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -377,7 +377,7 @@
     <p class="mis show_mis"><span class="n"><a id="t293" href="#t293">293</a></span><span class="t">        <span class="nam">conn</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__connector</span><span class="op">(</span><span class="nam">incoming_projection</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t294" href="#t294">294</a></span><span class="t">        <span class="com"># This is different because the connector happens to support this</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t295" href="#t295">295</a></span><span class="t">        <span class="nam">min_weight</span> <span class="op">=</span> <span class="nam">numpy</span><span class="op">.</span><span class="nam">amin</span><span class="op">(</span><span class="nam">conn</span><span class="op">.</span><span class="nam">weights</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t296" href="#t296">296</a></span><span class="t">        <span class="key">return</span> <span class="nam">min_weight</span> <span class="key">if</span> <span class="nam">min_weight</span> <span class="op">&lt;</span> <span class="num">0</span> <span class="key">else</span> <span class="num">0</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t296" href="#t296">296</a></span><span class="t">        <span class="key">return</span> <span class="nam">min</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">min_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t297" href="#t297">297</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t298" href="#t298">298</a></span><span class="t">    <span class="op">@</span><span class="nam">overrides</span><span class="op">(</span><span class="nam">AbstractSupportsSignedWeights</span><span class="op">.</span><span class="nam">get_mean_positive_weight</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t299" href="#t299">299</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_mean_positive_weight</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
@@ -441,7 +441,7 @@
             <a class="nav" href="z_9791695affce615d_master_pop_table_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-24 05:46 +0000
+            created at 2026-09-25 05:45 +0000
         </p>
     </div>
 </footer>
