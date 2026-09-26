@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_50e74ee09da769c7_utility_functions_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-25 05:45 +0000
+            created at 2026-09-26 05:41 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -219,7 +219,7 @@
     <p class="mis show_mis"><span class="n"><a id="t135" href="#t135">135</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t136" href="#t136">136</a></span><span class="t">        <span class="nam">sock</span><span class="op">.</span><span class="nam">settimeout</span><span class="op">(</span><span class="nam">timeout</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t137" href="#t137">137</a></span><span class="t">        <span class="key">return</span> <span class="nam">sock</span><span class="op">.</span><span class="nam">recv</span><span class="op">(</span><span class="nam">size</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">    <span class="key">except</span> <span class="nam">socket</span><span class="op">.</span><span class="nam">timeout</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">    <span class="key">except</span> <span class="nam">TimeoutError</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t">        <span class="key">raise</span> <span class="nam">SpinnmanTimeoutException</span><span class="op">(</span><span class="str">&quot;receive&quot;</span><span class="op">,</span> <span class="nam">timeout</span><span class="op">)</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">    <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>  <span class="com"># pylint: disable=broad-except</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">        <span class="key">raise</span> <span class="nam">SpinnmanIOException</span><span class="op">(</span><span class="fst">f&quot;</span><span class="fst">Error receiving: </span><span class="op">{</span><span class="nam">e</span><span class="op">}</span><span class="fst">&quot;</span><span class="op">)</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
@@ -236,7 +236,7 @@
     <p class="mis show_mis"><span class="n"><a id="t152" href="#t152">152</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t153" href="#t153">153</a></span><span class="t">        <span class="nam">sock</span><span class="op">.</span><span class="nam">settimeout</span><span class="op">(</span><span class="nam">timeout</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t154" href="#t154">154</a></span><span class="t">        <span class="key">return</span> <span class="nam">sock</span><span class="op">.</span><span class="nam">recvfrom</span><span class="op">(</span><span class="nam">size</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t155" href="#t155">155</a></span><span class="t">    <span class="key">except</span> <span class="nam">socket</span><span class="op">.</span><span class="nam">timeout</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t155" href="#t155">155</a></span><span class="t">    <span class="key">except</span> <span class="nam">TimeoutError</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t156" href="#t156">156</a></span><span class="t">        <span class="key">raise</span> <span class="nam">SpinnmanTimeoutException</span><span class="op">(</span><span class="str">&quot;receive&quot;</span><span class="op">,</span> <span class="nam">timeout</span><span class="op">)</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t157" href="#t157">157</a></span><span class="t">    <span class="key">except</span> <span class="nam">Exception</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>  <span class="com"># pylint: disable=broad-except</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t158" href="#t158">158</a></span><span class="t">        <span class="key">raise</span> <span class="nam">SpinnmanIOException</span><span class="op">(</span><span class="fst">f&quot;</span><span class="fst">Error receiving: </span><span class="op">{</span><span class="nam">e</span><span class="op">}</span><span class="fst">&quot;</span><span class="op">)</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
@@ -274,7 +274,7 @@
             <a class="nav" href="z_50e74ee09da769c7_utility_functions_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.1">coverage.py v7.16.1</a>,
-            created at 2026-09-25 05:45 +0000
+            created at 2026-09-26 05:41 +0000
         </p>
     </div>
 </footer>
