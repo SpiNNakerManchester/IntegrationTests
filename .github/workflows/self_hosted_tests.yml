@@ -187,7 +187,7 @@ jobs:
         rm -rf TSPonSpiNNaker/spinnaker_c
         rm -rf TSPonSpiNNaker/build
         rm -rf TSPonSpiNNaker/binaries
-        
+
 
     # --------------------------------------------------------------------
 
@@ -477,7 +477,7 @@ jobs:
       if: always() && steps.test-previous.outputs.prev_ok == 'true'
       run: |
         source pyenv/bin/activate
-        pytest -n auto --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb
+        pytest -n 1 --nbmake SpiNNakerJupyterExamples/**/*.ipynb SpiNNakerJupyterExamples/**/**/*.ipynb
 
     - name: Run TSPOnSpiNNaker Integration Tests
       id: tsp-on-spinnaker-integration-tests
